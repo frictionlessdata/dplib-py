@@ -20,4 +20,9 @@
          <lastmod>2023-09-07</lastmod>
          <changefreq>daily</changefreq>
     </url>
+    <url>
+         <loc>https://frictionlessdata.github.io/dpspecs-py/reference/schema/</loc>
+         <lastmod>2023-09-07</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
 </urlset>
