@@ -1,0 +1,145 @@
+[project]
+name = "dpspecs"
+dynamic = ["version"]
+description = "Tooling for the Data Package standard"
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.8"
+urls.homepage = "https://github.com/frictionlessdata/dpspecs-py"
+authors = [
+    {name = "Open Knowledge Foundation", email = "info@okfn.org"},
+]
+keywords=[
+    "data validation",
+    "open data",
+    "json schema",
+    "json table schema",
+    "data package",
+    "tabular data package",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "moto",
+    "ruff",
+    "httpx",
+    "hatch",
+    "isort",
+    "black",
+    "yattag",
+    "neovim",
+    "pytest",
+    "mkdocs",
+    "pyright",
+    "ipython",
+    "pytest-cov",
+    "pytest-vcr",
+    "pytest-mock",
+    "pytest-only",
+    "oauth2client",
+    "requests-mock",
+    "pytest-dotenv",
+    "pytest-timeout",
+    "pytest-lazy-fixture",
+]
+
+[project.scripts]
+dpspecs = "dpspecs.__main__:console"
+
+[tool.hatch.version]
+path = "dpspecs/settings.py"
+
+[tool.hatch.envs.default]
+python = "3.10"
+dependencies = [
+  "dpspecs[dev]",
+]
+
+[tool.hatch.envs.default.scripts]
+coverage = [
+  "sensible-browser coverage/index.html",
+]
+docs = [
+  "mkdocs build",
+]
+format = [
+  "ruff dpspecs tests --fix",
+  "isort dpspecs tests",
+  "black dpspecs tests",
+]
+lint = [
+  "ruff dpspecs tests",
+  "isort dpspecs tests --check",
+  "black dpspecs tests --check",
+  "pyright dpspecs tests",
+]
+test = [
+  "hatch run lint",
+  "pytest --cov dpspecs --cov-report term-missing --cov-report html:coverage --cov-fail-under 70 --timeout=300",
+]
+write = [
+  "mkdocs serve",
+]
+
+[[tool.hatch.envs.ci.matrix]]
+python = ["3.8", "3.9", "3.10"]
+
+[tool.hatch.envs.ci.scripts]
+test = [
+  "hatch run lint",
+  "pytest --cov dpspecs --cov-report term-missing --cov-report xml --cov-fail-under 80 --timeout=300 --ci",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.black]
+line-length = 90
+
+[tool.isort]
+profile = "black"
+multi_line_output = 9
+
+[tool.ruff]
+line-length = 90
+ignore = ["E501", "E731", "F405"]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401", "F403"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+env_files = [".env"]
+markers = [
+    "ci: integrational tests (select with '--ci')",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning:boto.*",
+    "ignore::DeprecationWarning:moto.*",
+    "ignore::DeprecationWarning:grako.*",
+    "ignore::DeprecationWarning:savWriter.*",
+    "ignore::Warning:duckdb_engine.*",
+]
+
+[tool.pyright]
+strict = ["dpspecs"]
+include = ["dpspecs", "tests"]
+exclude = ["dpspecs/vendors"]
+ignore = ["**/__init__.py"]
