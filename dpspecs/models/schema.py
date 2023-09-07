@@ -5,6 +5,22 @@ from typing import Any, Dict, List, Literal, Optional
 from .base import Model
 
 
+class Schema(Model):
+    """Schema model"""
+
+    name: Optional[str] = None
+    type: Optional[str] = None
+    title: Optional[str] = None
+    description: Optional[str] = None
+
+    fields: List[Field]
+    """List of fields"""
+
+    missingValues: Optional[List[str]] = None
+    primaryKey: Optional[List[str]] = None
+    foreignKeys: Optional[List[ForeignKey]] = None
+
+
 class Field(Model):
     name: str
     type: str
@@ -91,14 +107,3 @@ class ForeignKeyReference(Model):
 class ForeignKey(Model):
     fields: List[str]
     reference: Optional[ForeignKeyReference] = None
-
-
-class Schema(Model):
-    name: Optional[str] = None
-    type: Optional[str] = None
-    title: Optional[str] = None
-    description: Optional[str] = None
-    fields: List[Field]
-    missingValues: Optional[List[str]] = None
-    primaryKey: Optional[List[str]] = None
-    foreignKeys: Optional[List[ForeignKey]] = None
