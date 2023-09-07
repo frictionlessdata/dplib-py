@@ -4,7 +4,7 @@ from pydantic import BaseModel, ValidationError
 from pydantic_core import ErrorDetails
 
 
-class Model(BaseModel):
+class Model(BaseModel, validate_assignment=True):
     def __str__(self):
         return str(self.to_descriptor())
 
