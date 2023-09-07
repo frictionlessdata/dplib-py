@@ -1,17 +1,17 @@
 from __future__ import annotations
 
-from typing import Any, Dict, List, Literal, Optional
+from typing import Any, Dict, List, Literal, Optional, Union
+
+import pydantic
+from typing_extensions import Annotated
 
 from .base import Model
+
+# Schema
 
 
 class Schema(Model):
     """Schema model"""
-
-    name: Optional[str] = None
-    type: Optional[str] = None
-    title: Optional[str] = None
-    description: Optional[str] = None
 
     fields: List[Field]
     """List of fields"""
@@ -21,7 +21,10 @@ class Schema(Model):
     foreignKeys: Optional[List[ForeignKey]] = None
 
 
-class Field(Model):
+# Fields
+
+
+class BaseField(Model):
     name: str
     type: str
     title: Optional[str] = None
@@ -30,80 +33,105 @@ class Field(Model):
     missingValues: Optional[List[str]] = None
 
 
-class AnyField(Field):
-    type: Literal["any"]
+class AnyField(BaseField):
+    type: Literal["any"] = "any"
 
 
-class ArrayField(Field):
-    type: Literal["array"]
+class ArrayField(BaseField):
+    type: Literal["array"] = "array"
     # support json/csv format
     arrayItem: Optional[Dict[str, Any]] = None
 
 
-class BooleanField(Field):
-    type: Literal["boolean"]
+class BooleanField(BaseField):
+    type: Literal["boolean"] = "boolean"
     trueValues: Optional[List[str]] = None
     falseValues: Optional[List[str]] = None
 
 
-class DateField(Field):
-    type: Literal["date"]
+class DateField(BaseField):
+    type: Literal["date"] = "date"
 
 
-class DatetimeField(Field):
-    type: Literal["datetime"]
+class DatetimeField(BaseField):
+    type: Literal["datetime"] = "datetime"
 
 
-class DurationField(Field):
-    type: Literal["duration"]
+class DurationField(BaseField):
+    type: Literal["duration"] = "duration"
 
 
-class GeojsonField(Field):
-    type: Literal["geojson"]
+class GeojsonField(BaseField):
+    type: Literal["geojson"] = "geojson"
 
 
-class GeopointField(Field):
-    type: Literal["geopoint"]
+class GeopointField(BaseField):
+    type: Literal["geopoint"] = "geopoint"
 
 
-class IntegerField(Field):
-    type: Literal["integer"]
+class IntegerField(BaseField):
+    type: Literal["integer"] = "integer"
     bareNumber: Optional[bool] = None
     groupChar: Optional[str] = None
 
 
-class NumberField(Field):
-    type: Literal["number"]
+class NumberField(BaseField):
+    type: Literal["number"] = "number"
     bareNumber: Optional[bool] = None
     groupChar: Optional[str] = None
     decimalChar: Optional[str] = None
 
 
-class ObjectField(Field):
-    type: Literal["object"]
+class ObjectField(BaseField):
+    type: Literal["object"] = "object"
 
 
-class StringField(Field):
-    type: Literal["string"]
+class StringField(BaseField):
+    type: Literal["string"] = "string"
 
 
-class TimeField(Field):
-    type: Literal["time"]
+class TimeField(BaseField):
+    type: Literal["time"] = "time"
 
 
-class YearField(Field):
-    type: Literal["year"]
+class YearField(BaseField):
+    type: Literal["year"] = "year"
 
 
-class YearmonthField(Field):
-    type: Literal["yearmonth"]
+class YearmonthField(BaseField):
+    type: Literal["yearmonth"] = "yearmonth"
 
 
-class ForeignKeyReference(Model):
-    fields: List[str]
-    resource: str
+Field = Annotated[
+    Union[
+        AnyField,
+        ArrayField,
+        BooleanField,
+        DateField,
+        DatetimeField,
+        DurationField,
+        GeojsonField,
+        GeopointField,
+        IntegerField,
+        NumberField,
+        ObjectField,
+        StringField,
+        TimeField,
+        YearField,
+        YearmonthField,
+    ],
+    pydantic.Field(discriminator="type"),
+]
+
+
+# Foreign keys
 
 
 class ForeignKey(Model):
     fields: List[str]
     reference: Optional[ForeignKeyReference] = None
+
+
+class ForeignKeyReference(Model):
+    fields: List[str]
+    resource: str
