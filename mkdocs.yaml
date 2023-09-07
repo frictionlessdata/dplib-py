@@ -28,7 +28,7 @@ theme:
     # - navigation.instant
     # - navigation.prune
     - navigation.sections
-    # - navigation.tabs
+    - navigation.tabs
     # - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
@@ -58,11 +58,8 @@ theme:
 
 # Plugins
 
-# TODO: enable when it's released to general public
-# https://squidfunk.github.io/mkdocs-material/insiders/#12000-piri-piri
-# plugins:
-  # - blog:
-      # post_date_format: full
+plugins:
+  - mkdocstrings
 
 # Extras
 
@@ -111,5 +108,7 @@ nav:
   - Documentation:
       Installation: documentation/installation.md
       Usage: documentation/usage.md
+  - Reference:
+      Schema: reference/schema.md
   - Contributing:
       Development: contributing/development.md

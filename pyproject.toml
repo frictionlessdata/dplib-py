@@ -57,6 +57,7 @@ dev = [
     "pytest-dotenv",
     "pytest-timeout",
     "pytest-lazy-fixture",
+    "mkdocstrings[python]",
     "mkdocs-material",
 ]
 
