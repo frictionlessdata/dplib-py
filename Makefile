@@ -11,9 +11,6 @@ all:
 coverage:
 	hatch run coverage
 
-docker:
-	docker build --rm -t frictionless-dev .
-
 docs:
 	hatch run docs
 

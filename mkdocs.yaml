@@ -1,12 +1,12 @@
 # General
 
-site_name: Frictionless Application
-site_url: https://application.frictionlessdata.io
+site_name: dpspecs-py
+site_url: https://frictionlessdata.github.io/dpspecs-py
 site_author: Open Knowledge Foundation
-site_description: Data editor for humans
-repo_name: frictionlessdata/application
-repo_url: https://github.com/frictionlessdata/application
-copyright: Copyright &copy; 2022 <a href="https://okfn.org">Open Knowledge Foundation</a>
+site_description: Python implementation of the Data Package standard
+repo_name: frictionlessdata/dpspecs-py
+repo_url: https://github.com/frictionlessdata/dpspecs-py
+copyright: Copyright &copy; 2023 <a href="https://okfn.org">Open Knowledge Foundation</a>
 
 # Theme
 
@@ -28,7 +28,7 @@ theme:
     # - navigation.instant
     # - navigation.prune
     - navigation.sections
-    - navigation.tabs
+    # - navigation.tabs
     # - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
@@ -53,7 +53,7 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
-  logo: assets/logo.png
+  logo: assets/favicon.png
   favicon: assets/favicon.png
 
 # Plugins
@@ -76,11 +76,8 @@ extra:
     - icon: fontawesome/brands/github
       link: https://github.com/frictionlessdata
       name: Code on Github
-    - icon: fontawesome/brands/slack
-      link: https://join.slack.com/t/frictionlessdata/shared_invite/zt-17kpbffnm-tRfDW_wJgOw8tJVLvZTrBg
-      name: Join our Slack
     - icon: fontawesome/brands/twitter
-      link: https://twitter.com/frictionlessd8a
+      link: https://twitter.com/okfn
       name: Follow us on Twitter
 
 # Extensions
@@ -111,15 +108,8 @@ markdown_extensions:
 # Navigation
 
 nav:
-  - Home:
-      Welcome: index.md
-      Installation: installation.md
-      Usage: usage.md
-  - Integrating:
-      Library: integrating/library.md
+  - Documentation:
+      Installation: documentation/installation.md
+      Usage: documentation/usage.md
   - Contributing:
       Development: contributing/development.md
-  - Blog:
-    - 2023:
-      - blog/2023/04/17/csv-conf-7.md
-
