@@ -38,7 +38,7 @@ Now you can setup you IDE to use a proper Python path:
 To start working on the project install the dependencies:
 
 ```bash
-make install
+hatch install
 ```
 
 ## Documentation
@@ -46,13 +46,13 @@ make install
 Documentation is written with Mkdocs (defined in `mkdocs.yaml`). The source articles are in the `docs` directory. To start a live-reload server:
 
 ```bash
-make write
+hatch write
 ```
 
 Building the docs:
 
 ```bash
-make docs
+hatch docs
 ```
 
 ## Testing
@@ -60,5 +60,5 @@ make docs
 To run all the checks on the codebase:
 
 ```bash
-make test
+hatch test
 ```

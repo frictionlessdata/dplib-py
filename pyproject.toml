@@ -81,19 +81,25 @@ docs = [
   "mkdocs build",
 ]
 format = [
-  "ruff dpspecs tests --fix",
-  "isort dpspecs tests",
-  "black dpspecs tests",
+  "ruff dpspecs --fix",
+  "isort dpspecs",
+  "black dpspecs",
 ]
 lint = [
-  "ruff dpspecs tests",
-  "isort dpspecs tests --check",
-  "black dpspecs tests --check",
-  "pyright dpspecs tests",
+  "ruff dpspecs",
+  "isort dpspecs --check",
+  "black dpspecs --check",
+]
+spec = [
+  "pytest --cov dpspecs --cov-report term-missing --cov-report html:coverage --cov-fail-under 0 --timeout=300",
 ]
 test = [
   "hatch run lint",
-  "pytest --cov dpspecs --cov-report term-missing --cov-report html:coverage --cov-fail-under 0 --timeout=300",
+  "hatch run type",
+  "hatch run spec",
+]
+type = [
+  "pyright dpspecs",
 ]
 write = [
   "mkdocs serve",
@@ -127,7 +133,7 @@ ignore = ["E501", "E731", "F405"]
 "__init__.py" = ["F401", "F403"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["dpspecs"]
 env_files = [".env"]
 markers = [
     "ci: integrational tests (select with '--ci')",
@@ -142,6 +148,6 @@ filterwarnings = [
 
 [tool.pyright]
 strict = ["dpspecs"]
-include = ["dpspecs", "tests"]
+include = ["dpspecs"]
 exclude = ["dpspecs/vendors"]
 ignore = ["**/__init__.py"]

@@ -5,23 +5,7 @@ from typing import Any, Dict, List, Literal, Optional, Union
 import pydantic
 from typing_extensions import Annotated
 
-from .base import Model
-
-# Schema
-
-
-class Schema(Model):
-    """Schema model"""
-
-    fields: List[Field]
-    """List of fields"""
-
-    missingValues: Optional[List[str]] = None
-    primaryKey: Optional[List[str]] = None
-    foreignKeys: Optional[List[ForeignKey]] = None
-
-
-# Fields
+from ...model import Model
 
 
 class BaseField(Model):
@@ -122,16 +106,3 @@ Field = Annotated[
     ],
     pydantic.Field(discriminator="type"),
 ]
-
-
-# Foreign keys
-
-
-class ForeignKey(Model):
-    fields: List[str]
-    reference: Optional[ForeignKeyReference] = None
-
-
-class ForeignKeyReference(Model):
-    fields: List[str]
-    resource: str
