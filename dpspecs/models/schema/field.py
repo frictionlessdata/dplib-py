@@ -1,11 +1,12 @@
 from __future__ import annotations
 
-from typing import Any, Dict, List, Literal, Optional, Union
+from typing import Any, Dict, List, Optional
 
 import pydantic
 
 from ...model import Model
 from .constraints import Constraints
+from .fieldType import FieldType
 
 
 class Field(Model):
@@ -14,7 +15,7 @@ class Field(Model):
     title: Optional[str] = None
     description: Optional[str] = None
     format: Optional[str] = None
-    missingValues: Optional[List[str]] = None
+    missingValues: List[str] = []
     constraints: Constraints = pydantic.Field(default_factory=Constraints)
 
     # Array
@@ -28,22 +29,3 @@ class Field(Model):
     bareNumber: Optional[bool] = None
     groupChar: Optional[str] = None
     decimalChar: Optional[str] = None
-
-
-FieldType = Union[
-    Literal["any"],
-    Literal["array"],  # continue
-    Literal["boolean"],
-    Literal["date"],
-    Literal["datetime"],
-    Literal["duration"],
-    Literal["geojson"],
-    Literal["geopoint"],
-    Literal["integer"],
-    Literal["number"],
-    Literal["object"],
-    Literal["string"],
-    Literal["time"],
-    Literal["year"],
-    Literal["yearmonth"],
-]

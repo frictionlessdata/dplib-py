@@ -10,7 +10,7 @@ from ..source import Source
 
 
 class Package(Model):
-    resources: List[Resource]
+    resources: List[Resource] = []
 
     id: Optional[str] = None
     name: Optional[str] = None
