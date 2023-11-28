@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import random
 from string import ascii_lowercase as letters
 from typing import Any, List, Optional

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import List
 
 import sqlalchemy as sa
@@ -10,6 +12,12 @@ from .field import SqlField
 
 class SqlSchema(Model):
     table: Table
+
+    # Mappers
+
+    @classmethod
+    def from_dp(cls, schema: Schema) -> Table:
+        pass
 
     def to_dp(self) -> Schema:
         schema = Schema()
