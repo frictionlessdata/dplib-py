@@ -1,29 +1,74 @@
 from __future__ import annotations
 
-from typing import List
+from typing import Any, Callable, List
 
 import sqlalchemy as sa
-from sqlalchemy.schema import Table
+from sqlalchemy.schema import Column, Constraint, Table
 
 from ...model import Model
 from ...models import ForeignKey, ForeignKeyReference, Schema
+from . import settings
 from .field import SqlField
 
 
-class SqlSchema(Model):
+class SqlSchema(Model, arbitrary_types_allowed=True):
     table: Table
 
     # Mappers
 
     @classmethod
-    def from_dp(cls, schema: Schema) -> Table:
-        pass
+    def from_dp(
+        cls,
+        schema: Schema,
+        *,
+        table_name: str,
+        dialect: str = settings.DEFAULT_DIALECT,
+        with_metadata: bool = False,
+    ) -> Table:
+        columns: List[Column[Any]] = []
+        constraints: List[Constraint] = []
 
-    def to_dp(self) -> Schema:
+        # Fields
+        if with_metadata:
+            columns.append(
+                sa.Column(
+                    settings.ROW_NUMBER_IDENTIFIER,
+                    sa.Integer,
+                    primary_key=True,
+                    autoincrement=False,
+                )
+            )
+            columns.append(sa.Column(settings.ROW_VALID_IDENTIFIER, sa.Boolean))
+        for field in schema.fields:
+            sql_field = SqlField.from_dp(field, table_name=table_name, dialect=dialect)
+            columns.append(sql_field.column)
+
+        # Primary key
+        if schema.primaryKey:
+            Class = sa.UniqueConstraint if with_metadata else sa.PrimaryKeyConstraint
+            if not with_metadata:
+                constraint = Class(*schema.primaryKey)
+                constraints.append(constraint)
+
+        # Foreign keys
+        for fk in schema.foreignKeys:
+            prefix: Callable[[str], str] = lambda field: ".".join([foreign_table, field])
+            foreign_table = fk.reference.resource or table_name
+            foreign_fields = list(map(prefix, fk.reference.fields))
+            constraint = sa.ForeignKeyConstraint(fk.fields, foreign_fields)
+            constraints.append(constraint)
+
+        # Table
+        table = sa.Table(table_name, sa.MetaData(), *(columns + constraints))
+        return table
+
+    def to_dp(self, *, with_metadata: bool = False) -> Schema:
         schema = Schema()
 
         # Fields
         for column in self.table.columns:
+            if with_metadata and column.name in settings.METADATA_IDENTIFIERS:
+                continue
             field = SqlField(column=column).to_dp()
             schema.fields.append(field)
 
@@ -31,6 +76,8 @@ class SqlSchema(Model):
         for constraint in self.table.constraints:
             if isinstance(constraint, sa.PrimaryKeyConstraint):
                 for column in constraint.columns:
+                    if with_metadata and column.name in settings.METADATA_IDENTIFIERS:
+                        continue
                     schema.primaryKey.append(str(column.name))
 
         # Foreign keys

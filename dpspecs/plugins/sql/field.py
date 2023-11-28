@@ -13,9 +13,10 @@ from typing_extensions import Self
 
 from ...model import Model
 from ...models import Field
+from . import settings
 
 
-class SqlField(Model):
+class SqlField(Model, arbitrary_types_allowed=True):
     column: Column[Any]
 
     # Mappers
@@ -25,7 +26,7 @@ class SqlField(Model):
         cls,
         field: Field,
         *,
-        dialect: str = "postgresql",
+        dialect: str = settings.DEFAULT_DIALECT,
         table_name: Optional[str] = None,
     ) -> Self:
         Check = sa.CheckConstraint
