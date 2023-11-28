@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Self
 
 import sqlalchemy as sa
 from sqlalchemy.dialects import mysql as ml
@@ -14,8 +14,12 @@ class SqlField(Model):
 
     # Mappers
 
+    @classmethod
+    def from_dp(cls, field: fields.Field) -> Self:
+        pass
+
     def to_dp(self) -> fields.Field:
-        # Field
+        # Type/name
         Field = fields.AnyField
         if isinstance(self.column.type, ARRAY_TYPES):
             Field = fields.ArrayField
@@ -41,16 +45,16 @@ class SqlField(Model):
 
         # Constraints
         if not self.column.nullable:
-            field.required = True
+            field.constraints.required = True
         if isinstance(self.column.type, (sa.CHAR, sa.VARCHAR)):
             if self.column.type.length:
-                field.constraints["maxLength"] = column.type.length
+                field.constraints.maxLength = self.column.type.length
         if isinstance(self.column.type, sa.CHAR):
             if self.column.type.length:
-                field.constraints["minLength"] = column.type.length
+                field.constraints.minLength = self.column.type.length
         if isinstance(self.column.type, sa.Enum):
-            if self.column.type.enums:
-                field.constraints["enum"] = column.type.enums
+            if self.column.enums:
+                field.constraints.enum = self.column.enums
 
         return field
 

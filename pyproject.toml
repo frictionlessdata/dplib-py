@@ -35,7 +35,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-sql = ["sqlalchemy>=2.0"]
+sql = ["sqlalchemy>=1.4"]
 dev = [
     "moto",
     "ruff",
