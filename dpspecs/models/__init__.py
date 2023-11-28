@@ -1,4 +1,4 @@
 from .dialect import Dialect
 from .package import Package
 from .resource import Resource
-from .schema import Schema
+from .schema import Field, Schema
