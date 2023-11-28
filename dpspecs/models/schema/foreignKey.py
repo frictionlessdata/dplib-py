@@ -3,11 +3,7 @@ from __future__ import annotations
 from typing import List, Optional
 
 from ...model import Model
-
-
-class ForeignKeyReference(Model):
-    fields: List[str]
-    resource: str
+from ..foreignKeyReference import ForeignKeyReference
 
 
 class ForeignKey(Model):
