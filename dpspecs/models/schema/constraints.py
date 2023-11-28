@@ -1,8 +1,6 @@
-from typing import Any, Generic, List, Optional, TypeVar
+from typing import Any, List, Optional
 
 from ...model import Model
-
-T = TypeVar("T")
 
 
 class BaseConstraints(Model):
@@ -11,9 +9,9 @@ class BaseConstraints(Model):
     enum: Optional[List[Any]] = None
 
 
-class ValueConstraints(BaseConstraints, Generic[T]):
-    minimum: Optional[T] = None
-    maximum: Optional[T] = None
+class ValueConstraints(BaseConstraints):
+    minimum: Optional[str] = None
+    maximum: Optional[str] = None
 
 
 class CollectionConstraints(BaseConstraints):

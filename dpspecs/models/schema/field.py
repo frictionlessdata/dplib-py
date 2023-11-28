@@ -1,9 +1,9 @@
 from __future__ import annotations
 
-from decimal import Decimal
 from typing import Any, Dict, List, Literal, Optional, Union
 
 import pydantic
+from pydantic import Field
 from typing_extensions import Annotated
 
 from ...model import Model
@@ -40,12 +40,12 @@ class BooleanField(BaseField):
 
 class DateField(BaseField):
     type: Literal["date"] = "date"
-    constraints = constraints.ValueConstraints[str]()
+    constraints = constraints.ValueConstraints()
 
 
 class DatetimeField(BaseField):
     type: Literal["datetime"] = "datetime"
-    constraints = constraints.ValueConstraints[str]()
+    constraints = constraints.ValueConstraints()
 
 
 class DurationField(BaseField):
@@ -67,7 +67,7 @@ class IntegerField(BaseField):
     type: Literal["integer"] = "integer"
     bareNumber: Optional[bool] = None
     groupChar: Optional[str] = None
-    constraints = constraints.ValueConstraints[Union[str, int]]()
+    constraints = constraints.ValueConstraints()
 
 
 class NumberField(BaseField):
@@ -75,7 +75,7 @@ class NumberField(BaseField):
     bareNumber: Optional[bool] = None
     groupChar: Optional[str] = None
     decimalChar: Optional[str] = None
-    constraints = constraints.ValueConstraints[Union[str, float, Decimal]]()
+    constraints = constraints.ValueConstraints()
 
 
 class ObjectField(BaseField):
@@ -85,22 +85,24 @@ class ObjectField(BaseField):
 
 class StringField(BaseField):
     type: Literal["string"] = "string"
-    constraints = constraints.StringConstraints()
+    constraints: constraints.StringConstraints = Field(
+        default_factory=constraints.StringConstraints
+    )
 
 
 class TimeField(BaseField):
     type: Literal["time"] = "time"
-    constraints = constraints.ValueConstraints[str]()
+    constraints = constraints.ValueConstraints()
 
 
 class YearField(BaseField):
     type: Literal["year"] = "year"
-    constraints = constraints.ValueConstraints[str]()
+    constraints = constraints.ValueConstraints()
 
 
 class YearmonthField(BaseField):
     type: Literal["yearmonth"] = "yearmonth"
-    constraints = constraints.ValueConstraints[str]()
+    constraints = constraints.ValueConstraints()
 
 
 Field = Annotated[
