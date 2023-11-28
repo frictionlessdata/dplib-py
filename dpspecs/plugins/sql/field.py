@@ -1,4 +1,6 @@
-from typing import Any, List
+import random
+from string import ascii_lowercase as letters
+from typing import Any, List, Optional
 
 import sqlalchemy as sa
 from sqlalchemy.dialects import mysql as ml
@@ -8,7 +10,7 @@ from sqlalchemy.schema import Column
 from typing_extensions import Self
 
 from ...model import Model
-from ...models.schema import field as fields
+from ...models import Field
 
 
 class SqlField(Model):
@@ -17,9 +19,16 @@ class SqlField(Model):
     # Mappers
 
     @classmethod
-    def from_dp(cls, field: fields.Field, *, dialect: str = "postgresql") -> Self:
+    def from_dp(
+        cls,
+        field: Field,
+        *,
+        dialect: str = "postgresql",
+        table_name: Optional[str] = None,
+    ) -> Self:
         Check = sa.CheckConstraint
         checks: List[Check] = []
+        comment = field.description
         dialect_obj = registry.load(dialect)()
         nullable = not field.constraints.required
         quoted_name = dialect_obj.identifier_preparer.quote(field.name)
@@ -63,81 +72,79 @@ class SqlField(Model):
 
         # Length contraints
         if field.type == "string":
-            min_length = field.constraints.minLength
-            max_length = field.constraints.maxLength
-
-            if (
-                min_length is not None
-                and max_length is not None
-                and min_length == max_length
-            ):
-                column_type = sa.CHAR(max_length)
-            if max_length is not None:
+            min = field.constraints.minLength
+            max = field.constraints.maxLength
+            if min is not None and max is not None and min == max:
+                column_type = sa.CHAR(max)
+            if max is not None:
                 if column_type is sa.Text:
-                    column_type = sa.VARCHAR(length=max_length)
+                    column_type = sa.VARCHAR(length=max)
                 if dialect_obj.name == "sqlite":
-                    checks.append(Check("LENGTH(%s) <= %s" % (quoted_name, max_length)))
-            if min_length is not None:
+                    checks.append(Check("LENGTH(%s) <= %s" % (quoted_name, max)))
+            if min is not None:
                 if not isinstance(column_type, sa.CHAR) or dialect_obj.name == "sqlite":
-                    checks.append(Check("LENGTH(%s) >= %s" % (quoted_name, min_length)))
+                    checks.append(Check("LENGTH(%s) >= %s" % (quoted_name, min)))
 
-        # Value contstraints
-        if field.type == "integer":
-            minimum = field.constraints.minimum
-            if field.constraints.minimum is not None:
-                checks.append(
-                    Check("%s >= %s" % (quoted_name, field.constraints.minimum))
-                )
+        # Limit contstraints
+        if field.type in ["integer", "number"]:
+            min = field.constraints.minimum
+            max = field.constraints.maximum
+            if min is not None:
+                checks.append(Check("%s >= %s" % (quoted_name, min)))
+            if max is not None:
+                checks.append(Check("%s <= %s" % (quoted_name, max)))
 
-        # Others contstraints
-        for const, value in field.constraints.items():
-            if const == "minimum":
-                checks.append(Check("%s >= %s" % (quoted_name, value)))
-            elif const == "maximum":
-                checks.append(Check("%s <= %s" % (quoted_name, value)))
-            elif const == "pattern":
-                if self.dialect.name == "postgresql":
-                    checks.append(Check("%s ~ '%s'" % (quoted_name, value)))
-                elif self.dialect.name != "duckdb":
-                    check = Check("%s REGEXP '%s'" % (quoted_name, value))
+        # Pattern constraint
+        if field.type == "string":
+            val = field.constraints.pattern
+            if val is not None:
+                if dialect_obj.name == "postgresql":
+                    checks.append(Check("%s ~ '%s'" % (quoted_name, val)))
+                elif dialect_obj.name != "duckdb":
+                    check = Check("%s REGEXP '%s'" % (quoted_name, val))
                     checks.append(check)
-            elif const == "enum":
+
+        # Enum constraint
+        if field.type == "string":
+            val = field.constraints.enum
+            if val is not None:
                 # NOTE: https://github.com/frictionlessdata/frictionless-py/issues/778
-                if field.type == "string":
-                    enum_name = "%s_%s_enum" % (table_name, field.name)
-                    column_type = sa.Enum(*value, name=enum_name)
+                if not table_name:
+                    table_name = "".join(random.choice(letters) for _ in range(8))
+                enum_name = "%s_%s_enum" % (table_name, field.name)
+                quoted_enum_name = dialect_obj.identifier_preparer.quote(enum_name)
+                column_type = sa.Enum(*val, name=quoted_enum_name)
 
         # Create column
-        column_args = [field.name, column_type] + checks  # type: ignore
         # TODO: shall it use "autoincrement=False"
         # https://github.com/Mause/duckdb_engine/issues/595#issuecomment-1495408566
-        column_kwargs = {"nullable": nullable, "unique": unique}
-        if field.description:
-            column_kwargs["comment"] = field.description
-        column = sa.Column(*column_args, **column_kwargs)
+        column_args = [field.name, column_type] + checks
+        column_kwargs = {"nullable": nullable, "unique": unique, "comment": comment}
+        column = sa.Column(*column_args, **column_kwargs)  # type: ignore
 
-        return column
+        return SqlField(column=column)
 
-    def to_dp(self) -> fields.Field:
-        # Type/name
-        Field = fields.AnyField
-        if isinstance(self.column.type, ARRAY_TYPES):
-            Field = fields.ArrayField
-        elif isinstance(self.column.type, BOOLEAN_TYPES):
-            Field = fields.BooleanField
-        elif isinstance(self.column.type, DATE_TYPES):
-            Field = fields.DateField
-        elif isinstance(self.column.type, DATETIME_TYPES):
-            Field = fields.DatetimeField
-        elif isinstance(self.column.type, INTEGER_TYPES):
-            Field = fields.IntegerField
-        elif isinstance(self.column.type, NUMBER_TYPES):
-            Field = fields.NumberField
-        elif isinstance(self.column.type, OBJECT_TYPES):
-            Field = fields.ObjectField
-        elif isinstance(self.column.type, TIME_TYPES):
-            Field = fields.TimeField
+    def to_dp(self) -> Field:
+        # Create field
         field = Field(name=self.column.name)
+
+        # Type
+        if isinstance(self.column.type, ARRAY_TYPES):
+            field.type = "array"
+        elif isinstance(self.column.type, BOOLEAN_TYPES):
+            field.type = "boolean"
+        elif isinstance(self.column.type, DATE_TYPES):
+            field.type = "date"
+        elif isinstance(self.column.type, DATETIME_TYPES):
+            field.type = "datetime"
+        elif isinstance(self.column.type, INTEGER_TYPES):
+            field.type = "integer"
+        elif isinstance(self.column.type, NUMBER_TYPES):
+            field.type = "number"
+        elif isinstance(self.column.type, OBJECT_TYPES):
+            field.type = "object"
+        elif isinstance(self.column.type, TIME_TYPES):
+            field.type = "time"
 
         # Description
         if self.column.comment:
