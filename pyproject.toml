@@ -35,6 +35,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+sql = ["sqlalchemy>=2.0"]
 dev = [
     "moto",
     "ruff",
@@ -70,7 +71,7 @@ path = "dpspecs/settings.py"
 [tool.hatch.envs.default]
 python = "3.10"
 dependencies = [
-  "dpspecs[dev]",
+  "dpspecs[sql,dev]",
 ]
 
 [tool.hatch.envs.default.scripts]
