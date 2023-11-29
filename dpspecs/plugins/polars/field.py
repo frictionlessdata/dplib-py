@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Any
+
 import polars as pl
 from typing_extensions import Self
 
@@ -9,7 +11,8 @@ from ...models import Field
 
 class PolarsField(Model, arbitrary_types_allowed=True):
     name: str
-    dtype: pl.PolarsDataType
+    dtype: Any
+    #  dtype: pl.PolarsDataType
 
     def to_dp(self) -> Field:
         field = Field(name=self.name)
