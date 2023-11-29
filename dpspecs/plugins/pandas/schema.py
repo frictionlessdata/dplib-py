@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Dict
 
 import pandas as pd
 from typing_extensions import Self
@@ -34,4 +34,14 @@ class PandasSchema(Model, arbitrary_types_allowed=True):
 
     @classmethod
     def from_dp(cls, schema: Schema) -> Self:
-        raise NotImplementedError
+        columns: Dict[str, pd.Series] = {}
+
+        # Fields
+        for field in schema.fields:
+            pandas_field = PandasField.from_dp(field)
+            columns[pandas_field.name] = pd.Series(dtype=pandas_field.dtype)
+
+        # Primary key
+        index = schema.primaryKey
+
+        return PandasSchema(df=pd.DataFrame(columns, index=index))

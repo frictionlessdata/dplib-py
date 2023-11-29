@@ -54,7 +54,6 @@ class PandasField(Model, arbitrary_types_allowed=True):
     def from_dp(cls, field: Field) -> Self:
         # Type
         dtype = np.dtype("O")
-        dvalue = None
         if field.type == "array":
             dtype = np.dtype(list)  # type: ignore
         elif field.type == "boolean":
