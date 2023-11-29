@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import Type
-
 import polars as pl
 from typing_extensions import Self
 
@@ -11,7 +9,7 @@ from ...models import Field
 
 class PolarsField(Model, arbitrary_types_allowed=True):
     name: str
-    dtype: Type[pl.DataType]
+    dtype: pl.PolarsDataType
 
     def to_dp(self) -> Field:
         field = Field(name=self.name)
@@ -68,7 +66,7 @@ class PolarsField(Model, arbitrary_types_allowed=True):
         elif field.type == "time":
             dtype = pl.Time
         elif field.type == "year":
-            dtype = pl.Int16
+            dtype = pl.Int8
         elif field.type == "yearmonth":
             dtype = pl.Array
 
