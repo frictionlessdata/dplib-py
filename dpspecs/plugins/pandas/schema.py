@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Callable, List
+from typing import Any
 
 import pandas as pd
 from typing_extensions import Self
@@ -31,3 +31,7 @@ class PandasSchema(Model, arbitrary_types_allowed=True):
             schema.fields.append(field)
 
         return schema
+
+    @classmethod
+    def from_dp(cls, schema: Schema) -> Self:
+        raise NotImplementedError

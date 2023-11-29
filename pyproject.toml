@@ -37,7 +37,7 @@ dependencies = [
 
 [project.optional-dependencies]
 sql = ["sqlalchemy>=1.4"]
-pandas = ["pandas>=1.0", "pandas-stubs>=1.0", "isodate>=0.6"]
+pandas = ["pandas>=1.0", "pandas-stubs>=1.0", "numpy>=1.0", "isodate>=0.6"]
 dev = [
     "moto",
     "ruff",

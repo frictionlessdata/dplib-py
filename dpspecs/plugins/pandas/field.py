@@ -3,7 +3,8 @@ from __future__ import annotations
 import datetime
 from typing import Any, Optional
 
-import isodate
+import isodate  # type: ignore
+import numpy as np
 import pandas as pd
 import pandas.core.dtypes.api as pdc
 from typing_extensions import Self
@@ -23,11 +24,11 @@ class PandasField(Model, arbitrary_types_allowed=True):
         # Pandas types
         if pdc.is_bool_dtype(self.dtype):  # type: ignore
             field.type = "boolean"
-        elif pdc.is_datetime64_any_dtype(dtype):  # type: ignore
+        elif pdc.is_datetime64_any_dtype(self.dtype):  # type: ignore
             field.type = "datetime"
-        elif pdc.is_integer_dtype(dtype):  # type: ignore
+        elif pdc.is_integer_dtype(self.dtype):  # type: ignore
             field.type = "integer"
-        elif pdc.is_numeric_dtype(dtype):  # type: ignore
+        elif pdc.is_numeric_dtype(self.dtype):  # type: ignore
             field.type = "number"
 
         # Python types
@@ -50,6 +51,27 @@ class PandasField(Model, arbitrary_types_allowed=True):
         return field
 
     @classmethod
-    def from_dp(cls, field: Field) -> PandasField:
-        dtype = cls.__write_convert_type(field.type)
-        return cls(name=field.name, dtype=dtype)
+    def from_dp(cls, field: Field) -> Self:
+        # Type
+        dtype = np.dtype("O")
+        dvalue = None
+        if field.type == "array":
+            dtype = np.dtype(list)  # type: ignore
+        elif field.type == "boolean":
+            dtype = np.dtype(bool)
+        elif field.type == "datetime":
+            dtype = pd.DatetimeTZDtype(tz="UTC")
+        elif field.type == "integer":
+            dtype = np.dtype(int)
+        elif field.type == "geojson":
+            dtype = np.dtype(dict)
+        elif field.type == "number":
+            dtype = np.dtype(float)
+        elif field.type == "object":
+            dtype = np.dtype(dict)
+        elif field.type == "string":
+            dtype = np.dtype(str)
+        elif field.type == "year":
+            dtype = np.dtype(int)
+
+        return PandasField(name=field.name, dtype=dtype)
