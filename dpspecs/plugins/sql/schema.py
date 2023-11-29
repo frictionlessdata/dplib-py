@@ -17,6 +17,41 @@ class SqlSchema(Model, arbitrary_types_allowed=True):
 
     # Mappers
 
+    def to_dp(self, *, with_metadata: bool = False) -> Schema:
+        schema = Schema()
+
+        # Fields
+        for column in self.table.columns:
+            if with_metadata and column.name in settings.METADATA_IDENTIFIERS:
+                continue
+            field = SqlField(column=column).to_dp()
+            schema.fields.append(field)
+
+        # Primary key
+        for constraint in self.table.constraints:
+            if isinstance(constraint, sa.PrimaryKeyConstraint):
+                for column in constraint.columns:
+                    if with_metadata and column.name in settings.METADATA_IDENTIFIERS:
+                        continue
+                    schema.primaryKey.append(str(column.name))
+
+        # Foreign keys
+        for constraint in self.table.constraints:
+            if isinstance(constraint, sa.ForeignKeyConstraint):
+                resource = ""
+                own_fields: List[str] = []
+                foreign_fields: List[str] = []
+                for element in constraint.elements:
+                    own_fields.append(str(element.parent.name))
+                    if element.column.table.name != self.table.name:
+                        resource = str(element.column.table.name)
+                    foreign_fields.append(str(element.column.name))
+                ref = ForeignKeyReference(resource=resource, fields=foreign_fields)
+                fk = ForeignKey(fields=own_fields, reference=ref)
+                schema.foreignKeys.append(fk)
+
+        return schema
+
     @classmethod
     def from_dp(
         cls,
@@ -61,38 +96,3 @@ class SqlSchema(Model, arbitrary_types_allowed=True):
 
         table = sa.Table(table_name, sa.MetaData(), *(columns + constraints))
         return SqlSchema(table=table)
-
-    def to_dp(self, *, with_metadata: bool = False) -> Schema:
-        schema = Schema()
-
-        # Fields
-        for column in self.table.columns:
-            if with_metadata and column.name in settings.METADATA_IDENTIFIERS:
-                continue
-            field = SqlField(column=column).to_dp()
-            schema.fields.append(field)
-
-        # Primary key
-        for constraint in self.table.constraints:
-            if isinstance(constraint, sa.PrimaryKeyConstraint):
-                for column in constraint.columns:
-                    if with_metadata and column.name in settings.METADATA_IDENTIFIERS:
-                        continue
-                    schema.primaryKey.append(str(column.name))
-
-        # Foreign keys
-        for constraint in self.table.constraints:
-            if isinstance(constraint, sa.ForeignKeyConstraint):
-                resource = ""
-                own_fields: List[str] = []
-                foreign_fields: List[str] = []
-                for element in constraint.elements:
-                    own_fields.append(str(element.parent.name))
-                    if element.column.table.name != self.table.name:
-                        resource = str(element.column.table.name)
-                    foreign_fields.append(str(element.column.name))
-                ref = ForeignKeyReference(resource=resource, fields=foreign_fields)
-                fk = ForeignKey(fields=own_fields, reference=ref)
-                schema.foreignKeys.append(fk)
-
-        return schema

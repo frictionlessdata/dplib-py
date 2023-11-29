@@ -21,6 +21,47 @@ class SqlField(Model, arbitrary_types_allowed=True):
 
     # Mappers
 
+    def to_dp(self) -> Field:
+        # Create field
+        field = Field(name=self.column.name)
+
+        # Type
+        if isinstance(self.column.type, ARRAY_TYPES):
+            field.type = "array"
+        elif isinstance(self.column.type, BOOLEAN_TYPES):
+            field.type = "boolean"
+        elif isinstance(self.column.type, DATE_TYPES):
+            field.type = "date"
+        elif isinstance(self.column.type, DATETIME_TYPES):
+            field.type = "datetime"
+        elif isinstance(self.column.type, INTEGER_TYPES):
+            field.type = "integer"
+        elif isinstance(self.column.type, NUMBER_TYPES):
+            field.type = "number"
+        elif isinstance(self.column.type, OBJECT_TYPES):
+            field.type = "object"
+        elif isinstance(self.column.type, TIME_TYPES):
+            field.type = "time"
+
+        # Description
+        if self.column.comment:
+            field.description = self.column.comment
+
+        # Constraints
+        if not self.column.nullable:
+            field.constraints.required = True
+        if isinstance(self.column.type, (sa.CHAR, sa.VARCHAR)):
+            if self.column.type.length:
+                field.constraints.maxLength = self.column.type.length
+        if isinstance(self.column.type, sa.CHAR):
+            if self.column.type.length:
+                field.constraints.minLength = self.column.type.length
+        if isinstance(self.column.type, sa.Enum):
+            if self.column.enums:
+                field.constraints.enum = self.column.enums
+
+        return field
+
     @classmethod
     def from_dp(
         cls,
@@ -126,47 +167,6 @@ class SqlField(Model, arbitrary_types_allowed=True):
         column = sa.Column(*column_args, **column_kwargs)  # type: ignore
 
         return SqlField(column=column)
-
-    def to_dp(self) -> Field:
-        # Create field
-        field = Field(name=self.column.name)
-
-        # Type
-        if isinstance(self.column.type, ARRAY_TYPES):
-            field.type = "array"
-        elif isinstance(self.column.type, BOOLEAN_TYPES):
-            field.type = "boolean"
-        elif isinstance(self.column.type, DATE_TYPES):
-            field.type = "date"
-        elif isinstance(self.column.type, DATETIME_TYPES):
-            field.type = "datetime"
-        elif isinstance(self.column.type, INTEGER_TYPES):
-            field.type = "integer"
-        elif isinstance(self.column.type, NUMBER_TYPES):
-            field.type = "number"
-        elif isinstance(self.column.type, OBJECT_TYPES):
-            field.type = "object"
-        elif isinstance(self.column.type, TIME_TYPES):
-            field.type = "time"
-
-        # Description
-        if self.column.comment:
-            field.description = self.column.comment
-
-        # Constraints
-        if not self.column.nullable:
-            field.constraints.required = True
-        if isinstance(self.column.type, (sa.CHAR, sa.VARCHAR)):
-            if self.column.type.length:
-                field.constraints.maxLength = self.column.type.length
-        if isinstance(self.column.type, sa.CHAR):
-            if self.column.type.length:
-                field.constraints.minLength = self.column.type.length
-        if isinstance(self.column.type, sa.Enum):
-            if self.column.enums:
-                field.constraints.enum = self.column.enums
-
-        return field
 
 
 ARRAY_TYPES = (pg.ARRAY,)
