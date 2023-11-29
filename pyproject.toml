@@ -32,7 +32,8 @@ classifiers = [
 ]
 dependencies = [
     "pydantic>=2.0",
-    "typing-extensions>=4.3",
+    "python-slugify>=6.0",
+    "typing-extensions>=4.0",
 ]
 
 [project.optional-dependencies]
