@@ -93,5 +93,5 @@ coverage/
 .vscode/
 .server/
 site/
-tmp/
-.vim
+.user/
+.vim/

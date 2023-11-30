@@ -1,6 +1,6 @@
 from dpspecs import Schema
 
 
-def test_error():
+def test_schema():
     schema = Schema(fields=[])
     assert schema.fields == []
