@@ -3,7 +3,6 @@ from __future__ import annotations
 from typing import Any
 
 import polars as pl
-from typing_extensions import Self
 
 from ...model import Model
 from ...models import Field
@@ -41,7 +40,7 @@ class PolarsField(Model, arbitrary_types_allowed=True):
         return field
 
     @classmethod
-    def from_dp(cls, field: Field) -> Self:
+    def from_dp(cls, field: Field) -> PolarsField:
         # Type
         dtype = pl.Unknown
         if field.type == "array":

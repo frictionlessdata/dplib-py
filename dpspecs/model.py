@@ -1,3 +1,4 @@
+import pprint
 from typing import Any, Dict, List
 
 from pydantic import BaseModel, ValidationError
@@ -7,8 +8,13 @@ from . import types
 
 
 class Model(BaseModel, validate_assignment=True):
-    def __str__(self):
-        return str(self.to_dict())
+    def __str__(self) -> str:
+        return repr(self)
+
+    def __repr__(self) -> str:
+        return pprint.pformat(self.to_dict(), sort_dicts=False)
+
+    # Validators
 
     # TODO: rebase on validate_yaml/json/dict?
     @classmethod

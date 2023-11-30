@@ -9,7 +9,6 @@ from sqlalchemy.dialects import mysql as ml
 from sqlalchemy.dialects import postgresql as pg
 from sqlalchemy.dialects import registry
 from sqlalchemy.schema import Column
-from typing_extensions import Self
 
 from ...model import Model
 from ...models import Field
@@ -69,7 +68,7 @@ class SqlField(Model, arbitrary_types_allowed=True):
         *,
         dialect: str = settings.DEFAULT_DIALECT,
         table_name: Optional[str] = None,
-    ) -> Self:
+    ) -> SqlField:
         Check = sa.CheckConstraint
         checks: List[Check] = []
         comment = field.description

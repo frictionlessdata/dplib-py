@@ -4,7 +4,6 @@ from typing import Any, Callable, List
 
 import sqlalchemy as sa
 from sqlalchemy.schema import Column, Constraint, Table
-from typing_extensions import Self
 
 from ...model import Model
 from ...models import ForeignKey, ForeignKeyReference, Schema
@@ -60,7 +59,7 @@ class SqlSchema(Model, arbitrary_types_allowed=True):
         table_name: str,
         dialect: str = settings.DEFAULT_DIALECT,
         with_metadata: bool = False,
-    ) -> Self:
+    ) -> SqlSchema:
         columns: List[Column[Any]] = []
         constraints: List[Constraint] = []
 

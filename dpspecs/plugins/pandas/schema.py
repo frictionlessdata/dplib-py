@@ -3,7 +3,6 @@ from __future__ import annotations
 from typing import Any, Dict
 
 import pandas as pd
-from typing_extensions import Self
 
 from ...model import Model
 from ...models import Schema
@@ -33,7 +32,7 @@ class PandasSchema(Model, arbitrary_types_allowed=True):
         return schema
 
     @classmethod
-    def from_dp(cls, schema: Schema) -> Self:
+    def from_dp(cls, schema: Schema) -> PandasSchema:
         columns: Dict[str, pd.Series] = {}
 
         # Fields

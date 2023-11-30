@@ -7,7 +7,6 @@ import isodate  # type: ignore
 import numpy as np
 import pandas as pd
 import pandas.core.dtypes.api as pdc
-from typing_extensions import Self
 
 from ...model import Model
 from ...models import Field
@@ -51,7 +50,7 @@ class PandasField(Model, arbitrary_types_allowed=True):
         return field
 
     @classmethod
-    def from_dp(cls, field: Field) -> Self:
+    def from_dp(cls, field: Field) -> PandasField:
         # Type
         dtype = np.dtype("O")
         if field.type == "array":

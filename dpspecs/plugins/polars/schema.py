@@ -3,7 +3,6 @@ from __future__ import annotations
 from typing import Dict
 
 import polars as pl
-from typing_extensions import Self
 
 from ...model import Model
 from ...models import Schema
@@ -24,7 +23,7 @@ class PolarsSchema(Model, arbitrary_types_allowed=True):
         return schema
 
     @classmethod
-    def from_dp(cls, schema: Schema) -> Self:
+    def from_dp(cls, schema: Schema) -> PolarsSchema:
         columns: Dict[str, pl.PolarsDataType] = {}
 
         # Fields
