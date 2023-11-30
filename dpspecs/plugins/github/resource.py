@@ -31,7 +31,8 @@ class GithubResource(Model):
 
         return resource
 
-    def from_dp(self, resource: Resource):
+    @classmethod
+    def from_dp(cls, resource: Resource) -> Optional[GithubResource]:
         if not resource.path:
             return
         github = GithubResource(path=resource.path, name=resource.path)
