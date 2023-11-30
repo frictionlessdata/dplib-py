@@ -12,6 +12,8 @@ from .field import PolarsField
 class PolarsSchema(Model, arbitrary_types_allowed=True):
     df: pl.DataFrame
 
+    # Mappers
+
     def to_dp(self) -> Schema:
         schema = Schema()
 

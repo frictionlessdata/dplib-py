@@ -49,4 +49,4 @@ class Model(BaseModel, validate_assignment=True):
         return cls(**data)
 
     def to_dict(self):
-        return self.model_dump(exclude_unset=True, exclude_none=True)
+        return self.model_dump(mode="json", exclude_unset=True, exclude_none=True)

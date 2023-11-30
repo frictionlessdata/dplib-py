@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List
+from typing import List, Optional
 
 from ...model import Model
 from .creator import ZenodoCreator
@@ -8,10 +8,10 @@ from .subject import ZenodoSubject
 
 
 class ZenodoMetadata(Model):
-    creators: List[ZenodoCreator]
-    description: str
-    publication_date: str
-    publisher: str
-    subjects: List[ZenodoSubject]
-    title: str
-    version: str
+    creators: List[ZenodoCreator] = []
+    description: Optional[str] = None
+    publication_date: Optional[str] = None
+    publisher: Optional[str] = None
+    subjects: List[ZenodoSubject] = []
+    title: Optional[str] = None
+    version: Optional[str] = None

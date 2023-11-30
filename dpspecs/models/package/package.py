@@ -14,15 +14,15 @@ class Package(Model):
 
     id: Optional[str] = None
     name: Optional[str] = None
-    licenses: Optional[List[License]] = None
+    licenses: List[License] = []
     profile: Optional[str] = None
 
     title: Optional[str] = None
     description: Optional[str] = None
     homepage: Optional[str] = None
     version: Optional[str] = None
-    sources: Optional[List[Source]] = None
-    contributors: Optional[List[Contributor]] = None
-    keywords: Optional[List[str]] = None
+    sources: List[Source] = []
+    contributors: List[Contributor] = []
+    keywords: List[str] = []
     image: Optional[str] = None
     created: Optional[str] = None

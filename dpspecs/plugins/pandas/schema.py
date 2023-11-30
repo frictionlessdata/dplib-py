@@ -12,6 +12,8 @@ from .field import PandasField
 class PandasSchema(Model, arbitrary_types_allowed=True):
     df: pd.DataFrame
 
+    # Mappers
+
     def to_dp(self) -> Schema:
         schema = Schema()
 
