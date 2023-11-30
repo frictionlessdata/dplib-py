@@ -6,6 +6,7 @@ import pydantic
 
 from ...model import Model
 from ...models import Contributor, Package
+from .creator import ZenodoCreator, ZenodoCreatorAffilation
 from .files import ZenodoFiles
 from .metadata import ZenodoMetadata
 from .pid import ZenodoPid
@@ -38,6 +39,12 @@ class ZenodoPackage(Model):
             package.description = self.metadata.description
         if self.metadata.version:
             package.version = self.metadata.version
+        if self.created:
+            package.created = self.created
+        if self.links.get("self"):
+            package.homepage = self.links.get("self")
+        if self.links.get("doi"):
+            package.id = self.links.get("doi")
 
         # Resources
         for entry in self.files.entries.values():
@@ -50,10 +57,13 @@ class ZenodoPackage(Model):
 
         # Contributors
         for creator in self.metadata.creators:
-            contributor = Contributor(title=creator.person_or_org.name)
-            if creator.person_or_org.type:
-                contributor.role = creator.person_or_org.type
-            package.contributors.append(contributor)
+            if creator.person_or_org.name:
+                contributor = Contributor(title=creator.person_or_org.name)
+                if creator.person_or_org.type:
+                    contributor.role = creator.person_or_org.type
+                if creator.affilations:
+                    contributor.organization = creator.affilations[0].name
+                package.contributors.append(contributor)
 
         return package
 
@@ -75,9 +85,19 @@ class ZenodoPackage(Model):
             if entry:
                 zenodo.files.entries[entry.key] = entry
 
-        # keywords
+        # Keywords
         for keyword in package.keywords:
             subject = ZenodoSubject(subject=keyword)
             zenodo.metadata.subjects.append(subject)
+
+        # Contributors
+        for contributor in package.contributors:
+            creator = ZenodoCreator()
+            creator.person_or_org.name = contributor.title
+            if contributor.role:
+                creator.person_or_org.type = contributor.role
+            if contributor.organization:
+                affilation = ZenodoCreatorAffilation(name=contributor.organization)
+                creator.affilations.append(affilation)
 
         return zenodo
