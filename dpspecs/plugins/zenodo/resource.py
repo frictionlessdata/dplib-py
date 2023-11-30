@@ -17,6 +17,21 @@ class ZenodoResource(Model):
 
     # Mappers
 
+    def to_dp(self) -> Resource:
+        resource = Resource(path=self.key, name=path_to_name(self.key))
+
+        # General
+        if self.ext:
+            resource.format = self.ext.lower()
+        if self.mimetype:
+            resource.mediatype = self.mimetype
+        if self.size:
+            resource.bytes = self.size
+        if self.checksum:
+            resource.hash = self.checksum.replace("md5:", "")
+
+        return resource
+
     @classmethod
     def from_dp(cls, resource: Resource) -> Optional[ZenodoResource]:
         if not resource.path:
@@ -35,18 +50,3 @@ class ZenodoResource(Model):
                 zenodo.checksum = resource.parsed_hash.full_hash
 
         return zenodo
-
-    def to_dp(self) -> Resource:
-        resource = Resource(path=self.key, name=path_to_name(self.key))
-
-        # General
-        if self.ext:
-            resource.format = self.ext.lower()
-        if self.mimetype:
-            resource.mediatype = self.mimetype
-        if self.size:
-            resource.bytes = self.size
-        if self.checksum:
-            resource.hash = self.checksum.replace("md5:", "")
-
-        return resource
