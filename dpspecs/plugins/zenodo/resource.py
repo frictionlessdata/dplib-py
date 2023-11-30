@@ -15,6 +15,8 @@ class ZenodoResource(Model):
     mimetype: Optional[str] = None
     size: Optional[int] = None
 
+    # Mappers
+
     @classmethod
     def from_dp(cls, resource: Resource) -> Optional[ZenodoResource]:
         if not resource.path:
@@ -30,7 +32,7 @@ class ZenodoResource(Model):
             zenodo.size = resource.bytes
         if resource.parsed_hash:
             if resource.parsed_hash.type == "md5":
-                zenodo.checksum = resource.parsed_hash.notation
+                zenodo.checksum = resource.parsed_hash.full_hash
 
         return zenodo
 

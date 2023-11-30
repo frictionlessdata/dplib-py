@@ -36,7 +36,4 @@ class Resource(Model):
     @property
     def parsed_hash(self) -> Optional[ParsedHash]:
         if self.hash:
-            parts = self.hash.split(":", maxsplit=1)
-            if len(parts) == 1:
-                return ParsedHash(type="md5", value=parts[0])
-            return ParsedHash(type=parts[0], value=parts[1])
+            return ParsedHash.from_hash(self.hash)
