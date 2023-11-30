@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import List, Optional
 
 from ...model import Model
-from ...models import Package
+from ...models import License, Package
 from .license import GithubLicense
 from .owner import GithubOwner
 from .resource import GithubResource
@@ -33,6 +33,33 @@ class GithubPackage(Model):
     def to_dp(self):
         package = Package()
 
+        # General
+        if self.name:
+            package.title = self.name
+        if self.full_name:
+            package.name = self.full_name
+        if self.description:
+            package.description = self.description
+        if self.html_url:
+            package.homepage = self.html_url
+        if self.created_at:
+            package.created = self.created_at
+
+        # License
+        if self.license:
+            license = License()
+            if self.license.spdx_id:
+                license.name = self.license.spdx_id
+            if self.license.name:
+                license.title = self.license.name
+            if self.license.html_url:
+                license.url = self.license.html_url
+            package.licenses.append(license)
+
+        # Keywords
+        for topic in self.topics:
+            package.keywords.append(topic)
+
         # Resources
         for item in self.resources:
             resource = item.to_dp()
@@ -43,6 +70,27 @@ class GithubPackage(Model):
     @classmethod
     def from_dp(cls, package: Package) -> GithubPackage:
         github = GithubPackage()
+
+        # General
+        if package.title:
+            github.name = package.title
+        if package.description:
+            github.description = package.description
+
+        # License
+        if package.licenses:
+            license = package.licenses[0]
+            github.license = GithubLicense()
+            if license.name:
+                github.license.spdx_id = license.name
+            if license.title:
+                github.license.name = license.title
+            if license.path:
+                github.license.html_url = license.path
+
+        # Keywords
+        for keyword in package.keywords:
+            github.topics.append(keyword)
 
         # Resources
         for resource in package.resources:
