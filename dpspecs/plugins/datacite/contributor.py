@@ -5,7 +5,7 @@ from typing import List, Optional
 from ...model import Model
 
 
-class DataciteContributorAffilation(Model):
+class DataciteContributorAffiliation(Model):
     name: str
     affiliationIdentifier: Optional[str] = None
     affiliationIdentifierScheme: Optional[str] = None
@@ -17,4 +17,4 @@ class DataciteContributor(Model):
     givenName: Optional[str] = None
     familyName: Optional[str] = None
     contributorType: Optional[str] = None
-    affiliation: List[DataciteContributorAffilation] = []
+    affiliation: List[DataciteContributorAffiliation] = []

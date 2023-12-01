@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from ...model import Model
 from ...models import Contributor, License, Package
-from .contributor import DataciteContributor
+from .contributor import DataciteContributor, DataciteContributorAffiliation
 from .description import DataciteDescription
 from .identifier import DataciteIdentifier
 from .rights import DataciteRights
@@ -73,7 +73,7 @@ class DatacitePackage(Model):
         for item in self.creators + self.contributors:
             contributor = Contributor(title=item.name)
             if item.contributorType:
-                contributor.role = item.contributorType
+                contributor.role = item.contributorType or "creator"
             for affiliation in item.affiliation:
                 contributor.organization = affiliation.name
                 break
@@ -88,3 +88,57 @@ class DatacitePackage(Model):
                 package.licenses.append(license)
 
         return package
+
+    @classmethod
+    def from_dp(cls, package: Package) -> DatacitePackage:
+        datacite = DatacitePackage()
+
+        # Id
+        if package.id:
+            if package.id.startswith("https://doi.org/"):
+                doi = package.id.replace("https://doi.org/", "")
+                datacite.identifiers.append(
+                    DataciteIdentifier(identifierType="DOI", identifier=doi)
+                )
+
+        # Version
+        if package.version:
+            datacite.version = package.version
+
+        # Title
+        if package.title:
+            datacite.titles.append(DataciteTitle(title=package.title))
+
+        # Description
+        if package.description:
+            datacite.descriptions.append(
+                DataciteDescription(
+                    descriptionType="Abstract",
+                    description=package.description,
+                )
+            )
+
+        # Homepage
+        if package.homepage:
+            datacite.identifiers.append(
+                DataciteIdentifier(identifierType="URL", identifier=package.homepage)
+            )
+
+        # Keywords
+        for keyword in package.keywords:
+            datacite.subjects.append(DataciteSubject(subject=keyword))
+
+        # Contributors
+        for contributor in package.contributors:
+            item = DataciteContributor(name=contributor.title)
+            if contributor.organization:
+                org = DataciteContributorAffiliation(name=contributor.organization)
+                item.affiliation.append(org)
+            if contributor.role:
+                item.contributorType = contributor.role
+            target = datacite.contributors
+            if contributor.role in ["author", "creator"]:
+                target = datacite.creators
+            target.append(item)
+
+        return datacite
