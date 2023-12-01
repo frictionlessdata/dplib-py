@@ -16,4 +16,5 @@ class DataciteContributor(Model):
     nameType: Optional[str] = None
     givenName: Optional[str] = None
     familyName: Optional[str] = None
+    contributorType: Optional[str] = None
     affiliation: List[DataciteContributorAffilation] = []
