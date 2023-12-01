@@ -1,8 +1,9 @@
 from __future__ import annotations
 
-from typing import List
+from typing import List, Optional
 
 from ...model import Model
+from ...models import Package
 from .organization import CkanOrganization
 from .resource import CkanResource
 from .tag import CkanTag
@@ -12,10 +13,10 @@ from .tag import CkanTag
 
 
 class CkanPackage(Model):
-    resources: List[CkanResource]
+    resources: List[CkanResource] = []
 
-    organization: CkanOrganization
-    tags: List[CkanTag]
+    organization: Optional[CkanOrganization] = None
+    tags: List[CkanTag] = []
 
     id: str
     name: str
@@ -30,3 +31,8 @@ class CkanPackage(Model):
     maintainer_email: str
     metadata_created: str
     metadata_modified: str
+
+    # Mappers
+
+    def to_dp(self):
+        package = Package()
