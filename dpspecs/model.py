@@ -7,7 +7,6 @@ from pydantic_core import ErrorDetails
 from . import types
 
 
-# TODO: disallow arbitrary properties?
 class Model(BaseModel, extra="forbid", validate_assignment=True):
     custom: types.IData = {}
 
