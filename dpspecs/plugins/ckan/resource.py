@@ -24,15 +24,21 @@ class CkanResource(Model):
     def to_dp(self) -> Resource:
         resource = Resource(path=self.name, name=path_to_name(self.name))
 
-        # General
-        if self.id:
-            resource.custom["ckan:id"] = self.id
+        # Format
         if self.format:
             resource.format = self.format.lower()
+
+        # Mediatype
         if self.mimetype:
             resource.mediatype = self.mimetype
+
+        # Size
         if self.size:
             resource.bytes = self.size
+
+        # Custom
+        if self.id:
+            resource.custom["ckan:id"] = self.id
 
         return resource
 
@@ -40,13 +46,19 @@ class CkanResource(Model):
     def from_dp(cls, resource: Resource) -> Optional[CkanResource]:
         if not resource.path:
             return
+
+        # Path
         ckan = CkanResource(name=resource.path)
 
-        # General
+        # Format
         if resource.format:
             ckan.format = resource.format.upper()
+
+        # Mediatype
         if resource.mediatype:
             ckan.mimetype = resource.mediatype
+
+        # Bytes
         if resource.bytes:
             ckan.size = resource.bytes
 

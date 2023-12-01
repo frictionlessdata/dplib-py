@@ -23,9 +23,11 @@ class GithubResource(Model):
     def to_dp(self):
         resource = Resource(path=self.path, name=path_to_name(self.path))
 
-        # General
+        # Bytes
         if self.size:
             resource.bytes = self.size
+
+        # Hash
         if self.sha:
             resource.hash = f"sha1:{self.sha}"
 
@@ -35,11 +37,15 @@ class GithubResource(Model):
     def from_dp(cls, resource: Resource) -> Optional[GithubResource]:
         if not resource.path:
             return
+
+        # Path
         github = GithubResource(path=resource.path, name=resource.path)
 
-        # General
+        # Bytes
         if resource.bytes:
             github.size = resource.bytes
+
+        # Hash
         if resource.parsed_hash:
             if resource.parsed_hash.type == "sha1":
                 github.sha = resource.parsed_hash.value

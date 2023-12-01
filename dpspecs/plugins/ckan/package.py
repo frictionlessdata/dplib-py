@@ -39,19 +39,25 @@ class CkanPackage(Model):
     def to_dp(self):
         package = Package()
 
-        # General
+        # Name
         if self.name:
             package.name = self.name
+
+        # Title
         if self.title:
             package.title = self.title
+
+        # Description
         if self.notes:
             package.description = self.notes
+
+        # Version
         if self.version:
             package.version = self.version
+
+        # Created
         if self.metadata_created:
             package.created = self.metadata_created
-        if self.id:
-            package.custom["ckan:id"] = self.id
 
         # License
         if self.license_id:
@@ -83,19 +89,29 @@ class CkanPackage(Model):
         for tag in self.tags:
             package.keywords.append(tag.name)
 
+        # Custom
+        if self.id:
+            package.custom["ckan:id"] = self.id
+
         return package
 
     @classmethod
     def from_dp(cls, package: Package) -> CkanPackage:
         ckan = CkanPackage()
 
-        # General
+        # Name
         if package.name:
             ckan.name = package.name
+
+        # Title
         if package.title:
             ckan.title = package.title
+
+        # Description
         if package.description:
             ckan.notes = package.description
+
+        # Version
         if package.version:
             ckan.version = package.version
 

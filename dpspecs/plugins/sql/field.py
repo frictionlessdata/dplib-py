@@ -21,7 +21,6 @@ class SqlField(Model, arbitrary_types_allowed=True):
     # Mappers
 
     def to_dp(self) -> Field:
-        # Create field
         field = Field(name=self.column.name)
 
         # Type
@@ -158,13 +157,11 @@ class SqlField(Model, arbitrary_types_allowed=True):
                 quoted_enum_name = dialect_obj.identifier_preparer.quote(enum_name)
                 column_type = sa.Enum(*val, name=quoted_enum_name)
 
-        # Create column
         # TODO: shall it use "autoincrement=False"
         # https://github.com/Mause/duckdb_engine/issues/595#issuecomment-1495408566
         column_args = [field.name, column_type] + checks
         column_kwargs = {"nullable": nullable, "unique": unique, "comment": comment}
         column = sa.Column(*column_args, **column_kwargs)  # type: ignore
-
         return SqlField(column=column)
 
 

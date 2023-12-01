@@ -32,19 +32,29 @@ class ZenodoPackage(Model):
     def to_dp(self):
         package = Package()
 
-        # General
-        if self.metadata.title:
-            package.title = self.metadata.title
-        if self.metadata.description:
-            package.description = self.metadata.description
-        if self.metadata.version:
-            package.version = self.metadata.version
-        if self.created:
-            package.created = self.created
-        if self.links.get("self"):
-            package.homepage = self.links.get("self")
+        # Id
         if self.links.get("doi"):
             package.id = self.links.get("doi")
+
+        # Title
+        if self.metadata.title:
+            package.title = self.metadata.title
+
+        # Description
+        if self.metadata.description:
+            package.description = self.metadata.description
+
+        # Version
+        if self.metadata.version:
+            package.version = self.metadata.version
+
+        # Created
+        if self.created:
+            package.created = self.created
+
+        # Homepage
+        if self.links.get("self"):
+            package.homepage = self.links.get("self")
 
         # Resources
         for entry in self.files.entries.values():
@@ -71,11 +81,15 @@ class ZenodoPackage(Model):
     def from_dp(cls, package: Package) -> ZenodoPackage:
         zenodo = ZenodoPackage()
 
-        # General
+        # Title
         if package.title:
             zenodo.metadata.title = package.title
+
+        # Description
         if package.description:
             zenodo.metadata.description = package.description
+
+        # Version
         if package.version:
             zenodo.metadata.version = package.version
 

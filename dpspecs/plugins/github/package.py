@@ -33,15 +33,23 @@ class GithubPackage(Model):
     def to_dp(self):
         package = Package()
 
-        # General
+        # Title
         if self.name:
             package.title = self.name
+
+        # Name
         if self.full_name:
             package.name = self.full_name
+
+        # Description
         if self.description:
             package.description = self.description
+
+        # Homepage
         if self.html_url:
             package.homepage = self.html_url
+
+        # Created
         if self.created_at:
             package.created = self.created_at
 
@@ -71,13 +79,15 @@ class GithubPackage(Model):
     def from_dp(cls, package: Package) -> GithubPackage:
         github = GithubPackage()
 
-        # General
+        # Title
         if package.title:
             github.name = package.title
+
+        # Description
         if package.description:
             github.description = package.description
 
-        # License
+        # Licenses
         if package.licenses:
             license = package.licenses[0]
             github.license = GithubLicense()
