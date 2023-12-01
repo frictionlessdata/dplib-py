@@ -22,7 +22,7 @@ class PandasField(Model, arbitrary_types_allowed=True):
     def to_dp(self) -> Field:
         field = Field(name=self.name)
 
-        # Pandas types
+        # Type
         if pdc.is_bool_dtype(self.dtype):  # type: ignore
             field.type = "boolean"
         elif pdc.is_datetime64_any_dtype(self.dtype):  # type: ignore
@@ -31,9 +31,7 @@ class PandasField(Model, arbitrary_types_allowed=True):
             field.type = "integer"
         elif pdc.is_numeric_dtype(self.dtype):  # type: ignore
             field.type = "number"
-
-        # Python types
-        if self.dvalue is not None:
+        elif self.dvalue is not None:
             if isinstance(self.dvalue, (list, tuple)):  # type: ignore
                 field.type = "array"
             elif isinstance(self.dvalue, datetime.datetime):

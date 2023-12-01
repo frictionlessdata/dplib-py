@@ -7,7 +7,7 @@ import pydantic
 from ...model import Model
 
 
-class ZenodoCreatorAffilation(Model):
+class ZenodoCreatorAffiliation(Model):
     name: str
 
 
@@ -19,7 +19,7 @@ class ZenodoCreatorPersonOrOrg(Model):
 
 
 class ZenodoCreator(Model):
-    affilations: List[ZenodoCreatorAffilation] = []
+    affiliations: List[ZenodoCreatorAffiliation] = []
     person_or_org: ZenodoCreatorPersonOrOrg = pydantic.Field(
         default_factory=ZenodoCreatorPersonOrOrg
     )

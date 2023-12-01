@@ -9,6 +9,7 @@ from .constraints import Constraints
 from .fieldType import FieldType
 
 
+# TODO: get back to discriminated unions?
 class Field(Model):
     name: str
     type: FieldType = "any"

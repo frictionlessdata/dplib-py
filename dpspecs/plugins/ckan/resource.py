@@ -2,17 +2,64 @@ from __future__ import annotations
 
 from typing import Optional
 
+from ...helpers.resource import path_to_name
 from ...model import Model
+from ...models import Resource
 
 
 class CkanResource(Model):
-    created: str
-    description: str
-    format: str  # NOTE: uppercased
-    hash: str
-    id: str
+    name: str
+    created: Optional[str] = None
+    description: Optional[str] = None
+    format: Optional[str] = None  # NOTE: uppercased
+    hash: Optional[str] = None
+    id: Optional[str] = None
     last_modified: Optional[str] = None
     metadata_modified: Optional[str] = None
-    mimetype: str
-    name: str
+    mimetype: Optional[str] = None
     size: Optional[int] = None
+
+    # Mappers
+
+    def to_dp(self) -> Resource:
+        resource = Resource(path=self.name, name=path_to_name(self.name))
+
+        # Format
+        if self.format:
+            resource.format = self.format.lower()
+
+        # Mediatype
+        if self.mimetype:
+            resource.mediatype = self.mimetype
+
+        # Size
+        if self.size:
+            resource.bytes = self.size
+
+        # Custom
+        if self.id:
+            resource.custom["ckan:id"] = self.id
+
+        return resource
+
+    @classmethod
+    def from_dp(cls, resource: Resource) -> Optional[CkanResource]:
+        if not resource.path:
+            return
+
+        # Path
+        ckan = CkanResource(name=resource.path)
+
+        # Format
+        if resource.format:
+            ckan.format = resource.format.upper()
+
+        # Mediatype
+        if resource.mediatype:
+            ckan.mimetype = resource.mediatype
+
+        # Bytes
+        if resource.bytes:
+            ckan.size = resource.bytes
+
+        return ckan

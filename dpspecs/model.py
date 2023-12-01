@@ -7,7 +7,9 @@ from pydantic_core import ErrorDetails
 from . import types
 
 
-class Model(BaseModel, validate_assignment=True):
+class Model(BaseModel, extra="forbid", validate_assignment=True):
+    custom: types.IData = {}
+
     def __str__(self) -> str:
         return repr(self)
 

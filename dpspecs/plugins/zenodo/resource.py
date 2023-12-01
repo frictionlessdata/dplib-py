@@ -20,13 +20,19 @@ class ZenodoResource(Model):
     def to_dp(self) -> Resource:
         resource = Resource(path=self.key, name=path_to_name(self.key))
 
-        # General
+        # Format
         if self.ext:
             resource.format = self.ext.lower()
+
+        # Mediatype
         if self.mimetype:
             resource.mediatype = self.mimetype
+
+        # Bytes
         if self.size:
             resource.bytes = self.size
+
+        # Hash
         if self.checksum:
             resource.hash = self.checksum.replace("md5:", "")
 
@@ -36,15 +42,23 @@ class ZenodoResource(Model):
     def from_dp(cls, resource: Resource) -> Optional[ZenodoResource]:
         if not resource.path:
             return
+
+        # Path
         zenodo = ZenodoResource(key=resource.path)
 
-        # General
+        # Format
         if resource.format:
             zenodo.ext = resource.format
+
+        # Mediatype
         if resource.mediatype:
             zenodo.mimetype = resource.mediatype
+
+        # Bytes
         if resource.bytes:
             zenodo.size = resource.bytes
+
+        # Hash
         if resource.parsed_hash:
             if resource.parsed_hash.type == "md5":
                 zenodo.checksum = resource.parsed_hash.full_hash

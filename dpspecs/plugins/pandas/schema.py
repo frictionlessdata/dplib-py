@@ -35,7 +35,7 @@ class PandasSchema(Model, arbitrary_types_allowed=True):
 
     @classmethod
     def from_dp(cls, schema: Schema) -> PandasSchema:
-        columns: Dict[str, pd.Series] = {}
+        columns: Dict[str, pd.Series[Any]] = {}
 
         # Fields
         for field in schema.fields:
