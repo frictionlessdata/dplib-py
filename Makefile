@@ -1,10 +1,7 @@
-.PHONY: release
-
-
-PACKAGE := $(shell grep '^name =' pyproject.toml | cut -d '"' -f2)
-VERSION := $(shell grep '^VERSION =' ${PACKAGE}/settings.py | cut -d '"' -f2)
-
 # TODO: migrate to hatch
+
+VERSION := $(shell hatch --no-color version)
+
 release:
 	git checkout main && git pull origin && git fetch -p
 	@git log --pretty=format:"%C(yellow)%h%Creset %s%Cgreen%d" --reverse -20
