@@ -65,9 +65,12 @@ hatch test
 
 ## Releasing
 
+> You need to have a `main` branch push permissions
+
 Update the version and initiate the release script:
 
 ```bash
+# Ensure you're on the up-to-date `main` branch
 hatch version <major|minor|micro>
 make release
 ```
