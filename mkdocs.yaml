@@ -1,11 +1,11 @@
 # General
 
-site_name: dpspecs-py
-site_url: https://frictionlessdata.github.io/dpspecs-py
+site_name: dplib-py
+site_url: https://frictionlessdata.github.io/dplib-py
 site_author: Open Knowledge Foundation
 site_description: Python implementation of the Data Package standard
-repo_name: frictionlessdata/dpspecs-py
-repo_url: https://github.com/frictionlessdata/dpspecs-py
+repo_name: frictionlessdata/dplib-py
+repo_url: https://github.com/frictionlessdata/dplib-py
 copyright: Copyright &copy; 2023 <a href="https://okfn.org">Open Knowledge Foundation</a>
 
 # Theme

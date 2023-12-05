@@ -1,11 +1,11 @@
 [project]
-name = "dpspecs"
+name = "dplib-py"
 dynamic = ["version"]
 description = "Python implementation of the Data Package standard"
 license = "MIT"
 readme = "README.md"
 requires-python = ">=3.8"
-urls.homepage = "https://github.com/frictionlessdata/dpspecs-py"
+urls.homepage = "https://github.com/frictionlessdata/dplib-py"
 authors = [
     {name = "Open Knowledge Foundation", email = "info@okfn.org"},
 ]
@@ -66,15 +66,15 @@ dev = [
 ]
 
 [project.scripts]
-dpspecs = "dpspecs.__main__:console"
+# dp = "<module>:console"
 
 [tool.hatch.version]
-path = "dpspecs/settings.py"
+path = "dplib/settings.py"
 
 [tool.hatch.envs.default]
 python = "3.10"
 dependencies = [
-  "dpspecs[sql,pandas,polars,dev]",
+  "dplib-py[sql,pandas,polars,dev]",
 ]
 
 [tool.hatch.envs.default.scripts]
@@ -85,17 +85,17 @@ docs = [
   "mkdocs build",
 ]
 format = [
-  "ruff dpspecs --fix",
-  "isort dpspecs",
-  "black dpspecs",
+  "ruff dplib --fix",
+  "isort dplib",
+  "black dplib",
 ]
 lint = [
-  "ruff dpspecs",
-  "isort dpspecs --check",
-  "black dpspecs --check",
+  "ruff dplib",
+  "isort dplib --check",
+  "black dplib --check",
 ]
 spec = [
-  "pytest --cov dpspecs --cov-report term-missing --cov-report html:coverage --cov-fail-under 0 --timeout=300",
+  "pytest --cov dplib --cov-report term-missing --cov-report html:coverage --cov-fail-under 0 --timeout=300",
 ]
 test = [
   "hatch run lint",
@@ -103,7 +103,7 @@ test = [
   "hatch run spec",
 ]
 type = [
-  "pyright dpspecs",
+  "pyright dplib",
 ]
 write = [
   "mkdocs serve",
@@ -115,7 +115,7 @@ python = ["3.8", "3.9", "3.10"]
 [tool.hatch.envs.ci.scripts]
 test = [
   "hatch run lint",
-  "pytest --cov dpspecs --cov-report term-missing --cov-report xml --cov-fail-under 0 --timeout=300 --ci",
+  "pytest --cov dplib --cov-report term-missing --cov-report xml --cov-fail-under 0 --timeout=300 --ci",
 ]
 
 [build-system]
@@ -137,7 +137,7 @@ ignore = ["E501", "E731", "F405"]
 "__init__.py" = ["F401", "F403"]
 
 [tool.pytest.ini_options]
-testpaths = ["dpspecs"]
+testpaths = ["dplib"]
 env_files = [".env"]
 markers = [
     "ci: integrational tests (select with '--ci')",
@@ -151,8 +151,6 @@ filterwarnings = [
 ]
 
 [tool.pyright]
-strict = ["dpspecs"]
-include = ["dpspecs"]
-exclude = ["dpspecs/vendors"]
+strict = ["dplib"]
+include = ["dplib"]
 ignore = ["**/__init__.py"]
-extraPaths = ["dpspecs", "dpspecs/models", "dpspecs/plugins"]

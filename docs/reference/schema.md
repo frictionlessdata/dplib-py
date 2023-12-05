@@ -1,3 +1,3 @@
 # Schema
 
-::: dpspecs.Schema
+::: dplib.Schema

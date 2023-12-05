@@ -1,6 +1,6 @@
 # Development
 
-Contributin code the `dpspecs-py` is simple as it is a pure Python library. Please read the following instructions:
+Contributin code the `dplib-py` is simple as it is a pure Python library. Please read the following instructions:
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ hatch shell # Enter the venv
 Now you can setup you IDE to use a proper Python path:
 
 ```bash
-.python/dpspecs/bin/python
+.python/dplib-py/bin/python
 ```
 
 ## Installation
@@ -61,4 +61,13 @@ To run all the checks on the codebase:
 
 ```bash
 hatch test
+```
+
+## Releasing
+
+Update the version and initiate the release script:
+
+```bash
+hatch version <major|minor|micro>
+make release
 ```
