@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://frictionlessdata.github.io/dpspecs-py/</loc>
-         <lastmod>2023-10-03</lastmod>
+         <loc>https://frictionlessdata.github.io/dplib-py/</loc>
+         <lastmod>2023-12-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://frictionlessdata.github.io/dpspecs-py/contributing/development/</loc>
-         <lastmod>2023-10-03</lastmod>
+         <loc>https://frictionlessdata.github.io/dplib-py/contributing/development/</loc>
+         <lastmod>2023-12-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://frictionlessdata.github.io/dpspecs-py/documentation/installation/</loc>
-         <lastmod>2023-10-03</lastmod>
+         <loc>https://frictionlessdata.github.io/dplib-py/documentation/installation/</loc>
+         <lastmod>2023-12-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://frictionlessdata.github.io/dpspecs-py/documentation/usage/</loc>
-         <lastmod>2023-10-03</lastmod>
+         <loc>https://frictionlessdata.github.io/dplib-py/documentation/usage/</loc>
+         <lastmod>2023-12-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://frictionlessdata.github.io/dpspecs-py/reference/schema/</loc>
-         <lastmod>2023-10-03</lastmod>
+         <loc>https://frictionlessdata.github.io/dplib-py/reference/schema/</loc>
+         <lastmod>2023-12-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
