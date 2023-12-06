@@ -2,7 +2,12 @@ from __future__ import annotations
 
 from typing import List, Optional
 
+from rdflib import Graph, URIRef
+from rdflib.namespace import RDF, Namespace
+
 from dplib.model import Model
+
+from . import parsers
 
 # References:
 # - https://www.w3.org/TR/vocab-dcat-2/
@@ -10,8 +15,7 @@ from dplib.model import Model
 
 
 class DcatPackage(Model):
-    identifier: str
-    type: str
+    identifier: Optional[str] = None
     title: Optional[str] = None
     description: Optional[str] = None
     version: Optional[str] = None
@@ -32,3 +36,42 @@ class DcatPackage(Model):
     is_version_of: List[str] = []
     source: List[str] = []
     sample: List[str] = []
+
+    # Mappers
+
+    @classmethod
+    def from_xml(cls, text: str) -> Optional[DcatPackage]:
+        g = Graph()
+        g.parse(text, format="xml")
+        package = DcatPackage()
+
+        # Identifier
+        try:
+            id = g.value(predicate=RDF.type, object=DCAT.Dataset)
+            if not isinstance(id, URIRef):
+                return
+            package.identifier = str(id)
+        except Exception:
+            return
+
+        # Title
+        title = parsers.string(g, subject=id, predicate=DCT.title)
+        if title:
+            package.title = title
+
+        # Description
+        description = parsers.string(g, subject=id, predicate=DCT.description)
+        if description:
+            package.description = description
+
+        # Version
+        version = parsers.string(g, subject=id, predicate=OWL.versionInfo)
+        if version:
+            package.version = version
+
+        return package
+
+
+DCT = Namespace("http://purl.org/dc/terms/")
+DCAT = Namespace("http://www.w3.org/ns/dcat#")
+OWL = Namespace("http://www.w3.org/2002/07/owl#")
