@@ -7,7 +7,7 @@ from rdflib.namespace import FOAF, RDF, Namespace
 
 from dplib.model import Model
 
-from . import parsers
+from . import loaders
 from .resource import DcatResource
 
 # References:
@@ -51,103 +51,103 @@ class DcatPackage(Model):
         package = DcatPackage()
 
         # Identifier
-        id = parsers.id(g, predicate=RDF.type, object=DCAT.Dataset)
+        id = loaders.id(g, predicate=RDF.type, object=DCAT.Dataset)
         if not id:
             return
         package.identifier = str(id)
 
         # Title
-        title = parsers.string(g, subject=id, predicate=DCT.title)
+        title = loaders.string(g, subject=id, predicate=DCT.title)
         if title:
             package.title = title
 
         # Description
-        description = parsers.string(g, subject=id, predicate=DCT.description)
+        description = loaders.string(g, subject=id, predicate=DCT.description)
         if description:
             package.description = description
 
         # Version
-        version = parsers.string(g, subject=id, predicate=OWL.versionInfo)
+        version = loaders.string(g, subject=id, predicate=OWL.versionInfo)
         if version:
             package.version = version
 
         # Landing page
-        landing_page = parsers.string(g, subject=id, predicate=DCAT.landingPage)
+        landing_page = loaders.string(g, subject=id, predicate=DCAT.landingPage)
         if landing_page:
             package.landing_page = landing_page
 
         # Issued
-        issued = parsers.string(g, subject=id, predicate=DCT.issued)
+        issued = loaders.string(g, subject=id, predicate=DCT.issued)
         if issued:
             package.issued = issued
 
         # Modified
-        modified = parsers.string(g, subject=id, predicate=DCT.modified)
+        modified = loaders.string(g, subject=id, predicate=DCT.modified)
         if modified:
             package.modified = modified
 
         # Accural periodicity
-        periodicity = parsers.string(g, subject=id, predicate=DCT.accrualPeriodicity)
+        periodicity = loaders.string(g, subject=id, predicate=DCT.accrualPeriodicity)
         if periodicity:
             package.accural_periodicity = periodicity
 
         # Provenance
-        provenance = parsers.string(g, subject=id, predicate=DCT.provenance)
+        provenance = loaders.string(g, subject=id, predicate=DCT.provenance)
         if provenance:
             package.provenance = provenance
 
         # Keywords
-        keywords = parsers.strings(g, subject=id, predicate=DCAT.keyword)
+        keywords = loaders.strings(g, subject=id, predicate=DCAT.keyword)
         if keywords:
             package.keywords = keywords
 
         # Languages
-        languages = parsers.strings(g, subject=id, predicate=DCT.language)
+        languages = loaders.strings(g, subject=id, predicate=DCT.language)
         if languages:
             package.languages = languages
 
         # Themes
-        themes = parsers.strings(g, subject=id, predicate=DCAT.theme)
+        themes = loaders.strings(g, subject=id, predicate=DCAT.theme)
         if themes:
             package.themes = themes
 
         # Alternate identifiers
-        identifiers = parsers.strings(g, subject=id, predicate=ADMS.identifier)
+        identifiers = loaders.strings(g, subject=id, predicate=ADMS.identifier)
         if identifiers:
             package.alternate_identifiers = identifiers
 
         # Conforms to
-        conforms_to = parsers.strings(g, subject=id, predicate=DCT.conformsTo)
+        conforms_to = loaders.strings(g, subject=id, predicate=DCT.conformsTo)
         if conforms_to:
             package.comforms_to = conforms_to
 
         # Documentation
-        documentation = parsers.strings(g, subject=id, predicate=FOAF.page)
+        documentation = loaders.strings(g, subject=id, predicate=FOAF.page)
         if documentation:
             package.documentation = documentation
 
         # Related resources
-        related_resources = parsers.strings(g, subject=id, predicate=DCT.relation)
+        related_resources = loaders.strings(g, subject=id, predicate=DCT.relation)
         if related_resources:
             package.related_resources = related_resources
 
         # Has versions
-        has_versions = parsers.strings(g, subject=id, predicate=DCT.hasVersion)
+        has_versions = loaders.strings(g, subject=id, predicate=DCT.hasVersion)
         if has_versions:
             package.has_versions = has_versions
 
         # Is version of
-        is_version_of = parsers.strings(g, subject=id, predicate=DCT.isVersionOf)
+        is_version_of = loaders.strings(g, subject=id, predicate=DCT.isVersionOf)
         if is_version_of:
             package.is_version_of = is_version_of
 
         # Sources
-        sources = parsers.strings(g, subject=id, predicate=DCT.source)
+        sources = loaders.strings(g, subject=id, predicate=DCT.source)
         if sources:
             package.sources = sources
 
         # Samples
-        samples = parsers.strings(g, subject=id, predicate=ADMS.sample)
+        samples = loaders.strings(g, subject=id, predicate=ADMS.sample)
         if samples:
             package.samples = samples
 
