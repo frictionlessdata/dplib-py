@@ -8,6 +8,7 @@ from rdflib.namespace import FOAF, RDF, Namespace
 from dplib.model import Model
 
 from . import parsers
+from .resource import DcatResource
 
 # References:
 # - https://www.w3.org/TR/vocab-dcat-2/
@@ -35,8 +36,10 @@ class DcatPackage(Model):
     related_resources: List[str] = []
     has_versions: List[str] = []
     is_version_of: List[str] = []
-    source: List[str] = []
-    sample: List[str] = []
+    sources: List[str] = []
+    samples: List[str] = []
+
+    distributions: List[DcatResource] = []
 
     # Mappers
 
@@ -121,6 +124,31 @@ class DcatPackage(Model):
         documentation = parsers.strings(g, subject=id, predicate=FOAF.page)
         if documentation:
             package.documentation = documentation
+
+        # Related resources
+        related_resources = parsers.strings(g, subject=id, predicate=DCT.relation)
+        if related_resources:
+            package.related_resources = related_resources
+
+        # Has versions
+        has_versions = parsers.strings(g, subject=id, predicate=DCT.hasVersion)
+        if has_versions:
+            package.has_versions = has_versions
+
+        # Is version of
+        is_version_of = parsers.strings(g, subject=id, predicate=DCT.isVersionOf)
+        if is_version_of:
+            package.is_version_of = is_version_of
+
+        # Sources
+        sources = parsers.strings(g, subject=id, predicate=DCT.source)
+        if sources:
+            package.sources = sources
+
+        # Samples
+        samples = parsers.strings(g, subject=id, predicate=ADMS.sample)
+        if samples:
+            package.samples = samples
 
         return package
 
