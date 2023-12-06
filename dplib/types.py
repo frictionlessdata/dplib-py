@@ -1,3 +1,3 @@
 from typing import Any, Dict
 
-IData = Dict[str, Any]
+IDict = Dict[str, Any]
