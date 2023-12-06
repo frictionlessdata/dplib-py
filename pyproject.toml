@@ -32,8 +32,8 @@ classifiers = [
 ]
 dependencies = [
     "pydantic>=2.0",
-    "fsspec>=2023.1.0",
     "python-slugify>=6.0",
+    "fsspec[http]>=2023.1.0",
 ]
 
 [project.optional-dependencies]
@@ -41,6 +41,7 @@ dcat = ["rdflib>=6.0"]
 sql = ["sqlalchemy>=1.4"]
 pandas = ["pandas>=1.0", "pandas-stubs>=1.0", "numpy>=1.0", "isodate>=0.6"]
 polars = ["polars-lts-cpu>=0.10"]
+yaml = ["pyyaml>=5.0"]
 dev = [
     "moto",
     "ruff",
