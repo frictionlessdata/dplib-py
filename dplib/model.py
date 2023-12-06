@@ -7,6 +7,7 @@ from typing import Optional
 
 import fsspec  # type: ignore
 from pydantic import BaseModel
+from typing_extensions import Self
 
 from . import types
 
@@ -29,7 +30,7 @@ class Model(BaseModel, extra="forbid", validate_assignment=True):
             file.write(text)  # type: ignore
 
     @classmethod
-    def from_path(cls, path: str, *, format: str = "json") -> Model:
+    def from_path(cls, path: str, *, format: str = "json") -> Optional[Self]:
         with fsspec.open(path, "rt", encoding="utf-8") as file:  # type: ignore
             text = file.read()  # type: ignore
         return cls.from_text(text, format=format)  # type: ignore
@@ -44,7 +45,7 @@ class Model(BaseModel, extra="forbid", validate_assignment=True):
         raise ValueError(f"Unknown format: {format}")
 
     @classmethod
-    def from_text(cls, text: str, *, format: str = "json") -> Optional[Model]:
+    def from_text(cls, text: str, *, format: str = "json") -> Optional[Self]:
         if format == "json":
             data = json.loads(text)
             return cls.from_dict(data)
@@ -58,5 +59,5 @@ class Model(BaseModel, extra="forbid", validate_assignment=True):
         return self.model_dump(mode="json", exclude_unset=True, exclude_none=True)
 
     @classmethod
-    def from_dict(cls, data: types.IDict):
+    def from_dict(cls, data: types.IDict) -> Optional[Self]:
         return cls(**data)

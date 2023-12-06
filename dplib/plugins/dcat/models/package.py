@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from rdflib import Graph
+from rdflib import BNode, Graph, URIRef
 from rdflib.namespace import FOAF, RDF, Namespace
 
 from dplib.model import Model
@@ -149,6 +149,13 @@ class DcatPackage(Model):
         samples = parsers.strings(g, subject=id, predicate=ADMS.sample)
         if samples:
             package.samples = samples
+
+        # Distributions
+        distributions = g.objects(subject=id, predicate=DCAT.distribution)
+        for distribution in distributions:
+            if isinstance(distribution, (URIRef, BNode)):
+                resource = DcatResource.from_graph(g, id=distribution)
+                package.distributions.append(resource)
 
         return package
 

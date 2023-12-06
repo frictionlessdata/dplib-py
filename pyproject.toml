@@ -34,6 +34,7 @@ dependencies = [
     "pydantic>=2.0",
     "python-slugify>=6.0",
     "fsspec[http]>=2023.1.0",
+    "typing-extensions>=4.0",
 ]
 
 [project.optional-dependencies]

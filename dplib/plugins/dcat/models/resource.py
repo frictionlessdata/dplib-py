@@ -2,7 +2,12 @@ from __future__ import annotations
 
 from typing import List, Optional
 
+from rdflib import FOAF, Graph, Namespace
+
 from dplib.model import Model
+
+from . import parsers
+from .types import ISubject
 
 
 class DcatResource(Model):
@@ -19,3 +24,65 @@ class DcatResource(Model):
     languages: List[str] = []
     documentations: List[str] = []
     conforms_to: List[str] = []
+
+    # Mappers
+
+    @classmethod
+    def from_graph(cls, g: Graph, *, id: ISubject) -> DcatResource:
+        resource = DcatResource()
+
+        # Name
+        name = parsers.string(g, subject=id, predicate=DCT.title)
+        if name:
+            resource.name = name
+
+        # Description
+        description = parsers.string(g, subject=id, predicate=DCT.description)
+        if description:
+            resource.description = description
+
+        # Access URL
+        access_url = parsers.string(g, subject=id, predicate=DCAT.accessURL)
+        if access_url:
+            resource.access_url = access_url
+
+        # Download URL
+        download_url = parsers.string(g, subject=id, predicate=DCAT.downloadURL)
+        if download_url:
+            resource.download_url = download_url
+
+        # Issued
+        issued = parsers.string(g, subject=id, predicate=DCT.issued)
+        if issued:
+            resource.issued = issued
+
+        # Modified
+        modified = parsers.string(g, subject=id, predicate=DCT.modified)
+        if modified:
+            resource.modified = modified
+
+        # License
+        license = parsers.string(g, subject=id, predicate=DCT.license)
+        if license:
+            resource.license = license
+
+        # Languages
+        languages = parsers.strings(g, subject=id, predicate=DCT.language)
+        if languages:
+            resource.languages = languages
+
+        # Documentations
+        documentations = parsers.strings(g, subject=id, predicate=FOAF.page)
+        if documentations:
+            resource.documentations = documentations
+
+        # Conforms to
+        conforms_to = parsers.strings(g, subject=id, predicate=DCT.conformsTo)
+        if conforms_to:
+            resource.conforms_to = conforms_to
+
+        return resource
+
+
+DCAT = Namespace("http://www.w3.org/ns/dcat#")
+DCT = Namespace("http://purl.org/dc/terms/")
