@@ -3,12 +3,12 @@ from __future__ import annotations
 from typing import List, Optional
 
 from rdflib import BNode, Graph, URIRef
-from rdflib.namespace import FOAF, RDF, Namespace
 
 from dplib.error import Error
 from dplib.model import Model
 
 from . import dumpers, loaders
+from . import namespaces as ns
 from .resource import DcatResource
 
 # References:
@@ -30,6 +30,8 @@ class DcatPackage(Model):
 
     keywords: List[str] = []
     languages: List[str] = []
+    sources: List[str] = []
+    samples: List[str] = []
     themes: List[str] = []
     alternate_identifiers: List[str] = []
     comforms_to: List[str] = []
@@ -37,8 +39,6 @@ class DcatPackage(Model):
     related_resources: List[str] = []
     has_versions: List[str] = []
     is_version_of: List[str] = []
-    sources: List[str] = []
-    samples: List[str] = []
 
     distributions: List[DcatResource] = []
 
@@ -58,47 +58,59 @@ class DcatPackage(Model):
         g = Graph()
 
         # Namespaces
-        for prefix, namespace in NAMESPACES.items():
+        for prefix, namespace in ns.BINDINGS.items():
             g.bind(prefix, namespace)
 
         # Identifier
         if not self.identifier:
             raise Error(f"Cannot dump DCAT package without identifier: {self}")
-        id = dumpers.id(g, self.identifier, predicate=RDF.type, object=DCAT.Dataset)
+        id = dumpers.id(g, self.identifier, predicate=ns.TYPE, object=ns.DATASET)
 
         # Title
         if self.title:
-            dumpers.node(g, self.title, subject=id, predicate=DCT.title)
+            dumpers.node(g, self.title, subject=id, predicate=ns.TITLE)
 
         # Description
         if self.description:
-            dumpers.node(g, self.description, subject=id, predicate=DCT.description)
+            dumpers.node(g, self.description, subject=id, predicate=ns.DESCRIPTION)
 
         # Version
         if self.version:
-            dumpers.node(g, self.version, subject=id, predicate=OWL.versionInfo)
+            dumpers.node(g, self.version, subject=id, predicate=ns.VERSION)
 
         # Landing page
         if self.landing_page:
-            dumpers.node(g, self.landing_page, subject=id, predicate=DCAT.landingPage)
+            dumpers.node(g, self.landing_page, subject=id, predicate=ns.LANDING_PAGE)
 
         # Issued
         if self.issued:
-            dumpers.node(g, self.issued, subject=id, predicate=DCT.issued)
+            dumpers.node(g, self.issued, subject=id, predicate=ns.ISSUED)
 
         # Modified
         if self.modified:
-            dumpers.node(g, self.modified, subject=id, predicate=DCT.modified)
+            dumpers.node(g, self.modified, subject=id, predicate=ns.MODIFIED)
 
         # Accural periodicity
         if self.accural_periodicity:
             dumpers.node(
-                g, self.accural_periodicity, subject=id, predicate=DCT.accrualPeriodicity
+                g, self.accural_periodicity, subject=id, predicate=ns.ACCURAL_PERIODICITY
             )
 
         # Provenance
         if self.provenance:
-            dumpers.node(g, self.provenance, subject=id, predicate=DCT.provenance)
+            dumpers.node(g, self.provenance, subject=id, predicate=ns.PROVENANCE)
+
+        # Keywords
+        for keyword in self.keywords:
+            dumpers.node(g, keyword, subject=id, predicate=ns.KEYWORD)
+
+        # Languages
+        for language in self.languages:
+            dumpers.node(g, language, subject=id, predicate=ns.LANGUAGE)
+
+        # Themes
+        for theme in self.themes:
+            dumpers.node(g, theme, subject=id, predicate=ns.THEME)
 
         return g
 
@@ -107,124 +119,111 @@ class DcatPackage(Model):
         package = DcatPackage()
 
         # Identifier
-        id = loaders.id(g, predicate=RDF.type, object=DCAT.Dataset)
+        id = loaders.id(g, predicate=ns.TYPE, object=ns.DATASET)
         if not id:
             raise Error(f"Cannot load DCAT package without identifier: {g}")
         package.identifier = str(id)
 
         # Title
-        title = loaders.string(g, subject=id, predicate=DCT.title)
+        title = loaders.string(g, subject=id, predicate=ns.TITLE)
         if title:
             package.title = title
 
         # Description
-        description = loaders.string(g, subject=id, predicate=DCT.description)
+        description = loaders.string(g, subject=id, predicate=ns.DESCRIPTION)
         if description:
             package.description = description
 
         # Version
-        version = loaders.string(g, subject=id, predicate=OWL.versionInfo)
+        version = loaders.string(g, subject=id, predicate=ns.VERSION)
         if version:
             package.version = version
 
         # Landing page
-        landing_page = loaders.string(g, subject=id, predicate=DCAT.landingPage)
+        landing_page = loaders.string(g, subject=id, predicate=ns.LANDING_PAGE)
         if landing_page:
             package.landing_page = landing_page
 
         # Issued
-        issued = loaders.string(g, subject=id, predicate=DCT.issued)
+        issued = loaders.string(g, subject=id, predicate=ns.ISSUED)
         if issued:
             package.issued = issued
 
         # Modified
-        modified = loaders.string(g, subject=id, predicate=DCT.modified)
+        modified = loaders.string(g, subject=id, predicate=ns.MODIFIED)
         if modified:
             package.modified = modified
 
         # Accural periodicity
-        periodicity = loaders.string(g, subject=id, predicate=DCT.accrualPeriodicity)
+        periodicity = loaders.string(g, subject=id, predicate=ns.ACCURAL_PERIODICITY)
         if periodicity:
             package.accural_periodicity = periodicity
 
         # Provenance
-        provenance = loaders.string(g, subject=id, predicate=DCT.provenance)
+        provenance = loaders.string(g, subject=id, predicate=ns.PROVENANCE)
         if provenance:
             package.provenance = provenance
 
         # Keywords
-        keywords = loaders.strings(g, subject=id, predicate=DCAT.keyword)
+        keywords = loaders.strings(g, subject=id, predicate=ns.KEYWORD)
         if keywords:
             package.keywords = keywords
 
         # Languages
-        languages = loaders.strings(g, subject=id, predicate=DCT.language)
+        languages = loaders.strings(g, subject=id, predicate=ns.LANGUAGE)
         if languages:
             package.languages = languages
 
-        # Themes
-        themes = loaders.strings(g, subject=id, predicate=DCAT.theme)
-        if themes:
-            package.themes = themes
-
-        # Alternate identifiers
-        identifiers = loaders.strings(g, subject=id, predicate=ADMS.identifier)
-        if identifiers:
-            package.alternate_identifiers = identifiers
-
-        # Conforms to
-        conforms_to = loaders.strings(g, subject=id, predicate=DCT.conformsTo)
-        if conforms_to:
-            package.comforms_to = conforms_to
-
-        # Documentation
-        documentation = loaders.strings(g, subject=id, predicate=FOAF.page)
-        if documentation:
-            package.documentation = documentation
-
-        # Related resources
-        related_resources = loaders.strings(g, subject=id, predicate=DCT.relation)
-        if related_resources:
-            package.related_resources = related_resources
-
-        # Has versions
-        has_versions = loaders.strings(g, subject=id, predicate=DCT.hasVersion)
-        if has_versions:
-            package.has_versions = has_versions
-
-        # Is version of
-        is_version_of = loaders.strings(g, subject=id, predicate=DCT.isVersionOf)
-        if is_version_of:
-            package.is_version_of = is_version_of
-
         # Sources
-        sources = loaders.strings(g, subject=id, predicate=DCT.source)
+        sources = loaders.strings(g, subject=id, predicate=ns.SOURCE)
         if sources:
             package.sources = sources
 
         # Samples
-        samples = loaders.strings(g, subject=id, predicate=ADMS.sample)
+        samples = loaders.strings(g, subject=id, predicate=ns.SAMPLE)
         if samples:
             package.samples = samples
 
+        # Themes
+        themes = loaders.strings(g, subject=id, predicate=ns.THEME)
+        if themes:
+            package.themes = themes
+
+        # Alternate identifiers
+        identifiers = loaders.strings(g, subject=id, predicate=ns.ALTERNATE_IDENTIFIER)
+        if identifiers:
+            package.alternate_identifiers = identifiers
+
+        # Conforms to
+        conforms_to = loaders.strings(g, subject=id, predicate=ns.COMFORMS_TO)
+        if conforms_to:
+            package.comforms_to = conforms_to
+
+        # Documentation
+        documentation = loaders.strings(g, subject=id, predicate=ns.DOCUMENTATION)
+        if documentation:
+            package.documentation = documentation
+
+        # Related resources
+        related_resources = loaders.strings(g, subject=id, predicate=ns.RELATED_RESOURCE)
+        if related_resources:
+            package.related_resources = related_resources
+
+        # Has versions
+        has_versions = loaders.strings(g, subject=id, predicate=ns.HAS_VERSION)
+        if has_versions:
+            package.has_versions = has_versions
+
+        # Is version of
+        is_version_of = loaders.strings(g, subject=id, predicate=ns.IS_VERSION_OF)
+        if is_version_of:
+            package.is_version_of = is_version_of
+
         # Distributions
-        distributions = g.objects(subject=id, predicate=DCAT.distribution)
+        distributions = g.objects(subject=id, predicate=ns.DISTRIBUTION)
         for distribution in distributions:
             if isinstance(distribution, (URIRef, BNode)):
                 resource = DcatResource.from_graph(g, id=distribution)
                 package.distributions.append(resource)
 
         return package
-
-
-ADMS = Namespace("http://www.w3.org/ns/adms#")
-DCAT = Namespace("http://www.w3.org/ns/dcat#")
-DCT = Namespace("http://purl.org/dc/terms/")
-OWL = Namespace("http://www.w3.org/2002/07/owl#")
-
-NAMESPACES = {
-    "adms": ADMS,
-    "dcat": DCAT,
-    "dct": DCT,
-    "owl": OWL,
-}

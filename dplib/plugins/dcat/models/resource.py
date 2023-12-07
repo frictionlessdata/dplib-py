@@ -2,11 +2,12 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from rdflib import FOAF, Graph, Namespace
+from rdflib import Graph
 
 from dplib.model import Model
 
 from . import loaders
+from . import namespaces as ns
 from .types import ISubject
 
 
@@ -35,57 +36,53 @@ class DcatResource(Model):
         resource = DcatResource()
 
         # Name
-        name = loaders.string(g, subject=id, predicate=DCT.title)
+        name = loaders.string(g, subject=id, predicate=ns.TITLE)
         if name:
             resource.name = name
 
         # Description
-        description = loaders.string(g, subject=id, predicate=DCT.description)
+        description = loaders.string(g, subject=id, predicate=ns.DESCRIPTION)
         if description:
             resource.description = description
 
         # Access URL
-        access_url = loaders.string(g, subject=id, predicate=DCAT.accessURL)
+        access_url = loaders.string(g, subject=id, predicate=ns.ACCESS_URL)
         if access_url:
             resource.access_url = access_url
 
         # Download URL
-        download_url = loaders.string(g, subject=id, predicate=DCAT.downloadURL)
+        download_url = loaders.string(g, subject=id, predicate=ns.DOWNLOAD_URL)
         if download_url:
             resource.download_url = download_url
 
         # Issued
-        issued = loaders.string(g, subject=id, predicate=DCT.issued)
+        issued = loaders.string(g, subject=id, predicate=ns.ISSUED)
         if issued:
             resource.issued = issued
 
         # Modified
-        modified = loaders.string(g, subject=id, predicate=DCT.modified)
+        modified = loaders.string(g, subject=id, predicate=ns.MODIFIED)
         if modified:
             resource.modified = modified
 
         # License
-        license = loaders.string(g, subject=id, predicate=DCT.license)
+        license = loaders.string(g, subject=id, predicate=ns.LICENSE)
         if license:
             resource.license = license
 
         # Languages
-        languages = loaders.strings(g, subject=id, predicate=DCT.language)
+        languages = loaders.strings(g, subject=id, predicate=ns.LANGUAGE)
         if languages:
             resource.languages = languages
 
         # Documentations
-        documentations = loaders.strings(g, subject=id, predicate=FOAF.page)
+        documentations = loaders.strings(g, subject=id, predicate=ns.DOCUMENTATION)
         if documentations:
             resource.documentations = documentations
 
         # Conforms to
-        conforms_to = loaders.strings(g, subject=id, predicate=DCT.conformsTo)
+        conforms_to = loaders.strings(g, subject=id, predicate=ns.COMFORMS_TO)
         if conforms_to:
             resource.conforms_to = conforms_to
 
         return resource
-
-
-DCAT = Namespace("http://www.w3.org/ns/dcat#")
-DCT = Namespace("http://purl.org/dc/terms/")
