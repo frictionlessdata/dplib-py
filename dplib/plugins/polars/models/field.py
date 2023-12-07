@@ -13,7 +13,7 @@ class PolarsField(Model, arbitrary_types_allowed=True):
     dtype: Any
     #  dtype: pl.PolarsDataType
 
-    # Mappers
+    # Converters
 
     def to_dp(self) -> Field:
         field = Field(name=self.name)

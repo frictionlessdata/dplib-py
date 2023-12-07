@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Literal, Optional
 
-from dplib.helpers.resource import path_to_name
+from dplib.helpers.resource import slugify_name
 from dplib.model import Model
 from dplib.models import Resource
 
@@ -18,10 +18,10 @@ class GithubResource(Model):
     html_url: Optional[str] = None
     download_url: Optional[str] = None
 
-    # Mappers
+    # Converters
 
     def to_dp(self):
-        resource = Resource(path=self.path, name=path_to_name(self.path))
+        resource = Resource(path=self.path, name=slugify_name(self.path))
 
         # Bytes
         if self.size:

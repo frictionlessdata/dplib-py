@@ -19,7 +19,7 @@ from . import settings
 class SqlField(Model, arbitrary_types_allowed=True):
     column: Column[Any]
 
-    # Mappers
+    # Converters
 
     def to_dp(self) -> Field:
         field = Field(name=self.column.name)

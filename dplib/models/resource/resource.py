@@ -17,7 +17,7 @@ class Resource(Model):
     profile: Optional[str] = None
 
     path: Optional[str] = None
-    data: Optional[types.IData] = None
+    data: Optional[types.IDict] = None
 
     dialect: Optional[Dialect] = None
     schema: Optional[Schema] = None  # type: ignore
@@ -29,9 +29,9 @@ class Resource(Model):
     encoding: Optional[str] = None
     bytes: Optional[int] = None
     hash: Optional[str] = None
-    sources: Optional[List[Source]] = None
-    licenses: Optional[List[License]] = None
-    contributors: Optional[List[Contributor]] = None
+    sources: List[Source] = []
+    licenses: List[License] = []
+    contributors: List[Contributor] = []
 
     @property
     def parsed_hash(self) -> Optional[ParsedHash]:

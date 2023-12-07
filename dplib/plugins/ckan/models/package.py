@@ -35,7 +35,7 @@ class CkanPackage(Model):
     metadata_created: Optional[str] = None
     metadata_modified: Optional[str] = None
 
-    # Mappers
+    # Converters
 
     def to_dp(self):
         package = Package()

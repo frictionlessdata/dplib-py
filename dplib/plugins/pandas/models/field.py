@@ -17,7 +17,7 @@ class PandasField(Model, arbitrary_types_allowed=True):
     dtype: Any
     dvalue: Optional[Any] = None
 
-    # Mappers
+    # Converters
 
     def to_dp(self) -> Field:
         field = Field(name=self.name)
