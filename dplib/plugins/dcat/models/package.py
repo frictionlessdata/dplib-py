@@ -33,12 +33,12 @@ class DcatPackage(Model):
     sources: List[str] = []
     samples: List[str] = []
     themes: List[str] = []
-    alternate_identifiers: List[str] = []
+    pages: List[str] = []
     comforms_to: List[str] = []
-    documentation: List[str] = []
-    related_resources: List[str] = []
     has_versions: List[str] = []
     is_version_of: List[str] = []
+    related_resources: List[str] = []
+    alternate_identifiers: List[str] = []
 
     distributions: List[DcatResource] = []
 
@@ -56,8 +56,6 @@ class DcatPackage(Model):
 
     def to_graph(self):
         g = Graph()
-
-        # Namespaces
         for prefix, namespace in ns.BINDINGS.items():
             g.bind(prefix, namespace)
 
@@ -108,9 +106,41 @@ class DcatPackage(Model):
         for language in self.languages:
             dumpers.node(g, language, subject=id, predicate=ns.LANGUAGE)
 
+        # Sources
+        for source in self.sources:
+            dumpers.node(g, source, subject=id, predicate=ns.SOURCE)
+
+        # Samples
+        for sample in self.samples:
+            dumpers.node(g, sample, subject=id, predicate=ns.SAMPLE)
+
         # Themes
         for theme in self.themes:
             dumpers.node(g, theme, subject=id, predicate=ns.THEME)
+
+        # Pages
+        for page in self.pages:
+            dumpers.node(g, page, subject=id, predicate=ns.PAGE)
+
+        # Conforms to
+        for conforms_to in self.comforms_to:
+            dumpers.node(g, conforms_to, subject=id, predicate=ns.COMFORMS_TO)
+
+        # Has versions
+        for has_version in self.has_versions:
+            dumpers.node(g, has_version, subject=id, predicate=ns.HAS_VERSION)
+
+        # Is version of
+        for is_version_of in self.is_version_of:
+            dumpers.node(g, is_version_of, subject=id, predicate=ns.IS_VERSION_OF)
+
+        # Related resources
+        for related_resource in self.related_resources:
+            dumpers.node(g, related_resource, subject=id, predicate=ns.RELATED_RESOURCE)
+
+        # Alternate identifiers
+        for identifier in self.alternate_identifiers:
+            dumpers.node(g, identifier, subject=id, predicate=ns.ALTERNATE_IDENTIFIER)
 
         return g
 
@@ -189,25 +219,15 @@ class DcatPackage(Model):
         if themes:
             package.themes = themes
 
-        # Alternate identifiers
-        identifiers = loaders.strings(g, subject=id, predicate=ns.ALTERNATE_IDENTIFIER)
-        if identifiers:
-            package.alternate_identifiers = identifiers
+        # Pages
+        pages = loaders.strings(g, subject=id, predicate=ns.PAGE)
+        if pages:
+            package.pages = pages
 
         # Conforms to
         conforms_to = loaders.strings(g, subject=id, predicate=ns.COMFORMS_TO)
         if conforms_to:
             package.comforms_to = conforms_to
-
-        # Documentation
-        documentation = loaders.strings(g, subject=id, predicate=ns.DOCUMENTATION)
-        if documentation:
-            package.documentation = documentation
-
-        # Related resources
-        related_resources = loaders.strings(g, subject=id, predicate=ns.RELATED_RESOURCE)
-        if related_resources:
-            package.related_resources = related_resources
 
         # Has versions
         has_versions = loaders.strings(g, subject=id, predicate=ns.HAS_VERSION)
@@ -218,6 +238,16 @@ class DcatPackage(Model):
         is_version_of = loaders.strings(g, subject=id, predicate=ns.IS_VERSION_OF)
         if is_version_of:
             package.is_version_of = is_version_of
+
+        # Related resources
+        related_resources = loaders.strings(g, subject=id, predicate=ns.RELATED_RESOURCE)
+        if related_resources:
+            package.related_resources = related_resources
+
+        # Alternate identifiers
+        identifiers = loaders.strings(g, subject=id, predicate=ns.ALTERNATE_IDENTIFIER)
+        if identifiers:
+            package.alternate_identifiers = identifiers
 
         # Distributions
         distributions = g.objects(subject=id, predicate=ns.DISTRIBUTION)

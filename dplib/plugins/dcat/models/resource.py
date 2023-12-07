@@ -22,8 +22,8 @@ class DcatResource(Model):
     spdx_checksum: Optional[str] = None
     spdx_algorithm: Optional[str] = None
 
+    pages: List[str] = []
     languages: List[str] = []
-    documentations: List[str] = []
     conforms_to: List[str] = []
 
     # Mappers
@@ -76,9 +76,9 @@ class DcatResource(Model):
             resource.languages = languages
 
         # Documentations
-        documentations = loaders.strings(g, subject=id, predicate=ns.DOCUMENTATION)
-        if documentations:
-            resource.documentations = documentations
+        pages = loaders.strings(g, subject=id, predicate=ns.PAGE)
+        if pages:
+            resource.pages = pages
 
         # Conforms to
         conforms_to = loaders.strings(g, subject=id, predicate=ns.COMFORMS_TO)
