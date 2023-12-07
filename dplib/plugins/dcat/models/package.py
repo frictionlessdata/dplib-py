@@ -19,29 +19,28 @@ from .resource import DcatResource
 
 class DcatPackage(Model):
     identifier: Optional[str] = None
-    title: Optional[str] = None
-    description: Optional[str] = None
-    homepage: Optional[str] = None
-    version: Optional[str] = None
-    landing_page: Optional[str] = None
-    issued: Optional[str] = None
-    modified: Optional[str] = None
-    accural_periodicity: Optional[str] = None
-    provenance: Optional[str] = None
-
-    keywords: List[str] = []
-    languages: List[str] = []
-    sources: List[str] = []
-    samples: List[str] = []
-    themes: List[str] = []
-    pages: List[str] = []
-    comforms_to: List[str] = []
-    has_versions: List[str] = []
-    is_version_of: List[str] = []
-    related_resources: List[str] = []
-    alternate_identifiers: List[str] = []
-
     distributions: List[DcatResource] = []
+
+    accural_periodicity: Optional[str] = None
+    alternate_identifiers: List[str] = []
+    comforms_to: List[str] = []
+    description: Optional[str] = None
+    has_versions: List[str] = []
+    homepage: Optional[str] = None
+    issued: Optional[str] = None
+    is_version_of: List[str] = []
+    keywords: List[str] = []
+    landing_page: Optional[str] = None
+    languages: List[str] = []
+    modified: Optional[str] = None
+    pages: List[str] = []
+    provenance: Optional[str] = None
+    related_resources: List[str] = []
+    samples: List[str] = []
+    sources: List[str] = []
+    themes: List[str] = []
+    title: Optional[str] = None
+    version: Optional[str] = None
 
     # Converters
 
@@ -65,87 +64,87 @@ class DcatPackage(Model):
             raise Error(f"Cannot dump DCAT package without identifier: {self}")
         id = dumpers.id(g, self.identifier, predicate=ns.TYPE, object=ns.DATASET)
 
-        # Title
-        if self.title:
-            dumpers.node(g, self.title, subject=id, predicate=ns.TITLE)
-
-        # Description
-        if self.description:
-            dumpers.node(g, self.description, subject=id, predicate=ns.DESCRIPTION)
-
-        # Homepage
-        if self.homepage:
-            dumpers.node(g, self.homepage, subject=id, predicate=ns.HOMEPAGE)
-
-        # Version
-        if self.version:
-            dumpers.node(g, self.version, subject=id, predicate=ns.VERSION)
-
-        # Landing page
-        if self.landing_page:
-            dumpers.node(g, self.landing_page, subject=id, predicate=ns.LANDING_PAGE)
-
-        # Issued
-        if self.issued:
-            dumpers.node(g, self.issued, subject=id, predicate=ns.ISSUED)
-
-        # Modified
-        if self.modified:
-            dumpers.node(g, self.modified, subject=id, predicate=ns.MODIFIED)
-
         # Accural periodicity
         if self.accural_periodicity:
             dumpers.node(
                 g, self.accural_periodicity, subject=id, predicate=ns.ACCURAL_PERIODICITY
             )
 
-        # Provenance
-        if self.provenance:
-            dumpers.node(g, self.provenance, subject=id, predicate=ns.PROVENANCE)
-
-        # Keywords
-        for keyword in self.keywords:
-            dumpers.node(g, keyword, subject=id, predicate=ns.KEYWORD)
-
-        # Languages
-        for language in self.languages:
-            dumpers.node(g, language, subject=id, predicate=ns.LANGUAGE)
-
-        # Sources
-        for source in self.sources:
-            dumpers.node(g, source, subject=id, predicate=ns.SOURCE)
-
-        # Samples
-        for sample in self.samples:
-            dumpers.node(g, sample, subject=id, predicate=ns.SAMPLE)
-
-        # Themes
-        for theme in self.themes:
-            dumpers.node(g, theme, subject=id, predicate=ns.THEME)
-
-        # Pages
-        for page in self.pages:
-            dumpers.node(g, page, subject=id, predicate=ns.PAGE)
+        # Alternate identifiers
+        for identifier in self.alternate_identifiers:
+            dumpers.node(g, identifier, subject=id, predicate=ns.ALTERNATE_IDENTIFIER)
 
         # Conforms to
         for conforms_to in self.comforms_to:
             dumpers.node(g, conforms_to, subject=id, predicate=ns.COMFORMS_TO)
 
+        # Description
+        if self.description:
+            dumpers.node(g, self.description, subject=id, predicate=ns.DESCRIPTION)
+
         # Has versions
         for has_version in self.has_versions:
             dumpers.node(g, has_version, subject=id, predicate=ns.HAS_VERSION)
+
+        # Homepage
+        if self.homepage:
+            dumpers.node(g, self.homepage, subject=id, predicate=ns.HOMEPAGE)
+
+        # Issued
+        if self.issued:
+            dumpers.node(g, self.issued, subject=id, predicate=ns.ISSUED)
 
         # Is version of
         for is_version_of in self.is_version_of:
             dumpers.node(g, is_version_of, subject=id, predicate=ns.IS_VERSION_OF)
 
+        # Keywords
+        for keyword in self.keywords:
+            dumpers.node(g, keyword, subject=id, predicate=ns.KEYWORD)
+
+        # Landing page
+        if self.landing_page:
+            dumpers.node(g, self.landing_page, subject=id, predicate=ns.LANDING_PAGE)
+
+        # Languages
+        for language in self.languages:
+            dumpers.node(g, language, subject=id, predicate=ns.LANGUAGE)
+
+        # Modified
+        if self.modified:
+            dumpers.node(g, self.modified, subject=id, predicate=ns.MODIFIED)
+
+        # Pages
+        for page in self.pages:
+            dumpers.node(g, page, subject=id, predicate=ns.PAGE)
+
+        # Provenance
+        if self.provenance:
+            dumpers.node(g, self.provenance, subject=id, predicate=ns.PROVENANCE)
+
         # Related resources
         for related_resource in self.related_resources:
             dumpers.node(g, related_resource, subject=id, predicate=ns.RELATED_RESOURCE)
 
-        # Alternate identifiers
-        for identifier in self.alternate_identifiers:
-            dumpers.node(g, identifier, subject=id, predicate=ns.ALTERNATE_IDENTIFIER)
+        # Samples
+        for sample in self.samples:
+            dumpers.node(g, sample, subject=id, predicate=ns.SAMPLE)
+
+        # Sources
+        for source in self.sources:
+            dumpers.node(g, source, subject=id, predicate=ns.SOURCE)
+
+        # Themes
+        for theme in self.themes:
+            dumpers.node(g, theme, subject=id, predicate=ns.THEME)
+
+        # Title
+        if self.title:
+            dumpers.node(g, self.title, subject=id, predicate=ns.TITLE)
+
+        # Version
+        if self.version:
+            dumpers.node(g, self.version, subject=id, predicate=ns.VERSION)
 
         # Distributions
         for distribution in self.distributions:
@@ -166,105 +165,105 @@ class DcatPackage(Model):
             raise Error(f"Cannot load DCAT package without identifier: {g}")
         package.identifier = str(id)
 
-        # Title
-        title = loaders.string(g, subject=id, predicate=ns.TITLE)
-        if title:
-            package.title = title
-
-        # Description
-        description = loaders.string(g, subject=id, predicate=ns.DESCRIPTION)
-        if description:
-            package.description = description
-
-        # Homepage
-        homepage = loaders.string(g, subject=id, predicate=ns.HOMEPAGE)
-        if homepage:
-            package.homepage = homepage
-
-        # Version
-        version = loaders.string(g, subject=id, predicate=ns.VERSION)
-        if version:
-            package.version = version
-
-        # Landing page
-        landing_page = loaders.string(g, subject=id, predicate=ns.LANDING_PAGE)
-        if landing_page:
-            package.landing_page = landing_page
-
-        # Issued
-        issued = loaders.string(g, subject=id, predicate=ns.ISSUED)
-        if issued:
-            package.issued = issued
-
-        # Modified
-        modified = loaders.string(g, subject=id, predicate=ns.MODIFIED)
-        if modified:
-            package.modified = modified
-
         # Accural periodicity
         periodicity = loaders.string(g, subject=id, predicate=ns.ACCURAL_PERIODICITY)
         if periodicity:
             package.accural_periodicity = periodicity
 
-        # Provenance
-        provenance = loaders.string(g, subject=id, predicate=ns.PROVENANCE)
-        if provenance:
-            package.provenance = provenance
-
-        # Keywords
-        keywords = loaders.strings(g, subject=id, predicate=ns.KEYWORD)
-        if keywords:
-            package.keywords = keywords
-
-        # Languages
-        languages = loaders.strings(g, subject=id, predicate=ns.LANGUAGE)
-        if languages:
-            package.languages = languages
-
-        # Sources
-        sources = loaders.strings(g, subject=id, predicate=ns.SOURCE)
-        if sources:
-            package.sources = sources
-
-        # Samples
-        samples = loaders.strings(g, subject=id, predicate=ns.SAMPLE)
-        if samples:
-            package.samples = samples
-
-        # Themes
-        themes = loaders.strings(g, subject=id, predicate=ns.THEME)
-        if themes:
-            package.themes = themes
-
-        # Pages
-        pages = loaders.strings(g, subject=id, predicate=ns.PAGE)
-        if pages:
-            package.pages = pages
+        # Alternate identifiers
+        identifiers = loaders.strings(g, subject=id, predicate=ns.ALTERNATE_IDENTIFIER)
+        if identifiers:
+            package.alternate_identifiers = identifiers
 
         # Conforms to
         conforms_to = loaders.strings(g, subject=id, predicate=ns.COMFORMS_TO)
         if conforms_to:
             package.comforms_to = conforms_to
 
+        # Description
+        description = loaders.string(g, subject=id, predicate=ns.DESCRIPTION)
+        if description:
+            package.description = description
+
         # Has versions
         has_versions = loaders.strings(g, subject=id, predicate=ns.HAS_VERSION)
         if has_versions:
             package.has_versions = has_versions
+
+        # Homepage
+        homepage = loaders.string(g, subject=id, predicate=ns.HOMEPAGE)
+        if homepage:
+            package.homepage = homepage
+
+        # Issued
+        issued = loaders.string(g, subject=id, predicate=ns.ISSUED)
+        if issued:
+            package.issued = issued
 
         # Is version of
         is_version_of = loaders.strings(g, subject=id, predicate=ns.IS_VERSION_OF)
         if is_version_of:
             package.is_version_of = is_version_of
 
+        # Keywords
+        keywords = loaders.strings(g, subject=id, predicate=ns.KEYWORD)
+        if keywords:
+            package.keywords = keywords
+
+        # Landing page
+        landing_page = loaders.string(g, subject=id, predicate=ns.LANDING_PAGE)
+        if landing_page:
+            package.landing_page = landing_page
+
+        # Languages
+        languages = loaders.strings(g, subject=id, predicate=ns.LANGUAGE)
+        if languages:
+            package.languages = languages
+
+        # Modified
+        modified = loaders.string(g, subject=id, predicate=ns.MODIFIED)
+        if modified:
+            package.modified = modified
+
+        # Pages
+        pages = loaders.strings(g, subject=id, predicate=ns.PAGE)
+        if pages:
+            package.pages = pages
+
+        # Provenance
+        provenance = loaders.string(g, subject=id, predicate=ns.PROVENANCE)
+        if provenance:
+            package.provenance = provenance
+
         # Related resources
         related_resources = loaders.strings(g, subject=id, predicate=ns.RELATED_RESOURCE)
         if related_resources:
             package.related_resources = related_resources
 
-        # Alternate identifiers
-        identifiers = loaders.strings(g, subject=id, predicate=ns.ALTERNATE_IDENTIFIER)
-        if identifiers:
-            package.alternate_identifiers = identifiers
+        # Samples
+        samples = loaders.strings(g, subject=id, predicate=ns.SAMPLE)
+        if samples:
+            package.samples = samples
+
+        # Sources
+        sources = loaders.strings(g, subject=id, predicate=ns.SOURCE)
+        if sources:
+            package.sources = sources
+
+        # Themes
+        themes = loaders.strings(g, subject=id, predicate=ns.THEME)
+        if themes:
+            package.themes = themes
+
+        # Title
+        title = loaders.string(g, subject=id, predicate=ns.TITLE)
+        if title:
+            package.title = title
+
+        # Version
+        version = loaders.string(g, subject=id, predicate=ns.VERSION)
+        if version:
+            package.version = version
 
         # Distributions
         distributions = g.objects(subject=id, predicate=ns.DISTRIBUTION)
