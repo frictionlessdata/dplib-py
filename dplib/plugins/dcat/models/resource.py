@@ -10,7 +10,6 @@ from . import loaders
 from .types import ISubject
 
 
-# TODO: finish props mapping
 class DcatResource(Model):
     name: Optional[str] = None
     description: Optional[str] = None

@@ -16,7 +16,6 @@ from .resource import DcatResource
 # - https://github.com/ckan/ckanext-dcat/blob/master/ckanext/dcat/profiles.py
 
 
-# TODO: finish props mapping
 class DcatPackage(Model):
     identifier: Optional[str] = None
     title: Optional[str] = None
