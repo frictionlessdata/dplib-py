@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Optional
 
-from dplib.helpers.resource import path_to_name
+from dplib.helpers.resource import slugify_name
 from dplib.model import Model
 from dplib.models import Resource
 
@@ -19,10 +19,10 @@ class CkanResource(Model):
     mimetype: Optional[str] = None
     size: Optional[int] = None
 
-    # Mappers
+    # Converters
 
     def to_dp(self) -> Resource:
-        resource = Resource(path=self.name, name=path_to_name(self.name))
+        resource = Resource(path=self.name, name=slugify_name(self.name))
 
         # Format
         if self.format:

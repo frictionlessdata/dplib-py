@@ -42,7 +42,7 @@ class DcatPackage(Model):
 
     distributions: List[DcatResource] = []
 
-    # Mappers
+    # Converters
 
     def to_text(self, *, format: str):
         g = self.to_graph()
@@ -141,6 +141,13 @@ class DcatPackage(Model):
         # Alternate identifiers
         for identifier in self.alternate_identifiers:
             dumpers.node(g, identifier, subject=id, predicate=ns.ALTERNATE_IDENTIFIER)
+
+        # Distributions
+        for distribution in self.distributions:
+            distribution_id = BNode()
+            g.add((id, ns.DISTRIBUTION, distribution_id))
+            g.add((distribution_id, ns.TYPE, ns.DISTRIBUTION))
+            distribution.to_graph(g, id=distribution_id)
 
         return g
 

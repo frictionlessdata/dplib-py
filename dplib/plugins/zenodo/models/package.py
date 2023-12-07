@@ -28,7 +28,7 @@ class ZenodoPackage(Model):
     updated: Optional[str] = None
     links: Dict[str, str] = {}
 
-    # Mappers
+    # Converters
 
     def to_dp(self):
         package = Package()

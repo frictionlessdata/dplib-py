@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Optional
 
-from dplib.helpers.resource import path_to_name
+from dplib.helpers.resource import slugify_name
 from dplib.model import Model
 from dplib.models import Resource
 
@@ -15,10 +15,10 @@ class ZenodoResource(Model):
     mimetype: Optional[str] = None
     size: Optional[int] = None
 
-    # Mappers
+    # Converters
 
     def to_dp(self) -> Resource:
-        resource = Resource(path=self.key, name=path_to_name(self.key))
+        resource = Resource(path=self.key, name=slugify_name(self.key))
 
         # Format
         if self.ext:

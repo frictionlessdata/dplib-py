@@ -29,7 +29,7 @@ class GithubPackage(Model):
     updated_at: Optional[str] = None
     topics: List[str] = []
 
-    # Mappers
+    # Converters
 
     def to_dp(self):
         package = Package()

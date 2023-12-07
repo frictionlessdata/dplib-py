@@ -15,7 +15,7 @@ from .field import SqlField
 class SqlSchema(Model, arbitrary_types_allowed=True):
     table: Table
 
-    # Mappers
+    # Converters
 
     def to_dp(self, *, with_metadata: bool = False) -> Schema:
         schema = Schema()

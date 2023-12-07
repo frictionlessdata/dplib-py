@@ -39,7 +39,10 @@ def string(g: Graph, *, subject: ISubject, predicate: URIRef) -> Optional[str]:
 def integer(g: Graph, *, subject: ISubject, predicate: URIRef) -> Optional[int]:
     value = node(g, subject=subject, predicate=predicate)
     if value:
-        return int(value)
+        try:
+            return int(value)
+        except Exception:
+            pass
 
 
 def nodes(g: Graph, *, subject: ISubject, predicate: URIRef) -> List[IStringNode]:

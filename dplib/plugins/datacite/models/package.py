@@ -33,7 +33,7 @@ class DatacitePackage(Model):
     subjects: List[DataciteSubject] = []
     titles: List[DataciteTitle] = []
 
-    # Mappers
+    # Converters
 
     def to_dp(self) -> Package:
         package = Package()

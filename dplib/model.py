@@ -22,7 +22,7 @@ class Model(BaseModel, extra="forbid", validate_assignment=True):
     def __repr__(self) -> str:
         return pprint.pformat(self.to_dict(), sort_dicts=False)
 
-    # Mappers
+    # Converters
 
     def to_path(self, path: str, *, format: Optional[str] = None):
         format = format or infer_format(path)
