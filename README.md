@@ -1,4 +1,4 @@
-# Data Packaging Library
+# Data Package Library
 
 [![Build](https://img.shields.io/github/actions/workflow/status/frictionlessdata/dplib-py/general.yaml?branch=main)](https://github.com/frictionlessdata/dplib-py/actions)
 [![Coverage](https://img.shields.io/codecov/c/github/frictionlessdata/dplib-py/main)](https://codecov.io/gh/frictionlessdata/dplib-py)
