@@ -21,6 +21,7 @@ class DcatPackage(Model):
     identifier: Optional[str] = None
     title: Optional[str] = None
     description: Optional[str] = None
+    homepage: Optional[str] = None
     version: Optional[str] = None
     landing_page: Optional[str] = None
     issued: Optional[str] = None
@@ -71,6 +72,10 @@ class DcatPackage(Model):
         # Description
         if self.description:
             dumpers.node(g, self.description, subject=id, predicate=ns.DESCRIPTION)
+
+        # Homepage
+        if self.homepage:
+            dumpers.node(g, self.homepage, subject=id, predicate=ns.HOMEPAGE)
 
         # Version
         if self.version:
@@ -170,6 +175,11 @@ class DcatPackage(Model):
         description = loaders.string(g, subject=id, predicate=ns.DESCRIPTION)
         if description:
             package.description = description
+
+        # Homepage
+        homepage = loaders.string(g, subject=id, predicate=ns.HOMEPAGE)
+        if homepage:
+            package.homepage = homepage
 
         # Version
         version = loaders.string(g, subject=id, predicate=ns.VERSION)

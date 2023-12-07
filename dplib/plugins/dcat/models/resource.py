@@ -20,6 +20,7 @@ class DcatResource(Model):
     modified: Optional[str] = None
     license: Optional[str] = None
     byte_size: Optional[int] = None
+    media_type: Optional[str] = None
 
     pages: List[str] = []
     languages: List[str] = []
@@ -59,6 +60,10 @@ class DcatResource(Model):
         # Byte size
         if self.byte_size:
             dumpers.node(g, self.byte_size, subject=id, predicate=ns.BYTE_SIZE)
+
+        # Media type
+        if self.media_type:
+            dumpers.node(g, self.media_type, subject=id, predicate=ns.MEDIA_TYPE)
 
         # Pages
         for page in self.pages:
@@ -117,6 +122,11 @@ class DcatResource(Model):
         byte_size = loaders.integer(g, subject=id, predicate=ns.BYTE_SIZE)
         if byte_size:
             resource.byte_size = byte_size
+
+        # Media type
+        media_type = loaders.string(g, subject=id, predicate=ns.MEDIA_TYPE)
+        if media_type:
+            resource.media_type = media_type
 
         # Pages
         pages = loaders.strings(g, subject=id, predicate=ns.PAGE)
