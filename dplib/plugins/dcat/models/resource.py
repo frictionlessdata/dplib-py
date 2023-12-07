@@ -4,7 +4,9 @@ from typing import List, Optional
 
 from rdflib import BNode, Graph
 
+from dplib.helpers.resource import slugify_name
 from dplib.model import Model
+from dplib.models import License, Resource
 
 from . import dumpers, loaders
 from . import namespaces as ns
@@ -141,5 +143,33 @@ class DcatResource(Model):
         title = loaders.string(g, subject=id, predicate=ns.TITLE)
         if title:
             resource.title = title
+
+        return resource
+
+    def to_dp(self) -> Optional[Resource]:
+        if not self.download_url:
+            return
+        resource = Resource(path=self.download_url, name=slugify_name(self.download_url))
+
+        # Title
+        if self.title:
+            resource.title = self.title
+
+        # Description
+        if self.description:
+            resource.description = self.description
+
+        # Media type
+        if self.media_type:
+            resource.mediatype = self.media_type
+
+        # Bytes
+        if self.byte_size:
+            resource.bytes = self.byte_size
+
+        # Licenses
+        if self.license:
+            license = License(path=self.license)
+            resource.licenses.append(license)
 
         return resource

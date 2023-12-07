@@ -6,6 +6,7 @@ from rdflib import BNode, Graph, URIRef
 
 from dplib.error import Error
 from dplib.model import Model
+from dplib.models import Package
 
 from . import dumpers, loaders
 from . import namespaces as ns
@@ -271,5 +272,45 @@ class DcatPackage(Model):
             if isinstance(distribution, (URIRef, BNode)):
                 resource = DcatResource.from_graph(g, id=distribution)
                 package.distributions.append(resource)
+
+        return package
+
+    def to_dp(self):
+        package = Package()
+
+        # Id
+        if self.identifier:
+            package.id = self.identifier
+
+        # Title
+        if self.title:
+            package.title = self.title
+
+        # Description
+        if self.description:
+            package.description = self.description
+
+        # Version
+        if self.version:
+            package.version = self.version
+
+        # Homepage
+        if self.homepage:
+            package.homepage = self.homepage
+
+        # Created
+        if self.issued:
+            if "T" in self.issued:
+                package.created = self.issued
+
+        # Keywords
+        for keyword in self.keywords:
+            package.keywords.append(keyword)
+
+        # Resources
+        for distribution in self.distributions:
+            resource = distribution.to_dp()
+            if resource:
+                package.resources.append(resource)
 
         return package
