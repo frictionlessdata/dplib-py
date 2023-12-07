@@ -123,5 +123,3 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
       - name: Release to GitHub
         uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
