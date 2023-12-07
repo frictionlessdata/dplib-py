@@ -33,26 +33,18 @@ Now you can setup you IDE to use a proper Python path:
 .python/dplib-py/bin/python
 ```
 
-## Installation
-
-To start working on the project install the dependencies:
-
-```bash
-hatch install
-```
-
 ## Documentation
 
 Documentation is written with Mkdocs (defined in `mkdocs.yaml`). The source articles are in the `docs` directory. To start a live-reload server:
 
 ```bash
-hatch write
+hatch run serve
 ```
 
 Building the docs:
 
 ```bash
-hatch docs
+hatch run docs
 ```
 
 ## Testing
@@ -60,7 +52,7 @@ hatch docs
 To run all the checks on the codebase:
 
 ```bash
-hatch test
+hatch run test
 ```
 
 ## Releasing
@@ -72,5 +64,5 @@ Update the version and initiate the release script:
 ```bash
 # Ensure you're on the up-to-date `main` branch
 hatch version <major|minor|micro>
-make release
+hatch run release
 ```
