@@ -173,3 +173,36 @@ class DcatResource(Model):
             resource.licenses.append(license)
 
         return resource
+
+    @classmethod
+    def from_dp(cls, resource: Resource) -> DcatResource:
+        dcat = DcatResource()
+
+        # Download URL
+        # TODO: improve logic -- use basepath and allow only urls
+        if resource.path:
+            dcat.download_url = resource.path
+
+        # Title
+        if resource.title:
+            dcat.title = resource.title
+
+        # Description
+        if resource.description:
+            dcat.description = resource.description
+
+        # Media type
+        if resource.mediatype:
+            dcat.media_type = resource.mediatype
+
+        # Bytes
+        if resource.bytes:
+            dcat.byte_size = resource.bytes
+
+        # Licenses
+        if resource.licenses:
+            license = resource.licenses[0]
+            if license.path:
+                dcat.license = license.path
+
+        return dcat

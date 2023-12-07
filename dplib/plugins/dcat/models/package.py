@@ -314,3 +314,43 @@ class DcatPackage(Model):
                 package.resources.append(resource)
 
         return package
+
+    @classmethod
+    def from_dp(cls, package: Package):
+        dcat = DcatPackage()
+
+        # Identifier
+        if package.id:
+            dcat.identifier = package.id
+
+        # Title
+        if package.title:
+            dcat.title = package.title
+
+        # Description
+        if package.description:
+            dcat.description = package.description
+
+        # Version
+        if package.version:
+            dcat.version = package.version
+
+        # Homepage
+        if package.homepage:
+            dcat.homepage = package.homepage
+
+        # Issued
+        if package.created:
+            dcat.issued = package.created
+
+        # Keywords
+        for keyword in package.keywords:
+            dcat.keywords.append(keyword)
+
+        # Resources
+        for resource in package.resources:
+            distribution = DcatResource.from_dp(resource)
+            if distribution:
+                dcat.distributions.append(distribution)
+
+        return dcat
