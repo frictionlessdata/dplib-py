@@ -45,7 +45,7 @@ class DcatPackage(Model):
     # Mappers
 
     @classmethod
-    def from_text(cls, text: str, *, format: str = "xml") -> Optional[DcatPackage]:
+    def from_text(cls, text: str, *, format: str) -> Optional[DcatPackage]:
         g = Graph()
         g.parse(data=text, format=format)
         package = DcatPackage()

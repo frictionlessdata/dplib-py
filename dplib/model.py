@@ -5,11 +5,12 @@ import pprint
 from importlib import import_module
 from typing import Optional
 
-import fsspec  # type: ignore
 from pydantic import BaseModel
 from typing_extensions import Self
 
 from . import types
+from .error import Error
+from .helpers.file import infer_format, read_file, write_file
 
 
 class Model(BaseModel, extra="forbid", validate_assignment=True):
@@ -23,29 +24,32 @@ class Model(BaseModel, extra="forbid", validate_assignment=True):
 
     # Mappers
 
-    # TODO: rebase on tmp file (safe write)
-    def to_path(self, path: str, *, format: str = "json"):
+    def to_path(self, path: str, *, format: Optional[str] = None):
+        format = format or infer_format(path)
+        if not format:
+            raise Error(f"Cannot infer format from path: {path}")
         text = self.to_text(format=format)
-        with fsspec.open(path, "wt", encoding="utf-8") as file:  # type: ignore
-            file.write(text)  # type: ignore
+        write_file(path, text)
 
     @classmethod
-    def from_path(cls, path: str, *, format: str = "json") -> Optional[Self]:
-        with fsspec.open(path, "rt", encoding="utf-8") as file:  # type: ignore
-            text = file.read()  # type: ignore
+    def from_path(cls, path: str, *, format: Optional[str] = None) -> Optional[Self]:
+        format = format or infer_format(path)
+        if not format:
+            raise Error(f"Cannot infer format from path: {path}")
+        text = read_file(path)
         return cls.from_text(text, format=format)  # type: ignore
 
-    def to_text(self, *, format: str = "json") -> str:
+    def to_text(self, *, format: str) -> str:
         data = self.to_dict()
         if format == "json":
             return json.dumps(data)
         elif format == "yaml":
             yaml = import_module("yaml")
             return yaml.dump(data)
-        raise ValueError(f"Unknown format: {format}")
+        raise Error(f"Cannot convert to text for format: {format}")
 
     @classmethod
-    def from_text(cls, text: str, *, format: str = "json") -> Optional[Self]:
+    def from_text(cls, text: str, *, format: str) -> Optional[Self]:
         if format == "json":
             data = json.loads(text)
             return cls.from_dict(data)
@@ -53,7 +57,7 @@ class Model(BaseModel, extra="forbid", validate_assignment=True):
             yaml = import_module("yaml")
             data = yaml.load(text)
             return cls.from_dict(data)
-        raise ValueError(f"Unknown format: {format}")
+        raise Error(f"Cannot create from text with format: {format}")
 
     def to_dict(self):
         return self.model_dump(mode="json", exclude_unset=True, exclude_none=True)
