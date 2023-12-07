@@ -14,9 +14,7 @@ def id(g: Graph, *, predicate: URIRef, object: URIRef) -> Optional[URIRef]:
         pass
 
 
-def string_node(
-    g: Graph, *, subject: ISubject, predicate: URIRef
-) -> Optional[IStringNode]:
+def node(g: Graph, *, subject: ISubject, predicate: URIRef) -> Optional[IStringNode]:
     default_lang = "en"
     items = list(g.objects(subject, predicate))
 
@@ -33,18 +31,18 @@ def string_node(
 
 
 def string(g: Graph, *, subject: ISubject, predicate: URIRef) -> Optional[str]:
-    value = string_node(g, subject=subject, predicate=predicate)
+    value = node(g, subject=subject, predicate=predicate)
     if value:
         return str(value)
 
 
 def integer(g: Graph, *, subject: ISubject, predicate: URIRef) -> Optional[int]:
-    value = string_node(g, subject=subject, predicate=predicate)
+    value = node(g, subject=subject, predicate=predicate)
     if value:
         return int(value)
 
 
-def string_nodes(g: Graph, *, subject: ISubject, predicate: URIRef) -> List[IStringNode]:
+def nodes(g: Graph, *, subject: ISubject, predicate: URIRef) -> List[IStringNode]:
     return [
         item
         for item in g.objects(subject, predicate)
@@ -53,4 +51,4 @@ def string_nodes(g: Graph, *, subject: ISubject, predicate: URIRef) -> List[IStr
 
 
 def strings(g: Graph, *, subject: ISubject, predicate: URIRef) -> List[str]:
-    return [str(item) for item in string_nodes(g, subject=subject, predicate=predicate)]
+    return [str(item) for item in nodes(g, subject=subject, predicate=predicate)]

@@ -32,7 +32,7 @@ class Model(BaseModel, extra="forbid", validate_assignment=True):
         write_file(path, text)
 
     @classmethod
-    def from_path(cls, path: str, *, format: Optional[str] = None) -> Optional[Self]:
+    def from_path(cls, path: str, *, format: Optional[str] = None) -> Self:
         format = format or infer_format(path)
         if not format:
             raise Error(f"Cannot infer format from path: {path}")
@@ -49,7 +49,7 @@ class Model(BaseModel, extra="forbid", validate_assignment=True):
         raise Error(f"Cannot convert to text for format: {format}")
 
     @classmethod
-    def from_text(cls, text: str, *, format: str) -> Optional[Self]:
+    def from_text(cls, text: str, *, format: str) -> Self:
         if format == "json":
             data = json.loads(text)
             return cls.from_dict(data)
@@ -63,5 +63,5 @@ class Model(BaseModel, extra="forbid", validate_assignment=True):
         return self.model_dump(mode="json", exclude_unset=True, exclude_none=True)
 
     @classmethod
-    def from_dict(cls, data: types.IDict) -> Optional[Self]:
+    def from_dict(cls, data: types.IDict) -> Self:
         return cls(**data)

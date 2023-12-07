@@ -27,6 +27,9 @@ class DcatResource(Model):
 
     # Mappers
 
+    def to_graph(self, g: Graph):
+        pass
+
     @classmethod
     def from_graph(cls, g: Graph, *, id: ISubject) -> DcatResource:
         resource = DcatResource()

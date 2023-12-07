@@ -5,9 +5,10 @@ from typing import List, Optional
 from rdflib import BNode, Graph, URIRef
 from rdflib.namespace import FOAF, RDF, Namespace
 
+from dplib.error import Error
 from dplib.model import Model
 
-from . import loaders
+from . import dumpers, loaders
 from .resource import DcatResource
 
 # References:
@@ -43,8 +44,56 @@ class DcatPackage(Model):
 
     # Mappers
 
+    def to_text(self, *, format: str):
+        g = Graph()
+
+        # Namespaces
+        for prefix, namespace in NAMESPACES.items():
+            g.bind(prefix, namespace)
+
+        # Identifier
+        if not self.identifier:
+            raise Error(f"Cannot dump DCAT package without identifier: {self}")
+        id = dumpers.id(g, self.identifier, predicate=RDF.type, object=DCAT.Dataset)
+
+        # Title
+        if self.title:
+            dumpers.node(g, self.title, subject=id, predicate=DCT.title)
+
+        # Description
+        if self.description:
+            dumpers.node(g, self.description, subject=id, predicate=DCT.description)
+
+        # Version
+        if self.version:
+            dumpers.node(g, self.version, subject=id, predicate=OWL.versionInfo)
+
+        # Landing page
+        if self.landing_page:
+            dumpers.node(g, self.landing_page, subject=id, predicate=DCAT.landingPage)
+
+        # Issued
+        if self.issued:
+            dumpers.node(g, self.issued, subject=id, predicate=DCT.issued)
+
+        # Modified
+        if self.modified:
+            dumpers.node(g, self.modified, subject=id, predicate=DCT.modified)
+
+        # Accural periodicity
+        if self.accural_periodicity:
+            dumpers.node(
+                g, self.accural_periodicity, subject=id, predicate=DCT.accrualPeriodicity
+            )
+
+        # Provenance
+        if self.provenance:
+            dumpers.node(g, self.provenance, subject=id, predicate=DCT.provenance)
+
+        return g.serialize(format=format)
+
     @classmethod
-    def from_text(cls, text: str, *, format: str) -> Optional[DcatPackage]:
+    def from_text(cls, text: str, *, format: str):
         g = Graph()
         g.parse(data=text, format=format)
         package = DcatPackage()
@@ -52,7 +101,7 @@ class DcatPackage(Model):
         # Identifier
         id = loaders.id(g, predicate=RDF.type, object=DCAT.Dataset)
         if not id:
-            return
+            raise Error(f"Cannot load DCAT package without identifier: {text}")
         package.identifier = str(id)
 
         # Title
@@ -164,3 +213,10 @@ ADMS = Namespace("http://www.w3.org/ns/adms#")
 DCAT = Namespace("http://www.w3.org/ns/dcat#")
 DCT = Namespace("http://purl.org/dc/terms/")
 OWL = Namespace("http://www.w3.org/2002/07/owl#")
+
+NAMESPACES = {
+    "adms": ADMS,
+    "dcat": DCAT,
+    "dct": DCT,
+    "owl": OWL,
+}
