@@ -39,9 +39,9 @@ dependencies = [
 
 [project.optional-dependencies]
 dcat = ["rdflib>=6.0"]
-sql = ["sqlalchemy>=1.4"]
 pandas = ["pandas>=1.0", "pandas-stubs>=1.0", "numpy>=1.0", "isodate>=0.6"]
 polars = ["polars-lts-cpu>=0.10"]
+sql = ["sqlalchemy>=1.4"]
 yaml = ["pyyaml>=5.0"]
 dev = [
     "moto",
