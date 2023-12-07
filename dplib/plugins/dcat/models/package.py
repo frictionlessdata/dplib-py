@@ -45,6 +45,16 @@ class DcatPackage(Model):
     # Mappers
 
     def to_text(self, *, format: str):
+        g = self.to_graph()
+        return g.serialize(format=format)
+
+    @classmethod
+    def from_text(cls, text: str, *, format: str):
+        g = Graph()
+        g.parse(data=text, format=format)
+        return cls.from_graph(g)
+
+    def to_graph(self):
         g = Graph()
 
         # Namespaces
@@ -90,18 +100,16 @@ class DcatPackage(Model):
         if self.provenance:
             dumpers.node(g, self.provenance, subject=id, predicate=DCT.provenance)
 
-        return g.serialize(format=format)
+        return g
 
     @classmethod
-    def from_text(cls, text: str, *, format: str):
-        g = Graph()
-        g.parse(data=text, format=format)
+    def from_graph(cls, g: Graph):
         package = DcatPackage()
 
         # Identifier
         id = loaders.id(g, predicate=RDF.type, object=DCAT.Dataset)
         if not id:
-            raise Error(f"Cannot load DCAT package without identifier: {text}")
+            raise Error(f"Cannot load DCAT package without identifier: {g}")
         package.identifier = str(id)
 
         # Title
