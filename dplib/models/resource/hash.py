@@ -16,7 +16,7 @@ class Hash(BaseModel):
     def long(self):
         return f"{self.type}:{self.value}"
 
-    # Mappers
+    # Converters
 
     @classmethod
     def from_text(cls, text: str) -> Self:
