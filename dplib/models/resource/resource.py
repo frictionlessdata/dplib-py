@@ -9,6 +9,7 @@ from ...model import Model
 from ..contributor import Contributor
 from ..dialect import Dialect
 from ..license import License
+from ..profile import Profile
 from ..schema import Schema
 from ..source import Source
 from .hash import Hash
@@ -38,9 +39,9 @@ class Resource(Model):
 
     # Getters
 
-    def get_hash(self) -> Optional[Hash]:
-        if self.hash:
-            return Hash.from_text(self.hash)
+    def get_profile(self) -> Optional[Profile]:
+        if self.profile:
+            return Profile.from_path(self.profile)
 
     def get_dialect(self) -> Optional[Dialect]:
         if self.dialect:
@@ -53,3 +54,7 @@ class Resource(Model):
             if isinstance(self.schema, str):
                 return Schema.from_path(self.schema, basepath=self.basepath)
             return self.schema
+
+    def get_hash(self) -> Optional[Hash]:
+        if self.hash:
+            return Hash.from_text(self.hash)

@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Optional
 
 from ...model import Model
+from ..profile import Profile
 
 
 class Dialect(Model):
@@ -39,3 +40,9 @@ class Dialect(Model):
     """
     Specifies whether or not the file includes a header row.
     """
+
+    # Getters
+
+    def get_profile(self) -> Optional[Profile]:
+        if self.profile:
+            return Profile.from_path(self.profile)

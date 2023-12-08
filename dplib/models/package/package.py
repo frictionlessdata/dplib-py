@@ -7,6 +7,7 @@ import pydantic
 from ...model import Model
 from ..contributor import Contributor
 from ..license import License
+from ..profile import Profile
 from ..resource import Resource
 from ..source import Source
 
@@ -29,3 +30,9 @@ class Package(Model):
     created: Optional[str] = None
 
     basepath: Optional[str] = pydantic.Field(default=None, exclude=True)
+
+    # Getters
+
+    def get_profile(self) -> Optional[Profile]:
+        if self.profile:
+            return Profile.from_path(self.profile)
