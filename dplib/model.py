@@ -48,7 +48,7 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
         text = read_file(path, basepath=basepath)
         if not basepath:
             basepath = infer_basepath(path)
-        return cls.from_text(text, format=format)  # type: ignore
+        return cls.from_text(text, format=format, basepath=basepath)  # type: ignore
 
     def to_text(self, *, format: str) -> str:
         data = self.to_dict()
