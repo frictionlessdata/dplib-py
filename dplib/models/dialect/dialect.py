@@ -6,6 +6,8 @@ from ...model import Model
 
 
 class Dialect(Model):
+    profile: Optional[str] = None
+
     """A dialect description for parsing CSV files"""
 
     delimiter: Optional[str] = None

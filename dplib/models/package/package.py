@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from typing import List, Optional
 
+import pydantic
+
 from ...model import Model
 from ..contributor import Contributor
 from ..license import License
@@ -25,3 +27,5 @@ class Package(Model):
     keywords: List[str] = []
     image: Optional[str] = None
     created: Optional[str] = None
+
+    basepath: Optional[str] = pydantic.Field(default=None, exclude=True)
