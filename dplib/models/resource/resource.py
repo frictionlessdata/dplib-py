@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from typing import List, Optional, Union
 
+import pydantic
+
 from ... import types
 from ...model import Model
 from ..contributor import Contributor
@@ -15,10 +17,8 @@ from .hash import Hash
 class Resource(Model):
     name: Optional[str] = None
     profile: Optional[str] = None
-
     path: Optional[str] = None
     data: Optional[types.IDict] = None
-
     dialect: Optional[Union[Dialect, str]] = None
     schema: Optional[Union[Schema, str]] = None  # type: ignore
 
@@ -32,6 +32,8 @@ class Resource(Model):
     sources: List[Source] = []
     licenses: List[License] = []
     contributors: List[Contributor] = []
+
+    basepath: Optional[str] = pydantic.Field(default=None, exclude=True)
 
     # Getters
 

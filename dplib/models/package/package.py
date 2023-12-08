@@ -10,17 +10,16 @@ from ..source import Source
 
 
 class Package(Model):
-    resources: List[Resource] = []
-
     id: Optional[str] = None
     name: Optional[str] = None
-    licenses: List[License] = []
     profile: Optional[str] = None
+    resources: List[Resource] = []
 
     title: Optional[str] = None
     description: Optional[str] = None
     homepage: Optional[str] = None
     version: Optional[str] = None
+    licenses: List[License] = []
     sources: List[Source] = []
     contributors: List[Contributor] = []
     keywords: List[str] = []
