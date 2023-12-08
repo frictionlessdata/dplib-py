@@ -31,8 +31,27 @@ class Package(Model):
 
     basepath: Optional[str] = pydantic.Field(default=None, exclude=True)
 
+    def model_post_init(self, _):
+        for resource in self.resources:
+            resource.basepath = self.basepath
+
     # Getters
 
     def get_profile(self) -> Optional[Profile]:
         if self.profile:
             return Profile.from_path(self.profile)
+
+    def get_resource(
+        self, *, name: Optional[str] = None, path: Optional[str] = None
+    ) -> Optional[Resource]:
+        for resource in self.resources:
+            if name and resource.name == name:
+                return resource
+            if path and resource.path == path:
+                return resource
+
+    # Setters
+
+    def add_resource(self, resource: Resource) -> None:
+        resource.basepath = self.basepath
+        self.resources.append(resource)

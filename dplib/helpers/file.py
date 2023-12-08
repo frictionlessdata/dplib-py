@@ -53,6 +53,14 @@ def infer_format(path: str):
     return format or None
 
 
+def infer_basepath(path: str):
+    basepath = os.path.dirname(path)
+    if basepath and not is_remote_path(basepath):
+        if not os.path.abspath(basepath):
+            basepath = os.path.relpath(basepath, start=os.getcwd())
+    return basepath
+
+
 def join_basepath(path: str, basepath: Optional[str] = None) -> str:
     if not basepath:
         return path

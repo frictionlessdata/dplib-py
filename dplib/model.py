@@ -13,7 +13,7 @@ from typing_extensions import Self
 from . import types
 from .error import Error
 from .helpers.data import clean_dict
-from .helpers.file import infer_format, read_file, write_file
+from .helpers.file import infer_basepath, infer_format, read_file, write_file
 
 
 class Model(BaseModel, extra="allow", validate_assignment=True):
@@ -45,6 +45,8 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
         if not format:
             raise Error(f"Cannot infer format from path: {path}")
         text = read_file(path, basepath=basepath)
+        if not basepath:
+            basepath = infer_basepath(path)
         return cls.from_text(text, format=format)  # type: ignore
 
     def to_text(self, *, format: str) -> str:
@@ -57,14 +59,14 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
         raise Error(f"Cannot convert to text for format: {format}")
 
     @classmethod
-    def from_text(cls, text: str, *, format: str) -> Self:
+    def from_text(cls, text: str, *, format: str, basepath: Optional[str] = None) -> Self:
         if format == "json":
             data = json.loads(text)
-            return cls.from_dict(data)
+            return cls.from_dict(data, basepath=basepath)
         elif format == "yaml":
             yaml = import_module("yaml")
             data = yaml.load(text)
-            return cls.from_dict(data)
+            return cls.from_dict(data, basepath=basepath)
         raise Error(f"Cannot create from text with format: {format}")
 
     def to_dict(self):
@@ -73,7 +75,9 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
         return data
 
     @classmethod
-    def from_dict(cls, data: types.IDict) -> Self:
+    def from_dict(cls, data: types.IDict, *, basepath: Optional[str] = None) -> Self:
+        if basepath and cls.model_fields.get("basepath"):
+            data["basepath"] = basepath
         return cls(**data)
 
 
