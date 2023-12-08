@@ -9,7 +9,7 @@ from ..dialect import Dialect
 from ..license import License
 from ..schema import Schema
 from ..source import Source
-from .parsedHash import ParsedHash
+from .hash import Hash
 
 
 class Resource(Model):
@@ -33,7 +33,8 @@ class Resource(Model):
     licenses: List[License] = []
     contributors: List[Contributor] = []
 
-    @property
-    def parsed_hash(self) -> Optional[ParsedHash]:
+    # Getters
+
+    def get_hash(self) -> Optional[Hash]:
         if self.hash:
-            return ParsedHash.from_hash(self.hash)
+            return Hash.from_text(self.hash)

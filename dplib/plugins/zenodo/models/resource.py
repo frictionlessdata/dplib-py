@@ -59,8 +59,9 @@ class ZenodoResource(Model):
             zenodo.size = resource.bytes
 
         # Hash
-        if resource.parsed_hash:
-            if resource.parsed_hash.type == "md5":
-                zenodo.checksum = resource.parsed_hash.full_hash
+        hash = resource.get_hash()
+        if hash:
+            if hash.type == "md5":
+                zenodo.checksum = hash.long
 
         return zenodo
