@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import pprint
+import warnings
 from importlib import import_module
 from typing import Optional
 
@@ -65,3 +66,13 @@ class Model(BaseModel, extra="forbid", validate_assignment=True):
     @classmethod
     def from_dict(cls, data: types.IDict) -> Self:
         return cls(**data)
+
+
+# Although pydantic@2 moved all the model methods to the "model_" namespace
+# the "schema" method is still in the root namespace
+warnings.filterwarnings(
+    action="ignore",
+    category=UserWarning,
+    module=r"pydantic.*",
+    message=r".*schema.*",
+)
