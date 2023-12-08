@@ -77,6 +77,7 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
 
 # Although pydantic@2 moved all the model methods to the "model_" namespace
 # the "schema" method is still in the root namespace
+# https://github.com/pydantic/pydantic/issues/5165
 warnings.filterwarnings(
     action="ignore",
     category=UserWarning,
