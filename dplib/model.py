@@ -12,8 +12,8 @@ from typing_extensions import Self
 
 from . import types
 from .error import Error
+from .helpers.data import clean_dict
 from .helpers.file import infer_format, read_file, write_file
-from .helpers.struct import clean_dict
 
 
 class Model(BaseModel, extra="allow", validate_assignment=True):
@@ -38,11 +38,13 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
         write_file(path, text)
 
     @classmethod
-    def from_path(cls, path: str, *, format: Optional[str] = None) -> Self:
+    def from_path(
+        cls, path: str, *, format: Optional[str] = None, basepath: Optional[str] = None
+    ) -> Self:
         format = format or infer_format(path)
         if not format:
             raise Error(f"Cannot infer format from path: {path}")
-        text = read_file(path)
+        text = read_file(path, basepath=basepath)
         return cls.from_text(text, format=format)  # type: ignore
 
     def to_text(self, *, format: str) -> str:

@@ -3,14 +3,22 @@ import shutil
 import tempfile
 from pathlib import Path
 from typing import Any, Optional
+from urllib.parse import urlparse
 
 import fsspec  # type: ignore
 
 from ..error import Error
 
 
-def read_file(path: str, *, mode: str = "rt", encoding: str = "utf-8") -> str:
+def read_file(
+    path: str,
+    *,
+    mode: str = "rt",
+    encoding: str = "utf-8",
+    basepath: Optional[str] = None,
+) -> str:
     try:
+        path = join_basepath(path, basepath)
         with fsspec.open(path, mode=mode, encoding=encoding) as file:  # type: ignore
             return file.read()  # type: ignore
     except Exception as exception:
@@ -43,3 +51,23 @@ def infer_format(path: str):
     if format == "yml":
         format = "yaml"
     return format or None
+
+
+def join_basepath(path: str, basepath: Optional[str] = None) -> str:
+    if not basepath:
+        return path
+    if is_remote_path(path):
+        return path
+    if is_remote_path(basepath):
+        return f"{basepath}/{path}"
+    return os.path.join(basepath, path)
+
+
+def is_remote_path(path: str) -> bool:
+    path = path[0] if path and isinstance(path, list) else path
+    scheme = urlparse(path).scheme
+    if not scheme:
+        return False
+    if path.lower().startswith(scheme + ":\\"):
+        return False
+    return True
