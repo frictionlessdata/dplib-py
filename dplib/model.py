@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import pprint
 import warnings
+from functools import cached_property
 from importlib import import_module
 from typing import Optional
 
@@ -15,14 +16,17 @@ from .helpers.file import infer_format, read_file, write_file
 from .helpers.struct import clean_dict
 
 
-class Model(BaseModel, extra="forbid", validate_assignment=True):
-    custom: types.IDict = {}
-
+class Model(BaseModel, extra="allow", validate_assignment=True):
     def __str__(self) -> str:
         return repr(self)
 
     def __repr__(self) -> str:
         return pprint.pformat(self.to_dict(), sort_dicts=False)
+
+    @cached_property
+    def custom(self) -> types.IDict:
+        assert self.model_extra is not None
+        return self.model_extra
 
     # Converters
 
