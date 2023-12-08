@@ -4,6 +4,7 @@ from typing import Any
 
 import polars as pl
 
+from dplib.error import Error
 from dplib.model import Model
 from dplib.models import Field
 
@@ -43,6 +44,9 @@ class PolarsField(Model, arbitrary_types_allowed=True):
 
     @classmethod
     def from_dp(cls, field: Field) -> PolarsField:
+        if not field.name:
+            raise Error(f"Field name is required to convert to polars: {field}")
+
         # Type
         dtype = pl.Unknown
         if field.type == "array":
