@@ -60,7 +60,7 @@ class Model(BaseModel, extra="forbid", validate_assignment=True):
         raise Error(f"Cannot create from text with format: {format}")
 
     def to_dict(self):
-        return self.model_dump(mode="json", exclude_unset=True, exclude_none=True)
+        return self.model_dump(mode="json", exclude_none=True)
 
     @classmethod
     def from_dict(cls, data: types.IDict) -> Self:
