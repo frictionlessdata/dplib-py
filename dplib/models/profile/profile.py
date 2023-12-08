@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Any, List, Optional
 
 from ... import types
 from ...model import Model
@@ -21,7 +21,7 @@ class Profile(Model):
         return data
 
     @classmethod
-    def from_dict(cls, data: types.IDict):
+    def from_dict(cls, data: types.IDict, **kwargs: Any):
         title = data.pop("title", None)
         description = data.pop("description", None)
         constraints = data.pop("constraints", [])

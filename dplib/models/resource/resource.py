@@ -5,6 +5,7 @@ from typing import List, Optional, Union
 import pydantic
 
 from ... import types
+from ...helpers.file import join_basepath
 from ...model import Model
 from ..contributor import Contributor
 from ..dialect import Dialect
@@ -38,6 +39,13 @@ class Resource(Model):
     basepath: Optional[str] = pydantic.Field(default=None, exclude=True)
 
     # Getters
+
+    def get_path(self) -> Optional[str]:
+        if self.path:
+            return join_basepath(self.path, self.basepath)
+
+    def get_source(self) -> Optional[Union[str, types.IDict]]:
+        return self.data or self.get_path()
 
     def get_profile(self) -> Optional[Profile]:
         if self.profile:

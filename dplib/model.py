@@ -13,7 +13,8 @@ from typing_extensions import Self
 from . import types
 from .error import Error
 from .helpers.data import clean_dict
-from .helpers.file import infer_basepath, infer_format, read_file, write_file
+from .helpers.file import read_file, write_file
+from .helpers.path import infer_basepath, infer_format
 
 
 class Model(BaseModel, extra="allow", validate_assignment=True):
