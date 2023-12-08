@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import List, Optional, Union
 
 from ... import types
 from ...model import Model
@@ -19,8 +19,8 @@ class Resource(Model):
     path: Optional[str] = None
     data: Optional[types.IDict] = None
 
-    dialect: Optional[Dialect] = None
-    schema: Optional[Schema] = None  # type: ignore
+    dialect: Optional[Union[Dialect, str]] = None
+    schema: Optional[Union[Schema, str]] = None  # type: ignore
 
     title: Optional[str] = None
     description: Optional[str] = None
