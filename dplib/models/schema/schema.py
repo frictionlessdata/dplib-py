@@ -2,8 +2,6 @@ from __future__ import annotations
 
 from typing import List
 
-import pydantic
-
 from ...model import Model
 from .field import Field
 from .foreignKey import ForeignKey

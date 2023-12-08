@@ -12,6 +12,7 @@ from typing_extensions import Self
 from . import types
 from .error import Error
 from .helpers.file import infer_format, read_file, write_file
+from .helpers.struct import clean_dict
 
 
 class Model(BaseModel, extra="forbid", validate_assignment=True):
@@ -61,7 +62,9 @@ class Model(BaseModel, extra="forbid", validate_assignment=True):
         raise Error(f"Cannot create from text with format: {format}")
 
     def to_dict(self):
-        return self.model_dump(mode="json", exclude_none=True)
+        data = self.model_dump(mode="json")
+        clean_dict(data)
+        return data
 
     @classmethod
     def from_dict(cls, data: types.IDict) -> Self:
