@@ -12,7 +12,7 @@ from .foreignKey import ForeignKey
 class Schema(Model):
     """Schema model"""
 
-    fields: List[Field] = pydantic.Field(default_factory=list)
+    fields: List[Field] = []
     """List of fields"""
 
     missingValues: List[str] = []

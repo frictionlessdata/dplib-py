@@ -13,7 +13,7 @@ from .parsedHash import ParsedHash
 
 
 class Resource(Model):
-    name: str
+    name: Optional[str] = None
     profile: Optional[str] = None
 
     path: Optional[str] = None

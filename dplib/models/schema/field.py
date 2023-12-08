@@ -9,9 +9,9 @@ from .constraints import Constraints
 from .fieldType import FieldType
 
 
-# TODO: get back to discriminated unions?
+# TODO: consider getting back to discriminated unions
 class Field(Model):
-    name: str
+    name: Optional[str] = None
     type: FieldType = "any"
     title: Optional[str] = None
     description: Optional[str] = None

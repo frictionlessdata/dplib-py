@@ -1,10 +1,10 @@
 from __future__ import annotations
 
-from typing import List
+from typing import List, Optional
 
 from ...model import Model
 
 
 class ForeignKeyReference(Model):
-    fields: List[str]
-    resource: str
+    fields: List[str] = []
+    resource: Optional[str] = None
