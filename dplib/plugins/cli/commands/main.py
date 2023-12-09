@@ -6,7 +6,10 @@ import typer
 
 from dplib import settings
 
+from .schema import program_schema
+
 program = typer.Typer()
+program.add_typer(program_schema)
 
 
 # Helpers
