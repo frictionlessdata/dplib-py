@@ -1,17 +1,17 @@
-from typing import Union
+from typing import List, Union
 
-from jsonschema import validate
+from jsonschema.exceptions import ValidationError
 
 from ... import types
-from ...helpers.data import load_data
-from ...helpers.file import read_file
+from ...helpers.data import read_data
 from ...helpers.profile import read_profile
 from ...models import Profile
+from ..profile.check import profile_check
 
 
-def schema_check(schema: Union[str, types.IDict]):
+def schema_check(schema: Union[str, types.IDict]) -> List[ValidationError]:
     profile = Profile.from_dict(read_profile("table-schema"))
     if isinstance(schema, str):
-        text = read_file(schema)
-        schema = load_data(text)
-    print(profile)
+        schema = read_data(schema)
+    errors = profile_check(profile, data=schema)
+    return errors
