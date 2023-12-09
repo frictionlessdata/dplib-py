@@ -2,7 +2,7 @@ from typing import Any, List, Optional
 
 from ... import types
 from ...model import Model
-from .constraint import Constraint
+from .rule import Rule
 
 
 class Profile(Model):
@@ -11,7 +11,8 @@ class Profile(Model):
     name: Optional[str] = None
     title: Optional[str] = None
     description: Optional[str] = None
-    constraints: List[Constraint] = []
+    version: Optional[str] = None
+    rules: List[Rule] = []
 
     # Converters
 

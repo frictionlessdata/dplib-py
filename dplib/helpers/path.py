@@ -3,12 +3,16 @@ from pathlib import Path
 from typing import Optional
 from urllib.parse import urlparse
 
+from ..error import Error
 
-def infer_format(path: str):
+
+def infer_format(path: str, *, raise_missing: bool = False):
     format = Path(path).suffix[1:]
     if format == "yml":
         format = "yaml"
-    return format or None
+    if not format and raise_missing:
+        raise Error(f"Cannot infer format from path: {path}")
+    return format
 
 
 def infer_basepath(path: str):

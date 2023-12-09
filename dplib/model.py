@@ -1,18 +1,15 @@
 from __future__ import annotations
 
-import json
 import pprint
 import warnings
 from functools import cached_property
-from importlib import import_module
 from typing import Optional
 
 from pydantic import BaseModel
 from typing_extensions import Self
 
 from . import types
-from .error import Error
-from .helpers.data import clean_dict
+from .helpers.data import clean_data, dump_data, load_data
 from .helpers.file import read_file, write_file
 from .helpers.path import infer_basepath, infer_format
 
@@ -32,9 +29,7 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
     # Converters
 
     def to_path(self, path: str, *, format: Optional[str] = None):
-        format = format or infer_format(path)
-        if not format:
-            raise Error(f"Cannot infer format from path: {path}")
+        format = format or infer_format(path, raise_missing=True)
         text = self.to_text(format=format)
         write_file(path, text)
 
@@ -42,9 +37,7 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
     def from_path(
         cls, path: str, *, format: Optional[str] = None, basepath: Optional[str] = None
     ) -> Self:
-        format = format or infer_format(path)
-        if not format:
-            raise Error(f"Cannot infer format from path: {path}")
+        format = format or infer_format(path, raise_missing=True)
         text = read_file(path, basepath=basepath)
         if not basepath:
             basepath = infer_basepath(path)
@@ -52,27 +45,17 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
 
     def to_text(self, *, format: str) -> str:
         data = self.to_dict()
-        if format == "json":
-            return json.dumps(data)
-        elif format == "yaml":
-            yaml = import_module("yaml")
-            return yaml.dump(data)
-        raise Error(f"Cannot convert to text for format: {format}")
+        text = dump_data(data, format=format)
+        return text
 
     @classmethod
     def from_text(cls, text: str, *, format: str, basepath: Optional[str] = None) -> Self:
-        if format == "json":
-            data = json.loads(text)
-            return cls.from_dict(data, basepath=basepath)
-        elif format == "yaml":
-            yaml = import_module("yaml")
-            data = yaml.load(text)
-            return cls.from_dict(data, basepath=basepath)
-        raise Error(f"Cannot create from text with format: {format}")
+        data = load_data(text, format=format)
+        return cls.from_dict(data, basepath=basepath)
 
     def to_dict(self):
         data = self.model_dump(mode="json")
-        clean_dict(data)
+        clean_data(data)
         return data
 
     @classmethod
