@@ -40,6 +40,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+cli = ["typer[all]>=0.5", "rich>=10.0"]
 dcat = ["rdflib>=6.0"]
 pandas = ["pandas>=1.0", "pandas-stubs>=1.0", "numpy>=1.0", "isodate>=0.6"]
 polars = ["polars-lts-cpu>=0.10"]
@@ -72,7 +73,7 @@ dev = [
 ]
 
 [project.scripts]
-# dp = "<module>:console"
+dp = "dplib.plugins.cli.__main__:program"
 
 [tool.hatch.version]
 path = "dplib/settings.py"
@@ -80,7 +81,7 @@ path = "dplib/settings.py"
 [tool.hatch.envs.default]
 python = "3.10"
 dependencies = [
-  "dplib-py[sql,pandas,polars,dev]",
+  "dplib-py[cli,dcat,sql,pandas,polars,yaml,dev]",
 ]
 
 [tool.hatch.envs.default.scripts]
