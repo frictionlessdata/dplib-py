@@ -8,6 +8,7 @@ from .constraint import Constraint
 class Profile(Model):
     jsonSchema: types.IDict = {}
 
+    name: Optional[str] = None
     title: Optional[str] = None
     description: Optional[str] = None
     constraints: List[Constraint] = []
@@ -15,19 +16,14 @@ class Profile(Model):
     # Converters
 
     def to_dict(self):
-        data = super().to_dict()
-        schema = data.pop("jsonSchema", {})
+        data: types.IDict = {}
+        profile = super().to_dict()
+        schema = profile.pop("jsonSchema", {})
         data.update(schema)
+        data.update(metadataProfile=profile)
         return data
 
     @classmethod
     def from_dict(cls, data: types.IDict, **kwargs: Any):
-        title = data.pop("title", None)
-        description = data.pop("description", None)
-        constraints = data.pop("constraints", [])
-        return cls(
-            title=title,
-            description=description,
-            constraints=constraints,
-            jsonSchema=data,
-        )
+        profile = data.pop("metadataProfile", None)
+        return cls(jsonSchema=data, **profile)

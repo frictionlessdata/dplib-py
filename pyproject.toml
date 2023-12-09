@@ -32,6 +32,8 @@ classifiers = [
 ]
 dependencies = [
     "pydantic>=2.0",
+    "jsonpath>=0.80",
+    "jsonschema>=3.0",
     "python-slugify>=6.0",
     "fsspec[http]>=2023.1.0",
     "typing-extensions>=4.0",
