@@ -9,8 +9,7 @@ from ..metadata.check import metadata_check
 
 
 def schema_check(schema: Union[str, types.IDict]) -> List[MetadataError]:
+    metadata = schema if isinstance(schema, dict) else read_data(schema)
     profile = Profile.from_dict(read_profile("table-schema"))
-    if isinstance(schema, str):
-        schema = read_data(schema)
-    errors = metadata_check(profile, object=schema)
+    errors = metadata_check(metadata, profile=profile)
     return errors
