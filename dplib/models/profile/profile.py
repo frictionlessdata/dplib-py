@@ -26,5 +26,5 @@ class Profile(Model):
 
     @classmethod
     def from_dict(cls, data: types.IDict, **kwargs: Any):
-        profile = data.pop("metadataProfile", None)
+        profile = data.pop("metadataProfile", {})
         return cls(jsonSchema=data, **profile)

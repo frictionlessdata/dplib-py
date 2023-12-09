@@ -1,14 +1,10 @@
-#  from pydantic import BaseModel, ValidationError
-#  from pydantic_core import ErrorDetails
+from typing import Union
 
-#  def schema_check(cls, descriptor: Dict[str, Any]):
-#  errors: List[ErrorDetails] = []
-#  try:
-#  cls.model_validate(descriptor)
-#  except ValidationError as e:
-#  errors = e.errors()
-#  return errors
+from ... import types
+from ...helpers.profile import read_profile
+from ...models import Profile
 
 
-def schema_check():
-    pass
+def schema_check(schema: Union[str, types.IDict]):
+    profile = Profile.from_dict(read_profile("table-schema"))
+    print(profile)
