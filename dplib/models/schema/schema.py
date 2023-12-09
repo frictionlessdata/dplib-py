@@ -25,3 +25,13 @@ class Schema(Model):
     def get_profile(self) -> Optional[Profile]:
         if self.profile:
             return Profile.from_path(self.profile)
+
+    def get_field(self, *, name: Optional[str] = None) -> Optional[Field]:
+        for field in self.fields:
+            if name and field.name == name:
+                return field
+
+    # Setters
+
+    def add_field(self, field: Field) -> None:
+        self.fields.append(field)
