@@ -1,8 +1,28 @@
 import json
 from importlib import import_module
+from typing import Optional
 
 from .. import types
 from ..error import Error
+from .file import read_file, write_file
+from .path import infer_format
+
+
+def read_data(
+    path: str, *, format: Optional[str] = None, basepath: Optional[str] = None
+) -> types.IDict:
+    if not format:
+        format = infer_format(path, raise_missing=True)
+    text = read_file(path, basepath=basepath)
+    data = load_data(text, format=format)
+    return data
+
+
+def write_data(path: str, data: types.IDict, *, format: Optional[str] = None):
+    if not format:
+        format = infer_format(path, raise_missing=True)
+    text = dump_data(data, format=format)
+    write_file(path, text)
 
 
 def load_data(text: str, *, format: str) -> types.IDict:
