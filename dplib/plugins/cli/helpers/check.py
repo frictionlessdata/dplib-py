@@ -1,6 +1,7 @@
 from typing import List
 
 from rich.console import Console
+from rich.markup import escape
 from rich.table import Table
 
 from dplib.errors.metadata import MetadataError
@@ -17,5 +18,5 @@ def print_check_results(path: str, errors: List[MetadataError]):
     view.add_column("location")
     view.add_column("message")
     for error in errors:
-        view.add_row(error.object_path, error.message)
+        view.add_row(escape(error.object_path), escape(error.message))
     console.print(view)
