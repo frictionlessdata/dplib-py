@@ -66,3 +66,11 @@ class Resource(Model):
     def get_hash(self) -> Optional[Hash]:
         if self.hash:
             return Hash.from_text(self.hash)
+
+    # Methods
+
+    def dereference(self):
+        if isinstance(self.dialect, str):
+            self.dialect = Dialect.from_path(self.dialect, basepath=self.basepath)
+        if isinstance(self.schema, str):
+            self.schema = Schema.from_path(self.schema, basepath=self.basepath)  # type: ignore

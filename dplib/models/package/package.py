@@ -55,3 +55,9 @@ class Package(Model):
     def add_resource(self, resource: Resource) -> None:
         resource.basepath = self.basepath
         self.resources.append(resource)
+
+    # Methods
+
+    def dereference(self):
+        for resource in self.resources:
+            resource.dereference()

@@ -10,7 +10,7 @@ from typing_extensions import Self
 
 from . import types
 from .helpers.data import clean_data, dump_data, load_data, read_data, write_data
-from .helpers.path import infer_basepath
+from .helpers.path import infer_basepath, join_basepath
 
 
 class Model(BaseModel, extra="allow", validate_assignment=True):
@@ -35,9 +35,11 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
     def from_path(
         cls, path: str, *, format: Optional[str] = None, basepath: Optional[str] = None
     ) -> Self:
-        if not basepath:
+        if basepath:
+            path = join_basepath(path, basepath)
+        else:
             basepath = infer_basepath(path)
-        data = read_data(path, format=format, basepath=basepath)
+        data = read_data(path, format=format)
         return cls.from_dict(data, basepath=basepath)
 
     def to_text(self, *, format: str) -> str:
