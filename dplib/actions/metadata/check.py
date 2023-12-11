@@ -1,30 +1,27 @@
 from typing import List, Union
 
-from jsonschema.validators import validator_for  # type: ignore
-
 from ... import types
 from ...errors.metadata import MetadataError
 from ...helpers.data import read_data
-from ...helpers.profile import read_profile
+from ...helpers.path import is_remote_path
+from ...helpers.profile import read_profile, validate_against_jsonschema
 from ...models import Profile
 
 
-# TODO: validate against metadata.profile as well (extension)
 def metadata_check(
     metadata: Union[str, types.IDict], *, profile_name: str
 ) -> List[MetadataError]:
-    # Prepare metadata/profile
-    profile = Profile.from_dict(read_profile(profile_name))
     if isinstance(metadata, str):
         metadata = read_data(metadata)
 
-    # Create validator
-    Validator = validator_for(profile.jsonSchema)  # type: ignore
-    validator = Validator(profile.jsonSchema)  # type: ignore
+    # Base profile
+    profile = Profile.from_dict(read_profile(profile_name))
+    errors = validate_against_jsonschema(metadata, profile.jsonSchema)
 
-    # Fetch errors
-    errors: List[MetadataError] = []
-    for validation_error in validator.iter_errors(metadata):  # type: ignore
-        errors.append(MetadataError(validation_error))  # type: ignore
+    # Custom profile
+    custom_profile = metadata.get("profile")
+    if custom_profile and is_remote_path(custom_profile):
+        custom_profile = Profile.from_dict(custom_profile)
+        errors += validate_against_jsonschema(metadata, custom_profile.jsonSchema)
 
     return errors
