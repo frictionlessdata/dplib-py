@@ -2,8 +2,8 @@ from typing import List, Union
 
 from ... import types
 from ...errors.metadata import MetadataError
-from ..metadata.check import metadata_check
+from ..metadata.check import check_metadata
 
 
-def schema_check(schema: Union[str, types.IDict]) -> List[MetadataError]:
-    return metadata_check(schema, profile_name="table-schema")
+def check_schema(schema: Union[str, types.IDict]) -> List[MetadataError]:
+    return check_metadata(schema, profile_name="table-schema")

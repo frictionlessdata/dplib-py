@@ -23,7 +23,7 @@ def read_profile(name: str) -> types.IDict:
     return data
 
 
-def validate_against_jsonschema(
+def check_metadata_against_jsonschema(
     metadata: types.IDict, jsonSchema: types.IDict
 ) -> List[MetadataError]:
     Validator = validator_for(jsonSchema)  # type: ignore

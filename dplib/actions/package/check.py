@@ -4,10 +4,10 @@ from ... import types
 from ...errors.metadata import MetadataError
 from ...helpers.data import read_data
 from ...helpers.path import infer_basepath
-from ..metadata.check import metadata_check
+from ..metadata.check import check_metadata
 
 
-def package_check(package: Union[str, types.IDict]) -> List[MetadataError]:
+def check_package(package: Union[str, types.IDict]) -> List[MetadataError]:
     basepath = None
     if isinstance(package, str):
         basepath = infer_basepath(package)
@@ -22,4 +22,4 @@ def package_check(package: Union[str, types.IDict]) -> List[MetadataError]:
                 if value and isinstance(value, str):
                     resource[name] = read_data(value, basepath=basepath)
 
-    return metadata_check(package, profile_name="data-package")
+    return check_metadata(package, profile_name="data-package")
