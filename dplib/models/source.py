@@ -4,6 +4,6 @@ from ..model import Model
 
 
 class Source(Model):
-    title: str
+    title: Optional[str] = None
     path: Optional[str] = None
     email: Optional[str] = None

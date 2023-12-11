@@ -6,13 +6,13 @@ from dplib.model import Model
 
 
 class DataciteContributorAffiliation(Model):
-    name: str
+    name: Optional[str] = None
     affiliationIdentifier: Optional[str] = None
     affiliationIdentifierScheme: Optional[str] = None
 
 
 class DataciteContributor(Model):
-    name: str
+    name: Optional[str] = None
     nameType: Optional[str] = None
     givenName: Optional[str] = None
     familyName: Optional[str] = None

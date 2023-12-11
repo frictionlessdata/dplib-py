@@ -1,14 +1,9 @@
-#  from pydantic import BaseModel, ValidationError
-#  from pydantic_core import ErrorDetails
+from typing import List, Union
 
-#  def schema_check(cls, descriptor: Dict[str, Any]):
-#  errors: List[ErrorDetails] = []
-#  try:
-#  cls.model_validate(descriptor)
-#  except ValidationError as e:
-#  errors = e.errors()
-#  return errors
+from ... import types
+from ...errors.metadata import MetadataError
+from ..metadata.check import check_metadata
 
 
-def schema_check():
-    pass
+def check_schema(schema: Union[str, types.IDict]) -> List[MetadataError]:
+    return check_metadata(schema, profile_name="table-schema")

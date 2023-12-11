@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, List, Optional
 
 from rdflib import BNode, Graph, URIRef
 
@@ -50,7 +50,7 @@ class DcatPackage(Model):
         return g.serialize(format=format)
 
     @classmethod
-    def from_text(cls, text: str, *, format: str):
+    def from_text(cls, text: str, *, format: str, **kwargs: Any):
         g = Graph()
         g.parse(data=text, format=format)
         return cls.from_graph(g)

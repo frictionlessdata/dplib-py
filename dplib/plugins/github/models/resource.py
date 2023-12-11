@@ -46,8 +46,9 @@ class GithubResource(Model):
             github.size = resource.bytes
 
         # Hash
-        if resource.parsed_hash:
-            if resource.parsed_hash.type == "sha1":
-                github.sha = resource.parsed_hash.value
+        hash = resource.get_hash()
+        if hash:
+            if hash.type == "sha1":
+                github.sha = hash.value
 
         return github

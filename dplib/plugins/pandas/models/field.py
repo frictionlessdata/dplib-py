@@ -8,6 +8,7 @@ import numpy as np
 import pandas as pd
 import pandas.core.dtypes.api as pdc
 
+from dplib.error import Error
 from dplib.model import Model
 from dplib.models import Field
 
@@ -51,6 +52,9 @@ class PandasField(Model, arbitrary_types_allowed=True):
 
     @classmethod
     def from_dp(cls, field: Field) -> PandasField:
+        if not field.name:
+            raise Error(f"Field name is required to convert to pandas: {field}")
+
         # Type
         dtype = np.dtype("O")
         if field.type == "array":
