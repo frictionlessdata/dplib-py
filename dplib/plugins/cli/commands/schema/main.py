@@ -1,5 +1,5 @@
 from __future__ import annotations
 
-import typer
+from ...program import Program
 
-program = typer.Typer(name="schema", help="schema")
+program = Program(name="schema", help="schema")

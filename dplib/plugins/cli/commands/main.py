@@ -6,9 +6,10 @@ import typer
 
 from dplib import settings
 
+from ..program import Program
 from . import dialect, package, resource, schema
 
-program = typer.Typer()
+program = Program()
 program.add_typer(dialect.program)
 program.add_typer(resource.program)
 program.add_typer(package.program)
