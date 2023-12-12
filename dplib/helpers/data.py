@@ -28,21 +28,27 @@ def write_data(path: str, data: types.IDict, *, format: Optional[str] = None):
 
 
 def load_data(text: str, *, format: str) -> types.IDict:
-    if format == "json":
-        return json.loads(text)
-    elif format == "yaml":
-        yaml = import_module("yaml")
-        data = yaml.load(text)
-        return data
+    try:
+        if format == "json":
+            return json.loads(text)
+        elif format == "yaml":
+            yaml = import_module("yaml")
+            data = yaml.load(text)
+            return data
+    except Exception:
+        raise Error(f'Cannot load "{format}" data from text: {text}')
     raise Error(f"Cannot load data from text with format: {format}")
 
 
 def dump_data(data: types.IDict, *, format: str) -> str:
-    if format == "json":
-        return json.dumps(data)
-    elif format == "yaml":
-        yaml = import_module("yaml")
-        return yaml.dump(data)
+    try:
+        if format == "json":
+            return json.dumps(data)
+        elif format == "yaml":
+            yaml = import_module("yaml")
+            return yaml.dump(data)
+    except Exception:
+        raise Error(f'Cannot dump "{format}" text from data: {data}')
     raise Error(f"Cannot dump data to text with format: {format}")
 
 

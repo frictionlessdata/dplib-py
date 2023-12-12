@@ -1,3 +1,5 @@
+from rich.console import Console
+
 from dplib.actions.package.convert import convert_package
 
 from ...options.convert import Source, Target
@@ -12,5 +14,6 @@ def command(
     source: Source = None,
     target: Target = None,
 ):
+    console = Console()
     model = convert_package(path, format=format, source=source, target=target)  # type: ignore
-    print(model)
+    console.print_json(model.to_text(format="json"))
