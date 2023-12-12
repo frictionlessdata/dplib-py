@@ -19,14 +19,15 @@ def convert_metadata(
     # Source model
     Source = Resource if type == "resource" else Package
     if source:
-        module = import_module(f"dplib.plugins.{source}")
+        module = import_module(f"dplib.plugins.{source}.models")
         Source: Type[Model] = getattr(module, f"{source.capitalize()}{type.capitalize()}")
     model = Source.from_path(path)
-    model = model.to_dp()
+    if source:
+        model = model.to_dp()
 
     # Target model
     if target:
-        module = import_module(f"dplib.plugins.{target}")
+        module = import_module(f"dplib.plugins.{target}.models")
         Target: Type[Model] = getattr(module, f"{target.capitalize()}{type.capitalize()}")
         model = Target.from_dp(model)
 
