@@ -11,6 +11,7 @@ def convert_metadata(
     path: str,
     *,
     type: IType,
+    format: Optional[str] = None,
     source: Optional[INotation] = None,
     target: Optional[INotation] = None,
 ) -> Model:
@@ -21,7 +22,7 @@ def convert_metadata(
     if source:
         module = import_module(f"dplib.plugins.{source}.models")
         Source: Type[Model] = getattr(module, f"{source.capitalize()}{type.capitalize()}")
-    model = Source.from_path(path)
+    model = Source.from_path(path, format=format)
     if source:
         model = cast(Model, model.to_dp())  # type: ignore
 
