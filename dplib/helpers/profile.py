@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import os
 from functools import lru_cache
 from typing import List
@@ -11,7 +13,7 @@ from .data import load_data
 from .file import read_file
 
 
-def select_profile(*, metadata_type: str) -> str:
+def select_profile(*, metadata_type: types.IMetadataType) -> str:
     if metadata_type == "package":
         return "data-package"
     elif metadata_type == "resource":
@@ -20,12 +22,11 @@ def select_profile(*, metadata_type: str) -> str:
         return "table-dialect"
     elif metadata_type == "schema":
         return "table-schema"
-    else:
-        raise Error(f'Invalid metadata type "{metadata_type}"')
+    raise Error(f'Invalid metadata type "{metadata_type}"')
 
 
 @lru_cache
-def read_profile(*, metadata_type: str) -> types.IDict:
+def read_profile(*, metadata_type: types.IMetadataType) -> types.IDict:
     format = "json"
     name = select_profile(metadata_type=metadata_type)
     path = os.path.join(os.path.dirname(__file__), "..", "profiles", f"{name}.{format}")
