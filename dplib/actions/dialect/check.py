@@ -6,4 +6,4 @@ from ..metadata.check import check_metadata
 
 
 def check_dialect(dialect: Union[str, types.IDict]) -> List[MetadataError]:
-    return check_metadata(dialect, profile_name="table-dialect")
+    return check_metadata(dialect, type="dialect")

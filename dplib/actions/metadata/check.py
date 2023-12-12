@@ -9,13 +9,13 @@ from ...models import Profile
 
 
 def check_metadata(
-    metadata: Union[str, types.IDict], *, profile_name: str
+    metadata: Union[str, types.IDict], *, type: str
 ) -> List[MetadataError]:
     if isinstance(metadata, str):
         metadata = read_data(metadata)
 
     # Base profile
-    profile = Profile.from_dict(read_profile(profile_name))
+    profile = Profile.from_dict(read_profile(metadata_type=type))
     errors = check_metadata_against_jsonschema(metadata, profile.jsonSchema)
 
     # Custom profile

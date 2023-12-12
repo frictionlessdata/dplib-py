@@ -11,15 +11,29 @@ from .data import load_data
 from .file import read_file
 
 
+def select_profile(*, metadata_type: str) -> str:
+    if metadata_type == "package":
+        return "data-package"
+    elif metadata_type == "resource":
+        return "data-resource"
+    elif metadata_type == "dialect":
+        return "table-dialect"
+    elif metadata_type == "schema":
+        return "table-schema"
+    else:
+        raise Error(f'Invalid metadata type "{metadata_type}"')
+
+
 @lru_cache
-def read_profile(name: str) -> types.IDict:
+def read_profile(*, metadata_type: str) -> types.IDict:
     format = "json"
+    name = select_profile(metadata_type=metadata_type)
     path = os.path.join(os.path.dirname(__file__), "..", "profiles", f"{name}.{format}")
     try:
         text = read_file(path)
+        data = load_data(text, format=format)
     except Exception:
         raise Error(f'Cannot read profile "{name}" at "{path}"')
-    data = load_data(text, format=format)
     return data
 
 
