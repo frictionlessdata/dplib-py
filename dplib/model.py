@@ -3,13 +3,12 @@ from __future__ import annotations
 import pprint
 import warnings
 from functools import cached_property
-from typing import Any, Optional
+from typing import Optional
 
 from pydantic import BaseModel
 from typing_extensions import Self
 
 from . import types
-from .error import Error
 from .helpers.data import clean_data, dump_data, load_data, read_data, write_data
 from .helpers.path import infer_basepath, join_basepath
 
@@ -63,13 +62,6 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
         if basepath and cls.model_fields.get("basepath"):
             data["basepath"] = basepath
         return cls(**data)
-
-    def to_dp(self) -> Model:
-        raise Error(f'Cannot convert "{type(self).__name__}" to data package notation')
-
-    @classmethod
-    def from_dp(cls, model: Any, /) -> Model:
-        raise Error(f'Cannot convert "{cls.__name__}" from data package notation')
 
 
 # Although pydantic@2 moved all the model methods to the "model_" namespace

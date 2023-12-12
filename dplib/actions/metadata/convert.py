@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from importlib import import_module
-from typing import Literal, Optional, Type, Union
+from typing import Literal, Optional, Type, Union, cast
 
 from ...model import Model
 from ...models import Package, Resource
@@ -23,13 +23,13 @@ def convert_metadata(
         Source: Type[Model] = getattr(module, f"{source.capitalize()}{type.capitalize()}")
     model = Source.from_path(path)
     if source:
-        model = model.to_dp()
+        model = cast(Model, model.to_dp())  # type: ignore
 
     # Target model
     if target:
         module = import_module(f"dplib.plugins.{target}.models")
         Target: Type[Model] = getattr(module, f"{target.capitalize()}{type.capitalize()}")
-        model = Target.from_dp(model)
+        model = cast(Model, Target.from_dp(model))  # type: ignore
 
     return model
 
