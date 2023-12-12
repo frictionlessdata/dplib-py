@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import List, Union
 
 from ... import types
@@ -19,4 +21,4 @@ def check_resource(resource: Union[str, types.IDict]) -> List[MetadataError]:
         if value and isinstance(value, str):
             resource[name] = read_data(value, basepath=basepath)
 
-    return check_metadata(resource, profile_name="data-resource")
+    return check_metadata(resource, type="resource")

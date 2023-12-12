@@ -1,5 +1,5 @@
 from __future__ import annotations
 
-import typer
+from ...program import Program
 
-program = typer.Typer(name="dialect", help="dialect")
+program = Program(name="dialect", help="dialect")

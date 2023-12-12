@@ -175,8 +175,10 @@ class DcatResource(Model):
         return resource
 
     @classmethod
-    def from_dp(cls, resource: Resource) -> DcatResource:
+    def from_dp(cls, resource: Resource) -> Optional[DcatResource]:
         dcat = DcatResource()
+        if not resource.path or not isinstance(resource.path, str):
+            return
 
         # Download URL
         # TODO: improve logic -- use basepath and allow only urls

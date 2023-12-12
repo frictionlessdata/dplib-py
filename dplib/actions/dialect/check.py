@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import List, Union
 
 from ... import types
@@ -6,4 +8,4 @@ from ..metadata.check import check_metadata
 
 
 def check_dialect(dialect: Union[str, types.IDict]) -> List[MetadataError]:
-    return check_metadata(dialect, profile_name="table-dialect")
+    return check_metadata(dialect, type="dialect")

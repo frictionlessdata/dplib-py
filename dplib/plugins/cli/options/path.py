@@ -1,6 +1,14 @@
-from typer import Argument
+from typing import Optional
 
-path_arg = Argument(
-    default=None,
-    help="Data source [default: stdin]",
-)
+from typer import Argument, Option
+from typing_extensions import Annotated
+
+Path = Annotated[
+    str,
+    Argument(help="Path to the file"),
+]
+
+Format = Annotated[
+    Optional[str],
+    Option("--format", "-f", help="Format of the file"),
+]
