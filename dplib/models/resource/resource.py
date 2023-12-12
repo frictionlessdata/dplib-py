@@ -19,7 +19,7 @@ from .hash import Hash
 class Resource(Model):
     name: Optional[str] = None
     type: Optional[str] = None
-    path: Optional[str] = None
+    path: Optional[Union[str, List[str]]] = None
     data: Optional[types.IDict] = None
     profile: Optional[str] = None
     dialect: Optional[Union[Dialect, str]] = None
@@ -41,7 +41,7 @@ class Resource(Model):
     # Getters
 
     def get_path(self) -> Optional[str]:
-        if self.path:
+        if self.path and isinstance(self.path, str):
             return join_basepath(self.path, self.basepath)
 
     def get_source(self) -> Optional[Union[str, types.IDict]]:

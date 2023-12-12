@@ -35,7 +35,7 @@ class GithubResource(Model):
 
     @classmethod
     def from_dp(cls, resource: Resource) -> Optional[GithubResource]:
-        if not resource.path:
+        if not resource.path or not isinstance(resource.path, str):
             return
 
         # Path
