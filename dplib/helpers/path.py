@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Tuple
 from urllib.parse import urlparse
 
 from ..error import Error
@@ -25,6 +25,14 @@ def infer_basepath(path: str):
         if not os.path.abspath(basepath):
             basepath = os.path.relpath(basepath, start=os.getcwd())
     return basepath
+
+
+def ensure_basepath(path: str, basepath: Optional[str] = None) -> Tuple[str, str]:
+    if basepath:
+        path = join_basepath(path, basepath)
+    else:
+        basepath = infer_basepath(path)
+    return path, basepath
 
 
 def join_basepath(path: str, basepath: Optional[str] = None) -> str:

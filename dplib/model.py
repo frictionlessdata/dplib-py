@@ -9,8 +9,9 @@ from pydantic import BaseModel
 from typing_extensions import Self
 
 from . import types
-from .helpers.data import clean_data, dump_data, load_data, read_data, write_data
-from .helpers.path import infer_basepath, join_basepath
+from .helpers.data import clean_data, dump_data, load_data
+from .helpers.file import read_file, write_file
+from .helpers.path import ensure_basepath, infer_format
 
 
 class Model(BaseModel, extra="allow", validate_assignment=True):
@@ -28,19 +29,20 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
     # Converters
 
     def to_path(self, path: str, *, format: Optional[str] = None):
-        data = self.to_dict()
-        write_data(path, data, format=format)
+        if not format:
+            format = infer_format(path, raise_missing=True)
+        text = self.to_text(format=format)
+        write_file(path, text)
 
     @classmethod
     def from_path(
         cls, path: str, *, format: Optional[str] = None, basepath: Optional[str] = None
     ) -> Self:
-        if basepath:
-            path = join_basepath(path, basepath)
-        else:
-            basepath = infer_basepath(path)
-        data = read_data(path, format=format)
-        return cls.from_dict(data, basepath=basepath)
+        if not format:
+            format = infer_format(path, raise_missing=True)
+        path, basepath = ensure_basepath(path, basepath=basepath)
+        text = read_file(path)
+        return cls.from_text(text, format=format, basepath=basepath)
 
     def to_text(self, *, format: str) -> str:
         data = self.to_dict()
