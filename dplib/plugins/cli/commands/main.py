@@ -1,10 +1,6 @@
 from __future__ import annotations
 
-from typing import Optional
-
-import typer
-from typing_extensions import Annotated
-
+from ..options.system import Debug
 from ..program import Program
 from . import dialect, package, resource, schema
 
@@ -17,7 +13,7 @@ program.add_typer(schema.program)
 
 @program.callback()
 def main(
-    debug: Annotated[Optional[bool], typer.Option(None, "--debug")] = None,
+    debug: Debug = None,
 ):
     """
     Python implementation of the Data Package standard and

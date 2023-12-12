@@ -1,3 +1,2 @@
-# Register
-from . import check
+from . import check, convert
 from .main import program

@@ -1,16 +1,15 @@
-from typer import Option
-
 from dplib.actions.package.convert import convert_package
 
-from ...options.path import path_arg
+from ...options.convert import Source, Target
+from ...options.path import Path
 from .main import program
 
 
 @program.command(name="convert")
 def command(
-    path: str = path_arg,
-    source: str = Option(None, "--source", "-s", help="Source notation e.g. ckan"),
-    target: str = Option(None, "--target", "-t", help="Target notation e.g. dcat"),
+    path: Path,
+    source: Source = None,
+    target: Target = None,
 ):
     model = convert_package(path, source=source, target=target)  # type: ignore
     print(model)

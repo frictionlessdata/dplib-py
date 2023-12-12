@@ -1,16 +1,15 @@
-from typer import Option
-
 from dplib.actions.resource.convert import convert_resource
 
-from ...options.path import path_arg
+from ...options.convert import Source, Target
+from ...options.path import Path
 from .main import program
 
 
 @program.command(name="convert")
 def command(
-    path: str = path_arg,
-    source: str = Option(None),
-    target: str = Option(None),
+    path: Path,
+    source: Source = None,
+    target: Target = None,
 ):
     model = convert_resource(path, source=source, target=target)  # type: ignore
     print(model)

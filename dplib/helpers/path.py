@@ -12,6 +12,8 @@ def infer_format(path: str, *, raise_missing: bool = False):
     format = Path(path).suffix[1:]
     if format == "yml":
         format = "yaml"
+    elif format == "rdf":
+        format = "xml"
     if not format and raise_missing:
         raise Error(f"Cannot infer format from path: {path}")
     return format
