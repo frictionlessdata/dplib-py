@@ -1,0 +1,11 @@
+{
+  "delimiter": ";",
+  "lineTerminator": "\r\n",
+  "quoteChar": "'",
+  "doubleQuote": true,
+  "escapeChar": "\\",
+  "nullSequence": "NULL",
+  "skipInitialSpace": true,
+  "header": false,
+  "commentChar": "#"
+}
