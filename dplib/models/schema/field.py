@@ -16,7 +16,7 @@ class Field(Model):
     title: Optional[str] = None
     description: Optional[str] = None
     format: Optional[str] = None
-    missingValues: List[str] = []
+    missingValues: List[str] = [""]
     constraints: Constraints = pydantic.Field(default_factory=Constraints)
 
     # Array

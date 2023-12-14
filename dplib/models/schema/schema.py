@@ -16,7 +16,7 @@ class Schema(Model):
     fields: List[Field] = []
     """List of fields"""
 
-    missingValues: List[str] = []
+    missingValues: List[str] = [""]
     primaryKey: List[str] = []
     foreignKeys: List[ForeignKey] = []
 
