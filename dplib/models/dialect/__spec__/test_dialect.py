@@ -15,11 +15,11 @@ def test_dialect_from_path_full():
     assert dialect.delimiter == ";"
     assert dialect.lineTerminator == "\r\n"
     assert dialect.quoteChar == "'"
-    assert dialect.doubleQuote == True
+    assert dialect.doubleQuote is True
     assert dialect.escapeChar == "\\"
     assert dialect.nullSequence == "NULL"
-    assert dialect.skipInitialSpace == True
-    assert dialect.header == False
+    assert dialect.skipInitialSpace is True
+    assert dialect.header is False
     assert dialect.commentChar == "#"
 
 
@@ -28,8 +28,8 @@ def test_dialect_defaults():
     assert dialect.get_delimiter() == ","
     assert dialect.get_line_terminator() == "\r\n"
     assert dialect.get_quote_char() == '"'
-    assert dialect.get_double_quote() == True
-    assert dialect.get_header() == True
+    assert dialect.get_double_quote() is True
+    assert dialect.get_header() is True
 
 
 def test_dialect_from_text():

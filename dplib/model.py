@@ -55,7 +55,7 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
         return cls.from_dict(data, basepath=basepath)
 
     def to_dict(self):
-        data = self.model_dump(mode="json")
+        data = self.model_dump(mode="json", exclude_none=True, exclude_defaults=True)
         clean_data(data)
         return data
 

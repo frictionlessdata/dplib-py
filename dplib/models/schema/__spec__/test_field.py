@@ -11,4 +11,4 @@ def test_field_constraints():
     field = Field()
     field.constraints.minimum = 1
     assert field.constraints.minimum == 1
-    assert field.to_dict() == {"type": "any", "constraints": {"minimum": 1}}
+    assert field.to_dict() == {"constraints": {"minimum": 1}}

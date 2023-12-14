@@ -62,5 +62,3 @@ def clean_data(data: types.IDict):
                     clean_data(item)  # type: ignore
         if value is None or value == [] or value == {}:
             data.pop(key)
-        elif isinstance(value, list) and not any(value):  # type: ignore
-            data.pop(key)
