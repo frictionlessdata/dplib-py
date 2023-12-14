@@ -1,4 +1,5 @@
 {
+  "profile": "https://specs.frictionlessdata.io/schemas/table-schema.json",
   "fields": [
     {
       "name": "first_name",

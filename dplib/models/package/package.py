@@ -13,6 +13,8 @@ from ..source import Source
 
 
 class Package(Model):
+    basepath: Optional[str] = pydantic.Field(default=None, exclude=True)
+
     id: Optional[str] = None
     name: Optional[str] = None
     profile: Optional[str] = None
@@ -28,8 +30,6 @@ class Package(Model):
     keywords: List[str] = []
     image: Optional[str] = None
     created: Optional[str] = None
-
-    basepath: Optional[str] = pydantic.Field(default=None, exclude=True)
 
     def model_post_init(self, _):
         for resource in self.resources:

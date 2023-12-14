@@ -1,0 +1,306 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - identity
+    method: HEAD
+    uri: https://specs.frictionlessdata.io/schemas/csv-dialect.json
+  response:
+    body:
+      string: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Age:
+      - '0'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8358a30b5b6c2150-MAD
+      Cache-Control:
+      - max-age=600
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 14 Dec 2023 18:51:12 GMT
+      Etag:
+      - W/"65685295-f81"
+      Expires:
+      - Thu, 14 Dec 2023 19:01:12 GMT
+      Last-Modified:
+      - Thu, 30 Nov 2023 09:15:01 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=XVGs8wnCsHYRyHUHVOi8oVJvgKPzFGxbE7RROg1I%2Fguuy1Os7rAnCArG9CpExI7uglKlvqDhBHTbKm4NXJkDwM0SaIDxD56u1YuhnbUWIRGlOSsv8PFdpu5AwSCroxM3Ef8sgH0MAMNRQZ5a"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      X-Fastly-Request-ID:
+      - 312ad49a0aaafc4345e48eb5a64ff10eee068f51
+      X-GitHub-Request-Id:
+      - D334:42256:29C4302:2A7F1D0:657B4E9E
+      X-Served-By:
+      - cache-mad2200108-MAD
+      X-Timer:
+      - S1702579873.546953,VS0,VE138
+      alt-svc:
+      - h3=":443"; ma=86400
+      x-proxy-cache:
+      - MISS
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - identity
+    method: GET
+    uri: https://specs.frictionlessdata.io/schemas/csv-dialect.json
+  response:
+    body:
+      string: "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"title\":
+        \"CSV Dialect\",\n  \"description\": \"The CSV dialect descriptor.\",\n  \"type\":
+        [\n    \"string\",\n    \"object\"\n  ],\n  \"required\": [\n    \"delimiter\",\n
+        \   \"doubleQuote\"\n  ],\n  \"properties\": {\n    \"csvddfVersion\": {\n
+        \     \"title\": \"CSV Dialect schema version\",\n      \"description\": \"A
+        number to indicate the schema version of CSV Dialect. Version 1.0 was named
+        CSV Dialect Description Format and used different field names.\",\n      \"type\":
+        \"number\",\n      \"default\": 1.2,\n      \"examples:\": [\n        \"{\\n
+        \ \\\"csvddfVersion\\\": \\\"1.2\\\"\\n}\\n\"\n      ]\n    },\n    \"delimiter\":
+        {\n      \"title\": \"Delimiter\",\n      \"description\": \"A character sequence
+        to use as the field separator.\",\n      \"type\": \"string\",\n      \"default\":
+        \",\",\n      \"examples\": [\n        \"{\\n  \\\"delimiter\\\": \\\",\\\"\\n}\\n\",\n
+        \       \"{\\n  \\\"delimiter\\\": \\\";\\\"\\n}\\n\"\n      ]\n    },\n    \"doubleQuote\":
+        {\n      \"title\": \"Double Quote\",\n      \"description\": \"Specifies
+        the handling of quotes inside fields.\",\n      \"context\": \"If Double Quote
+        is set to true, two consecutive quotes must be interpreted as one.\",\n      \"type\":
+        \"boolean\",\n      \"default\": true,\n      \"examples\": [\n        \"{\\n
+        \ \\\"doubleQuote\\\": true\\n}\\n\"\n      ]\n    },\n    \"lineTerminator\":
+        {\n      \"title\": \"Line Terminator\",\n      \"description\": \"Specifies
+        the character sequence that must be used to terminate rows.\",\n      \"type\":
+        \"string\",\n      \"default\": \"\\r\\n\",\n      \"examples\": [\n        \"{\\n
+        \ \\\"lineTerminator\\\": \\\"\\\\r\\\\n\\\"\\n}\\n\",\n        \"{\\n  \\\"lineTerminator\\\":
+        \\\"\\\\n\\\"\\n}\\n\"\n      ]\n    },\n    \"nullSequence\": {\n      \"title\":
+        \"Null Sequence\",\n      \"description\": \"Specifies the null sequence,
+        for example, `\\\\N`.\",\n      \"type\": \"string\",\n      \"examples\":
+        [\n        \"{\\n  \\\"nullSequence\\\": \\\"\\\\N\\\"\\n}\\n\"\n      ]\n
+        \   },\n    \"quoteChar\": {\n      \"title\": \"Quote Character\",\n      \"description\":
+        \"Specifies a one-character string to use as the quoting character.\",\n      \"type\":
+        \"string\",\n      \"default\": \"\\\"\",\n      \"examples\": [\n        \"{\\n
+        \ \\\"quoteChar\\\": \\\"'\\\"\\n}\\n\"\n      ]\n    },\n    \"escapeChar\":
+        {\n      \"title\": \"Escape Character\",\n      \"description\": \"Specifies
+        a one-character string to use as the escape character.\",\n      \"type\":
+        \"string\",\n      \"examples\": [\n        \"{\\n  \\\"escapeChar\\\": \\\"\\\\\\\\\\\"\\n}\\n\"\n
+        \     ]\n    },\n    \"skipInitialSpace\": {\n      \"title\": \"Skip Initial
+        Space\",\n      \"description\": \"Specifies the interpretation of whitespace
+        immediately following a delimiter. If false, whitespace immediately after
+        a delimiter should be treated as part of the subsequent field.\",\n      \"type\":
+        \"boolean\",\n      \"default\": false,\n      \"examples\": [\n        \"{\\n
+        \ \\\"skipInitialSpace\\\": true\\n}\\n\"\n      ]\n    },\n    \"header\":
+        {\n      \"title\": \"Header\",\n      \"description\": \"Specifies if the
+        file includes a header row, always as the first row in the file.\",\n      \"type\":
+        \"boolean\",\n      \"default\": true,\n      \"examples\": [\n        \"{\\n
+        \ \\\"header\\\": true\\n}\\n\"\n      ]\n    },\n    \"commentChar\": {\n
+        \     \"title\": \"Comment Character\",\n      \"description\": \"Specifies
+        that any row beginning with this one-character string, without preceeding
+        whitespace, causes the entire line to be ignored.\",\n      \"type\": \"string\",\n
+        \     \"examples\": [\n        \"{\\n  \\\"commentChar\\\": \\\"#\\\"\\n}\\n\"\n
+        \     ]\n    },\n    \"caseSensitiveHeader\": {\n      \"title\": \"Case Sensitive
+        Header\",\n      \"description\": \"Specifies if the case of headers is meaningful.\",\n
+        \     \"context\": \"Use of case in source CSV files is not always an intentional
+        decision. For example, should \\\"CAT\\\" and \\\"Cat\\\" be considered to
+        have the same meaning.\",\n      \"type\": \"boolean\",\n      \"default\":
+        false,\n      \"examples\": [\n        \"{\\n  \\\"caseSensitiveHeader\\\":
+        true\\n}\\n\"\n      ]\n    }\n  },\n  \"examples\": [\n    \"{\\n  \\\"dialect\\\":
+        {\\n    \\\"delimiter\\\": \\\";\\\"\\n  }\\n}\\n\",\n    \"{\\n  \\\"dialect\\\":
+        {\\n    \\\"delimiter\\\": \\\"\\\\t\\\",\\n    \\\"quoteChar\\\": \\\"'\\\",\\n
+        \   \\\"commentChar\\\": \\\"#\\\"\\n  }\\n}\\n\"\n  ]\n}"
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Age:
+      - '0'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8358a30d9c4269fa-MAD
+      Cache-Control:
+      - max-age=600
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 14 Dec 2023 18:51:12 GMT
+      Etag:
+      - W/"65685295-f81"
+      Expires:
+      - Thu, 14 Dec 2023 19:01:12 GMT
+      Last-Modified:
+      - Thu, 30 Nov 2023 09:15:01 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=1345S0DtmSVREUxTaXYa9OHTkHiEDM22xBq6zhGsj4V8UMxwsJdx%2BztfEb0maaK3w0Z55zcDyLHWXpswjLxpYUJpbFZA6wknkPUmh9zJenagygNRGv5ewtOMU2kjX%2F8tH34qndfKjTT79khE"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      X-Fastly-Request-ID:
+      - 90870f3284f0d9f337ecf899981b29c26aa99a1a
+      X-GitHub-Request-Id:
+      - D334:42256:29C4302:2A7F1D0:657B4E9E
+      X-Served-By:
+      - cache-mad22027-MAD
+      X-Timer:
+      - S1702579873.911977,VS0,VE1
+      alt-svc:
+      - h3=":443"; ma=86400
+      x-proxy-cache:
+      - MISS
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers: {}
+    method: GET
+    uri: https://specs.frictionlessdata.io/schemas/csv-dialect.json
+  response:
+    body:
+      string: "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"title\":
+        \"CSV Dialect\",\n  \"description\": \"The CSV dialect descriptor.\",\n  \"type\":
+        [\n    \"string\",\n    \"object\"\n  ],\n  \"required\": [\n    \"delimiter\",\n
+        \   \"doubleQuote\"\n  ],\n  \"properties\": {\n    \"csvddfVersion\": {\n
+        \     \"title\": \"CSV Dialect schema version\",\n      \"description\": \"A
+        number to indicate the schema version of CSV Dialect. Version 1.0 was named
+        CSV Dialect Description Format and used different field names.\",\n      \"type\":
+        \"number\",\n      \"default\": 1.2,\n      \"examples:\": [\n        \"{\\n
+        \ \\\"csvddfVersion\\\": \\\"1.2\\\"\\n}\\n\"\n      ]\n    },\n    \"delimiter\":
+        {\n      \"title\": \"Delimiter\",\n      \"description\": \"A character sequence
+        to use as the field separator.\",\n      \"type\": \"string\",\n      \"default\":
+        \",\",\n      \"examples\": [\n        \"{\\n  \\\"delimiter\\\": \\\",\\\"\\n}\\n\",\n
+        \       \"{\\n  \\\"delimiter\\\": \\\";\\\"\\n}\\n\"\n      ]\n    },\n    \"doubleQuote\":
+        {\n      \"title\": \"Double Quote\",\n      \"description\": \"Specifies
+        the handling of quotes inside fields.\",\n      \"context\": \"If Double Quote
+        is set to true, two consecutive quotes must be interpreted as one.\",\n      \"type\":
+        \"boolean\",\n      \"default\": true,\n      \"examples\": [\n        \"{\\n
+        \ \\\"doubleQuote\\\": true\\n}\\n\"\n      ]\n    },\n    \"lineTerminator\":
+        {\n      \"title\": \"Line Terminator\",\n      \"description\": \"Specifies
+        the character sequence that must be used to terminate rows.\",\n      \"type\":
+        \"string\",\n      \"default\": \"\\r\\n\",\n      \"examples\": [\n        \"{\\n
+        \ \\\"lineTerminator\\\": \\\"\\\\r\\\\n\\\"\\n}\\n\",\n        \"{\\n  \\\"lineTerminator\\\":
+        \\\"\\\\n\\\"\\n}\\n\"\n      ]\n    },\n    \"nullSequence\": {\n      \"title\":
+        \"Null Sequence\",\n      \"description\": \"Specifies the null sequence,
+        for example, `\\\\N`.\",\n      \"type\": \"string\",\n      \"examples\":
+        [\n        \"{\\n  \\\"nullSequence\\\": \\\"\\\\N\\\"\\n}\\n\"\n      ]\n
+        \   },\n    \"quoteChar\": {\n      \"title\": \"Quote Character\",\n      \"description\":
+        \"Specifies a one-character string to use as the quoting character.\",\n      \"type\":
+        \"string\",\n      \"default\": \"\\\"\",\n      \"examples\": [\n        \"{\\n
+        \ \\\"quoteChar\\\": \\\"'\\\"\\n}\\n\"\n      ]\n    },\n    \"escapeChar\":
+        {\n      \"title\": \"Escape Character\",\n      \"description\": \"Specifies
+        a one-character string to use as the escape character.\",\n      \"type\":
+        \"string\",\n      \"examples\": [\n        \"{\\n  \\\"escapeChar\\\": \\\"\\\\\\\\\\\"\\n}\\n\"\n
+        \     ]\n    },\n    \"skipInitialSpace\": {\n      \"title\": \"Skip Initial
+        Space\",\n      \"description\": \"Specifies the interpretation of whitespace
+        immediately following a delimiter. If false, whitespace immediately after
+        a delimiter should be treated as part of the subsequent field.\",\n      \"type\":
+        \"boolean\",\n      \"default\": false,\n      \"examples\": [\n        \"{\\n
+        \ \\\"skipInitialSpace\\\": true\\n}\\n\"\n      ]\n    },\n    \"header\":
+        {\n      \"title\": \"Header\",\n      \"description\": \"Specifies if the
+        file includes a header row, always as the first row in the file.\",\n      \"type\":
+        \"boolean\",\n      \"default\": true,\n      \"examples\": [\n        \"{\\n
+        \ \\\"header\\\": true\\n}\\n\"\n      ]\n    },\n    \"commentChar\": {\n
+        \     \"title\": \"Comment Character\",\n      \"description\": \"Specifies
+        that any row beginning with this one-character string, without preceeding
+        whitespace, causes the entire line to be ignored.\",\n      \"type\": \"string\",\n
+        \     \"examples\": [\n        \"{\\n  \\\"commentChar\\\": \\\"#\\\"\\n}\\n\"\n
+        \     ]\n    },\n    \"caseSensitiveHeader\": {\n      \"title\": \"Case Sensitive
+        Header\",\n      \"description\": \"Specifies if the case of headers is meaningful.\",\n
+        \     \"context\": \"Use of case in source CSV files is not always an intentional
+        decision. For example, should \\\"CAT\\\" and \\\"Cat\\\" be considered to
+        have the same meaning.\",\n      \"type\": \"boolean\",\n      \"default\":
+        false,\n      \"examples\": [\n        \"{\\n  \\\"caseSensitiveHeader\\\":
+        true\\n}\\n\"\n      ]\n    }\n  },\n  \"examples\": [\n    \"{\\n  \\\"dialect\\\":
+        {\\n    \\\"delimiter\\\": \\\";\\\"\\n  }\\n}\\n\",\n    \"{\\n  \\\"dialect\\\":
+        {\\n    \\\"delimiter\\\": \\\"\\\\t\\\",\\n    \\\"quoteChar\\\": \\\"'\\\",\\n
+        \   \\\"commentChar\\\": \\\"#\\\"\\n  }\\n}\\n\"\n  ]\n}"
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Age:
+      - '0'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8358a30e2d3069fa-MAD
+      Cache-Control:
+      - max-age=600
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1102'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Thu, 14 Dec 2023 18:51:12 GMT
+      Etag:
+      - W/"65685295-f81"
+      Expires:
+      - Thu, 14 Dec 2023 19:01:12 GMT
+      Last-Modified:
+      - Thu, 30 Nov 2023 09:15:01 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=0BaWALn%2BV6%2FchpIhned8BZb0VE6ZDP3lDSVdz%2BeKONTtiye6LCfuIGsPK9TDu%2FhNYsYLpDosyblbj7wBEzR8Mxk37hRbcs6jpSoV60kXADT7mkr7trPOWYLegcDOgHGQLYBZ%2BKCpSp2h%2F6N4"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      X-Fastly-Request-ID:
+      - ffaac814d2d1d8b850d86286d2ce2c02bdeafbf1
+      X-GitHub-Request-Id:
+      - D334:42256:29C4302:2A7F1D0:657B4E9E
+      X-Served-By:
+      - cache-mad2200117-MAD
+      X-Timer:
+      - S1702579873.990018,VS0,VE2
+      alt-svc:
+      - h3=":443"; ma=86400
+      x-proxy-cache:
+      - MISS
+    status:
+      code: 200
+      message: OK
+version: 1

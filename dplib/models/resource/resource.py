@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, Optional, Union
+from typing import Any, List, Optional, Union
 
 import pydantic
 
@@ -17,10 +17,12 @@ from .hash import Hash
 
 
 class Resource(Model):
+    basepath: Optional[str] = pydantic.Field(default=None, exclude=True)
+
     name: Optional[str] = None
     type: Optional[str] = None
     path: Optional[Union[str, List[str]]] = None
-    data: Optional[types.IDict] = None
+    data: Optional[Any] = None
     profile: Optional[str] = None
     dialect: Optional[Union[Dialect, str]] = None
     schema: Optional[Union[Schema, str]] = None  # type: ignore
@@ -36,16 +38,14 @@ class Resource(Model):
     licenses: List[License] = []
     contributors: List[Contributor] = []
 
-    basepath: Optional[str] = pydantic.Field(default=None, exclude=True)
-
     # Getters
 
-    def get_path(self) -> Optional[str]:
+    def get_fullpath(self) -> Optional[str]:
         if self.path and isinstance(self.path, str):
             return join_basepath(self.path, self.basepath)
 
     def get_source(self) -> Optional[Union[str, types.IDict]]:
-        return self.data or self.get_path()
+        return self.data if self.data is not None else self.get_fullpath()
 
     def get_profile(self) -> Optional[Profile]:
         if self.profile:

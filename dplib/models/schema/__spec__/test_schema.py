@@ -53,8 +53,8 @@ def test_schema_set_proprty_invalid():
 
 
 @pytest.mark.vcr
-def test_schema_with_profile():
-    schema = Schema.from_path("data/schema-with-profile.json")
+def test_schema_profile():
+    schema = Schema.from_path("data/schema-full.json")
     profile = schema.get_profile()
     assert profile
     assert profile.jsonSchema.get("title") == "Table Schema"

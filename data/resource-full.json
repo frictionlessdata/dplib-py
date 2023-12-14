@@ -1,0 +1,15 @@
+{
+  "profile": "https://specs.frictionlessdata.io/schemas/tabular-data-resource.json",
+  "name": "name",
+  "type": "table",
+  "path": "table.csv",
+  "dialect": "dialect.json",
+  "schema": "schema.json",
+  "title": "title",
+  "description": "description",
+  "format": "csv",
+  "mediatype": "text/csv",
+  "encoding": "utf-8",
+  "bytes": 100,
+  "hash": "hash"
+}
