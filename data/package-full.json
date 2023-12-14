@@ -1,0 +1,41 @@
+{
+  "profile": "https://specs.frictionlessdata.io/schemas/data-package.json",
+  "id": "id",
+  "name": "name",
+  "title": "title",
+  "description": "description",
+  "keywords": ["keyword1", "keyword2"],
+  "version": "1.0",
+  "homepage": "http://example.com",
+  "image": "http://example.com/image.png",
+  "created": "2017-01-01T00:00:00Z",
+  "licenses": [
+    {
+      "name": "name",
+      "path": "path",
+      "title": "title"
+    }
+  ],
+  "sources": [
+    {
+      "path": "path",
+      "title": "title",
+      "email": "email"
+    }
+  ],
+  "contributors": [
+    {
+      "title": "title",
+      "path": "path",
+      "email": "email"
+    }
+  ],
+  "resources": [
+    {
+      "name": "name",
+      "path": "table.csv",
+      "dialect": "dialect.json",
+      "schema": "schema.json"
+    }
+  ]
+}
