@@ -5,15 +5,13 @@ from dplib.models import Dialect
 
 
 def test_dialect_from_path():
-    dialect = Dialect.from_path("dplib/models/dialect/__spec__/fixtures/dialect.json")
+    dialect = Dialect.from_path("data/dialect.json")
     assert dialect.delimiter == ";"
     assert dialect.get_delimiter() == ";"
 
 
 def test_dialect_from_path_full():
-    dialect = Dialect.from_path(
-        "dplib/models/dialect/__spec__/fixtures/dialect-full.json"
-    )
+    dialect = Dialect.from_path("data/dialect-full.json")
     assert dialect.delimiter == ";"
     assert dialect.lineTerminator == "\r\n"
     assert dialect.quoteChar == "'"
@@ -60,9 +58,7 @@ def test_dialect_set_proprty_invalid():
 
 @pytest.mark.vcr
 def test_dialect_with_profile():
-    dialect = Dialect.from_path(
-        "dplib/models/dialect/__spec__/fixtures/dialect-with-profile.json"
-    )
+    dialect = Dialect.from_path("data/dialect-with-profile.json")
     profile = dialect.get_profile()
     assert profile
     assert profile.jsonSchema.get("title") == "CSV Dialect"
