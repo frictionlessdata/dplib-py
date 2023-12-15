@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 import pydantic
 
@@ -23,7 +23,7 @@ class ZenodoPackage(Model):
     metadata: ZenodoMetadata = pydantic.Field(default_factory=ZenodoMetadata)
 
     id: Optional[str] = None
-    pids: List[ZenodoPid] = []
+    pids: Dict[str, ZenodoPid] = {}
     created: Optional[str] = None
     updated: Optional[str] = None
     links: Dict[str, str] = {}

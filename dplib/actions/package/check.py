@@ -10,7 +10,7 @@ from ...models import Package
 from ..metadata.check import check_metadata
 
 
-def check_package(package: Union[str, Package, types.IDict]) -> List[MetadataError]:
+def check_package(package: Union[str, types.IDict, Package]) -> List[MetadataError]:
     basepath = None
     if isinstance(package, str):
         basepath = infer_basepath(package)
