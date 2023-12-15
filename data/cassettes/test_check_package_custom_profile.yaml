@@ -1,0 +1,130 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - identity
+    method: HEAD
+    uri: https://raw.githubusercontent.com/frictionlessdata/frictionless-py/main/data/profiles/required.json
+  response:
+    body:
+      string: ''
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '59'
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cross-Origin-Resource-Policy:
+      - cross-origin
+      Date:
+      - Fri, 15 Dec 2023 11:15:38 GMT
+      Etag:
+      - '"e309348b9fda2a2411f73d59bb7ea922b248e8a5bd6d00b56663b918109a86e4"'
+      Expires:
+      - Fri, 15 Dec 2023 11:20:38 GMT
+      Source-Age:
+      - '0'
+      Strict-Transport-Security:
+      - max-age=31536000
+      Vary:
+      - Authorization,Accept-Encoding,Origin
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Fastly-Request-ID:
+      - fda866e38ab398b43f45121d96c999ed06a92159
+      X-Frame-Options:
+      - deny
+      X-GitHub-Request-Id:
+      - 3ECE:82FD:1099F0D:11434BA:657C3558
+      X-Served-By:
+      - cache-lis1490038-LIS
+      X-Timer:
+      - S1702638938.413963,VS0,VE196
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Range:
+      - bytes=0-58
+    method: GET
+    uri: https://raw.githubusercontent.com/frictionlessdata/frictionless-py/main/data/profiles/required.json
+  response:
+    body:
+      string: "{\n  \"type\": \"object\",\n  \"required\": [\"requiredProperty\"]\n}\n"
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '59'
+      Content-Range:
+      - bytes 0-58/68
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cross-Origin-Resource-Policy:
+      - cross-origin
+      Date:
+      - Fri, 15 Dec 2023 11:15:38 GMT
+      Etag:
+      - W/"bd8f97995dbfcb8bbe0ab577f49c0416c0ffe916af0a1a1e0269ebe8beeb5413"
+      Expires:
+      - Fri, 15 Dec 2023 11:20:38 GMT
+      Source-Age:
+      - '208'
+      Strict-Transport-Security:
+      - max-age=31536000
+      Vary:
+      - Authorization,Accept-Encoding,Origin
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Fastly-Request-ID:
+      - d47a9db29070888c9b917f6d893d729fd2f22819
+      X-Frame-Options:
+      - deny
+      X-GitHub-Request-Id:
+      - 3ABC:0DDE:82F8FB:891C2B:657C3488
+      X-Served-By:
+      - cache-lis1490038-LIS
+      X-Timer:
+      - S1702638939.809186,VS0,VE0
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 206
+      message: Partial Content
+version: 1
