@@ -1,1 +1,1 @@
-from .package import DatasetPackage
+from .package import DatacitePackage
