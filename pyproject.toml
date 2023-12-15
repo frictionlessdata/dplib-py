@@ -78,6 +78,9 @@ dp = "dplib.plugins.cli.__main__:program"
 [tool.hatch.version]
 path = "dplib/settings.py"
 
+[tool.hatch.build.targets.wheel]
+packages = ["dplib"]
+
 [tool.hatch.envs.default]
 python = "3.10"
 dependencies = [
