@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Dict
+from typing import Dict, List
 
 import polars as pl
 
@@ -12,6 +12,14 @@ from .field import PolarsField
 
 class PolarsSchema(Model, arbitrary_types_allowed=True):
     df: pl.DataFrame
+
+    # Getters
+
+    def get_field_names(self) -> List[str]:
+        return list(self.df.schema.keys())
+
+    def get_field_types(self) -> List[pl.PolarsDataType]:
+        return list(self.df.schema.values())
 
     # Converters
 

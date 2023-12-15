@@ -48,7 +48,7 @@ class PolarsField(Model, arbitrary_types_allowed=True):
             raise Error(f"Field name is required to convert to polars: {field}")
 
         # Type
-        dtype = pl.Unknown
+        dtype = pl.Utf8
         if field.type == "array":
             dtype = pl.List
         elif field.type == "boolean":
@@ -62,7 +62,7 @@ class PolarsField(Model, arbitrary_types_allowed=True):
         elif field.type == "geojson":
             dtype = pl.Struct
         elif field.type == "geopoint":
-            dtype = pl.Array
+            dtype = pl.List
         elif field.type == "integer":
             dtype = pl.Int64
         elif field.type == "number":
@@ -76,7 +76,7 @@ class PolarsField(Model, arbitrary_types_allowed=True):
         elif field.type == "year":
             dtype = pl.Int8
         elif field.type == "yearmonth":
-            dtype = pl.Array
+            dtype = pl.List
 
         return PolarsField(name=field.name, dtype=dtype)
 
