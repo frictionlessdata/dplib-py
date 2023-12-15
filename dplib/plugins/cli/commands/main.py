@@ -13,7 +13,7 @@ program.add_typer(schema.program)
 
 @program.callback()
 def main(
-    debug: Debug = False,
+    debug: Debug = None,
 ):
     """
     Python implementation of the Data Package standard and

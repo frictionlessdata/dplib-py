@@ -40,7 +40,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-cli = ["typer[all]>=0.5", "rich>=10.0"]
+cli = ["typer[all]>=0.9", "rich>=10.0"]
 dcat = ["rdflib>=6.0"]
 pandas = ["pandas>=1.0", "pandas-stubs>=1.0", "numpy>=1.0", "isodate>=0.6"]
 polars = ["polars-lts-cpu>=0.10"]
