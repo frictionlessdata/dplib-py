@@ -23,7 +23,7 @@ def check_metadata(
     # Custom profile
     custom_profile = metadata.get("profile")
     if custom_profile and is_remote_path(custom_profile):
-        custom_profile = Profile.from_dict(custom_profile)
+        custom_profile = Profile.from_path(custom_profile)
         errors += check_metadata_against_jsonschema(metadata, custom_profile.jsonSchema)
 
     return errors

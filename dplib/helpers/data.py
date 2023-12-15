@@ -33,8 +33,7 @@ def load_data(text: str, *, format: str) -> types.IDict:
             return json.loads(text)
         elif format == "yaml":
             yaml = import_module("yaml")
-            data = yaml.load(text)
-            return data
+            return yaml.safe_load(text)
     except Exception:
         raise Error(f'Cannot load "{format}" data from text: {text}')
     raise Error(f"Cannot load data from text with format: {format}")
@@ -61,6 +60,4 @@ def clean_data(data: types.IDict):
                 if isinstance(item, dict):
                     clean_data(item)  # type: ignore
         if value is None or value == [] or value == {}:
-            data.pop(key)
-        elif isinstance(value, list) and not any(value):  # type: ignore
             data.pop(key)

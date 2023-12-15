@@ -1,0 +1,1980 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - identity
+    method: HEAD
+    uri: https://specs.frictionlessdata.io/schemas/table-schema.json
+  response:
+    body:
+      string: ''
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Age:
+      - '0'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 835d9f0da98e2fbf-MAD
+      Cache-Control:
+      - max-age=600
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 15 Dec 2023 09:22:18 GMT
+      Etag:
+      - W/"65685295-10ab4"
+      Expires:
+      - Fri, 15 Dec 2023 09:32:17 GMT
+      Last-Modified:
+      - Thu, 30 Nov 2023 09:15:01 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Gd1cz11Zsh3HffRqEA9qPvVOV6aKLCqHAcu0xQLqSrwUjObc4guHhfmXNs0A5jBquANL59a0aGhAb2YWR9NWxDi%2BMzYGPtjXRZ%2FyhBdk7OIClymHqgdgGElIHuiRSihjR0E4V7kPpCuaYL6Q"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      X-Fastly-Request-ID:
+      - a7986c43525ad767e1c4c1e9131d393bc5af35a2
+      X-GitHub-Request-Id:
+      - C9CC:26A70F:37AA8EC:38A408F:657C1AC9
+      X-Served-By:
+      - cache-mad22034-MAD
+      X-Timer:
+      - S1702632138.878207,VS0,VE136
+      alt-svc:
+      - h3=":443"; ma=86400
+      x-proxy-cache:
+      - MISS
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - identity
+    method: GET
+    uri: https://specs.frictionlessdata.io/schemas/table-schema.json
+  response:
+    body:
+      string: "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"title\":
+        \"Table Schema\",\n  \"description\": \"A Table Schema for this resource,
+        compliant with the [Table Schema](/tableschema/) specification.\",\n  \"type\":
+        [\n    \"string\",\n    \"object\"\n  ],\n  \"required\": [\n    \"fields\"\n
+        \ ],\n  \"properties\": {\n    \"fields\": {\n      \"type\": \"array\",\n
+        \     \"minItems\": 1,\n      \"items\": {\n        \"title\": \"Table Schema
+        Field\",\n        \"type\": \"object\",\n        \"oneOf\": [\n          {\n
+        \           \"type\": \"object\",\n            \"title\": \"String Field\",\n
+        \           \"description\": \"The field contains strings, that is, sequences
+        of characters.\",\n            \"required\": [\n              \"name\"\n            ],\n
+        \           \"properties\": {\n              \"name\": {\n                \"title\":
+        \"Name\",\n                \"description\": \"A name for this field.\",\n
+        \               \"type\": \"string\"\n              },\n              \"title\":
+        {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `string`.\",\n                \"enum\":
+        [\n                  \"string\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"The format keyword options for `string`
+        are `default`, `email`, `uri`, `binary`, and `uuid`.\",\n                \"context\":
+        \"The following `format` options are supported:\\n  * **default**: any valid
+        string.\\n  * **email**: A valid email address.\\n  * **uri**: A valid URI.\\n
+        \ * **binary**: A base64 encoded string representing binary data.\\n  * **uuid**:
+        A string that is a uuid.\",\n                \"enum\": [\n                  \"default\",\n
+        \                 \"email\",\n                  \"uri\",\n                  \"binary\",\n
+        \                 \"uuid\"\n                ],\n                \"default\":
+        \"default\"\n              },\n              \"constraints\": {\n                \"title\":
+        \"Constraints\",\n                \"description\": \"The following constraints
+        are supported for `string` fields.\",\n                \"type\": \"object\",\n
+        \               \"properties\": {\n                  \"required\": {\n                    \"type\":
+        \"boolean\",\n                    \"description\": \"Indicates whether a property
+        must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"pattern\":
+        {\n                    \"type\": \"string\",\n                    \"description\":
+        \"A regular expression pattern to test each value of the property against,
+        where a truthy response indicates validity.\",\n                    \"context\":
+        \"Regular expressions `SHOULD` conform to the [XML Schema regular expression
+        syntax](http://www.w3.org/TR/xmlschema-2/#regexs).\"\n                  },\n
+        \                 \"enum\": {\n                    \"type\": \"array\",\n
+        \                   \"minItems\": 1,\n                    \"uniqueItems\":
+        true,\n                    \"items\": {\n                      \"type\": \"string\"\n
+        \                   }\n                  },\n                  \"minLength\":
+        {\n                    \"type\": \"integer\",\n                    \"description\":
+        \"An integer that specifies the minimum length of a value.\"\n                  },\n
+        \                 \"maxLength\": {\n                    \"type\": \"integer\",\n
+        \                   \"description\": \"An integer that specifies the maximum
+        length of a value.\"\n                  }\n                }\n              },\n
+        \             \"rdfType\": {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"name\\\",\\n  \\\"type\\\": \\\"string\\\"\\n}\\n\",\n
+        \             \"{\\n  \\\"name\\\": \\\"name\\\",\\n  \\\"type\\\": \\\"string\\\",\\n
+        \ \\\"format\\\": \\\"email\\\"\\n}\\n\",\n              \"{\\n  \\\"name\\\":
+        \\\"name\\\",\\n  \\\"type\\\": \\\"string\\\",\\n  \\\"constraints\\\": {\\n
+        \   \\\"minLength\\\": 3,\\n    \\\"maxLength\\\": 35\\n  }\\n}\\n\"\n            ]\n
+        \         },\n          {\n            \"type\": \"object\",\n            \"title\":
+        \"Number Field\",\n            \"description\": \"The field contains numbers
+        of any kind including decimals.\",\n            \"context\": \"The lexical
+        formatting follows that of decimal in [XMLSchema](https://www.w3.org/TR/xmlschema-2/#decimal):
+        a non-empty finite-length sequence of decimal digits separated by a period
+        as a decimal indicator. An optional leading sign is allowed. If the sign is
+        omitted, '+' is assumed. Leading and trailing zeroes are optional. If the
+        fractional part is zero, the period and following zero(es) can be omitted.
+        For example: '-1.23', '12678967.543233', '+100000.00', '210'.\\n\\nThe following
+        special string values are permitted (case does not need to be respected):\\n
+        \ - NaN: not a number\\n  - INF: positive infinity\\n  - -INF: negative infinity\\n\\nA
+        number `MAY` also have a trailing:\\n  - exponent: this `MUST` consist of
+        an E followed by an optional + or - sign followed by one or more decimal digits
+        (0-9)\\n  - percentage: the percentage sign: `%`. In conversion percentages
+        should be divided by 100.\\n\\nIf both exponent and percentages are present
+        the percentage `MUST` follow the exponent e.g. '53E10%' (equals 5.3).\",\n
+        \           \"required\": [\n              \"name\",\n              \"type\"\n
+        \           ],\n            \"properties\": {\n              \"name\": {\n
+        \               \"title\": \"Name\",\n                \"description\": \"A
+        name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `number`.\",\n                \"enum\":
+        [\n                  \"number\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"There are no format keyword options
+        for `number`: only `default` is allowed.\",\n                \"enum\": [\n
+        \                 \"default\"\n                ],\n                \"default\":
+        \"default\"\n              },\n              \"bareNumber\": {\n                \"type\":
+        \"boolean\",\n                \"title\": \"bareNumber\",\n                \"description\":
+        \"a boolean field with a default of `true`. If `true` the physical contents
+        of this field must follow the formatting constraints already set out. If `false`
+        the contents of this field may contain leading and/or trailing non-numeric
+        characters (which implementors MUST therefore strip). The purpose of `bareNumber`
+        is to allow publishers to publish numeric data that contains trailing characters
+        such as percentages e.g. `95%` or leading characters such as currencies e.g.
+        `\u20AC95` or `EUR 95`. Note that it is entirely up to implementors what,
+        if anything, they do with stripped text.\",\n                \"default\":
+        true\n              },\n              \"decimalChar\": {\n                \"type\":
+        \"string\",\n                \"description\": \"A string whose value is used
+        to represent a decimal point within the number. The default value is `.`.\"\n
+        \             },\n              \"groupChar\": {\n                \"type\":
+        \"string\",\n                \"description\": \"A string whose value is used
+        to group digits within the number. The default value is `null`. A common value
+        is `,` e.g. '100,000'.\"\n              },\n              \"constraints\":
+        {\n                \"title\": \"Constraints\",\n                \"description\":
+        \"The following constraints are supported for `number` fields.\",\n                \"type\":
+        \"object\",\n                \"properties\": {\n                  \"required\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"Indicates whether a property must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"oneOf\": [\n                      {\n                        \"type\":
+        \"array\",\n                        \"minItems\": 1,\n                        \"uniqueItems\":
+        true,\n                        \"items\": {\n                          \"type\":
+        \"string\"\n                        }\n                      },\n                      {\n
+        \                       \"type\": \"array\",\n                        \"minItems\":
+        1,\n                        \"uniqueItems\": true,\n                        \"items\":
+        {\n                          \"type\": \"number\"\n                        }\n
+        \                     }\n                    ]\n                  },\n                  \"minimum\":
+        {\n                    \"oneOf\": [\n                      {\n                        \"type\":
+        \"string\"\n                      },\n                      {\n                        \"type\":
+        \"number\"\n                      }\n                    ]\n                  },\n
+        \                 \"maximum\": {\n                    \"oneOf\": [\n                      {\n
+        \                       \"type\": \"string\"\n                      },\n                      {\n
+        \                       \"type\": \"number\"\n                      }\n                    ]\n
+        \                 }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"field-name\\\",\\n  \\\"type\\\":
+        \\\"number\\\"\\n}\\n\",\n              \"{\\n  \\\"name\\\": \\\"field-name\\\",\\n
+        \ \\\"type\\\": \\\"number\\\",\\n  \\\"constraints\\\": {\\n    \\\"enum\\\":
+        [ \\\"1.00\\\", \\\"1.50\\\", \\\"2.00\\\" ]\\n  }\\n}\\n\"\n            ]\n
+        \         },\n          {\n            \"type\": \"object\",\n            \"title\":
+        \"Integer Field\",\n            \"description\": \"The field contains integers
+        - that is whole numbers.\",\n            \"context\": \"Integer values are
+        indicated in the standard way for any valid integer.\",\n            \"required\":
+        [\n              \"name\",\n              \"type\"\n            ],\n            \"properties\":
+        {\n              \"name\": {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `integer`.\",\n                \"enum\":
+        [\n                  \"integer\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"There are no format keyword options
+        for `integer`: only `default` is allowed.\",\n                \"enum\": [\n
+        \                 \"default\"\n                ],\n                \"default\":
+        \"default\"\n              },\n              \"bareNumber\": {\n                \"type\":
+        \"boolean\",\n                \"title\": \"bareNumber\",\n                \"description\":
+        \"a boolean field with a default of `true`. If `true` the physical contents
+        of this field must follow the formatting constraints already set out. If `false`
+        the contents of this field may contain leading and/or trailing non-numeric
+        characters (which implementors MUST therefore strip). The purpose of `bareNumber`
+        is to allow publishers to publish numeric data that contains trailing characters
+        such as percentages e.g. `95%` or leading characters such as currencies e.g.
+        `\u20AC95` or `EUR 95`. Note that it is entirely up to implementors what,
+        if anything, they do with stripped text.\",\n                \"default\":
+        true\n              },\n              \"constraints\": {\n                \"title\":
+        \"Constraints\",\n                \"description\": \"The following constraints
+        are supported for `integer` fields.\",\n                \"type\": \"object\",\n
+        \               \"properties\": {\n                  \"required\": {\n                    \"type\":
+        \"boolean\",\n                    \"description\": \"Indicates whether a property
+        must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"oneOf\": [\n                      {\n                        \"type\":
+        \"array\",\n                        \"minItems\": 1,\n                        \"uniqueItems\":
+        true,\n                        \"items\": {\n                          \"type\":
+        \"string\"\n                        }\n                      },\n                      {\n
+        \                       \"type\": \"array\",\n                        \"minItems\":
+        1,\n                        \"uniqueItems\": true,\n                        \"items\":
+        {\n                          \"type\": \"integer\"\n                        }\n
+        \                     }\n                    ]\n                  },\n                  \"minimum\":
+        {\n                    \"oneOf\": [\n                      {\n                        \"type\":
+        \"string\"\n                      },\n                      {\n                        \"type\":
+        \"integer\"\n                      }\n                    ]\n                  },\n
+        \                 \"maximum\": {\n                    \"oneOf\": [\n                      {\n
+        \                       \"type\": \"string\"\n                      },\n                      {\n
+        \                       \"type\": \"integer\"\n                      }\n                    ]\n
+        \                 }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"age\\\",\\n  \\\"type\\\": \\\"integer\\\",\\n
+        \ \\\"constraints\\\": {\\n    \\\"unique\\\": true,\\n    \\\"minimum\\\":
+        100,\\n    \\\"maximum\\\": 9999\\n  }\\n}\\n\"\n            ]\n          },\n
+        \         {\n            \"type\": \"object\",\n            \"title\": \"Date
+        Field\",\n            \"description\": \"The field contains temporal date
+        values.\",\n            \"required\": [\n              \"name\",\n              \"type\"\n
+        \           ],\n            \"properties\": {\n              \"name\": {\n
+        \               \"title\": \"Name\",\n                \"description\": \"A
+        name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `date`.\",\n                \"enum\":
+        [\n                  \"date\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"The format keyword options for `date`
+        are `default`, `any`, and `{PATTERN}`.\",\n                \"context\": \"The
+        following `format` options are supported:\\n  * **default**: An ISO8601 format
+        string of YYYY-MM-DD.\\n  * **any**: Any parsable representation of a date.
+        The implementing library can attempt to parse the datetime via a range of
+        strategies.\\n  * **{PATTERN}**: The value can be parsed according to `{PATTERN}`,
+        which `MUST` follow the date formatting syntax of C / Python [strftime](http://strftime.org/).\",\n
+        \               \"default\": \"default\"\n              },\n              \"constraints\":
+        {\n                \"title\": \"Constraints\",\n                \"description\":
+        \"The following constraints are supported for `date` fields.\",\n                \"type\":
+        \"object\",\n                \"properties\": {\n                  \"required\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"Indicates whether a property must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"type\": \"array\",\n                    \"minItems\":
+        1,\n                    \"uniqueItems\": true,\n                    \"items\":
+        {\n                      \"type\": \"string\"\n                    }\n                  },\n
+        \                 \"minimum\": {\n                    \"type\": \"string\"\n
+        \                 },\n                  \"maximum\": {\n                    \"type\":
+        \"string\"\n                  }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"date_of_birth\\\",\\n  \\\"type\\\":
+        \\\"date\\\"\\n}\\n\",\n              \"{\\n  \\\"name\\\": \\\"date_of_birth\\\",\\n
+        \ \\\"type\\\": \\\"date\\\",\\n  \\\"constraints\\\": {\\n    \\\"minimum\\\":
+        \\\"01-01-1900\\\"\\n  }\\n}\\n\",\n              \"{\\n  \\\"name\\\": \\\"date_of_birth\\\",\\n
+        \ \\\"type\\\": \\\"date\\\",\\n  \\\"format\\\": \\\"MM-DD-YYYY\\\"\\n}\\n\"\n
+        \           ]\n          },\n          {\n            \"type\": \"object\",\n
+        \           \"title\": \"Time Field\",\n            \"description\": \"The
+        field contains temporal time values.\",\n            \"required\": [\n              \"name\",\n
+        \             \"type\"\n            ],\n            \"properties\": {\n              \"name\":
+        {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `time`.\",\n                \"enum\":
+        [\n                  \"time\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"The format keyword options for `time`
+        are `default`, `any`, and `{PATTERN}`.\",\n                \"context\": \"The
+        following `format` options are supported:\\n  * **default**: An ISO8601 format
+        string for time.\\n  * **any**: Any parsable representation of a date. The
+        implementing library can attempt to parse the datetime via a range of strategies.\\n
+        \ * **{PATTERN}**: The value can be parsed according to `{PATTERN}`, which
+        `MUST` follow the date formatting syntax of C / Python [strftime](http://strftime.org/).\",\n
+        \               \"default\": \"default\"\n              },\n              \"constraints\":
+        {\n                \"title\": \"Constraints\",\n                \"description\":
+        \"The following constraints are supported for `time` fields.\",\n                \"type\":
+        \"object\",\n                \"properties\": {\n                  \"required\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"Indicates whether a property must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"type\": \"array\",\n                    \"minItems\":
+        1,\n                    \"uniqueItems\": true,\n                    \"items\":
+        {\n                      \"type\": \"string\"\n                    }\n                  },\n
+        \                 \"minimum\": {\n                    \"type\": \"string\"\n
+        \                 },\n                  \"maximum\": {\n                    \"type\":
+        \"string\"\n                  }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"appointment_start\\\",\\n  \\\"type\\\":
+        \\\"time\\\"\\n}\\n\",\n              \"{\\n  \\\"name\\\": \\\"appointment_start\\\",\\n
+        \ \\\"type\\\": \\\"time\\\",\\n  \\\"format\\\": \\\"any\\\"\\n}\\n\"\n            ]\n
+        \         },\n          {\n            \"type\": \"object\",\n            \"title\":
+        \"Date Time Field\",\n            \"description\": \"The field contains temporal
+        datetime values.\",\n            \"required\": [\n              \"name\",\n
+        \             \"type\"\n            ],\n            \"properties\": {\n              \"name\":
+        {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `datetime`.\",\n                \"enum\":
+        [\n                  \"datetime\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"The format keyword options for `datetime`
+        are `default`, `any`, and `{PATTERN}`.\",\n                \"context\": \"The
+        following `format` options are supported:\\n  * **default**: An ISO8601 format
+        string for datetime.\\n  * **any**: Any parsable representation of a date.
+        The implementing library can attempt to parse the datetime via a range of
+        strategies.\\n  * **{PATTERN}**: The value can be parsed according to `{PATTERN}`,
+        which `MUST` follow the date formatting syntax of C / Python [strftime](http://strftime.org/).\",\n
+        \               \"default\": \"default\"\n              },\n              \"constraints\":
+        {\n                \"title\": \"Constraints\",\n                \"description\":
+        \"The following constraints are supported for `datetime` fields.\",\n                \"type\":
+        \"object\",\n                \"properties\": {\n                  \"required\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"Indicates whether a property must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"type\": \"array\",\n                    \"minItems\":
+        1,\n                    \"uniqueItems\": true,\n                    \"items\":
+        {\n                      \"type\": \"string\"\n                    }\n                  },\n
+        \                 \"minimum\": {\n                    \"type\": \"string\"\n
+        \                 },\n                  \"maximum\": {\n                    \"type\":
+        \"string\"\n                  }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"timestamp\\\",\\n  \\\"type\\\":
+        \\\"datetime\\\"\\n}\\n\",\n              \"{\\n  \\\"name\\\": \\\"timestamp\\\",\\n
+        \ \\\"type\\\": \\\"datetime\\\",\\n  \\\"format\\\": \\\"default\\\"\\n}\\n\"\n
+        \           ]\n          },\n          {\n            \"type\": \"object\",\n
+        \           \"title\": \"Year Field\",\n            \"description\": \"A calendar
+        year, being an integer with 4 digits. Equivalent to [gYear in XML Schema](https://www.w3.org/TR/xmlschema-2/#gYear)\",\n
+        \           \"required\": [\n              \"name\",\n              \"type\"\n
+        \           ],\n            \"properties\": {\n              \"name\": {\n
+        \               \"title\": \"Name\",\n                \"description\": \"A
+        name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `year`.\",\n                \"enum\":
+        [\n                  \"year\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"There are no format keyword options
+        for `year`: only `default` is allowed.\",\n                \"enum\": [\n                  \"default\"\n
+        \               ],\n                \"default\": \"default\"\n              },\n
+        \             \"constraints\": {\n                \"title\": \"Constraints\",\n
+        \               \"description\": \"The following constraints are supported
+        for `year` fields.\",\n                \"type\": \"object\",\n                \"properties\":
+        {\n                  \"required\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"Indicates whether a property must have
+        a value for each instance.\",\n                    \"context\": \"An empty
+        string is considered to be a missing value.\"\n                  },\n                  \"unique\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"When `true`, each value for the property `MUST` be unique.\"\n                  },\n
+        \                 \"enum\": {\n                    \"oneOf\": [\n                      {\n
+        \                       \"type\": \"array\",\n                        \"minItems\":
+        1,\n                        \"uniqueItems\": true,\n                        \"items\":
+        {\n                          \"type\": \"string\"\n                        }\n
+        \                     },\n                      {\n                        \"type\":
+        \"array\",\n                        \"minItems\": 1,\n                        \"uniqueItems\":
+        true,\n                        \"items\": {\n                          \"type\":
+        \"integer\"\n                        }\n                      }\n                    ]\n
+        \                 },\n                  \"minimum\": {\n                    \"oneOf\":
+        [\n                      {\n                        \"type\": \"string\"\n
+        \                     },\n                      {\n                        \"type\":
+        \"integer\"\n                      }\n                    ]\n                  },\n
+        \                 \"maximum\": {\n                    \"oneOf\": [\n                      {\n
+        \                       \"type\": \"string\"\n                      },\n                      {\n
+        \                       \"type\": \"integer\"\n                      }\n                    ]\n
+        \                 }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"year\\\",\\n  \\\"type\\\": \\\"year\\\"\\n}\\n\",\n
+        \             \"{\\n  \\\"name\\\": \\\"year\\\",\\n  \\\"type\\\": \\\"year\\\",\\n
+        \ \\\"constraints\\\": {\\n    \\\"minimum\\\": 1970,\\n    \\\"maximum\\\":
+        2003\\n  }\\n}\\n\"\n            ]\n          },\n          {\n            \"type\":
+        \"object\",\n            \"title\": \"Year Month Field\",\n            \"description\":
+        \"A calendar year month, being an integer with 1 or 2 digits. Equivalent to
+        [gYearMonth in XML Schema](https://www.w3.org/TR/xmlschema-2/#gYearMonth)\",\n
+        \           \"required\": [\n              \"name\",\n              \"type\"\n
+        \           ],\n            \"properties\": {\n              \"name\": {\n
+        \               \"title\": \"Name\",\n                \"description\": \"A
+        name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `yearmonth`.\",\n                \"enum\":
+        [\n                  \"yearmonth\"\n                ]\n              },\n
+        \             \"format\": {\n                \"description\": \"There are
+        no format keyword options for `yearmonth`: only `default` is allowed.\",\n
+        \               \"enum\": [\n                  \"default\"\n                ],\n
+        \               \"default\": \"default\"\n              },\n              \"constraints\":
+        {\n                \"title\": \"Constraints\",\n                \"description\":
+        \"The following constraints are supported for `yearmonth` fields.\",\n                \"type\":
+        \"object\",\n                \"properties\": {\n                  \"required\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"Indicates whether a property must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"type\": \"array\",\n                    \"minItems\":
+        1,\n                    \"uniqueItems\": true,\n                    \"items\":
+        {\n                      \"type\": \"string\"\n                    }\n                  },\n
+        \                 \"minimum\": {\n                    \"type\": \"string\"\n
+        \                 },\n                  \"maximum\": {\n                    \"type\":
+        \"string\"\n                  }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"month\\\",\\n  \\\"type\\\": \\\"yearmonth\\\"\\n}\\n\",\n
+        \             \"{\\n  \\\"name\\\": \\\"month\\\",\\n  \\\"type\\\": \\\"yearmonth\\\",\\n
+        \ \\\"constraints\\\": {\\n    \\\"minimum\\\": 1,\\n    \\\"maximum\\\":
+        6\\n  }\\n}\\n\"\n            ]\n          },\n          {\n            \"type\":
+        \"object\",\n            \"title\": \"Boolean Field\",\n            \"description\":
+        \"The field contains boolean (true/false) data.\",\n            \"required\":
+        [\n              \"name\",\n              \"type\"\n            ],\n            \"properties\":
+        {\n              \"name\": {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `boolean`.\",\n                \"enum\":
+        [\n                  \"boolean\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"There are no format keyword options
+        for `boolean`: only `default` is allowed.\",\n                \"enum\": [\n
+        \                 \"default\"\n                ],\n                \"default\":
+        \"default\"\n              },\n              \"trueValues\": {\n                \"type\":
+        \"array\",\n                \"minItems\": 1,\n                \"items\": {\n
+        \                 \"type\": \"string\"\n                },\n                \"default\":
+        [\n                  \"true\",\n                  \"True\",\n                  \"TRUE\",\n
+        \                 \"1\"\n                ]\n              },\n              \"falseValues\":
+        {\n                \"type\": \"array\",\n                \"minItems\": 1,\n
+        \               \"items\": {\n                  \"type\": \"string\"\n                },\n
+        \               \"default\": [\n                  \"false\",\n                  \"False\",\n
+        \                 \"FALSE\",\n                  \"0\"\n                ]\n
+        \             },\n              \"constraints\": {\n                \"title\":
+        \"Constraints\",\n                \"description\": \"The following constraints
+        are supported for `boolean` fields.\",\n                \"type\": \"object\",\n
+        \               \"properties\": {\n                  \"required\": {\n                    \"type\":
+        \"boolean\",\n                    \"description\": \"Indicates whether a property
+        must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"enum\": {\n                    \"type\": \"array\",\n
+        \                   \"minItems\": 1,\n                    \"uniqueItems\":
+        true,\n                    \"items\": {\n                      \"type\": \"boolean\"\n
+        \                   }\n                  }\n                }\n              },\n
+        \             \"rdfType\": {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"registered\\\",\\n  \\\"type\\\":
+        \\\"boolean\\\"\\n}\\n\"\n            ]\n          },\n          {\n            \"type\":
+        \"object\",\n            \"title\": \"Object Field\",\n            \"description\":
+        \"The field contains data which can be parsed as a valid JSON object.\",\n
+        \           \"required\": [\n              \"name\",\n              \"type\"\n
+        \           ],\n            \"properties\": {\n              \"name\": {\n
+        \               \"title\": \"Name\",\n                \"description\": \"A
+        name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `object`.\",\n                \"enum\":
+        [\n                  \"object\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"There are no format keyword options
+        for `object`: only `default` is allowed.\",\n                \"enum\": [\n
+        \                 \"default\"\n                ],\n                \"default\":
+        \"default\"\n              },\n              \"constraints\": {\n                \"title\":
+        \"Constraints\",\n                \"description\": \"The following constraints
+        apply for `object` fields.\",\n                \"type\": \"object\",\n                \"properties\":
+        {\n                  \"required\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"Indicates whether a property must have
+        a value for each instance.\",\n                    \"context\": \"An empty
+        string is considered to be a missing value.\"\n                  },\n                  \"unique\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"When `true`, each value for the property `MUST` be unique.\"\n                  },\n
+        \                 \"enum\": {\n                    \"oneOf\": [\n                      {\n
+        \                       \"type\": \"array\",\n                        \"minItems\":
+        1,\n                        \"uniqueItems\": true,\n                        \"items\":
+        {\n                          \"type\": \"string\"\n                        }\n
+        \                     },\n                      {\n                        \"type\":
+        \"array\",\n                        \"minItems\": 1,\n                        \"uniqueItems\":
+        true,\n                        \"items\": {\n                          \"type\":
+        \"object\"\n                        }\n                      }\n                    ]\n
+        \                 },\n                  \"minLength\": {\n                    \"type\":
+        \"integer\",\n                    \"description\": \"An integer that specifies
+        the minimum length of a value.\"\n                  },\n                  \"maxLength\":
+        {\n                    \"type\": \"integer\",\n                    \"description\":
+        \"An integer that specifies the maximum length of a value.\"\n                  }\n
+        \               }\n              },\n              \"rdfType\": {\n                \"type\":
+        \"string\",\n                \"description\": \"The RDF type for this field.\"\n
+        \             }\n            },\n            \"examples\": [\n              \"{\\n
+        \ \\\"name\\\": \\\"extra\\\"\\n  \\\"type\\\": \\\"object\\\"\\n}\\n\"\n
+        \           ]\n          },\n          {\n            \"type\": \"object\",\n
+        \           \"title\": \"GeoPoint Field\",\n            \"description\": \"The
+        field contains data describing a geographic point.\",\n            \"required\":
+        [\n              \"name\",\n              \"type\"\n            ],\n            \"properties\":
+        {\n              \"name\": {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `geopoint`.\",\n                \"enum\":
+        [\n                  \"geopoint\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"The format keyword options for `geopoint`
+        are `default`,`array`, and `object`.\",\n                \"context\": \"The
+        following `format` options are supported:\\n  * **default**: A string of the
+        pattern 'lon, lat', where `lon` is the longitude and `lat` is the latitude.\\n
+        \ * **array**: An array of exactly two items, where each item is either a
+        number, or a string parsable as a number, and the first item is `lon` and
+        the second item is `lat`.\\n  * **object**: A JSON object with exactly two
+        keys, `lat` and `lon`\",\n                \"notes\": [\n                  \"Implementations
+        `MUST` strip all white space in the default format of `lon, lat`.\"\n                ],\n
+        \               \"enum\": [\n                  \"default\",\n                  \"array\",\n
+        \                 \"object\"\n                ],\n                \"default\":
+        \"default\"\n              },\n              \"constraints\": {\n                \"title\":
+        \"Constraints\",\n                \"description\": \"The following constraints
+        are supported for `geopoint` fields.\",\n                \"type\": \"object\",\n
+        \               \"properties\": {\n                  \"required\": {\n                    \"type\":
+        \"boolean\",\n                    \"description\": \"Indicates whether a property
+        must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"oneOf\": [\n                      {\n                        \"type\":
+        \"array\",\n                        \"minItems\": 1,\n                        \"uniqueItems\":
+        true,\n                        \"items\": {\n                          \"type\":
+        \"string\"\n                        }\n                      },\n                      {\n
+        \                       \"type\": \"array\",\n                        \"minItems\":
+        1,\n                        \"uniqueItems\": true,\n                        \"items\":
+        {\n                          \"type\": \"array\"\n                        }\n
+        \                     },\n                      {\n                        \"type\":
+        \"array\",\n                        \"minItems\": 1,\n                        \"uniqueItems\":
+        true,\n                        \"items\": {\n                          \"type\":
+        \"object\"\n                        }\n                      }\n                    ]\n
+        \                 }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"post_office\\\",\\n  \\\"type\\\":
+        \\\"geopoint\\\"\\n}\\n\",\n              \"{\\n  \\\"name\\\": \\\"post_office\\\",\\n
+        \ \\\"type\\\": \\\"geopoint\\\",\\n  \\\"format\\\": \\\"array\\\"\\n}\\n\"\n
+        \           ]\n          },\n          {\n            \"type\": \"object\",\n
+        \           \"title\": \"GeoJSON Field\",\n            \"description\": \"The
+        field contains a JSON object according to GeoJSON or TopoJSON\",\n            \"required\":
+        [\n              \"name\",\n              \"type\"\n            ],\n            \"properties\":
+        {\n              \"name\": {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `geojson`.\",\n                \"enum\":
+        [\n                  \"geojson\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"The format keyword options for `geojson`
+        are `default` and `topojson`.\",\n                \"context\": \"The following
+        `format` options are supported:\\n  * **default**: A geojson object as per
+        the [GeoJSON spec](http://geojson.org/).\\n  * **topojson**: A topojson object
+        as per the [TopoJSON spec](https://github.com/topojson/topojson-specification/blob/master/README.md)\",\n
+        \               \"enum\": [\n                  \"default\",\n                  \"topojson\"\n
+        \               ],\n                \"default\": \"default\"\n              },\n
+        \             \"constraints\": {\n                \"title\": \"Constraints\",\n
+        \               \"description\": \"The following constraints are supported
+        for `geojson` fields.\",\n                \"type\": \"object\",\n                \"properties\":
+        {\n                  \"required\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"Indicates whether a property must have
+        a value for each instance.\",\n                    \"context\": \"An empty
+        string is considered to be a missing value.\"\n                  },\n                  \"unique\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"When `true`, each value for the property `MUST` be unique.\"\n                  },\n
+        \                 \"enum\": {\n                    \"oneOf\": [\n                      {\n
+        \                       \"type\": \"array\",\n                        \"minItems\":
+        1,\n                        \"uniqueItems\": true,\n                        \"items\":
+        {\n                          \"type\": \"string\"\n                        }\n
+        \                     },\n                      {\n                        \"type\":
+        \"array\",\n                        \"minItems\": 1,\n                        \"uniqueItems\":
+        true,\n                        \"items\": {\n                          \"type\":
+        \"object\"\n                        }\n                      }\n                    ]\n
+        \                 },\n                  \"minLength\": {\n                    \"type\":
+        \"integer\",\n                    \"description\": \"An integer that specifies
+        the minimum length of a value.\"\n                  },\n                  \"maxLength\":
+        {\n                    \"type\": \"integer\",\n                    \"description\":
+        \"An integer that specifies the maximum length of a value.\"\n                  }\n
+        \               }\n              },\n              \"rdfType\": {\n                \"type\":
+        \"string\",\n                \"description\": \"The RDF type for this field.\"\n
+        \             }\n            },\n            \"examples\": [\n              \"{\\n
+        \ \\\"name\\\": \\\"city_limits\\\",\\n  \\\"type\\\": \\\"geojson\\\"\\n}\\n\",\n
+        \             \"{\\n  \\\"name\\\": \\\"city_limits\\\",\\n  \\\"type\\\":
+        \\\"geojson\\\",\\n  \\\"format\\\": \\\"topojson\\\"\\n}\\n\"\n            ]\n
+        \         },\n          {\n            \"type\": \"object\",\n            \"title\":
+        \"Array Field\",\n            \"description\": \"The field contains data which
+        can be parsed as a valid JSON array.\",\n            \"required\": [\n              \"name\",\n
+        \             \"type\"\n            ],\n            \"properties\": {\n              \"name\":
+        {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `array`.\",\n                \"enum\":
+        [\n                  \"array\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"There are no format keyword options
+        for `array`: only `default` is allowed.\",\n                \"enum\": [\n
+        \                 \"default\"\n                ],\n                \"default\":
+        \"default\"\n              },\n              \"constraints\": {\n                \"title\":
+        \"Constraints\",\n                \"description\": \"The following constraints
+        apply for `array` fields.\",\n                \"type\": \"object\",\n                \"properties\":
+        {\n                  \"required\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"Indicates whether a property must have
+        a value for each instance.\",\n                    \"context\": \"An empty
+        string is considered to be a missing value.\"\n                  },\n                  \"unique\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"When `true`, each value for the property `MUST` be unique.\"\n                  },\n
+        \                 \"enum\": {\n                    \"oneOf\": [\n                      {\n
+        \                       \"type\": \"array\",\n                        \"minItems\":
+        1,\n                        \"uniqueItems\": true,\n                        \"items\":
+        {\n                          \"type\": \"string\"\n                        }\n
+        \                     },\n                      {\n                        \"type\":
+        \"array\",\n                        \"minItems\": 1,\n                        \"uniqueItems\":
+        true,\n                        \"items\": {\n                          \"type\":
+        \"array\"\n                        }\n                      }\n                    ]\n
+        \                 },\n                  \"minLength\": {\n                    \"type\":
+        \"integer\",\n                    \"description\": \"An integer that specifies
+        the minimum length of a value.\"\n                  },\n                  \"maxLength\":
+        {\n                    \"type\": \"integer\",\n                    \"description\":
+        \"An integer that specifies the maximum length of a value.\"\n                  }\n
+        \               }\n              },\n              \"rdfType\": {\n                \"type\":
+        \"string\",\n                \"description\": \"The RDF type for this field.\"\n
+        \             }\n            },\n            \"examples\": [\n              \"{\\n
+        \ \\\"name\\\": \\\"options\\\"\\n  \\\"type\\\": \\\"array\\\"\\n}\\n\"\n
+        \           ]\n          },\n          {\n            \"type\": \"object\",\n
+        \           \"title\": \"Duration Field\",\n            \"description\": \"The
+        field contains a duration of time.\",\n            \"context\": \"The lexical
+        representation for duration is the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations)
+        extended format `PnYnMnDTnHnMnS`, where `nY` represents the number of years,
+        `nM` the number of months, `nD` the number of days, 'T' is the date/time separator,
+        `nH` the number of hours, `nM` the number of minutes and `nS` the number of
+        seconds. The number of seconds can include decimal digits to arbitrary precision.
+        Date and time elements including their designator may be omitted if their
+        value is zero, and lower order elements may also be omitted for reduced precision.
+        Here we follow the definition of [XML Schema duration datatype](http://www.w3.org/TR/xmlschema-2/#duration)
+        directly and that definition is implicitly inlined here.\",\n            \"required\":
+        [\n              \"name\",\n              \"type\"\n            ],\n            \"properties\":
+        {\n              \"name\": {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `duration`.\",\n                \"enum\":
+        [\n                  \"duration\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"There are no format keyword options
+        for `duration`: only `default` is allowed.\",\n                \"enum\": [\n
+        \                 \"default\"\n                ],\n                \"default\":
+        \"default\"\n              },\n              \"constraints\": {\n                \"title\":
+        \"Constraints\",\n                \"description\": \"The following constraints
+        are supported for `duration` fields.\",\n                \"type\": \"object\",\n
+        \               \"properties\": {\n                  \"required\": {\n                    \"type\":
+        \"boolean\",\n                    \"description\": \"Indicates whether a property
+        must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"type\": \"array\",\n                    \"minItems\":
+        1,\n                    \"uniqueItems\": true,\n                    \"items\":
+        {\n                      \"type\": \"string\"\n                    }\n                  },\n
+        \                 \"minimum\": {\n                    \"type\": \"string\"\n
+        \                 },\n                  \"maximum\": {\n                    \"type\":
+        \"string\"\n                  }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"period\\\"\\n  \\\"type\\\": \\\"duration\\\"\\n}\\n\"\n
+        \           ]\n          },\n          {\n            \"type\": \"object\",\n
+        \           \"title\": \"Any Field\",\n            \"description\": \"Any
+        value is accepted, including values that are not captured by the type/format/constraint
+        requirements of the specification.\",\n            \"required\": [\n              \"name\",\n
+        \             \"type\"\n            ],\n            \"properties\": {\n              \"name\":
+        {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `any`.\",\n                \"enum\":
+        [\n                  \"any\"\n                ]\n              },\n              \"constraints\":
+        {\n                \"title\": \"Constraints\",\n                \"description\":
+        \"The following constraints apply to `any` fields.\",\n                \"type\":
+        \"object\",\n                \"properties\": {\n                  \"required\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"Indicates whether a property must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"type\": \"array\",\n                    \"minItems\":
+        1,\n                    \"uniqueItems\": true\n                  }\n                }\n
+        \             },\n              \"rdfType\": {\n                \"type\":
+        \"string\",\n                \"description\": \"The RDF type for this field.\"\n
+        \             }\n            },\n            \"examples\": [\n              \"{\\n
+        \ \\\"name\\\": \\\"notes\\\",\\n  \\\"type\\\": \\\"any\\\"\\n\"\n            ]\n
+        \         }\n        ]\n      },\n      \"description\": \"An `array` of Table
+        Schema Field objects.\",\n      \"examples\": [\n        \"{\\n  \\\"fields\\\":
+        [\\n    {\\n      \\\"name\\\": \\\"my-field-name\\\"\\n    }\\n  ]\\n}\\n\",\n
+        \       \"{\\n  \\\"fields\\\": [\\n    {\\n      \\\"name\\\": \\\"my-field-name\\\",\\n
+        \     \\\"type\\\": \\\"number\\\"\\n    },\\n    {\\n      \\\"name\\\":
+        \\\"my-field-name-2\\\",\\n      \\\"type\\\": \\\"string\\\",\\n      \\\"format\\\":
+        \\\"email\\\"\\n    }\\n  ]\\n}\\n\"\n      ]\n    },\n    \"primaryKey\":
+        {\n      \"oneOf\": [\n        {\n          \"type\": \"array\",\n          \"minItems\":
+        1,\n          \"uniqueItems\": true,\n          \"items\": {\n            \"type\":
+        \"string\"\n          }\n        },\n        {\n          \"type\": \"string\"\n
+        \       }\n      ],\n      \"description\": \"A primary key is a field name
+        or an array of field names, whose values `MUST` uniquely identify each row
+        in the table.\",\n      \"context\": \"Field name in the `primaryKey` `MUST`
+        be unique, and `MUST` match a field name in the associated table. It is acceptable
+        to have an array with a single value, indicating that the value of a single
+        field is the primary key.\",\n      \"examples\": [\n        \"{\\n  \\\"primaryKey\\\":
+        [\\n    \\\"name\\\"\\n  ]\\n}\\n\",\n        \"{\\n  \\\"primaryKey\\\":
+        [\\n    \\\"first_name\\\",\\n    \\\"last_name\\\"\\n  ]\\n}\\n\"\n      ]\n
+        \   },\n    \"foreignKeys\": {\n      \"type\": \"array\",\n      \"minItems\":
+        1,\n      \"items\": {\n        \"title\": \"Table Schema Foreign Key\",\n
+        \       \"description\": \"Table Schema Foreign Key\",\n        \"type\":
+        \"object\",\n        \"required\": [\n          \"fields\",\n          \"reference\"\n
+        \       ],\n        \"oneOf\": [\n          {\n            \"properties\":
+        {\n              \"fields\": {\n                \"type\": \"array\",\n                \"items\":
+        {\n                  \"type\": \"string\",\n                  \"minItems\":
+        1,\n                  \"uniqueItems\": true,\n                  \"description\":
+        \"Fields that make up the primary key.\"\n                }\n              },\n
+        \             \"reference\": {\n                \"type\": \"object\",\n                \"required\":
+        [\n                  \"resource\",\n                  \"fields\"\n                ],\n
+        \               \"properties\": {\n                  \"resource\": {\n                    \"type\":
+        \"string\",\n                    \"default\": \"\"\n                  },\n
+        \                 \"fields\": {\n                    \"type\": \"array\",\n
+        \                   \"items\": {\n                      \"type\": \"string\"\n
+        \                   },\n                    \"minItems\": 1,\n                    \"uniqueItems\":
+        true\n                  }\n                }\n              }\n            }\n
+        \         },\n          {\n            \"properties\": {\n              \"fields\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"Fields that make up the primary key.\"\n              },\n              \"reference\":
+        {\n                \"type\": \"object\",\n                \"required\": [\n
+        \                 \"resource\",\n                  \"fields\"\n                ],\n
+        \               \"properties\": {\n                  \"resource\": {\n                    \"type\":
+        \"string\",\n                    \"default\": \"\"\n                  },\n
+        \                 \"fields\": {\n                    \"type\": \"string\"\n
+        \                 }\n                }\n              }\n            }\n          }\n
+        \       ]\n      },\n      \"examples\": [\n        \"{\\n  \\\"foreignKeys\\\":
+        [\\n    {\\n      \\\"fields\\\": \\\"state\\\",\\n      \\\"reference\\\":
+        {\\n        \\\"resource\\\": \\\"the-resource\\\",\\n        \\\"fields\\\":
+        \\\"state_id\\\"\\n      }\\n    }\\n  ]\\n}\\n\",\n        \"{\\n  \\\"foreignKeys\\\":
+        [\\n    {\\n      \\\"fields\\\": \\\"state\\\",\\n      \\\"reference\\\":
+        {\\n        \\\"resource\\\": \\\"\\\",\\n        \\\"fields\\\": \\\"id\\\"\\n
+        \     }\\n    }\\n  ]\\n}\\n\"\n      ]\n    },\n    \"missingValues\": {\n
+        \     \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n
+        \     },\n      \"default\": [\n        \"\"\n      ],\n      \"description\":
+        \"Values that when encountered in the source, should be considered as `null`,
+        'not present', or 'blank' values.\",\n      \"context\": \"Many datasets arrive
+        with missing data values, either because a value was not collected or it never
+        existed.\\nMissing values may be indicated simply by the value being empty
+        in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999`
+        etc.\\nThe `missingValues` property provides a way to indicate that these
+        values should be interpreted as equivalent to null.\\n\\n`missingValues` are
+        strings rather than being the data type of the particular field. This allows
+        for comparison prior to casting and for fields to have missing value which
+        are not of their type, for example a `number` field to have missing values
+        indicated by `-`.\\n\\nThe default value of `missingValue` for a non-string
+        type field is the empty string `''`. For string type fields there is no default
+        for `missingValue` (for string fields the empty string `''` is a valid value
+        and need not indicate null).\",\n      \"examples\": [\n        \"{\\n  \\\"missingValues\\\":
+        [\\n    \\\"-\\\",\\n    \\\"NaN\\\",\\n    \\\"\\\"\\n  ]\\n}\\n\",\n        \"{\\n
+        \ \\\"missingValues\\\": []\\n}\\n\"\n      ]\n    }\n  },\n  \"examples\":
+        [\n    \"{\\n  \\\"schema\\\": {\\n    \\\"fields\\\": [\\n      {\\n        \\\"name\\\":
+        \\\"first_name\\\",\\n        \\\"type\\\": \\\"string\\\"\\n        \\\"constraints\\\":
+        {\\n          \\\"required\\\": true\\n        }\\n      },\\n      {\\n        \\\"name\\\":
+        \\\"age\\\",\\n        \\\"type\\\": \\\"integer\\\"\\n      },\\n    ],\\n
+        \   \\\"primaryKey\\\": [\\n      \\\"name\\\"\\n    ]\\n  }\\n}\\n\"\n  ]\n}"
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Age:
+      - '0'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 835d9f0fec24666f-MAD
+      Cache-Control:
+      - max-age=600
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 15 Dec 2023 09:22:18 GMT
+      Etag:
+      - W/"65685295-10ab4"
+      Expires:
+      - Fri, 15 Dec 2023 09:32:17 GMT
+      Last-Modified:
+      - Thu, 30 Nov 2023 09:15:01 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=1kiEVsmrqQTHwqAoL%2FBnuRasXqhbKdPTZa8IopriB1TV7qPytPIuPn4R6gsVLwPkog1vioRVK9ygU%2FXFT87KZDR%2B6Pe8tiw7yUvQI%2F3ixPQhEPEwFIbm3vkD93C1H3oshukL0yoLTQ394Gj4"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      X-Fastly-Request-ID:
+      - bcb119d7e451acbf839b31042496fdc88a6f14ee
+      X-GitHub-Request-Id:
+      - C9CC:26A70F:37AA8EC:38A408F:657C1AC9
+      X-Served-By:
+      - cache-mad2200147-MAD
+      X-Timer:
+      - S1702632138.241223,VS0,VE1
+      alt-svc:
+      - h3=":443"; ma=86400
+      x-proxy-cache:
+      - MISS
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers: {}
+    method: GET
+    uri: https://specs.frictionlessdata.io/schemas/table-schema.json
+  response:
+    body:
+      string: "{\n  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\n  \"title\":
+        \"Table Schema\",\n  \"description\": \"A Table Schema for this resource,
+        compliant with the [Table Schema](/tableschema/) specification.\",\n  \"type\":
+        [\n    \"string\",\n    \"object\"\n  ],\n  \"required\": [\n    \"fields\"\n
+        \ ],\n  \"properties\": {\n    \"fields\": {\n      \"type\": \"array\",\n
+        \     \"minItems\": 1,\n      \"items\": {\n        \"title\": \"Table Schema
+        Field\",\n        \"type\": \"object\",\n        \"oneOf\": [\n          {\n
+        \           \"type\": \"object\",\n            \"title\": \"String Field\",\n
+        \           \"description\": \"The field contains strings, that is, sequences
+        of characters.\",\n            \"required\": [\n              \"name\"\n            ],\n
+        \           \"properties\": {\n              \"name\": {\n                \"title\":
+        \"Name\",\n                \"description\": \"A name for this field.\",\n
+        \               \"type\": \"string\"\n              },\n              \"title\":
+        {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `string`.\",\n                \"enum\":
+        [\n                  \"string\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"The format keyword options for `string`
+        are `default`, `email`, `uri`, `binary`, and `uuid`.\",\n                \"context\":
+        \"The following `format` options are supported:\\n  * **default**: any valid
+        string.\\n  * **email**: A valid email address.\\n  * **uri**: A valid URI.\\n
+        \ * **binary**: A base64 encoded string representing binary data.\\n  * **uuid**:
+        A string that is a uuid.\",\n                \"enum\": [\n                  \"default\",\n
+        \                 \"email\",\n                  \"uri\",\n                  \"binary\",\n
+        \                 \"uuid\"\n                ],\n                \"default\":
+        \"default\"\n              },\n              \"constraints\": {\n                \"title\":
+        \"Constraints\",\n                \"description\": \"The following constraints
+        are supported for `string` fields.\",\n                \"type\": \"object\",\n
+        \               \"properties\": {\n                  \"required\": {\n                    \"type\":
+        \"boolean\",\n                    \"description\": \"Indicates whether a property
+        must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"pattern\":
+        {\n                    \"type\": \"string\",\n                    \"description\":
+        \"A regular expression pattern to test each value of the property against,
+        where a truthy response indicates validity.\",\n                    \"context\":
+        \"Regular expressions `SHOULD` conform to the [XML Schema regular expression
+        syntax](http://www.w3.org/TR/xmlschema-2/#regexs).\"\n                  },\n
+        \                 \"enum\": {\n                    \"type\": \"array\",\n
+        \                   \"minItems\": 1,\n                    \"uniqueItems\":
+        true,\n                    \"items\": {\n                      \"type\": \"string\"\n
+        \                   }\n                  },\n                  \"minLength\":
+        {\n                    \"type\": \"integer\",\n                    \"description\":
+        \"An integer that specifies the minimum length of a value.\"\n                  },\n
+        \                 \"maxLength\": {\n                    \"type\": \"integer\",\n
+        \                   \"description\": \"An integer that specifies the maximum
+        length of a value.\"\n                  }\n                }\n              },\n
+        \             \"rdfType\": {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"name\\\",\\n  \\\"type\\\": \\\"string\\\"\\n}\\n\",\n
+        \             \"{\\n  \\\"name\\\": \\\"name\\\",\\n  \\\"type\\\": \\\"string\\\",\\n
+        \ \\\"format\\\": \\\"email\\\"\\n}\\n\",\n              \"{\\n  \\\"name\\\":
+        \\\"name\\\",\\n  \\\"type\\\": \\\"string\\\",\\n  \\\"constraints\\\": {\\n
+        \   \\\"minLength\\\": 3,\\n    \\\"maxLength\\\": 35\\n  }\\n}\\n\"\n            ]\n
+        \         },\n          {\n            \"type\": \"object\",\n            \"title\":
+        \"Number Field\",\n            \"description\": \"The field contains numbers
+        of any kind including decimals.\",\n            \"context\": \"The lexical
+        formatting follows that of decimal in [XMLSchema](https://www.w3.org/TR/xmlschema-2/#decimal):
+        a non-empty finite-length sequence of decimal digits separated by a period
+        as a decimal indicator. An optional leading sign is allowed. If the sign is
+        omitted, '+' is assumed. Leading and trailing zeroes are optional. If the
+        fractional part is zero, the period and following zero(es) can be omitted.
+        For example: '-1.23', '12678967.543233', '+100000.00', '210'.\\n\\nThe following
+        special string values are permitted (case does not need to be respected):\\n
+        \ - NaN: not a number\\n  - INF: positive infinity\\n  - -INF: negative infinity\\n\\nA
+        number `MAY` also have a trailing:\\n  - exponent: this `MUST` consist of
+        an E followed by an optional + or - sign followed by one or more decimal digits
+        (0-9)\\n  - percentage: the percentage sign: `%`. In conversion percentages
+        should be divided by 100.\\n\\nIf both exponent and percentages are present
+        the percentage `MUST` follow the exponent e.g. '53E10%' (equals 5.3).\",\n
+        \           \"required\": [\n              \"name\",\n              \"type\"\n
+        \           ],\n            \"properties\": {\n              \"name\": {\n
+        \               \"title\": \"Name\",\n                \"description\": \"A
+        name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `number`.\",\n                \"enum\":
+        [\n                  \"number\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"There are no format keyword options
+        for `number`: only `default` is allowed.\",\n                \"enum\": [\n
+        \                 \"default\"\n                ],\n                \"default\":
+        \"default\"\n              },\n              \"bareNumber\": {\n                \"type\":
+        \"boolean\",\n                \"title\": \"bareNumber\",\n                \"description\":
+        \"a boolean field with a default of `true`. If `true` the physical contents
+        of this field must follow the formatting constraints already set out. If `false`
+        the contents of this field may contain leading and/or trailing non-numeric
+        characters (which implementors MUST therefore strip). The purpose of `bareNumber`
+        is to allow publishers to publish numeric data that contains trailing characters
+        such as percentages e.g. `95%` or leading characters such as currencies e.g.
+        `\u20AC95` or `EUR 95`. Note that it is entirely up to implementors what,
+        if anything, they do with stripped text.\",\n                \"default\":
+        true\n              },\n              \"decimalChar\": {\n                \"type\":
+        \"string\",\n                \"description\": \"A string whose value is used
+        to represent a decimal point within the number. The default value is `.`.\"\n
+        \             },\n              \"groupChar\": {\n                \"type\":
+        \"string\",\n                \"description\": \"A string whose value is used
+        to group digits within the number. The default value is `null`. A common value
+        is `,` e.g. '100,000'.\"\n              },\n              \"constraints\":
+        {\n                \"title\": \"Constraints\",\n                \"description\":
+        \"The following constraints are supported for `number` fields.\",\n                \"type\":
+        \"object\",\n                \"properties\": {\n                  \"required\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"Indicates whether a property must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"oneOf\": [\n                      {\n                        \"type\":
+        \"array\",\n                        \"minItems\": 1,\n                        \"uniqueItems\":
+        true,\n                        \"items\": {\n                          \"type\":
+        \"string\"\n                        }\n                      },\n                      {\n
+        \                       \"type\": \"array\",\n                        \"minItems\":
+        1,\n                        \"uniqueItems\": true,\n                        \"items\":
+        {\n                          \"type\": \"number\"\n                        }\n
+        \                     }\n                    ]\n                  },\n                  \"minimum\":
+        {\n                    \"oneOf\": [\n                      {\n                        \"type\":
+        \"string\"\n                      },\n                      {\n                        \"type\":
+        \"number\"\n                      }\n                    ]\n                  },\n
+        \                 \"maximum\": {\n                    \"oneOf\": [\n                      {\n
+        \                       \"type\": \"string\"\n                      },\n                      {\n
+        \                       \"type\": \"number\"\n                      }\n                    ]\n
+        \                 }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"field-name\\\",\\n  \\\"type\\\":
+        \\\"number\\\"\\n}\\n\",\n              \"{\\n  \\\"name\\\": \\\"field-name\\\",\\n
+        \ \\\"type\\\": \\\"number\\\",\\n  \\\"constraints\\\": {\\n    \\\"enum\\\":
+        [ \\\"1.00\\\", \\\"1.50\\\", \\\"2.00\\\" ]\\n  }\\n}\\n\"\n            ]\n
+        \         },\n          {\n            \"type\": \"object\",\n            \"title\":
+        \"Integer Field\",\n            \"description\": \"The field contains integers
+        - that is whole numbers.\",\n            \"context\": \"Integer values are
+        indicated in the standard way for any valid integer.\",\n            \"required\":
+        [\n              \"name\",\n              \"type\"\n            ],\n            \"properties\":
+        {\n              \"name\": {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `integer`.\",\n                \"enum\":
+        [\n                  \"integer\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"There are no format keyword options
+        for `integer`: only `default` is allowed.\",\n                \"enum\": [\n
+        \                 \"default\"\n                ],\n                \"default\":
+        \"default\"\n              },\n              \"bareNumber\": {\n                \"type\":
+        \"boolean\",\n                \"title\": \"bareNumber\",\n                \"description\":
+        \"a boolean field with a default of `true`. If `true` the physical contents
+        of this field must follow the formatting constraints already set out. If `false`
+        the contents of this field may contain leading and/or trailing non-numeric
+        characters (which implementors MUST therefore strip). The purpose of `bareNumber`
+        is to allow publishers to publish numeric data that contains trailing characters
+        such as percentages e.g. `95%` or leading characters such as currencies e.g.
+        `\u20AC95` or `EUR 95`. Note that it is entirely up to implementors what,
+        if anything, they do with stripped text.\",\n                \"default\":
+        true\n              },\n              \"constraints\": {\n                \"title\":
+        \"Constraints\",\n                \"description\": \"The following constraints
+        are supported for `integer` fields.\",\n                \"type\": \"object\",\n
+        \               \"properties\": {\n                  \"required\": {\n                    \"type\":
+        \"boolean\",\n                    \"description\": \"Indicates whether a property
+        must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"oneOf\": [\n                      {\n                        \"type\":
+        \"array\",\n                        \"minItems\": 1,\n                        \"uniqueItems\":
+        true,\n                        \"items\": {\n                          \"type\":
+        \"string\"\n                        }\n                      },\n                      {\n
+        \                       \"type\": \"array\",\n                        \"minItems\":
+        1,\n                        \"uniqueItems\": true,\n                        \"items\":
+        {\n                          \"type\": \"integer\"\n                        }\n
+        \                     }\n                    ]\n                  },\n                  \"minimum\":
+        {\n                    \"oneOf\": [\n                      {\n                        \"type\":
+        \"string\"\n                      },\n                      {\n                        \"type\":
+        \"integer\"\n                      }\n                    ]\n                  },\n
+        \                 \"maximum\": {\n                    \"oneOf\": [\n                      {\n
+        \                       \"type\": \"string\"\n                      },\n                      {\n
+        \                       \"type\": \"integer\"\n                      }\n                    ]\n
+        \                 }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"age\\\",\\n  \\\"type\\\": \\\"integer\\\",\\n
+        \ \\\"constraints\\\": {\\n    \\\"unique\\\": true,\\n    \\\"minimum\\\":
+        100,\\n    \\\"maximum\\\": 9999\\n  }\\n}\\n\"\n            ]\n          },\n
+        \         {\n            \"type\": \"object\",\n            \"title\": \"Date
+        Field\",\n            \"description\": \"The field contains temporal date
+        values.\",\n            \"required\": [\n              \"name\",\n              \"type\"\n
+        \           ],\n            \"properties\": {\n              \"name\": {\n
+        \               \"title\": \"Name\",\n                \"description\": \"A
+        name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `date`.\",\n                \"enum\":
+        [\n                  \"date\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"The format keyword options for `date`
+        are `default`, `any`, and `{PATTERN}`.\",\n                \"context\": \"The
+        following `format` options are supported:\\n  * **default**: An ISO8601 format
+        string of YYYY-MM-DD.\\n  * **any**: Any parsable representation of a date.
+        The implementing library can attempt to parse the datetime via a range of
+        strategies.\\n  * **{PATTERN}**: The value can be parsed according to `{PATTERN}`,
+        which `MUST` follow the date formatting syntax of C / Python [strftime](http://strftime.org/).\",\n
+        \               \"default\": \"default\"\n              },\n              \"constraints\":
+        {\n                \"title\": \"Constraints\",\n                \"description\":
+        \"The following constraints are supported for `date` fields.\",\n                \"type\":
+        \"object\",\n                \"properties\": {\n                  \"required\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"Indicates whether a property must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"type\": \"array\",\n                    \"minItems\":
+        1,\n                    \"uniqueItems\": true,\n                    \"items\":
+        {\n                      \"type\": \"string\"\n                    }\n                  },\n
+        \                 \"minimum\": {\n                    \"type\": \"string\"\n
+        \                 },\n                  \"maximum\": {\n                    \"type\":
+        \"string\"\n                  }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"date_of_birth\\\",\\n  \\\"type\\\":
+        \\\"date\\\"\\n}\\n\",\n              \"{\\n  \\\"name\\\": \\\"date_of_birth\\\",\\n
+        \ \\\"type\\\": \\\"date\\\",\\n  \\\"constraints\\\": {\\n    \\\"minimum\\\":
+        \\\"01-01-1900\\\"\\n  }\\n}\\n\",\n              \"{\\n  \\\"name\\\": \\\"date_of_birth\\\",\\n
+        \ \\\"type\\\": \\\"date\\\",\\n  \\\"format\\\": \\\"MM-DD-YYYY\\\"\\n}\\n\"\n
+        \           ]\n          },\n          {\n            \"type\": \"object\",\n
+        \           \"title\": \"Time Field\",\n            \"description\": \"The
+        field contains temporal time values.\",\n            \"required\": [\n              \"name\",\n
+        \             \"type\"\n            ],\n            \"properties\": {\n              \"name\":
+        {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `time`.\",\n                \"enum\":
+        [\n                  \"time\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"The format keyword options for `time`
+        are `default`, `any`, and `{PATTERN}`.\",\n                \"context\": \"The
+        following `format` options are supported:\\n  * **default**: An ISO8601 format
+        string for time.\\n  * **any**: Any parsable representation of a date. The
+        implementing library can attempt to parse the datetime via a range of strategies.\\n
+        \ * **{PATTERN}**: The value can be parsed according to `{PATTERN}`, which
+        `MUST` follow the date formatting syntax of C / Python [strftime](http://strftime.org/).\",\n
+        \               \"default\": \"default\"\n              },\n              \"constraints\":
+        {\n                \"title\": \"Constraints\",\n                \"description\":
+        \"The following constraints are supported for `time` fields.\",\n                \"type\":
+        \"object\",\n                \"properties\": {\n                  \"required\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"Indicates whether a property must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"type\": \"array\",\n                    \"minItems\":
+        1,\n                    \"uniqueItems\": true,\n                    \"items\":
+        {\n                      \"type\": \"string\"\n                    }\n                  },\n
+        \                 \"minimum\": {\n                    \"type\": \"string\"\n
+        \                 },\n                  \"maximum\": {\n                    \"type\":
+        \"string\"\n                  }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"appointment_start\\\",\\n  \\\"type\\\":
+        \\\"time\\\"\\n}\\n\",\n              \"{\\n  \\\"name\\\": \\\"appointment_start\\\",\\n
+        \ \\\"type\\\": \\\"time\\\",\\n  \\\"format\\\": \\\"any\\\"\\n}\\n\"\n            ]\n
+        \         },\n          {\n            \"type\": \"object\",\n            \"title\":
+        \"Date Time Field\",\n            \"description\": \"The field contains temporal
+        datetime values.\",\n            \"required\": [\n              \"name\",\n
+        \             \"type\"\n            ],\n            \"properties\": {\n              \"name\":
+        {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `datetime`.\",\n                \"enum\":
+        [\n                  \"datetime\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"The format keyword options for `datetime`
+        are `default`, `any`, and `{PATTERN}`.\",\n                \"context\": \"The
+        following `format` options are supported:\\n  * **default**: An ISO8601 format
+        string for datetime.\\n  * **any**: Any parsable representation of a date.
+        The implementing library can attempt to parse the datetime via a range of
+        strategies.\\n  * **{PATTERN}**: The value can be parsed according to `{PATTERN}`,
+        which `MUST` follow the date formatting syntax of C / Python [strftime](http://strftime.org/).\",\n
+        \               \"default\": \"default\"\n              },\n              \"constraints\":
+        {\n                \"title\": \"Constraints\",\n                \"description\":
+        \"The following constraints are supported for `datetime` fields.\",\n                \"type\":
+        \"object\",\n                \"properties\": {\n                  \"required\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"Indicates whether a property must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"type\": \"array\",\n                    \"minItems\":
+        1,\n                    \"uniqueItems\": true,\n                    \"items\":
+        {\n                      \"type\": \"string\"\n                    }\n                  },\n
+        \                 \"minimum\": {\n                    \"type\": \"string\"\n
+        \                 },\n                  \"maximum\": {\n                    \"type\":
+        \"string\"\n                  }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"timestamp\\\",\\n  \\\"type\\\":
+        \\\"datetime\\\"\\n}\\n\",\n              \"{\\n  \\\"name\\\": \\\"timestamp\\\",\\n
+        \ \\\"type\\\": \\\"datetime\\\",\\n  \\\"format\\\": \\\"default\\\"\\n}\\n\"\n
+        \           ]\n          },\n          {\n            \"type\": \"object\",\n
+        \           \"title\": \"Year Field\",\n            \"description\": \"A calendar
+        year, being an integer with 4 digits. Equivalent to [gYear in XML Schema](https://www.w3.org/TR/xmlschema-2/#gYear)\",\n
+        \           \"required\": [\n              \"name\",\n              \"type\"\n
+        \           ],\n            \"properties\": {\n              \"name\": {\n
+        \               \"title\": \"Name\",\n                \"description\": \"A
+        name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `year`.\",\n                \"enum\":
+        [\n                  \"year\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"There are no format keyword options
+        for `year`: only `default` is allowed.\",\n                \"enum\": [\n                  \"default\"\n
+        \               ],\n                \"default\": \"default\"\n              },\n
+        \             \"constraints\": {\n                \"title\": \"Constraints\",\n
+        \               \"description\": \"The following constraints are supported
+        for `year` fields.\",\n                \"type\": \"object\",\n                \"properties\":
+        {\n                  \"required\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"Indicates whether a property must have
+        a value for each instance.\",\n                    \"context\": \"An empty
+        string is considered to be a missing value.\"\n                  },\n                  \"unique\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"When `true`, each value for the property `MUST` be unique.\"\n                  },\n
+        \                 \"enum\": {\n                    \"oneOf\": [\n                      {\n
+        \                       \"type\": \"array\",\n                        \"minItems\":
+        1,\n                        \"uniqueItems\": true,\n                        \"items\":
+        {\n                          \"type\": \"string\"\n                        }\n
+        \                     },\n                      {\n                        \"type\":
+        \"array\",\n                        \"minItems\": 1,\n                        \"uniqueItems\":
+        true,\n                        \"items\": {\n                          \"type\":
+        \"integer\"\n                        }\n                      }\n                    ]\n
+        \                 },\n                  \"minimum\": {\n                    \"oneOf\":
+        [\n                      {\n                        \"type\": \"string\"\n
+        \                     },\n                      {\n                        \"type\":
+        \"integer\"\n                      }\n                    ]\n                  },\n
+        \                 \"maximum\": {\n                    \"oneOf\": [\n                      {\n
+        \                       \"type\": \"string\"\n                      },\n                      {\n
+        \                       \"type\": \"integer\"\n                      }\n                    ]\n
+        \                 }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"year\\\",\\n  \\\"type\\\": \\\"year\\\"\\n}\\n\",\n
+        \             \"{\\n  \\\"name\\\": \\\"year\\\",\\n  \\\"type\\\": \\\"year\\\",\\n
+        \ \\\"constraints\\\": {\\n    \\\"minimum\\\": 1970,\\n    \\\"maximum\\\":
+        2003\\n  }\\n}\\n\"\n            ]\n          },\n          {\n            \"type\":
+        \"object\",\n            \"title\": \"Year Month Field\",\n            \"description\":
+        \"A calendar year month, being an integer with 1 or 2 digits. Equivalent to
+        [gYearMonth in XML Schema](https://www.w3.org/TR/xmlschema-2/#gYearMonth)\",\n
+        \           \"required\": [\n              \"name\",\n              \"type\"\n
+        \           ],\n            \"properties\": {\n              \"name\": {\n
+        \               \"title\": \"Name\",\n                \"description\": \"A
+        name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `yearmonth`.\",\n                \"enum\":
+        [\n                  \"yearmonth\"\n                ]\n              },\n
+        \             \"format\": {\n                \"description\": \"There are
+        no format keyword options for `yearmonth`: only `default` is allowed.\",\n
+        \               \"enum\": [\n                  \"default\"\n                ],\n
+        \               \"default\": \"default\"\n              },\n              \"constraints\":
+        {\n                \"title\": \"Constraints\",\n                \"description\":
+        \"The following constraints are supported for `yearmonth` fields.\",\n                \"type\":
+        \"object\",\n                \"properties\": {\n                  \"required\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"Indicates whether a property must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"type\": \"array\",\n                    \"minItems\":
+        1,\n                    \"uniqueItems\": true,\n                    \"items\":
+        {\n                      \"type\": \"string\"\n                    }\n                  },\n
+        \                 \"minimum\": {\n                    \"type\": \"string\"\n
+        \                 },\n                  \"maximum\": {\n                    \"type\":
+        \"string\"\n                  }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"month\\\",\\n  \\\"type\\\": \\\"yearmonth\\\"\\n}\\n\",\n
+        \             \"{\\n  \\\"name\\\": \\\"month\\\",\\n  \\\"type\\\": \\\"yearmonth\\\",\\n
+        \ \\\"constraints\\\": {\\n    \\\"minimum\\\": 1,\\n    \\\"maximum\\\":
+        6\\n  }\\n}\\n\"\n            ]\n          },\n          {\n            \"type\":
+        \"object\",\n            \"title\": \"Boolean Field\",\n            \"description\":
+        \"The field contains boolean (true/false) data.\",\n            \"required\":
+        [\n              \"name\",\n              \"type\"\n            ],\n            \"properties\":
+        {\n              \"name\": {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `boolean`.\",\n                \"enum\":
+        [\n                  \"boolean\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"There are no format keyword options
+        for `boolean`: only `default` is allowed.\",\n                \"enum\": [\n
+        \                 \"default\"\n                ],\n                \"default\":
+        \"default\"\n              },\n              \"trueValues\": {\n                \"type\":
+        \"array\",\n                \"minItems\": 1,\n                \"items\": {\n
+        \                 \"type\": \"string\"\n                },\n                \"default\":
+        [\n                  \"true\",\n                  \"True\",\n                  \"TRUE\",\n
+        \                 \"1\"\n                ]\n              },\n              \"falseValues\":
+        {\n                \"type\": \"array\",\n                \"minItems\": 1,\n
+        \               \"items\": {\n                  \"type\": \"string\"\n                },\n
+        \               \"default\": [\n                  \"false\",\n                  \"False\",\n
+        \                 \"FALSE\",\n                  \"0\"\n                ]\n
+        \             },\n              \"constraints\": {\n                \"title\":
+        \"Constraints\",\n                \"description\": \"The following constraints
+        are supported for `boolean` fields.\",\n                \"type\": \"object\",\n
+        \               \"properties\": {\n                  \"required\": {\n                    \"type\":
+        \"boolean\",\n                    \"description\": \"Indicates whether a property
+        must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"enum\": {\n                    \"type\": \"array\",\n
+        \                   \"minItems\": 1,\n                    \"uniqueItems\":
+        true,\n                    \"items\": {\n                      \"type\": \"boolean\"\n
+        \                   }\n                  }\n                }\n              },\n
+        \             \"rdfType\": {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"registered\\\",\\n  \\\"type\\\":
+        \\\"boolean\\\"\\n}\\n\"\n            ]\n          },\n          {\n            \"type\":
+        \"object\",\n            \"title\": \"Object Field\",\n            \"description\":
+        \"The field contains data which can be parsed as a valid JSON object.\",\n
+        \           \"required\": [\n              \"name\",\n              \"type\"\n
+        \           ],\n            \"properties\": {\n              \"name\": {\n
+        \               \"title\": \"Name\",\n                \"description\": \"A
+        name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `object`.\",\n                \"enum\":
+        [\n                  \"object\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"There are no format keyword options
+        for `object`: only `default` is allowed.\",\n                \"enum\": [\n
+        \                 \"default\"\n                ],\n                \"default\":
+        \"default\"\n              },\n              \"constraints\": {\n                \"title\":
+        \"Constraints\",\n                \"description\": \"The following constraints
+        apply for `object` fields.\",\n                \"type\": \"object\",\n                \"properties\":
+        {\n                  \"required\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"Indicates whether a property must have
+        a value for each instance.\",\n                    \"context\": \"An empty
+        string is considered to be a missing value.\"\n                  },\n                  \"unique\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"When `true`, each value for the property `MUST` be unique.\"\n                  },\n
+        \                 \"enum\": {\n                    \"oneOf\": [\n                      {\n
+        \                       \"type\": \"array\",\n                        \"minItems\":
+        1,\n                        \"uniqueItems\": true,\n                        \"items\":
+        {\n                          \"type\": \"string\"\n                        }\n
+        \                     },\n                      {\n                        \"type\":
+        \"array\",\n                        \"minItems\": 1,\n                        \"uniqueItems\":
+        true,\n                        \"items\": {\n                          \"type\":
+        \"object\"\n                        }\n                      }\n                    ]\n
+        \                 },\n                  \"minLength\": {\n                    \"type\":
+        \"integer\",\n                    \"description\": \"An integer that specifies
+        the minimum length of a value.\"\n                  },\n                  \"maxLength\":
+        {\n                    \"type\": \"integer\",\n                    \"description\":
+        \"An integer that specifies the maximum length of a value.\"\n                  }\n
+        \               }\n              },\n              \"rdfType\": {\n                \"type\":
+        \"string\",\n                \"description\": \"The RDF type for this field.\"\n
+        \             }\n            },\n            \"examples\": [\n              \"{\\n
+        \ \\\"name\\\": \\\"extra\\\"\\n  \\\"type\\\": \\\"object\\\"\\n}\\n\"\n
+        \           ]\n          },\n          {\n            \"type\": \"object\",\n
+        \           \"title\": \"GeoPoint Field\",\n            \"description\": \"The
+        field contains data describing a geographic point.\",\n            \"required\":
+        [\n              \"name\",\n              \"type\"\n            ],\n            \"properties\":
+        {\n              \"name\": {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `geopoint`.\",\n                \"enum\":
+        [\n                  \"geopoint\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"The format keyword options for `geopoint`
+        are `default`,`array`, and `object`.\",\n                \"context\": \"The
+        following `format` options are supported:\\n  * **default**: A string of the
+        pattern 'lon, lat', where `lon` is the longitude and `lat` is the latitude.\\n
+        \ * **array**: An array of exactly two items, where each item is either a
+        number, or a string parsable as a number, and the first item is `lon` and
+        the second item is `lat`.\\n  * **object**: A JSON object with exactly two
+        keys, `lat` and `lon`\",\n                \"notes\": [\n                  \"Implementations
+        `MUST` strip all white space in the default format of `lon, lat`.\"\n                ],\n
+        \               \"enum\": [\n                  \"default\",\n                  \"array\",\n
+        \                 \"object\"\n                ],\n                \"default\":
+        \"default\"\n              },\n              \"constraints\": {\n                \"title\":
+        \"Constraints\",\n                \"description\": \"The following constraints
+        are supported for `geopoint` fields.\",\n                \"type\": \"object\",\n
+        \               \"properties\": {\n                  \"required\": {\n                    \"type\":
+        \"boolean\",\n                    \"description\": \"Indicates whether a property
+        must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"oneOf\": [\n                      {\n                        \"type\":
+        \"array\",\n                        \"minItems\": 1,\n                        \"uniqueItems\":
+        true,\n                        \"items\": {\n                          \"type\":
+        \"string\"\n                        }\n                      },\n                      {\n
+        \                       \"type\": \"array\",\n                        \"minItems\":
+        1,\n                        \"uniqueItems\": true,\n                        \"items\":
+        {\n                          \"type\": \"array\"\n                        }\n
+        \                     },\n                      {\n                        \"type\":
+        \"array\",\n                        \"minItems\": 1,\n                        \"uniqueItems\":
+        true,\n                        \"items\": {\n                          \"type\":
+        \"object\"\n                        }\n                      }\n                    ]\n
+        \                 }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"post_office\\\",\\n  \\\"type\\\":
+        \\\"geopoint\\\"\\n}\\n\",\n              \"{\\n  \\\"name\\\": \\\"post_office\\\",\\n
+        \ \\\"type\\\": \\\"geopoint\\\",\\n  \\\"format\\\": \\\"array\\\"\\n}\\n\"\n
+        \           ]\n          },\n          {\n            \"type\": \"object\",\n
+        \           \"title\": \"GeoJSON Field\",\n            \"description\": \"The
+        field contains a JSON object according to GeoJSON or TopoJSON\",\n            \"required\":
+        [\n              \"name\",\n              \"type\"\n            ],\n            \"properties\":
+        {\n              \"name\": {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `geojson`.\",\n                \"enum\":
+        [\n                  \"geojson\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"The format keyword options for `geojson`
+        are `default` and `topojson`.\",\n                \"context\": \"The following
+        `format` options are supported:\\n  * **default**: A geojson object as per
+        the [GeoJSON spec](http://geojson.org/).\\n  * **topojson**: A topojson object
+        as per the [TopoJSON spec](https://github.com/topojson/topojson-specification/blob/master/README.md)\",\n
+        \               \"enum\": [\n                  \"default\",\n                  \"topojson\"\n
+        \               ],\n                \"default\": \"default\"\n              },\n
+        \             \"constraints\": {\n                \"title\": \"Constraints\",\n
+        \               \"description\": \"The following constraints are supported
+        for `geojson` fields.\",\n                \"type\": \"object\",\n                \"properties\":
+        {\n                  \"required\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"Indicates whether a property must have
+        a value for each instance.\",\n                    \"context\": \"An empty
+        string is considered to be a missing value.\"\n                  },\n                  \"unique\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"When `true`, each value for the property `MUST` be unique.\"\n                  },\n
+        \                 \"enum\": {\n                    \"oneOf\": [\n                      {\n
+        \                       \"type\": \"array\",\n                        \"minItems\":
+        1,\n                        \"uniqueItems\": true,\n                        \"items\":
+        {\n                          \"type\": \"string\"\n                        }\n
+        \                     },\n                      {\n                        \"type\":
+        \"array\",\n                        \"minItems\": 1,\n                        \"uniqueItems\":
+        true,\n                        \"items\": {\n                          \"type\":
+        \"object\"\n                        }\n                      }\n                    ]\n
+        \                 },\n                  \"minLength\": {\n                    \"type\":
+        \"integer\",\n                    \"description\": \"An integer that specifies
+        the minimum length of a value.\"\n                  },\n                  \"maxLength\":
+        {\n                    \"type\": \"integer\",\n                    \"description\":
+        \"An integer that specifies the maximum length of a value.\"\n                  }\n
+        \               }\n              },\n              \"rdfType\": {\n                \"type\":
+        \"string\",\n                \"description\": \"The RDF type for this field.\"\n
+        \             }\n            },\n            \"examples\": [\n              \"{\\n
+        \ \\\"name\\\": \\\"city_limits\\\",\\n  \\\"type\\\": \\\"geojson\\\"\\n}\\n\",\n
+        \             \"{\\n  \\\"name\\\": \\\"city_limits\\\",\\n  \\\"type\\\":
+        \\\"geojson\\\",\\n  \\\"format\\\": \\\"topojson\\\"\\n}\\n\"\n            ]\n
+        \         },\n          {\n            \"type\": \"object\",\n            \"title\":
+        \"Array Field\",\n            \"description\": \"The field contains data which
+        can be parsed as a valid JSON array.\",\n            \"required\": [\n              \"name\",\n
+        \             \"type\"\n            ],\n            \"properties\": {\n              \"name\":
+        {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `array`.\",\n                \"enum\":
+        [\n                  \"array\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"There are no format keyword options
+        for `array`: only `default` is allowed.\",\n                \"enum\": [\n
+        \                 \"default\"\n                ],\n                \"default\":
+        \"default\"\n              },\n              \"constraints\": {\n                \"title\":
+        \"Constraints\",\n                \"description\": \"The following constraints
+        apply for `array` fields.\",\n                \"type\": \"object\",\n                \"properties\":
+        {\n                  \"required\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"Indicates whether a property must have
+        a value for each instance.\",\n                    \"context\": \"An empty
+        string is considered to be a missing value.\"\n                  },\n                  \"unique\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"When `true`, each value for the property `MUST` be unique.\"\n                  },\n
+        \                 \"enum\": {\n                    \"oneOf\": [\n                      {\n
+        \                       \"type\": \"array\",\n                        \"minItems\":
+        1,\n                        \"uniqueItems\": true,\n                        \"items\":
+        {\n                          \"type\": \"string\"\n                        }\n
+        \                     },\n                      {\n                        \"type\":
+        \"array\",\n                        \"minItems\": 1,\n                        \"uniqueItems\":
+        true,\n                        \"items\": {\n                          \"type\":
+        \"array\"\n                        }\n                      }\n                    ]\n
+        \                 },\n                  \"minLength\": {\n                    \"type\":
+        \"integer\",\n                    \"description\": \"An integer that specifies
+        the minimum length of a value.\"\n                  },\n                  \"maxLength\":
+        {\n                    \"type\": \"integer\",\n                    \"description\":
+        \"An integer that specifies the maximum length of a value.\"\n                  }\n
+        \               }\n              },\n              \"rdfType\": {\n                \"type\":
+        \"string\",\n                \"description\": \"The RDF type for this field.\"\n
+        \             }\n            },\n            \"examples\": [\n              \"{\\n
+        \ \\\"name\\\": \\\"options\\\"\\n  \\\"type\\\": \\\"array\\\"\\n}\\n\"\n
+        \           ]\n          },\n          {\n            \"type\": \"object\",\n
+        \           \"title\": \"Duration Field\",\n            \"description\": \"The
+        field contains a duration of time.\",\n            \"context\": \"The lexical
+        representation for duration is the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations)
+        extended format `PnYnMnDTnHnMnS`, where `nY` represents the number of years,
+        `nM` the number of months, `nD` the number of days, 'T' is the date/time separator,
+        `nH` the number of hours, `nM` the number of minutes and `nS` the number of
+        seconds. The number of seconds can include decimal digits to arbitrary precision.
+        Date and time elements including their designator may be omitted if their
+        value is zero, and lower order elements may also be omitted for reduced precision.
+        Here we follow the definition of [XML Schema duration datatype](http://www.w3.org/TR/xmlschema-2/#duration)
+        directly and that definition is implicitly inlined here.\",\n            \"required\":
+        [\n              \"name\",\n              \"type\"\n            ],\n            \"properties\":
+        {\n              \"name\": {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `duration`.\",\n                \"enum\":
+        [\n                  \"duration\"\n                ]\n              },\n              \"format\":
+        {\n                \"description\": \"There are no format keyword options
+        for `duration`: only `default` is allowed.\",\n                \"enum\": [\n
+        \                 \"default\"\n                ],\n                \"default\":
+        \"default\"\n              },\n              \"constraints\": {\n                \"title\":
+        \"Constraints\",\n                \"description\": \"The following constraints
+        are supported for `duration` fields.\",\n                \"type\": \"object\",\n
+        \               \"properties\": {\n                  \"required\": {\n                    \"type\":
+        \"boolean\",\n                    \"description\": \"Indicates whether a property
+        must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"type\": \"array\",\n                    \"minItems\":
+        1,\n                    \"uniqueItems\": true,\n                    \"items\":
+        {\n                      \"type\": \"string\"\n                    }\n                  },\n
+        \                 \"minimum\": {\n                    \"type\": \"string\"\n
+        \                 },\n                  \"maximum\": {\n                    \"type\":
+        \"string\"\n                  }\n                }\n              },\n              \"rdfType\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"The RDF type for this field.\"\n              }\n            },\n            \"examples\":
+        [\n              \"{\\n  \\\"name\\\": \\\"period\\\"\\n  \\\"type\\\": \\\"duration\\\"\\n}\\n\"\n
+        \           ]\n          },\n          {\n            \"type\": \"object\",\n
+        \           \"title\": \"Any Field\",\n            \"description\": \"Any
+        value is accepted, including values that are not captured by the type/format/constraint
+        requirements of the specification.\",\n            \"required\": [\n              \"name\",\n
+        \             \"type\"\n            ],\n            \"properties\": {\n              \"name\":
+        {\n                \"title\": \"Name\",\n                \"description\":
+        \"A name for this field.\",\n                \"type\": \"string\"\n              },\n
+        \             \"title\": {\n                \"title\": \"Title\",\n                \"description\":
+        \"A human-readable title.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"title\\\": \\\"My Package Title\\\"\\n}\\n\"\n
+        \               ]\n              },\n              \"description\": {\n                \"title\":
+        \"Description\",\n                \"description\": \"A text description. Markdown
+        is encouraged.\",\n                \"type\": \"string\",\n                \"examples\":
+        [\n                  \"{\\n  \\\"description\\\": \\\"# My Package description\\\\nAll
+        about my package.\\\"\\n}\\n\"\n                ]\n              },\n              \"example\":
+        {\n                \"title\": \"Example\",\n                \"description\":
+        \"An example value for the field.\",\n                \"type\": \"string\",\n
+        \               \"examples\": [\n                  \"{\\n  \\\"example\\\":
+        \\\"Put here an example value for your field\\\"\\n}\\n\"\n                ]\n
+        \             },\n              \"type\": {\n                \"description\":
+        \"The type keyword, which `MUST` be a value of `any`.\",\n                \"enum\":
+        [\n                  \"any\"\n                ]\n              },\n              \"constraints\":
+        {\n                \"title\": \"Constraints\",\n                \"description\":
+        \"The following constraints apply to `any` fields.\",\n                \"type\":
+        \"object\",\n                \"properties\": {\n                  \"required\":
+        {\n                    \"type\": \"boolean\",\n                    \"description\":
+        \"Indicates whether a property must have a value for each instance.\",\n                    \"context\":
+        \"An empty string is considered to be a missing value.\"\n                  },\n
+        \                 \"unique\": {\n                    \"type\": \"boolean\",\n
+        \                   \"description\": \"When `true`, each value for the property
+        `MUST` be unique.\"\n                  },\n                  \"enum\": {\n
+        \                   \"type\": \"array\",\n                    \"minItems\":
+        1,\n                    \"uniqueItems\": true\n                  }\n                }\n
+        \             },\n              \"rdfType\": {\n                \"type\":
+        \"string\",\n                \"description\": \"The RDF type for this field.\"\n
+        \             }\n            },\n            \"examples\": [\n              \"{\\n
+        \ \\\"name\\\": \\\"notes\\\",\\n  \\\"type\\\": \\\"any\\\"\\n\"\n            ]\n
+        \         }\n        ]\n      },\n      \"description\": \"An `array` of Table
+        Schema Field objects.\",\n      \"examples\": [\n        \"{\\n  \\\"fields\\\":
+        [\\n    {\\n      \\\"name\\\": \\\"my-field-name\\\"\\n    }\\n  ]\\n}\\n\",\n
+        \       \"{\\n  \\\"fields\\\": [\\n    {\\n      \\\"name\\\": \\\"my-field-name\\\",\\n
+        \     \\\"type\\\": \\\"number\\\"\\n    },\\n    {\\n      \\\"name\\\":
+        \\\"my-field-name-2\\\",\\n      \\\"type\\\": \\\"string\\\",\\n      \\\"format\\\":
+        \\\"email\\\"\\n    }\\n  ]\\n}\\n\"\n      ]\n    },\n    \"primaryKey\":
+        {\n      \"oneOf\": [\n        {\n          \"type\": \"array\",\n          \"minItems\":
+        1,\n          \"uniqueItems\": true,\n          \"items\": {\n            \"type\":
+        \"string\"\n          }\n        },\n        {\n          \"type\": \"string\"\n
+        \       }\n      ],\n      \"description\": \"A primary key is a field name
+        or an array of field names, whose values `MUST` uniquely identify each row
+        in the table.\",\n      \"context\": \"Field name in the `primaryKey` `MUST`
+        be unique, and `MUST` match a field name in the associated table. It is acceptable
+        to have an array with a single value, indicating that the value of a single
+        field is the primary key.\",\n      \"examples\": [\n        \"{\\n  \\\"primaryKey\\\":
+        [\\n    \\\"name\\\"\\n  ]\\n}\\n\",\n        \"{\\n  \\\"primaryKey\\\":
+        [\\n    \\\"first_name\\\",\\n    \\\"last_name\\\"\\n  ]\\n}\\n\"\n      ]\n
+        \   },\n    \"foreignKeys\": {\n      \"type\": \"array\",\n      \"minItems\":
+        1,\n      \"items\": {\n        \"title\": \"Table Schema Foreign Key\",\n
+        \       \"description\": \"Table Schema Foreign Key\",\n        \"type\":
+        \"object\",\n        \"required\": [\n          \"fields\",\n          \"reference\"\n
+        \       ],\n        \"oneOf\": [\n          {\n            \"properties\":
+        {\n              \"fields\": {\n                \"type\": \"array\",\n                \"items\":
+        {\n                  \"type\": \"string\",\n                  \"minItems\":
+        1,\n                  \"uniqueItems\": true,\n                  \"description\":
+        \"Fields that make up the primary key.\"\n                }\n              },\n
+        \             \"reference\": {\n                \"type\": \"object\",\n                \"required\":
+        [\n                  \"resource\",\n                  \"fields\"\n                ],\n
+        \               \"properties\": {\n                  \"resource\": {\n                    \"type\":
+        \"string\",\n                    \"default\": \"\"\n                  },\n
+        \                 \"fields\": {\n                    \"type\": \"array\",\n
+        \                   \"items\": {\n                      \"type\": \"string\"\n
+        \                   },\n                    \"minItems\": 1,\n                    \"uniqueItems\":
+        true\n                  }\n                }\n              }\n            }\n
+        \         },\n          {\n            \"properties\": {\n              \"fields\":
+        {\n                \"type\": \"string\",\n                \"description\":
+        \"Fields that make up the primary key.\"\n              },\n              \"reference\":
+        {\n                \"type\": \"object\",\n                \"required\": [\n
+        \                 \"resource\",\n                  \"fields\"\n                ],\n
+        \               \"properties\": {\n                  \"resource\": {\n                    \"type\":
+        \"string\",\n                    \"default\": \"\"\n                  },\n
+        \                 \"fields\": {\n                    \"type\": \"string\"\n
+        \                 }\n                }\n              }\n            }\n          }\n
+        \       ]\n      },\n      \"examples\": [\n        \"{\\n  \\\"foreignKeys\\\":
+        [\\n    {\\n      \\\"fields\\\": \\\"state\\\",\\n      \\\"reference\\\":
+        {\\n        \\\"resource\\\": \\\"the-resource\\\",\\n        \\\"fields\\\":
+        \\\"state_id\\\"\\n      }\\n    }\\n  ]\\n}\\n\",\n        \"{\\n  \\\"foreignKeys\\\":
+        [\\n    {\\n      \\\"fields\\\": \\\"state\\\",\\n      \\\"reference\\\":
+        {\\n        \\\"resource\\\": \\\"\\\",\\n        \\\"fields\\\": \\\"id\\\"\\n
+        \     }\\n    }\\n  ]\\n}\\n\"\n      ]\n    },\n    \"missingValues\": {\n
+        \     \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n
+        \     },\n      \"default\": [\n        \"\"\n      ],\n      \"description\":
+        \"Values that when encountered in the source, should be considered as `null`,
+        'not present', or 'blank' values.\",\n      \"context\": \"Many datasets arrive
+        with missing data values, either because a value was not collected or it never
+        existed.\\nMissing values may be indicated simply by the value being empty
+        in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999`
+        etc.\\nThe `missingValues` property provides a way to indicate that these
+        values should be interpreted as equivalent to null.\\n\\n`missingValues` are
+        strings rather than being the data type of the particular field. This allows
+        for comparison prior to casting and for fields to have missing value which
+        are not of their type, for example a `number` field to have missing values
+        indicated by `-`.\\n\\nThe default value of `missingValue` for a non-string
+        type field is the empty string `''`. For string type fields there is no default
+        for `missingValue` (for string fields the empty string `''` is a valid value
+        and need not indicate null).\",\n      \"examples\": [\n        \"{\\n  \\\"missingValues\\\":
+        [\\n    \\\"-\\\",\\n    \\\"NaN\\\",\\n    \\\"\\\"\\n  ]\\n}\\n\",\n        \"{\\n
+        \ \\\"missingValues\\\": []\\n}\\n\"\n      ]\n    }\n  },\n  \"examples\":
+        [\n    \"{\\n  \\\"schema\\\": {\\n    \\\"fields\\\": [\\n      {\\n        \\\"name\\\":
+        \\\"first_name\\\",\\n        \\\"type\\\": \\\"string\\\"\\n        \\\"constraints\\\":
+        {\\n          \\\"required\\\": true\\n        }\\n      },\\n      {\\n        \\\"name\\\":
+        \\\"age\\\",\\n        \\\"type\\\": \\\"integer\\\"\\n      },\\n    ],\\n
+        \   \\\"primaryKey\\\": [\\n      \\\"name\\\"\\n    ]\\n  }\\n}\\n\"\n  ]\n}"
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Age:
+      - '0'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 835d9f10edf3666f-MAD
+      Cache-Control:
+      - max-age=600
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '6231'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Fri, 15 Dec 2023 09:22:18 GMT
+      Etag:
+      - W/"65685295-10ab4"
+      Expires:
+      - Fri, 15 Dec 2023 09:32:17 GMT
+      Last-Modified:
+      - Thu, 30 Nov 2023 09:15:01 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=yGsARy6oO2uQF9gPFynlObXQvlJlUe50bN2CiyTTsDzTbYzfXfL2brjrjRx4axZlN3jj5w14G4O9GKEud5icvpQBGiL0F0oiQCEx%2Be1xMxPlV2wpmA5a3BrUripQ8elKZYUsD6ToWOkoDMlj"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '2'
+      X-Fastly-Request-ID:
+      - e82e0907e5764e93f3725e619c1b1d0e73782769
+      X-GitHub-Request-Id:
+      - C9CC:26A70F:37AA8EC:38A408F:657C1AC9
+      X-Served-By:
+      - cache-mad2200147-MAD
+      X-Timer:
+      - S1702632138.388039,VS0,VE0
+      alt-svc:
+      - h3=":443"; ma=86400
+      x-proxy-cache:
+      - MISS
+    status:
+      code: 200
+      message: OK
+version: 1

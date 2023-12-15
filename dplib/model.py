@@ -9,6 +9,7 @@ from pydantic import BaseModel
 from typing_extensions import Self
 
 from . import types
+from .error import Error
 from .helpers.data import clean_data, dump_data, load_data
 from .helpers.file import read_file, write_file
 from .helpers.path import ensure_basepath, infer_format
@@ -42,6 +43,8 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
             format = infer_format(path, raise_missing=True)
         path, basepath = ensure_basepath(path, basepath=basepath)
         text = read_file(path)
+        if not text:
+            raise Error(f"The file is empty: {path}")
         return cls.from_text(text, format=format, basepath=basepath)
 
     def to_text(self, *, format: str) -> str:
@@ -55,7 +58,7 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
         return cls.from_dict(data, basepath=basepath)
 
     def to_dict(self):
-        data = self.model_dump(mode="json")
+        data = self.model_dump(mode="json", exclude_none=True, exclude_defaults=True)
         clean_data(data)
         return data
 

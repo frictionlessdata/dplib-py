@@ -15,6 +15,20 @@ from .field import SqlField
 class SqlSchema(Model, arbitrary_types_allowed=True):
     table: Table
 
+    # Getters
+
+    def get_field_names(self) -> List[str]:
+        names: List[str] = []
+        for column in self.table.columns:
+            names.append(column.name)
+        return names
+
+    def get_field_types(self) -> List[Any]:
+        types: List[Any] = []
+        for column in self.table.columns:
+            types.append(type(column.type))
+        return types
+
     # Converters
 
     def to_dp(self, *, with_metadata: bool = False) -> Schema:

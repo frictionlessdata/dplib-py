@@ -1,0 +1,258 @@
+{
+  "access": {
+    "embargo": {
+      "active": false,
+      "reason": null
+    },
+    "files": "public",
+    "record": "public",
+    "status": "open"
+  },
+  "created": "2021-12-10T05:47:07.709885+00:00",
+  "custom_fields": {},
+  "deletion_status": {
+    "is_deleted": false,
+    "status": "P"
+  },
+  "files": {
+    "count": 2,
+    "enabled": true,
+    "entries": {
+      "Fishway_Obstruction_Data_v1.csv": {
+        "checksum": "md5:7bdef6756c84c3aea749f8211c557684",
+        "ext": "csv",
+        "id": "446d22bb-95ce-4f38-8b16-58a3e9686e96",
+        "key": "Fishway_Obstruction_Data_v1.csv",
+        "metadata": null,
+        "mimetype": "text/csv",
+        "size": 1377
+      },
+      "readme.md": {
+        "checksum": "md5:a23a3c99befca45e706c9343e39f5926",
+        "ext": "md",
+        "id": "1b61bee1-8463-4324-8b98-9ac8b0d592ff",
+        "key": "readme.md",
+        "metadata": null,
+        "mimetype": "application/octet-stream",
+        "size": 1577
+      }
+    },
+    "order": [],
+    "total_bytes": 2954
+  },
+  "id": "5770714",
+  "is_draft": false,
+  "is_published": true,
+  "links": {
+    "access": "https://zenodo.org/api/records/5770714/access",
+    "access_links": "https://zenodo.org/api/records/5770714/access/links",
+    "access_request": "https://zenodo.org/api/records/5770714/access/request",
+    "access_users": "https://zenodo.org/api/records/5770714/access/users",
+    "archive": "https://zenodo.org/api/records/5770714/files-archive",
+    "archive_media": "https://zenodo.org/api/records/5770714/media-files-archive",
+    "communities": "https://zenodo.org/api/records/5770714/communities",
+    "communities-suggestions": "https://zenodo.org/api/records/5770714/communities-suggestions",
+    "doi": "https://doi.org/10.5281/zenodo.5770714",
+    "draft": "https://zenodo.org/api/records/5770714/draft",
+    "files": "https://zenodo.org/api/records/5770714/files",
+    "latest": "https://zenodo.org/api/records/5770714/versions/latest",
+    "latest_html": "https://zenodo.org/records/5770714/latest",
+    "media_files": "https://zenodo.org/api/records/5770714/media-files",
+    "parent": "https://zenodo.org/api/records/5770713",
+    "parent_doi": "https://zenodo.org/doi/10.5281/zenodo.5770713",
+    "parent_html": "https://zenodo.org/records/5770713",
+    "requests": "https://zenodo.org/api/records/5770714/requests",
+    "reserve_doi": "https://zenodo.org/api/records/5770714/draft/pids/doi",
+    "self": "https://zenodo.org/api/records/5770714",
+    "self_doi": "https://zenodo.org/doi/10.5281/zenodo.5770714",
+    "self_html": "https://zenodo.org/records/5770714",
+    "self_iiif_manifest": "https://zenodo.org/api/iiif/record:5770714/manifest",
+    "self_iiif_sequence": "https://zenodo.org/api/iiif/record:5770714/sequence/default",
+    "versions": "https://zenodo.org/api/records/5770714/versions"
+  },
+  "media_files": {
+    "count": 0,
+    "enabled": false,
+    "entries": {},
+    "order": [],
+    "total_bytes": 0
+  },
+  "metadata": {
+    "creators": [
+      {
+        "affiliations": [
+          {
+            "name": "Department of Hydraulics and Hydrology, ETSIIAA, University of Valladolid, 34004 Palencia, Spain"
+          }
+        ],
+        "person_or_org": {
+          "family_name": "Fuentes-Pérez",
+          "given_name": "Juan Francisco",
+          "identifiers": [
+            {
+              "identifier": "0000-0003-2384-9085",
+              "scheme": "orcid"
+            }
+          ],
+          "name": "Fuentes-Pérez, Juan Francisco",
+          "type": "personal"
+        }
+      }
+    ],
+    "description": "<p>This dataset contains pool-weir type fishway (sumerged notch and orifice) hydraulic scenarios with and without obstruction events in accordance with&nbsp;the publication:&nbsp;</p>\n\n<p>Fuentes-P&eacute;rez, J.F., Garc&iacute;a-Vega, A., Bravo-C&oacute;rdoba, F.J., Sanz-Ronda, F.J. 2021. A Step to Smart Fishways: An Autonomous Obstruction Detection System Using Hydraulic Modeling and Sensor Networks. Sensors 2021, 21(20), 6909.</p>",
+    "funding": [
+      {
+        "award": {
+          "acronym": "Smart Fishways",
+          "id": "00k4n6c32::101032024",
+          "identifiers": [
+            {
+              "identifier": "https://cordis.europa.eu/projects/101032024",
+              "scheme": "url"
+            }
+          ],
+          "number": "101032024",
+          "program": "H2020",
+          "title": {
+            "en": "Adapting fishways to hydrological and climatic uncertainty"
+          }
+        },
+        "funder": {
+          "id": "00k4n6c32",
+          "name": "European Commission"
+        }
+      }
+    ],
+    "languages": [
+      {
+        "id": "eng",
+        "title": {
+          "en": "English"
+        }
+      }
+    ],
+    "publication_date": "2021-11-13",
+    "publisher": "Zenodo",
+    "related_identifiers": [
+      {
+        "identifier": "10.3390/s21206909",
+        "relation_type": {
+          "id": "documents",
+          "title": {
+            "de": "Dokumentiert",
+            "en": "Documents"
+          }
+        },
+        "resource_type": {
+          "id": "publication-article",
+          "title": {
+            "de": "Zeitschriftenartikel",
+            "en": "Journal article"
+          }
+        },
+        "scheme": "doi"
+      }
+    ],
+    "resource_type": {
+      "id": "dataset",
+      "title": {
+        "de": "Datensatz",
+        "en": "Dataset"
+      }
+    },
+    "rights": [
+      {
+        "description": {
+          "en": "The Creative Commons Attribution license allows re-distribution and re-use of a licensed work on the condition that the creator is appropriately credited."
+        },
+        "icon": "cc-by-icon",
+        "id": "cc-by-4.0",
+        "props": {
+          "scheme": "spdx",
+          "url": "https://creativecommons.org/licenses/by/4.0/legalcode"
+        },
+        "title": {
+          "en": "Creative Commons Attribution 4.0 International"
+        }
+      }
+    ],
+    "subjects": [
+      {
+        "subject": "fishways"
+      },
+      {
+        "subject": "hydraulics"
+      },
+      {
+        "subject": "smart fishways"
+      },
+      {
+        "subject": "pool-weir"
+      },
+      {
+        "subject": "hydrological variability"
+      },
+      {
+        "subject": "nonuniformity"
+      },
+      {
+        "subject": "clogging"
+      },
+      {
+        "subject": "water-level sensors"
+      }
+    ],
+    "title": "Fishway_Obstruction_Data_v1.csv",
+    "version": "v1"
+  },
+  "parent": {
+    "access": {
+      "owned_by": {
+        "user": 269064
+      }
+    },
+    "communities": {},
+    "id": "5770713",
+    "pids": {
+      "doi": {
+        "client": "datacite",
+        "identifier": "10.5281/zenodo.5770713",
+        "provider": "datacite"
+      }
+    }
+  },
+  "pids": {
+    "doi": {
+      "client": "datacite",
+      "identifier": "10.5281/zenodo.5770714",
+      "provider": "datacite"
+    },
+    "oai": {
+      "identifier": "oai:zenodo.org:5770714",
+      "provider": "oai"
+    }
+  },
+  "revision_id": 3,
+  "stats": {
+    "all_versions": {
+      "data_volume": 44664,
+      "downloads": 32,
+      "unique_downloads": 26,
+      "unique_views": 61,
+      "views": 70
+    },
+    "this_version": {
+      "data_volume": 44664,
+      "downloads": 32,
+      "unique_downloads": 26,
+      "unique_views": 60,
+      "views": 69
+    }
+  },
+  "status": "published",
+  "updated": "2021-12-14T09:04:24.503567+00:00",
+  "versions": {
+    "index": 1,
+    "is_latest": true
+  }
+}

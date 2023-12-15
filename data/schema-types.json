@@ -1,0 +1,20 @@
+{
+  "fields": [
+    { "name": "any", "type": "any" },
+    { "name": "array", "type": "array" },
+    { "name": "boolean", "type": "boolean" },
+    { "name": "date", "type": "date" },
+    { "name": "date_year", "type": "date", "format": "%Y" },
+    { "name": "datetime", "type": "datetime" },
+    { "name": "duration", "type": "duration" },
+    { "name": "geojson", "type": "geojson" },
+    { "name": "geopoint", "type": "geopoint" },
+    { "name": "integer", "type": "integer" },
+    { "name": "number", "type": "number" },
+    { "name": "object", "type": "object" },
+    { "name": "string", "type": "string" },
+    { "name": "time", "type": "time" },
+    { "name": "year", "type": "year" },
+    { "name": "yearmonth", "type": "yearmonth" }
+  ]
+}

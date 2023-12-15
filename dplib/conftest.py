@@ -1,5 +1,7 @@
 # type: ignore
-# Settings
+import os
+
+import pytest
 
 
 def pytest_addoption(parser):
@@ -10,3 +12,8 @@ def pytest_addoption(parser):
         default=False,
         help="enable integrational tests",
     )
+
+
+@pytest.fixture(scope="module")
+def vcr_cassette_dir():
+    return os.path.join("data", "cassettes")

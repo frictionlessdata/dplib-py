@@ -71,19 +71,19 @@ class DatacitePackage(Model):
             package.keywords.append(subject.subject)
 
         # Contributors
-        for item in self.creators + self.contributors:
-            contributor = Contributor(title=item.name)
-            if item.contributorType:
-                contributor.role = item.contributorType or "creator"
-            for affiliation in item.affiliation:
-                contributor.organization = affiliation.name
-                break
-            package.contributors.append(contributor)
+        for type, items in [("creator", self.creators), ("other", self.contributors)]:
+            for item in items:
+                contributor = Contributor(title=item.name)
+                contributor.role = type if type == "creator" else item.contributorType
+                for affiliation in item.affiliation:
+                    contributor.organization = affiliation.name
+                    break
+                package.contributors.append(contributor)
 
         # Licenses
         for rights in self.rightsList:
-            if rights.rightsIdentifier or rights.rightsUrl:
-                license = License(name=rights.rightsIdentifier, path=rights.rightsUrl)
+            if rights.rightsIdentifier or rights.rightsUri:
+                license = License(name=rights.rightsIdentifier, path=rights.rightsUri)
                 if rights.rights:
                     license.title = rights.rights
                 package.licenses.append(license)

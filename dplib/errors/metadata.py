@@ -16,8 +16,8 @@ class MetadataError(Error):
 
     def __init__(self, source: ValidationError):
         self.source = source
-        self.schema_path = "/".join(map(str, source.schema_path))
-        self.object_path = "/".join(map(str, source.path)) or "/"
+        self.schema_path = "/" + "/".join(map(str, source.schema_path))
+        self.object_path = "/" + "/".join(map(str, source.path))
         self.message = re.sub(r"\s+", " ", source.message)
         self.full_message = self.message
         if self.object_path:
