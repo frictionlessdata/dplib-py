@@ -17,6 +17,6 @@ def main(
 ):
     """
     Python implementation of the Data Package standard and
-    various models and utils for working with data
+    various tools for working with data
     """
     program.debug = debug
