@@ -91,7 +91,7 @@ dependencies = [
 coverage = [
   "sensible-browser coverage/index.html",
 ]
-docs = [
+build = [
   "mkdocs build",
 ]
 format = [

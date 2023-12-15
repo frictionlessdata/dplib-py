@@ -44,7 +44,7 @@ hatch run serve
 Building the docs:
 
 ```bash
-hatch run docs
+hatch run build
 ```
 
 ## Testing
