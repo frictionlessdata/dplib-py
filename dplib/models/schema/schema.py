@@ -31,6 +31,18 @@ class Schema(Model):
             if name and field.name == name:
                 return field
 
+    def get_field_names(self) -> List[str]:
+        names: List[str] = []
+        for field in self.fields:
+            names.append(field.name or "")
+        return names
+
+    def get_field_types(self) -> List[str]:
+        types: List[str] = []
+        for field in self.fields:
+            types.append(field.type)
+        return types
+
     # Setters
 
     def add_field(self, field: Field) -> None:

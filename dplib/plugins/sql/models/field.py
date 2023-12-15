@@ -39,6 +39,8 @@ class SqlField(Model, arbitrary_types_allowed=True):
             field.type = "number"
         elif isinstance(self.column.type, OBJECT_TYPES):
             field.type = "object"
+        elif isinstance(self.column.type, TEXT_TYPES):
+            field.type = "string"
         elif isinstance(self.column.type, TIME_TYPES):
             field.type = "time"
 
@@ -174,4 +176,5 @@ INTEGER_TYPES = (sa.Integer,)
 NUMBER_TYPES = (sa.Float, sa.Numeric)  # type: ignore
 STRING_TYPES = (ml.BIT, ml.VARBINARY, ml.VARCHAR, pg.UUID, sa.Text, sa.VARCHAR)  # type: ignore
 OBJECT_TYPES = (pg.JSONB, pg.JSON)
+TEXT_TYPES = (sa.Text,)
 TIME_TYPES = (sa.Time,)
