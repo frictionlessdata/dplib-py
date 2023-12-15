@@ -1,4 +1,5 @@
 from dplib.actions.resource.check import check_resource
+from dplib.models import Resource
 
 
 def test_check_resource():
@@ -21,3 +22,9 @@ def test_check_resource_invalid_dereferencing():
     assert len(errors) == 1
     error = errors[0]
     assert error.full_message == "[/dialect/delimiter] 1 is not of type 'string'"
+
+
+def test_check_resource_from_model():
+    resource = Resource(name="name", path="path")
+    errors = check_resource(resource)
+    assert len(errors) == 0

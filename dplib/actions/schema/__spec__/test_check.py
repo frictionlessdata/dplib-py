@@ -1,4 +1,5 @@
 from dplib.actions.schema.check import check_schema
+from dplib.models import Schema
 
 
 def test_check_schema():
@@ -14,3 +15,9 @@ def test_check_schema_invalid():
     assert error.schema_path == "/required"
     assert error.object_path == "/"
     assert error.full_message == "[/] 'fields' is a required property"
+
+
+def test_check_schema_from_model():
+    schema = Schema()
+    errors = check_schema(schema)
+    assert len(errors) == 1

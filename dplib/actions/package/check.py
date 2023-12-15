@@ -6,14 +6,18 @@ from ... import types
 from ...errors.metadata import MetadataError
 from ...helpers.data import read_data
 from ...helpers.path import infer_basepath
+from ...models import Package
 from ..metadata.check import check_metadata
 
 
-def check_package(package: Union[str, types.IDict]) -> List[MetadataError]:
+def check_package(package: Union[str, Package, types.IDict]) -> List[MetadataError]:
     basepath = None
     if isinstance(package, str):
         basepath = infer_basepath(package)
         package = read_data(package)
+    if isinstance(package, Package):
+        basepath = package.basepath
+        package = package.to_dict()
 
     # Dereference resources[].dialect/schema
     resources = package.get("resources", [])

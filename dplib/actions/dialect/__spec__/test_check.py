@@ -1,4 +1,5 @@
 from dplib.actions.dialect.check import check_dialect
+from dplib.models import Dialect
 
 
 def test_check_dialect():
@@ -14,3 +15,9 @@ def test_check_dialect_invalid():
     assert error.schema_path == "/properties/delimiter/type"
     assert error.object_path == "/delimiter"
     assert error.full_message == "[/delimiter] 1 is not of type 'string'"
+
+
+def test_check_dialect_from_model():
+    dialect = Dialect(delimiter=";")
+    errors = check_dialect(dialect)
+    assert len(errors) == 0
