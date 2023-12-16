@@ -1,6 +1,6 @@
 # CKAN
 
-CKAN plugin provides models to Package and Resource between CKAN and Data Package notations
+CKAN plugin provides Package and Resource models and converters between CKAN and Data Package notations
 
 ## Installation
 
