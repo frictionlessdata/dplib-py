@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import pytest
 from pydantic import ValidationError
 
@@ -64,13 +66,13 @@ def test_resource_profile():
 def test_resource_get_fullpath():
     resource = Resource.from_path("data/resource.json")
     fullpath = resource.get_fullpath()
-    assert fullpath == "data/table.csv"
+    assert fullpath == str(Path("data/table.csv"))
 
 
 def test_resource_get_fullpath_with_basepath():
     resource = Resource(path="table.csv", basepath="data")
     fullpath = resource.get_fullpath()
-    assert fullpath == "data/table.csv"
+    assert fullpath == str(Path("data/table.csv"))
 
 
 def test_resource_get_source():
