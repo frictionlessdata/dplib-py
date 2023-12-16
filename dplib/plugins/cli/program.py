@@ -9,7 +9,7 @@ from rich.markup import escape
 
 
 class Program(typer.Typer):
-    debug: Optional[bool]
+    debug: Optional[bool] = False
 
     def __call__(self, *args: Any, **kwargs: Any):
         try:

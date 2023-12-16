@@ -9,7 +9,8 @@ from .main import program
 
 @program.command(name="check")
 def command(
-    path: Path,
+    path: str = Path,
 ):
+    """Check the validity of a Table Schema descriptor."""
     errors = check_schema(path)
     print_check_results(path, errors)

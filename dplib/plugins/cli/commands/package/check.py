@@ -9,7 +9,8 @@ from .main import program
 
 @program.command(name="check")
 def command(
-    path: Path,
+    path: str = Path,
 ):
+    """Check the validity of a Data Package descriptor."""
     errors = check_package(path)
     print_check_results(path, errors)
