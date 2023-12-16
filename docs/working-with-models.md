@@ -80,3 +80,30 @@ schema.to_path('schema.json') # OR
 schema.to_text(format='json') # OR
 schema.to_dict()
 ```
+
+## Extending Models
+
+!!! warning
+
+    Currently, it might be affected by [this Pydantic issue](https://github.com/pydantic/pydantic/issues/5165)
+
+If you develop a Data Package Extension it's easy to create corresponding models on top of the Data Package Library:
+
+```python
+from typing import List
+from dplib.models import Schema, Field
+
+
+class ExtensionField(Field):
+    prop1: str
+    prop2: str
+
+
+class ExtensionSchema(Schema):
+    profile: Literal[<url>] = <url>
+    fields: List[ExtensionField] = []
+
+
+field = ExtensionField(prop1="a", prop2='b')
+schema = ExtensionSchema(fields=[field])
+```
