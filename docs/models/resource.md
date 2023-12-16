@@ -1,0 +1,3 @@
+# Resource
+
+::: dplib.models.Resource

@@ -22,6 +22,11 @@ class CkanResource(Model):
     # Converters
 
     def to_dp(self) -> Resource:
+        """Convert to Data Package resource
+
+        Returns:
+           Data Resource
+        """
         resource = Resource(path=self.name, name=slugify_name(self.name))
 
         # Format
@@ -44,6 +49,14 @@ class CkanResource(Model):
 
     @classmethod
     def from_dp(cls, resource: Resource) -> Optional[CkanResource]:
+        """Create from Data Package resource
+
+        Parameters:
+            resource: Data Resource
+
+        Returns:
+            Ckan Resource
+        """
         if not resource.path or not isinstance(resource.path, str):
             return
 

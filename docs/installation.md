@@ -1,5 +1,7 @@
 # Installation
 
-!!! warning
+The library requires Python 3.8+ and can be installed using PIP:
 
-    Under development
+```bash
+pip install dplib-py
+```

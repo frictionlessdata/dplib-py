@@ -13,23 +13,91 @@ from ..source import Source
 
 
 class Package(Model):
+    """Data Package model"""
+
     basepath: Optional[str] = pydantic.Field(default=None, exclude=True)
+    """
+    Basepath of the package.
+    All the resources are relative to this path.
+    """
+
+    resources: List[Resource] = []
+    """
+    List of resources
+    """
 
     id: Optional[str] = None
+    """
+    A property reserved for globally unique identifiers.
+    Examples of identifiers that are unique include UUIDs and DOIs.
+    """
+
     name: Optional[str] = None
+    """
+    A short url-usable (and preferably human-readable) name of the package.
+    This MUST be lower-case and contain only alphanumeric characters
+    along with ”.”, ”_” or ”-” characters.
+    """
+
     profile: Optional[str] = None
-    resources: List[Resource] = []
+    """
+    A string identifying the profile of this descriptor as per the profiles specification.
+    """
 
     title: Optional[str] = None
+    """
+    A string providing a title or one sentence description for this package
+    """
+
     description: Optional[str] = None
+    """
+    A description of the package. The description MUST be markdown formatted —
+    this also allows for simple plain text as plain text is itself valid markdown.
+    """
+
     homepage: Optional[str] = None
+    """
+    A URL for the home on the web that is related to this data package.
+    """
+
     version: Optional[str] = None
+    """
+    A version string identifying the version of the package.
+    It should conform to the Semantic Versioning requirements
+    """
+
     licenses: List[License] = []
+    """
+    The license(s) under which the package is provided.
+    This property is not legally binding and does not guarantee
+    the package is licensed under the terms defined in this property.
+    """
+
     sources: List[Source] = []
+    """
+    The raw sources for this data package.
+    """
+
     contributors: List[Contributor] = []
+    """
+    The people or organizations who contributed to this Data Package.
+    """
+
     keywords: List[str] = []
+    """
+    An Array of string keywords to assist users searching for the package in catalogs.
+    """
+
     image: Optional[str] = None
+    """
+    An image to use for this data package.
+    For example, when showing the package in a listing.
+    """
+
     created: Optional[str] = None
+    """
+    The datetime on which this was created.
+    """
 
     def model_post_init(self, _):
         for resource in self.resources:
@@ -38,12 +106,14 @@ class Package(Model):
     # Getters
 
     def get_profile(self) -> Optional[Profile]:
+        """Get the resovled profile of the package"""
         if self.profile:
             return Profile.from_path(self.profile)
 
     def get_resource(
         self, *, name: Optional[str] = None, path: Optional[str] = None
     ) -> Optional[Resource]:
+        """Get a resource by name or path"""
         for resource in self.resources:
             if name and resource.name == name:
                 return resource
@@ -53,11 +123,15 @@ class Package(Model):
     # Setters
 
     def add_resource(self, resource: Resource) -> None:
+        """Add a resource to the package"""
         resource.basepath = self.basepath
         self.resources.append(resource)
 
     # Methods
 
     def dereference(self):
+        """Dereference the package
+        It will dereference all the resource's dialects and schemas in the package.
+        """
         for resource in self.resources:
             resource.dereference()

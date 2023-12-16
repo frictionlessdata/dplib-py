@@ -14,6 +14,8 @@ from .tag import CkanTag
 
 
 class CkanPackage(Model):
+    """CKAN Package model"""
+
     resources: List[CkanResource] = []
 
     organization: Optional[CkanOrganization] = None
@@ -37,7 +39,12 @@ class CkanPackage(Model):
 
     # Converters
 
-    def to_dp(self):
+    def to_dp(self) -> Package:
+        """Convert to Data Package
+
+        Returns:
+           Data Package
+        """
         package = Package()
 
         # Name
@@ -98,6 +105,11 @@ class CkanPackage(Model):
 
     @classmethod
     def from_dp(cls, package: Package) -> CkanPackage:
+        """Create a CKAN Package from Data Package
+
+        Parameters:
+            package: Data Package
+        """
         ckan = CkanPackage()
 
         # Name
