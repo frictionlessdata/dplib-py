@@ -113,28 +113,29 @@ markdown_extensions:
 
 nav:
   - Home:
-      Installation: installation.md
-      Usage: usage.md
-      Contributing: contributing.md
+      - Introduction: index.md
+      - Installation: installation.md
+      - Usage: usage.md
+      - Contributing: contributing.md
   - Models:
-      Usage: models/usage.md
-      Package: models/package.md
-      Resource: models/resource.md
-      Dialect: models/dialect.md
-      Schema: models/schema.md
+      - Usage: models/usage.md
+      - Package: models/package.md
+      - Resource: models/resource.md
+      - Dialect: models/dialect.md
+      - Schema: models/schema.md
   - Actions:
-      Usage: actions/usage.md
-      Package: actions/package.md
-      Resource: actions/resource.md
-      Dialect: actions/dialect.md
-      Schema: actions/schema.md
+      - Usage: actions/usage.md
+      - Package: actions/package.md
+      - Resource: actions/resource.md
+      - Dialect: actions/dialect.md
+      - Schema: actions/schema.md
   - Plugins:
-      CKAN: plugins/ckan.md
-      CLI: plugins/cli.md
-      DataCite: plugins/datacite.md
-      DCAT: plugins/dcat.md
-      GitHub: plugins/github.md
-      Pandas: plugins/pandas.md
-      Polars: plugins/polars.md
-      SQL: plugins/sql.md
-      Zenodo: plugins/zenodo.md
+      - CKAN: plugins/ckan.md
+      - CLI: plugins/cli.md
+      - DataCite: plugins/datacite.md
+      - DCAT: plugins/dcat.md
+      - GitHub: plugins/github.md
+      - Pandas: plugins/pandas.md
+      - Polars: plugins/polars.md
+      - SQL: plugins/sql.md
+      - Zenodo: plugins/zenodo.md
