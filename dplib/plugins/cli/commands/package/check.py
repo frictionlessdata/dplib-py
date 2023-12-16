@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from dplib.actions.package.check import check_package
 
 from ...helpers.check import print_check_results

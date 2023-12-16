@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from dplib.actions.schema.check import check_schema
 
 from ...helpers.check import print_check_results

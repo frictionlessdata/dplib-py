@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from dplib.actions.dialect.check import check_dialect
 
 from ...helpers.check import print_check_results

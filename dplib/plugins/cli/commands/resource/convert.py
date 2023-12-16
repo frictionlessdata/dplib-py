@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from rich.console import Console
 
 from dplib.actions.resource.convert import convert_resource

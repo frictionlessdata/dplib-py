@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from dplib.actions.resource.check import check_resource
 
 from ...helpers.check import print_check_results

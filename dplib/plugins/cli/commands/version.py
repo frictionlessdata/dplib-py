@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from dplib import settings
 
 from .main import program
