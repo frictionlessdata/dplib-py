@@ -8,6 +8,8 @@ from dplib.models import Resource
 
 
 class ZenodoResource(Model):
+    """Zenodo Resource model"""
+
     key: str
     id: Optional[str] = None
     checksum: Optional[str] = None
@@ -18,6 +20,11 @@ class ZenodoResource(Model):
     # Converters
 
     def to_dp(self) -> Resource:
+        """Convert to Data Package resource
+
+        Returns:
+           Data Resource
+        """
         resource = Resource(path=self.key, name=slugify_name(self.key))
 
         # Format
@@ -40,6 +47,14 @@ class ZenodoResource(Model):
 
     @classmethod
     def from_dp(cls, resource: Resource) -> Optional[ZenodoResource]:
+        """Create Zenodo Resource from Data Resource
+
+        Parameters:
+            resource: Data Resource
+
+        Returns:
+            Zenodo Resource
+        """
         if not resource.path or not isinstance(resource.path, str):
             return
 

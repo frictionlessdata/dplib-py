@@ -109,6 +109,9 @@ class CkanPackage(Model):
 
         Parameters:
             package: Data Package
+
+        Returns:
+            CKAN Package
         """
         ckan = CkanPackage()
 

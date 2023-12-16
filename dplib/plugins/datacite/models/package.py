@@ -19,6 +19,8 @@ from .title import DataciteTitle
 
 
 class DatacitePackage(Model):
+    """Datacite Package model"""
+
     version: Optional[str] = None
     language: Optional[str] = None
     publisher: Optional[str] = None
@@ -36,6 +38,11 @@ class DatacitePackage(Model):
     # Converters
 
     def to_dp(self) -> Package:
+        """Convert to Data Package
+
+        Returns:
+           Data Package
+        """
         package = Package()
 
         # Id
@@ -92,6 +99,14 @@ class DatacitePackage(Model):
 
     @classmethod
     def from_dp(cls, package: Package) -> DatacitePackage:
+        """Create a Datacite Package from Data Package
+
+        Parameters:
+            package: Data Package
+
+        Returns:
+            Datacite Package
+        """
         datacite = DatacitePackage()
 
         # Id

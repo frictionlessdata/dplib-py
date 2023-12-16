@@ -14,6 +14,8 @@ from .types import ISubject
 
 
 class DcatResource(Model):
+    """DCAT Resource model"""
+
     access_url: Optional[str] = None
     byte_size: Optional[int] = None
     conforms_to: List[str] = []
@@ -147,6 +149,11 @@ class DcatResource(Model):
         return resource
 
     def to_dp(self) -> Optional[Resource]:
+        """Convert to Data Package resource
+
+        Returns:
+           Data Resource
+        """
         if not self.download_url:
             return
         resource = Resource(path=self.download_url, name=slugify_name(self.download_url))
@@ -176,6 +183,14 @@ class DcatResource(Model):
 
     @classmethod
     def from_dp(cls, resource: Resource) -> Optional[DcatResource]:
+        """Create DCAT Resource from Data Resource
+
+        Parameters:
+            resource: Data Resource
+
+        Returns:
+            DCAT Resource
+        """
         dcat = DcatResource()
         if not resource.path or not isinstance(resource.path, str):
             return

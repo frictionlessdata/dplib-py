@@ -19,6 +19,8 @@ from .subject import ZenodoSubject
 
 
 class ZenodoPackage(Model):
+    """Zenodo Package model"""
+
     files: ZenodoFiles = pydantic.Field(default_factory=ZenodoFiles)
     metadata: ZenodoMetadata = pydantic.Field(default_factory=ZenodoMetadata)
 
@@ -31,6 +33,11 @@ class ZenodoPackage(Model):
     # Converters
 
     def to_dp(self):
+        """Convert to Data Package
+
+        Returns:
+           Data Package
+        """
         package = Package()
 
         # Id
@@ -80,6 +87,14 @@ class ZenodoPackage(Model):
 
     @classmethod
     def from_dp(cls, package: Package) -> ZenodoPackage:
+        """Create a Zenodo Package from Data Package
+
+        Parameters:
+            package: Data Package
+
+        Returns:
+            Zenodo Package
+        """
         zenodo = ZenodoPackage()
 
         # Title

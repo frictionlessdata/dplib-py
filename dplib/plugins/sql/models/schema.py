@@ -13,17 +13,21 @@ from .field import SqlField
 
 
 class SqlSchema(Model, arbitrary_types_allowed=True):
+    """SQL Schema model"""
+
     table: Table
 
     # Getters
 
     def get_field_names(self) -> List[str]:
+        """Get field names"""
         names: List[str] = []
         for column in self.table.columns:
             names.append(column.name)
         return names
 
     def get_field_types(self) -> List[Any]:
+        """Get field types"""
         types: List[Any] = []
         for column in self.table.columns:
             types.append(type(column.type))
@@ -32,6 +36,11 @@ class SqlSchema(Model, arbitrary_types_allowed=True):
     # Converters
 
     def to_dp(self, *, with_metadata: bool = False) -> Schema:
+        """Convert to Table Schema
+
+        Returns:
+            Table Schema
+        """
         schema = Schema()
 
         # Fields
@@ -75,6 +84,17 @@ class SqlSchema(Model, arbitrary_types_allowed=True):
         dialect: str = settings.DEFAULT_DIALECT,
         with_metadata: bool = False,
     ) -> SqlSchema:
+        """Create SQL Schema from Table Schema
+
+        Parameters:
+            schema: Table Schema
+            table_name: SQL table name
+            dialect: SQL dialect
+            with_metadata: Include metadata columns
+
+        Returns:
+            SQL Schema
+        """
         columns: List[Column[Any]] = []
         constraints: List[Constraint] = []
 

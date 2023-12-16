@@ -19,6 +19,8 @@ from .resource import DcatResource
 
 
 class DcatPackage(Model):
+    """DCAT Package model"""
+
     identifier: Optional[str] = None
     distributions: List[DcatResource] = []
 
@@ -276,6 +278,11 @@ class DcatPackage(Model):
         return package
 
     def to_dp(self):
+        """Convert to Data Package
+
+        Returns:
+           Data Package
+        """
         package = Package()
 
         # Id
@@ -317,6 +324,14 @@ class DcatPackage(Model):
 
     @classmethod
     def from_dp(cls, package: Package):
+        """Create a DCAT Package from Data Package
+
+        Parameters:
+            package: Data Package
+
+        Returns:
+            DCAT Package
+        """
         dcat = DcatPackage()
 
         # Identifier

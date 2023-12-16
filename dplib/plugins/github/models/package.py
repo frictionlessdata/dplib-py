@@ -14,6 +14,8 @@ from .resource import GithubResource
 
 
 class GithubPackage(Model):
+    """Github Package model"""
+
     resources: List[GithubResource] = []
 
     license: Optional[GithubLicense] = None
@@ -32,6 +34,11 @@ class GithubPackage(Model):
     # Converters
 
     def to_dp(self):
+        """Convert to Data Package
+
+        Returns:
+           Data Package
+        """
         package = Package()
 
         # Title
@@ -78,6 +85,14 @@ class GithubPackage(Model):
 
     @classmethod
     def from_dp(cls, package: Package) -> GithubPackage:
+        """Create a Github Package from Data Package
+
+        Parameters:
+            package: Data Package
+
+        Returns:
+            Github Package
+        """
         github = GithubPackage()
 
         # Title
