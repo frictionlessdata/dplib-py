@@ -1,6 +1,6 @@
-# Usage
+# Working with Models
 
-Data Package Library comes with Pydantic models covering all the entities defined in the [Data Package Standard](https://datapackage.org)
+Data Package Library comes with Pydantic models covering all the metadata classes defined in the [Data Package Standard](https://datapackage.org)
 
 ## Creating a Model
 

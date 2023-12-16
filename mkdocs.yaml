@@ -115,16 +115,16 @@ nav:
   - Home:
       - Introduction: index.md
       - Installation: installation.md
-      - Usage: usage.md
+      - Working with Models: working-with-models.md
+      - Validating Metadata: validating-metadata.md
+      - Converting Metadata: converting-metadata.md
       - Contributing: contributing.md
   - Models:
-      - Usage: models/usage.md
       - Package: models/package.md
       - Resource: models/resource.md
       - Dialect: models/dialect.md
       - Schema: models/schema.md
   - Actions:
-      - Usage: actions/usage.md
       - Package: actions/package.md
       - Resource: actions/resource.md
       - Dialect: actions/dialect.md
