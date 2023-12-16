@@ -105,10 +105,24 @@ markdown_extensions:
 # Navigation
 
 nav:
-  - Documentation:
-      Installation: documentation/installation.md
-      Usage: documentation/usage.md
-  - Reference:
-      Schema: reference/schema.md
-  - Contributing:
-      Development: contributing/development.md
+  - Home:
+      Installation: installation.md
+      Usage: usage.md
+      Contributing: contributing.md
+  - Models:
+      Schema: models/schema.md
+  - Actions:
+      Package: actions/package.md
+      Resource: actions/resource.md
+      Dialect: actions/dialect.md
+      Schema: actions/schema.md
+  - Plugins:
+      CKAN: plugins/ckan.md
+      CLI: plugins/cli.md
+      DataCite: plugins/datacite.md
+      DCAT: plugins/dcat.md
+      GitHub: plugins/github.md
+      Pandas: plugins/pandas.md
+      Polars: plugins/polars.md
+      SQL: plugins/sql.md
+      Zenodo: plugins/zenodo.md
