@@ -4,11 +4,7 @@ CKAN plugin provides Package and Resource models and converters between CKAN and
 
 ## Installation
 
-Extra dependency needs to be installed:
-
-```bash
-pip install dplib-py[ckan]
-```
+Not extra dependencies are required
 
 ## Usage
 
@@ -140,5 +136,4 @@ print(package.to_text(format="json"))
 ## Reference
 
 ::: dplib.plugins.ckan.models.CkanPackage
-
 ::: dplib.plugins.ckan.models.CkanResource

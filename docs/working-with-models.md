@@ -2,9 +2,13 @@
 
 Data Package Library comes with Pydantic models covering all the metadata classes defined in the [Data Package Standard](https://datapackage.org)
 
+!!! note
+
+    Most examples here use `Schema` model but it is also applicable to other models
+
 ## Creating a Model
 
-You can create a model from scratch:
+A model can be created from scratch:
 
 ```python
 from dplib.models import Schema, Field
@@ -23,11 +27,56 @@ from dplib.models import Schema
 schema = Schema.from_path('data/schema.json')
 ```
 
-Or loaded from a text or dictionary:
+Or loaded from a text or a dictionary:
 
 ```python
 from dplib.models import Schema
 
 schema = Schema.from_text('{"fields": []}', format='json')
 schema = Schema.from_dict({"fields": []})
+```
+
+## Model Validation
+
+If the input metadata is not valid the model will raise a validation error:
+
+```python
+from dplib.models import Schema
+
+schema = Schema.from_dict({"fields": 1})
+# will raise pydantic.ValidationError
+```
+
+Simirarly, property assignments are validated runtime as well:
+
+```python
+from dplib.models import Schema
+
+schema = Schema()
+schema.missingValues = '-'  # expected list of strings
+# will raise pydantic.ValidationError
+```
+
+If you need to work with invalid metadat fix it first before creating a model:
+
+```python
+from dplib.models import Schema
+
+metadata = {"missingValues": '-'}
+metadata['missingValues'] = ['-']
+schema = Schema.from_dict(metadata)
+# OK
+```
+
+## Exporting a Model
+
+When you need to save or print the model it can be exported:
+
+```python
+from dplib.models import Schema
+
+schema = Schema.from_path('data/schema.json')
+schema.to_path('schema.json') # OR
+schema.to_text(format='json') # OR
+schema.to_dict()
 ```
