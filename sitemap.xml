@@ -2,27 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/</loc>
-         <lastmod>2023-12-15</lastmod>
+         <lastmod>2023-12-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/contributing/development/</loc>
-         <lastmod>2023-12-15</lastmod>
+         <lastmod>2023-12-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/documentation/installation/</loc>
-         <lastmod>2023-12-15</lastmod>
+         <lastmod>2023-12-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/documentation/usage/</loc>
-         <lastmod>2023-12-15</lastmod>
+         <lastmod>2023-12-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/reference/schema/</loc>
-         <lastmod>2023-12-15</lastmod>
+         <lastmod>2023-12-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
