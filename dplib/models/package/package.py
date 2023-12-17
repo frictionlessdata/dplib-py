@@ -41,7 +41,7 @@ class Package(Model):
 
     profile: Optional[str] = None
     """
-    A string identifying the profile of this descriptor as per the profiles specification.
+    An URL identifying the profile of this descriptor as per the profiles specification.
     """
 
     title: Optional[str] = None
@@ -106,14 +106,26 @@ class Package(Model):
     # Getters
 
     def get_profile(self) -> Optional[Profile]:
-        """Get the resovled profile of the package"""
+        """Get the resovled profile of the package
+
+        Returns:
+            The resolved profile of the package
+        """
         if self.profile:
             return Profile.from_path(self.profile)
 
     def get_resource(
         self, *, name: Optional[str] = None, path: Optional[str] = None
     ) -> Optional[Resource]:
-        """Get a resource by name or path"""
+        """Get a resource by name or path
+
+        Parameters:
+            name: The name of the resource
+            path: The path of the resource
+
+        Returns:
+            The resource if found
+        """
         for resource in self.resources:
             if name and resource.name == name:
                 return resource
