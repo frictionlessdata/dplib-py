@@ -12,4 +12,4 @@ For `yaml` support add an extra dependency:
 pip install dplib-py[yaml]
 ```
 
-The library comes with plugins that can require additional extra dependencies. Please consult with [plugins documentation](../plugins/ckan)
+The library comes with plugins that can require additional extra dependencies. Please consult with [plugins documentation](plugins/ckan.md)

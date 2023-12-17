@@ -135,7 +135,11 @@ class Package(Model):
     # Setters
 
     def add_resource(self, resource: Resource) -> None:
-        """Add a resource to the package"""
+        """Add a resource to the package
+
+        Parameters:
+            resource: The resource to add
+        """
         resource.basepath = self.basepath
         self.resources.append(resource)
 

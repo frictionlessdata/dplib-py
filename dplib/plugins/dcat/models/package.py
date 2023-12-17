@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Any, List, Optional
 
 from rdflib import BNode, Graph, URIRef
+from typing_extensions import Self
 
 from dplib.error import Error
 from dplib.model import Model
@@ -277,7 +278,7 @@ class DcatPackage(Model):
 
         return package
 
-    def to_dp(self):
+    def to_dp(self) -> Package:
         """Convert to Data Package
 
         Returns:
@@ -323,7 +324,7 @@ class DcatPackage(Model):
         return package
 
     @classmethod
-    def from_dp(cls, package: Package):
+    def from_dp(cls, package: Package) -> Self:
         """Create a DCAT Package from Data Package
 
         Parameters:

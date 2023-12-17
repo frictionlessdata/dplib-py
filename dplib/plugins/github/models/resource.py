@@ -22,7 +22,7 @@ class GithubResource(Model):
 
     # Converters
 
-    def to_dp(self):
+    def to_dp(self) -> Resource:
         """Convert to Data Package resource
 
         Returns:

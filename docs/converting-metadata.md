@@ -4,7 +4,7 @@ The Data Package Library comes with various plugins supporting metadata conversi
 
 !!! note
 
-    Here is an example for CKAN, please consult with [plugins documentation](../plugins/ckan) to see other supported notations
+    Here is an example for CKAN, please consult with [plugins documentation](plugins/ckan.md) to see other supported notations
 
 ## To Data Package
 

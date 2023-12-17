@@ -33,7 +33,7 @@ class GithubPackage(Model):
 
     # Converters
 
-    def to_dp(self):
+    def to_dp(self) -> Package:
         """Convert to Data Package
 
         Returns:
