@@ -14,6 +14,8 @@ from dplib.models import Field
 
 
 class PandasField(Model, arbitrary_types_allowed=True):
+    """Pandas Field model"""
+
     name: str
     dtype: Any
     dvalue: Optional[Any] = None
@@ -21,6 +23,11 @@ class PandasField(Model, arbitrary_types_allowed=True):
     # Converters
 
     def to_dp(self) -> Field:
+        """Convert to Table Schema Field
+
+        Returns:
+            Table Schema Field
+        """
         field = Field(name=self.name)
 
         # Type
@@ -52,6 +59,14 @@ class PandasField(Model, arbitrary_types_allowed=True):
 
     @classmethod
     def from_dp(cls, field: Field) -> PandasField:
+        """Create Pandas Field from Table Schema Field
+
+        Parameters:
+            field: Table Schema Field
+
+        Returns:
+            Pandas Field
+        """
         if not field.name:
             raise Error(f"Field name is required to convert to pandas: {field}")
 

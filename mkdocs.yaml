@@ -1,6 +1,6 @@
 # General
 
-site_name: dplib-py
+site_name: Data Package Library
 site_url: https://frictionlessdata.github.io/dplib-py
 site_author: Open Knowledge Foundation
 site_description: Python implementation of the Data Package standard
@@ -39,27 +39,34 @@ theme:
     # - toc.integrate
   palette:
     - scheme: default
-      primary: indigo
-      accent: indigo
+      primary: blue
+      accent: blue
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: black
+      accent: black
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
   font:
     text: Roboto
     code: Roboto Mono
-  logo: assets/favicon.png
-  favicon: assets/favicon.png
+  logo: assets/logo-dark.svg
+  favicon: assets/favicon.ico
 
 # Plugins
 
 plugins:
-  - mkdocstrings
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            allow_inspection: true
+            show_root_heading: true
+            show_if_no_docstring: true
+            heading_level: 3
 
 # Extras
 
@@ -84,6 +91,7 @@ markdown_extensions:
   - toc:
       permalink: true
       title: Page contents
+      # toc_depth: 4
   - admonition
   - pymdownx.details
   - pymdownx.highlight:
@@ -95,7 +103,7 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.extra
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.tabbed:
       alternate_style: true
@@ -105,10 +113,30 @@ markdown_extensions:
 # Navigation
 
 nav:
-  - Documentation:
-      Installation: documentation/installation.md
-      Usage: documentation/usage.md
-  - Reference:
-      Schema: reference/schema.md
-  - Contributing:
-      Development: contributing/development.md
+  - Home:
+      - Welcome: index.md
+      - Installation: installation.md
+      - Working with Models: working-with-models.md
+      - Validating Metadata: validating-metadata.md
+      - Converting Metadata: converting-metadata.md
+      - Contributing: contributing.md
+  - Models:
+      - Package: models/package.md
+      - Resource: models/resource.md
+      - Dialect: models/dialect.md
+      - Schema: models/schema.md
+  - Actions:
+      - Package: actions/package.md
+      - Resource: actions/resource.md
+      - Dialect: actions/dialect.md
+      - Schema: actions/schema.md
+  - Plugins:
+      - CKAN: plugins/ckan.md
+      - CLI: plugins/cli.md
+      - DataCite: plugins/datacite.md
+      - DCAT: plugins/dcat.md
+      - GitHub: plugins/github.md
+      - Pandas: plugins/pandas.md
+      - Polars: plugins/polars.md
+      - SQL: plugins/sql.md
+      - Zenodo: plugins/zenodo.md

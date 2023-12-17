@@ -1,3 +1,0 @@
-# Schema
-
-::: dplib.models.Schema

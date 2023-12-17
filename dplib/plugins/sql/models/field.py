@@ -17,11 +17,18 @@ from . import settings
 
 
 class SqlField(Model, arbitrary_types_allowed=True):
+    """SQL Field model"""
+
     column: Column[Any]
 
     # Converters
 
     def to_dp(self) -> Field:
+        """Convert to Table Schema Field
+
+        Returns:
+            Table Schema Field
+        """
         field = Field(name=self.column.name)
 
         # Type
@@ -71,6 +78,16 @@ class SqlField(Model, arbitrary_types_allowed=True):
         dialect: str = settings.DEFAULT_DIALECT,
         table_name: Optional[str] = None,
     ) -> SqlField:
+        """Create SQL Field from Table Schema Field
+
+        Parameters:
+            field: Table Schema Field
+            dialect: SQL dialect
+            table_name: SQL table name
+
+        Returns:
+            SQL Field
+        """
         Check = sa.CheckConstraint
         checks: List[Check] = []
         comment = field.description

@@ -8,6 +8,8 @@ from dplib.models import Resource
 
 
 class GithubResource(Model):
+    """Github Resource model"""
+
     name: str
     path: str
     type: Literal["file"] = "file"
@@ -20,7 +22,12 @@ class GithubResource(Model):
 
     # Converters
 
-    def to_dp(self):
+    def to_dp(self) -> Resource:
+        """Convert to Data Package resource
+
+        Returns:
+           Data Resource
+        """
         resource = Resource(path=self.path, name=slugify_name(self.path))
 
         # Bytes
@@ -35,6 +42,14 @@ class GithubResource(Model):
 
     @classmethod
     def from_dp(cls, resource: Resource) -> Optional[GithubResource]:
+        """Create Github Resource from Data Resource
+
+        Parameters:
+            resource: Data Resource
+
+        Returns:
+            Github Resource
+        """
         if not resource.path or not isinstance(resource.path, str):
             return
 

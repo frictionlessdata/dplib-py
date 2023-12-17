@@ -42,7 +42,7 @@ def load_data(text: str, *, format: str) -> types.IDict:
 def dump_data(data: types.IDict, *, format: str) -> str:
     try:
         if format == "json":
-            return json.dumps(data)
+            return json.dumps(data, indent=2)
         elif format == "yaml":
             yaml = import_module("yaml")
             return yaml.dump(data)

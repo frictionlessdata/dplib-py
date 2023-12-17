@@ -10,6 +10,8 @@ from dplib.models import Field
 
 
 class PolarsField(Model, arbitrary_types_allowed=True):
+    """Polars Field model"""
+
     name: str
     dtype: Any
     #  dtype: pl.PolarsDataType
@@ -17,6 +19,11 @@ class PolarsField(Model, arbitrary_types_allowed=True):
     # Converters
 
     def to_dp(self) -> Field:
+        """Convert to Table Schema Field
+
+        Returns:
+            Table Schema Field
+        """
         field = Field(name=self.name)
 
         if self.dtype in ARRAY_TYPES:
@@ -44,6 +51,14 @@ class PolarsField(Model, arbitrary_types_allowed=True):
 
     @classmethod
     def from_dp(cls, field: Field) -> PolarsField:
+        """Create Polars Field from Table Schema Field
+
+        Parameters:
+            field: Table Schema Field
+
+        Returns:
+            Polars Field
+        """
         if not field.name:
             raise Error(f"Field name is required to convert to polars: {field}")
 

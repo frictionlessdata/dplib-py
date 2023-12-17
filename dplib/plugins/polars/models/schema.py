@@ -11,19 +11,28 @@ from .field import PolarsField
 
 
 class PolarsSchema(Model, arbitrary_types_allowed=True):
+    """Polars Schema model"""
+
     df: pl.DataFrame
 
     # Getters
 
     def get_field_names(self) -> List[str]:
+        """Get field names"""
         return list(self.df.schema.keys())
 
     def get_field_types(self) -> List[pl.PolarsDataType]:
+        """Get field types"""
         return list(self.df.schema.values())
 
     # Converters
 
     def to_dp(self) -> Schema:
+        """Convert to Table Schema
+
+        Returns:
+            Table Schema
+        """
         schema = Schema()
 
         # Fields
@@ -35,6 +44,14 @@ class PolarsSchema(Model, arbitrary_types_allowed=True):
 
     @classmethod
     def from_dp(cls, schema: Schema) -> PolarsSchema:
+        """Create Polars Schema from Table Schema
+
+        Parameters:
+            schema: Table Schema
+
+        Returns:
+            Polars Schema
+        """
         columns: Dict[str, pl.PolarsDataType] = {}
 
         # Fields

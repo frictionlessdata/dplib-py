@@ -1,5 +1,0 @@
-# Installation
-
-!!! warning
-
-    Under development

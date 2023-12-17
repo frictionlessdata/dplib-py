@@ -11,6 +11,17 @@ from ..metadata.check import check_metadata
 
 
 def check_package(package: Union[str, types.IDict, Package]) -> List[MetadataError]:
+    """Check the validity of a Data Package descriptor
+
+    This validates the descriptor against the JSON Schema profiles to ensure
+    conformity with Data Package standard and Data Package extensions.
+
+    Parameters:
+        package: The Data Package descriptor
+
+    Returns:
+        A list of errors
+    """
     basepath = None
     if isinstance(package, str):
         basepath = infer_basepath(package)

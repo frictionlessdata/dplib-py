@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 import pandas as pd
 
@@ -11,11 +11,28 @@ from .field import PandasField
 
 
 class PandasSchema(Model, arbitrary_types_allowed=True):
+    """Pandas Schema model"""
+
     df: pd.DataFrame
+
+    # Getters
+
+    def get_field_names(self) -> List[str]:
+        """Get field names"""
+        return list(self.df.columns)
+
+    def get_field_types(self) -> List[Any]:
+        """Get field types"""
+        return list(self.df.dtypes)  # type: ignore
 
     # Converters
 
     def to_dp(self) -> Schema:
+        """Convert to Table Schema
+
+        Returns:
+            Table Schema
+        """
         schema = Schema()
 
         # Primary key
@@ -36,6 +53,14 @@ class PandasSchema(Model, arbitrary_types_allowed=True):
 
     @classmethod
     def from_dp(cls, schema: Schema) -> PandasSchema:
+        """Create Pandas Schema from Table Schema
+
+        Parameters:
+            schema: Table Schema
+
+        Returns:
+            Pandas Schema
+        """
         columns: Dict[str, pd.Series[Any]] = {}
 
         # Fields

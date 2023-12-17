@@ -8,6 +8,8 @@ from dplib.models import Resource
 
 
 class CkanResource(Model):
+    """CKAN Resource model"""
+
     name: str
     created: Optional[str] = None
     description: Optional[str] = None
@@ -22,6 +24,11 @@ class CkanResource(Model):
     # Converters
 
     def to_dp(self) -> Resource:
+        """Convert to Data Package resource
+
+        Returns:
+           Data Resource
+        """
         resource = Resource(path=self.name, name=slugify_name(self.name))
 
         # Format
@@ -44,6 +51,14 @@ class CkanResource(Model):
 
     @classmethod
     def from_dp(cls, resource: Resource) -> Optional[CkanResource]:
+        """Create CKAN Resource from Data Resource
+
+        Parameters:
+            resource: Data Resource
+
+        Returns:
+            CKAN Resource
+        """
         if not resource.path or not isinstance(resource.path, str):
             return
 
