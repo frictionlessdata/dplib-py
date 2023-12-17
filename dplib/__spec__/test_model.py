@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 
 import pytest
@@ -24,7 +25,7 @@ def test_model_to_path(tmp_path: Path):
     resource = Resource.from_path("data/resource.json")
     resource.to_path(path)
     with open(path) as file:
-        assert file.read() == '{"name": "name", "path": "table.csv"}'
+        assert json.loads(file.read()) == {"name": "name", "path": "table.csv"}
 
 
 def test_model_from_path_emtpy_file():
