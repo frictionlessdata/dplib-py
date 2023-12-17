@@ -15,6 +15,10 @@ Python implementation of the Data Package standard and various tools for working
 
 The Data Package Library is a lightweight Data Package Standard implementation in Python providing Pydantic data models and various metadata converters. At the moment, the main purpose of this library is to be used as an underlying component of Data Package based integrations.
 
+!!! tip
+
+    If you are not an integrator consider using [frictionless-py](https://framework.frictionlessdata.io/), full-featured end-user framework, instead of this library
+
 ## Features
 
 - Open Source (MIT)

@@ -91,6 +91,7 @@ markdown_extensions:
   - toc:
       permalink: true
       title: Page contents
+      # toc_depth: 4
   - admonition
   - pymdownx.details
   - pymdownx.highlight:
