@@ -17,6 +17,8 @@ from .hash import Hash
 
 
 class Resource(Model):
+    """Data Resource model"""
+
     basepath: Optional[str] = pydantic.Field(default=None, exclude=True)
     """
     Basepath of the resource.
