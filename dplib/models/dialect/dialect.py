@@ -13,6 +13,17 @@ class Dialect(Model):
 
     """A dialect description for parsing CSV files"""
 
+    title: Optional[str] = None
+    """
+    A string providing a title or one sentence description for this dialect
+    """
+
+    description: Optional[str] = None
+    """
+    A description of the dialect. The description MUST be markdown formatted —
+    this also allows for simple plain text as plain text is itself valid markdown.
+    """
+
     delimiter: Optional[str] = None
     """
     Specifies the character sequence which should separate fields (aka columns).
