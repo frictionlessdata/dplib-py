@@ -1,4 +1,4 @@
-# Installation
+# Validating Metadata
 
 In the Data Package Library metadata validation is separated from Metadata Modeling. If you have a metadata descriptor or you exported it from a model, you can validate it against JSONSchema based on the Data Package Standard validation rules. This validation is stricter than models validation and it also supports custom profiles defined as per the Data Package Standard.
 
