@@ -31,6 +31,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
+    "pyyaml>=5.0",
     "pydantic>=2.0",
     "jsonpath>=0.80",
     "jsonschema>=3.0",
@@ -45,7 +46,6 @@ dcat = ["rdflib>=6.0"]
 pandas = ["pandas>=1.0", "pandas-stubs>=1.0", "numpy>=1.0", "isodate>=0.6"]
 polars = ["polars-lts-cpu>=0.10"]
 sql = ["sqlalchemy>=1.4"]
-yaml = ["pyyaml>=5.0"]
 dev = [
     "moto",
     "ruff",
@@ -84,7 +84,7 @@ packages = ["dplib"]
 [tool.hatch.envs.default]
 python = "3.10"
 dependencies = [
-  "dplib-py[cli,dcat,sql,pandas,polars,yaml,dev]",
+  "dplib-py[cli,dcat,sql,pandas,polars,dev]",
 ]
 
 [tool.hatch.envs.default.scripts]
