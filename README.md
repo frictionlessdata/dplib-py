@@ -5,7 +5,7 @@
 [![Codebase](https://img.shields.io/badge/codebase-github-brightgreen)](https://github.com/frictionlessdata/dplib-py)
 [![Release](https://img.shields.io/pypi/v/dplib-py.svg)](https://pypi.python.org/pypi/dplib-py)
 
-Python implementation of the Data Package standard and various tools for working with data.
+Python implementation of the Data Package standard and various tools for working with data. For more information, please visit the [documentation portal](https://frictionlessdata.github.io/dplib-py).
 
 ## Purpose
 
