@@ -122,3 +122,9 @@ def test_resource_dereference():
     assert resource.dialect.delimiter == ";"
     assert isinstance(resource.schema, Schema)
     assert len(resource.schema.fields) == 2
+
+
+def test_resource_contributors_role_v1():
+    resource = Resource.from_dict({"contributors": [{"role": "author"}]})
+    assert resource.contributors[0].custom == {}
+    assert resource.contributors[0].roles == ["author"]

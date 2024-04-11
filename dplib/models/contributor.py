@@ -9,5 +9,12 @@ class Contributor(Model):
     familyName: Optional[str] = None
     path: Optional[str] = None
     email: Optional[str] = None
-    roles: Optional[List[str]] = None
+    roles: Optional[List[str]] = []
     organization: Optional[str] = None
+
+    def model_post_init(self, _):
+        # contributor.role (standards/v1)
+        if not self.roles:
+            role = self.custom.pop("role", None)
+            if role:
+                self.roles = [role]

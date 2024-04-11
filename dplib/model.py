@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import pprint
 import warnings
-from functools import cached_property
 from typing import Optional
 
 from pydantic import BaseModel
@@ -22,7 +21,7 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
     def __repr__(self) -> str:
         return pprint.pformat(self.to_dict(), sort_dicts=False)
 
-    @cached_property
+    @property
     def custom(self) -> types.IDict:
         assert self.model_extra is not None
         return self.model_extra

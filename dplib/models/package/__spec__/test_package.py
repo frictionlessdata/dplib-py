@@ -110,3 +110,9 @@ def test_package_dereference():
     assert resource.dialect.delimiter == ";"
     assert isinstance(resource.schema, Schema)
     assert len(resource.schema.fields) == 2
+
+
+def test_package_contributors_role_v1():
+    package = Package.from_dict({"contributors": [{"role": "author"}]})
+    assert package.contributors[0].custom == {}
+    assert package.contributors[0].roles == ["author"]
