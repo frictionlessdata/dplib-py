@@ -1,13 +1,13 @@
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import List, Optional
 
 import pydantic
 
 from ... import types
 from ...model import Model
 from .constraints import Constraints
-from .types import IFieldType
+from .types import IFieldType, IItemType
 
 
 class Field(Model):
@@ -51,11 +51,6 @@ class Field(Model):
 
     # Array
 
-    arrayItem: Optional[Dict[str, Any]] = None
-    """
-    Field descriptor for items for array fields
-    """
-
     # Boolean
 
     trueValues: Optional[List[str]] = None
@@ -73,6 +68,18 @@ class Field(Model):
     bareNumber: Optional[bool] = None
     """
     If false leading and trailing non numbers will be removed for integer/number fields
+    """
+
+    # List
+
+    delimiter: Optional[str] = None
+    """
+    Specifies the character sequence which separates lexically represented list items.
+    """
+
+    itemType: Optional[IItemType] = None
+    """
+    Specifies the list item type in terms of existent Table Schema types.
     """
 
     # Number

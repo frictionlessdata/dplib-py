@@ -12,10 +12,21 @@ IFieldType = Union[
     Literal["geojson"],
     Literal["geopoint"],
     Literal["integer"],
+    Literal["list"],
     Literal["number"],
     Literal["object"],
     Literal["string"],
     Literal["time"],
     Literal["year"],
     Literal["yearmonth"],
+]
+
+IItemType = Union[
+    Literal["boolean"],
+    Literal["date"],
+    Literal["datetime"],
+    Literal["integer"],
+    Literal["number"],
+    Literal["string"],
+    Literal["time"],
 ]
