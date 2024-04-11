@@ -85,5 +85,13 @@ def test_schema_to_dict():
 
 
 def test_schema_primary_key_v1():
-    schema = Schema.from_dict({"primaryKey": "field"})
-    assert schema.primaryKey == ["field"]
+    schema = Schema.from_dict({"primaryKey": "name"})
+    assert schema.primaryKey == ["name"]
+
+
+def test_schema_foreign_keys_v1():
+    schema = Schema.from_dict(
+        {"foreignKeys": [{"fields": "name", "reference": {"fields": "name"}}]}
+    )
+    assert schema.foreignKeys[0].fields == ["name"]
+    assert schema.foreignKeys[0].reference.fields == ["name"]
