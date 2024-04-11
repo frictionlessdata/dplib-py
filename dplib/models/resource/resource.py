@@ -118,6 +118,13 @@ class Resource(Model):
     The people or organizations who contributed to this Data Package.
     """
 
+    def model_post_init(self, _):
+        # resource.url (standard/v0)
+        if not self.path:
+            url = self.custom.pop("url", None)
+            if url:
+                self.path = url
+
     # Getters
 
     def get_fullpath(self) -> Optional[str]:

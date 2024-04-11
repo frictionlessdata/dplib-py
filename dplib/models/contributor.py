@@ -13,7 +13,7 @@ class Contributor(Model):
     organization: Optional[str] = None
 
     def model_post_init(self, _):
-        # contributor.role (standards/v1)
+        # contributor.role (standard/v1)
         if not self.roles:
             role = self.custom.pop("role", None)
             if role:
