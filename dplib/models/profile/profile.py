@@ -6,7 +6,7 @@ from .rule import Rule
 
 
 class Profile(Model):
-    jsonSchema: types.IDict = {}
+    jsonSchema: types.IData = {}
 
     name: Optional[str] = None
     title: Optional[str] = None
@@ -17,7 +17,7 @@ class Profile(Model):
     # Converters
 
     def to_dict(self):
-        data: types.IDict = {}
+        data: types.IData = {}
         profile = super().to_dict()
         schema = profile.pop("jsonSchema", {})
         data.update(schema)
@@ -25,6 +25,6 @@ class Profile(Model):
         return data
 
     @classmethod
-    def from_dict(cls, data: types.IDict, **kwargs: Any):
+    def from_dict(cls, data: types.IData, **kwargs: Any):
         profile = data.pop("metadataProfile", {})
         return cls(jsonSchema=data, **profile)

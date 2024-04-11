@@ -136,7 +136,7 @@ class Resource(Model):
         if self.path and isinstance(self.path, str):
             return join_basepath(self.path, self.basepath)
 
-    def get_source(self) -> Optional[Union[str, types.IDict]]:
+    def get_source(self) -> Optional[Union[str, types.IData]]:
         """Get the source of the resource
 
         Returns:

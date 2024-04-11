@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pprint
 import warnings
-from typing import Optional
+from typing import Optional, Union, Any, Set
 
 from pydantic import BaseModel
 from typing_extensions import Self
@@ -21,8 +21,12 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
     def __repr__(self) -> str:
         return pprint.pformat(self.to_dict(), sort_dicts=False)
 
+    @classmethod
+    def compat(cls, data: types.IData):
+        return data
+
     @property
-    def custom(self) -> types.IDict:
+    def custom(self) -> types.IData:
         assert self.model_extra is not None
         return self.model_extra
 
@@ -62,10 +66,17 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
         return data
 
     @classmethod
-    def from_dict(cls, data: types.IDict, *, basepath: Optional[str] = None) -> Self:
+    def from_dict(cls, data: types.IData, *, basepath: Optional[str] = None) -> Self:
         if basepath and cls.model_fields.get("basepath"):
             data["basepath"] = basepath
         return cls(**data)
+
+    # Internal
+
+    @classmethod
+    def model_construct(cls, field_set: Union[Set[str], None] = None, **values: Any):
+        print(values)
+        return super().model_construct(field_set, **cls.compat(values))
 
 
 # Although pydantic@2 moved all the model methods to the "model_" namespace

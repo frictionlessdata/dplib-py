@@ -6,4 +6,4 @@ from ...model import Model
 
 class Rule(Model):
     jsonPath: Optional[str] = None
-    jsonSchema: types.IDict = {}
+    jsonSchema: types.IData = {}

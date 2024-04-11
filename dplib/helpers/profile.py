@@ -26,7 +26,7 @@ def select_profile(*, metadata_type: types.IMetadataType) -> str:
 
 
 @lru_cache
-def read_profile(*, metadata_type: types.IMetadataType) -> types.IDict:
+def read_profile(*, metadata_type: types.IMetadataType) -> types.IData:
     format = "json"
     name = select_profile(metadata_type=metadata_type)
     path = os.path.join(os.path.dirname(__file__), "..", "profiles", f"{name}.{format}")
@@ -39,7 +39,7 @@ def read_profile(*, metadata_type: types.IMetadataType) -> types.IDict:
 
 
 def check_metadata_against_jsonschema(
-    metadata: types.IDict, jsonSchema: types.IDict
+    metadata: types.IData, jsonSchema: types.IData
 ) -> List[MetadataError]:
     Validator = validator_for(jsonSchema)  # type: ignore
     validator = Validator(jsonSchema)  # type: ignore
