@@ -50,6 +50,12 @@ class Schema(Model):
     each row in the table.
     """
 
+    uniqueKeys: List[List[str]] = []
+    """
+    A unique key is a field or a set of fields that are required
+    to have unique logical values in each row in the table.
+    """
+
     foreignKeys: List[ForeignKey] = []
     """
     A foreign key is a reference where values in a field (or fields)
