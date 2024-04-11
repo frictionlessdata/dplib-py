@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-import pydantic
 from typing import List, Optional
+
+import pydantic
 
 from ... import types
 from ...model import Model
