@@ -85,3 +85,9 @@ class Field(Model):
     """
     String whose value is used to represent a decimal point for number fields
     """
+
+    def model_post_init(self, _):
+        # field.format (standard/v0)
+        if self.format:
+            if self.format.startswith("fmt:"):
+                self.format = self.format[4:]
