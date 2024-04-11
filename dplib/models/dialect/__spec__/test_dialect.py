@@ -7,7 +7,6 @@ from dplib.models import Dialect
 def test_dialect_from_path():
     dialect = Dialect.from_path("data/dialect.json")
     assert dialect.delimiter == ";"
-    assert dialect.get_delimiter() == ";"
 
 
 def test_dialect_from_path_full():
@@ -25,11 +24,13 @@ def test_dialect_from_path_full():
 
 def test_dialect_defaults():
     dialect = Dialect()
-    assert dialect.get_delimiter() == ","
-    assert dialect.get_line_terminator() == "\r\n"
-    assert dialect.get_quote_char() == '"'
-    assert dialect.get_double_quote() is True
-    assert dialect.get_header() is True
+    assert dialect.header is True
+    assert dialect.headerJoin == " "
+    assert dialect.delimiter == ","
+    assert dialect.lineTerminator == "\r\n"
+    assert dialect.quoteChar == '"'
+    assert dialect.doubleQuote is True
+    assert dialect.sheetNumber == 1
 
 
 def test_dialect_from_text():

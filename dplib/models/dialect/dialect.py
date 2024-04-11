@@ -27,7 +27,7 @@ class Dialect(Model):
 
     # General
 
-    header: Optional[bool] = None
+    header: bool = True
     """
     Specifies whether or not the file includes a header row.
     """
@@ -37,7 +37,7 @@ class Dialect(Model):
     This property specifies the row numbers for the header.
     """
 
-    headerJoin: Optional[str] = None
+    headerJoin: str = " "
     """
     This property specifies how multiline-header files
     have to join the resulting header rows.
@@ -55,22 +55,22 @@ class Dialect(Model):
 
     # Delimited
 
-    delimiter: Optional[str] = None
+    delimiter: str = ","
     """
     Specifies the character sequence which should separate fields (aka columns).
     """
 
-    lineTerminator: Optional[str] = None
+    lineTerminator: str = "\r\n"
     """
     Specifies the character sequence which should terminate rows.
     """
 
-    quoteChar: Optional[str] = None
+    quoteChar: str = '"'
     """
     Specifies a one-character string to use as the quoting character.
     """
 
-    doubleQuote: Optional[bool] = None
+    doubleQuote: bool = True
     """
     Controls the handling of quotes inside fields.
     """
@@ -111,7 +111,7 @@ class Dialect(Model):
 
     # Spreadsheet
 
-    sheetNumber: Optional[int] = None
+    sheetNumber: int = 1
     """
     This property specifies a sheet number of a table in the spreadsheet file.
     """
@@ -131,59 +131,3 @@ class Dialect(Model):
         """
         if self.profile:
             return Profile.from_path(self.profile)
-
-    def get_header(self) -> bool:
-        """Get the header flag of the dialect
-
-        Returns:
-            Provided header flag or default header flag
-        """
-        return self.header if self.header is not None else True
-
-    def get_header_join(self) -> str:
-        """Get the header join string
-
-        Returns:
-            Provided header join or default
-        """
-        return self.headerJoin if self.headerJoin is not None else " "
-
-    def get_delimiter(self) -> str:
-        """Get the delimiter of the dialect
-
-        Returns:
-            Provided delimiter or default delimiter
-        """
-        return self.delimiter if self.delimiter is not None else ","
-
-    def get_line_terminator(self) -> str:
-        """Get the line terminator of the dialect
-
-        Returns:
-            Provided line terminator or default line terminator
-        """
-        return self.lineTerminator if self.lineTerminator is not None else "\r\n"
-
-    def get_quote_char(self) -> str:
-        """Get the quote character of the dialect
-
-        Returns:
-            Provided quote character or default quote character
-        """
-        return self.quoteChar if self.quoteChar is not None else '"'
-
-    def get_double_quote(self) -> bool:
-        """Get the double quote of the dialect
-
-        Returns:
-            Provided double quote or default double quote
-        """
-        return self.doubleQuote if self.doubleQuote is not None else True
-
-    def get_sheet_number(self) -> int:
-        """Get the sheet number of the dialect
-
-        Returns:
-            Provided sheet number or default sheet number
-        """
-        return self.sheetNumber if self.sheetNumber is not None else 1
