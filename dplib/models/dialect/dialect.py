@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from ...model import Model
 from ..profile import Profile
-from .itemType import ItemType
+from .types import IItemType
 
 
 class Dialect(Model):
@@ -97,7 +97,7 @@ class Dialect(Model):
     This property specifies where a data array is located in the data structure.
     """
 
-    itemType: Optional[ItemType] = None
+    itemType: Optional[IItemType] = None
     """
     This property specifies whether the data property contains
     an array of arrays or an array of objects.

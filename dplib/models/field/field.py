@@ -7,7 +7,7 @@ import pydantic
 from ... import types
 from ...model import Model
 from .constraints import Constraints
-from .fieldType import FieldType
+from .types import IFieldType
 
 
 class Field(Model):
@@ -18,7 +18,7 @@ class Field(Model):
     The field descriptor MUST contain a name property.
     """
 
-    type: FieldType = "any"
+    type: IFieldType = "any"
     """
     A field’s type property is a string indicating the type of this field.
     """

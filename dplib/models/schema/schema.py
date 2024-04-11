@@ -3,10 +3,10 @@ from __future__ import annotations
 from typing import List, Optional
 
 from ...model import Model
-from ..profile import Profile
 from ..field import Field
-from .fieldsMatch import FieldsMatch
+from ..profile import Profile
 from .foreignKey import ForeignKey
+from .types import IFieldsMatch
 
 
 class Schema(Model):
@@ -33,7 +33,7 @@ class Schema(Model):
     List of fields in the table schema
     """
 
-    fieldsMatch: Optional[FieldsMatch] = "exact"
+    fieldsMatch: Optional[IFieldsMatch] = "exact"
     """
     The way Table Schema fields are mapped onto the data source fields
     are defined by the fieldsMatch property.

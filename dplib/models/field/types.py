@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Literal, Union
 
-FieldType = Union[
+IFieldType = Union[
     Literal["any"],
     Literal["array"],
     Literal["boolean"],
