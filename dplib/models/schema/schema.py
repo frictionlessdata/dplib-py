@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import pydantic
 from typing import List, Optional
 
+from ... import types
 from ...model import Model
 from ..field import Field
 from ..profile import Profile
@@ -118,3 +120,18 @@ class Schema(Model):
             field: The field to add
         """
         self.fields.append(field)
+
+    # Compat
+
+    @pydantic.model_validator(mode="before")
+    @classmethod
+    def compat_standard_v1(cls, data: types.IData):
+        if not isinstance(data, dict):  # type: ignore
+            return data
+
+        # schema.primaryKey
+        primaryKey = data.get("primaryKey", None)
+        if isinstance(primaryKey, str):
+            data["primaryKey"] = [primaryKey]
+
+        return data

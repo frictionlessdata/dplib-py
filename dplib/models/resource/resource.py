@@ -118,18 +118,6 @@ class Resource(Model):
     The people or organizations who contributed to this Data Package.
     """
 
-    # Compat
-
-    @pydantic.model_validator(mode="before")
-    @classmethod
-    def compat_standard_v0(cls, data: types.IData):
-        # resource.url
-        if not data.get("path"):
-            url = data.pop("url", None)
-            if url:
-                data["path"] = url
-        return data
-
     # Getters
 
     def get_fullpath(self) -> Optional[str]:
@@ -199,3 +187,19 @@ class Resource(Model):
             self.dialect = Dialect.from_path(self.dialect, basepath=self.basepath)
         if isinstance(self.schema, str):
             self.schema = Schema.from_path(self.schema, basepath=self.basepath)  # type: ignore
+
+    # Compat
+
+    @pydantic.model_validator(mode="before")
+    @classmethod
+    def compat_standard_v0(cls, data: types.IData):
+        if not isinstance(data, dict):  # type: ignore
+            return data
+
+        # resource.url
+        if not data.get("path"):
+            url = data.pop("url", None)
+            if url:
+                data["path"] = url
+
+        return data

@@ -82,3 +82,8 @@ def test_schema_to_dict():
     assert schema.to_dict() == {}
     schema.missingValues.append("x")
     assert schema.to_dict() == {"missingValues": ["", "x"]}
+
+
+def test_schema_primary_key_v1():
+    schema = Schema.from_dict({"primaryKey": "field"})
+    assert schema.primaryKey == ["field"]

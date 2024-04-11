@@ -1,6 +1,6 @@
 from typing import List, Optional
 
-from pydantic import model_validator
+import pydantic
 
 from .. import types
 from ..model import Model
@@ -17,12 +17,16 @@ class Contributor(Model):
 
     # Compat
 
-    @model_validator(mode="before")
+    @pydantic.model_validator(mode="before")
     @classmethod
     def compat_standard_v1(cls, data: types.IData):
+        if not isinstance(data, dict):  # type: ignore
+            return data
+
         # contributor.role
         if not data.get("roles"):
             role = data.pop("role", None)
             if role:
                 data["roles"] = [role]
+
         return data
