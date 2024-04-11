@@ -70,6 +70,11 @@ class Field(Model):
     If false leading and trailing non numbers will be removed for integer/number fields
     """
 
+    groupChar: Optional[str] = None
+    """
+    String whose value is used to group digits for integer/number fields
+    """
+
     # List
 
     delimiter: Optional[str] = None
@@ -83,11 +88,6 @@ class Field(Model):
     """
 
     # Number
-
-    groupChar: Optional[str] = None
-    """
-    String whose value is used to group digits for number fields
-    """
 
     decimalChar: Optional[str] = None
     """
