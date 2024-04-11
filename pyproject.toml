@@ -41,7 +41,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-cli = ["typer[all]>=0.9", "rich>=10.0"]
+cli = ["typer[standard]>=0.12", "rich>=10.0"]
 dcat = ["rdflib>=6.0"]
 pandas = ["pandas>=1.0", "pandas-stubs>=1.0", "numpy>=1.0", "isodate>=0.6"]
 polars = ["polars-lts-cpu>=0.10"]
@@ -67,7 +67,7 @@ dev = [
     "requests-mock",
     "pytest-dotenv",
     "pytest-timeout",
-    "pytest-lazy-fixture",
+    "pytest-lazy-fixtures",
     "mkdocstrings[python]",
     "mkdocs-material",
 ]
