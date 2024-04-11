@@ -41,7 +41,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-cli = ["typer[all]>=0.9", "rich>=10.0"]
+cli = ["typer>=0.12", "rich>=10.0"]
 dcat = ["rdflib>=6.0"]
 pandas = ["pandas>=1.0", "pandas-stubs>=1.0", "numpy>=1.0", "isodate>=0.6"]
 polars = ["polars-lts-cpu>=0.10"]
@@ -49,10 +49,9 @@ sql = ["sqlalchemy>=1.4"]
 dev = [
     "moto",
     "ruff",
+    "isort",
     "httpx",
     "hatch",
-    "isort",
-    "black",
     "yattag",
     "neovim",
     "pytest",
@@ -67,7 +66,7 @@ dev = [
     "requests-mock",
     "pytest-dotenv",
     "pytest-timeout",
-    "pytest-lazy-fixture",
+    "pytest-lazy-fixtures",
     "mkdocstrings[python]",
     "mkdocs-material",
 ]
@@ -95,14 +94,12 @@ build = [
   "mkdocs build",
 ]
 format = [
-  "ruff dplib --fix",
   "isort dplib",
-  "black dplib",
+  "ruff format dplib",
 ]
 lint = [
-  "ruff dplib",
   "isort dplib --check",
-  "black dplib --check",
+  "ruff check dplib",
 ]
 release = [
   """
@@ -145,18 +142,14 @@ test = [
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.black]
-line-length = 90
-
-[tool.isort]
-profile = "black"
-multi_line_output = 9
-
 [tool.ruff]
 line-length = 90
-ignore = ["E501", "E731", "F405"]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint]
+ignore = ["E501", "E731", "F405"]
+extend-select = ["I"]
+
+[tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401", "F403"]
 
 [tool.pytest.ini_options]
