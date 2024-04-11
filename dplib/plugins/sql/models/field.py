@@ -89,7 +89,7 @@ class SqlField(Model, arbitrary_types_allowed=True):
             SQL Field
         """
         Check = sa.CheckConstraint
-        checks: List[Check] = []
+        checks: List[sa.CheckConstraint] = []
         comment = field.description
         dialect_obj = registry.load(dialect)()
         nullable = not field.constraints.required
