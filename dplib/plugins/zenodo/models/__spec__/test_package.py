@@ -32,6 +32,8 @@ def test_zenodo_package_to_dp():
     assert package.created == "2021-12-10T05:47:07.709885+00:00"
     assert len(package.contributors) == 1
     assert package.contributors[0].title == "Fuentes-Pérez, Juan Francisco"
+    assert package.contributors[0].givenName == "Juan Francisco"
+    assert package.contributors[0].familyName == "Fuentes-Pérez"
     assert package.contributors[0].role == "personal"
     assert (
         package.contributors[0].organization

@@ -76,7 +76,11 @@ class ZenodoPackage(Model):
         # Contributors
         for creator in self.metadata.creators:
             if creator.person_or_org.name:
-                contributor = Contributor(title=creator.person_or_org.name)
+                contributor = Contributor(
+                    title=creator.person_or_org.name,
+                    givenName=creator.person_or_org.given_name,
+                    familyName=creator.person_or_org.family_name,
+                )
                 if creator.person_or_org.type:
                     contributor.role = creator.person_or_org.type
                 if creator.affiliations:
@@ -124,6 +128,8 @@ class ZenodoPackage(Model):
         for contributor in package.contributors:
             creator = ZenodoCreator()
             creator.person_or_org.name = contributor.title
+            creator.person_or_org.given_name = contributor.givenName
+            creator.person_or_org.family_name = contributor.familyName
             if contributor.role:
                 creator.person_or_org.type = contributor.role
             if contributor.organization:

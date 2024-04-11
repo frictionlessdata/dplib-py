@@ -13,6 +13,8 @@ def test_datacite_package():
     assert package.creators[0].name == "Miller, Elizabeth"
     assert len(package.contributors) == 1
     assert package.contributors[0].name == "Starr, Joan"
+    assert package.contributors[0].givenName == "Joan"
+    assert package.contributors[0].familyName == "Starr"
     assert len(package.descriptions) == 1
     assert package.descriptions[0].descriptionType == "Abstract"
     assert len(package.identifiers) == 2
@@ -41,7 +43,11 @@ def test_datacite_package_to_dp():
     assert package.keywords == ["000 computer science"]
     assert len(package.contributors) == 2
     assert package.contributors[0].title == "Miller, Elizabeth"
+    assert package.contributors[0].givenName == "Elizabeth"
+    assert package.contributors[0].familyName == "Miller"
     assert package.contributors[1].title == "Starr, Joan"
+    assert package.contributors[1].givenName == "Joan"
+    assert package.contributors[1].familyName == "Starr"
     assert package.contributors[1].role == "ProjectLeader"
     assert len(package.licenses) == 1
     assert package.licenses[0].path == "http://creativecommons.org/publicdomain/zero/1.0"
@@ -73,6 +79,8 @@ def test_datacite_package_from_dp_round_trip():
     assert package.creators[0].name == "Miller, Elizabeth"
     assert len(package.contributors) == 1
     assert package.contributors[0].name == "Starr, Joan"
+    assert package.contributors[0].givenName == "Joan"
+    assert package.contributors[0].familyName == "Starr"
     assert len(package.descriptions) == 1
     assert package.descriptions[0].descriptionType == "Abstract"
     assert len(package.identifiers) == 2

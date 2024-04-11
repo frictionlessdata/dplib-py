@@ -80,7 +80,11 @@ class DatacitePackage(Model):
         # Contributors
         for type, items in [("creator", self.creators), ("other", self.contributors)]:
             for item in items:
-                contributor = Contributor(title=item.name)
+                contributor = Contributor(
+                    title=item.name,
+                    givenName=item.givenName,
+                    familyName=item.familyName,
+                )
                 contributor.role = type if type == "creator" else item.contributorType
                 for affiliation in item.affiliation:
                     contributor.organization = affiliation.name
@@ -146,7 +150,11 @@ class DatacitePackage(Model):
 
         # Contributors
         for contributor in package.contributors:
-            item = DataciteContributor(name=contributor.title)
+            item = DataciteContributor(
+                name=contributor.title,
+                givenName=contributor.givenName,
+                familyName=contributor.familyName,
+            )
             if contributor.organization:
                 org = DataciteContributorAffiliation(name=contributor.organization)
                 item.affiliation.append(org)
