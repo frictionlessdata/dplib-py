@@ -1,9 +1,10 @@
 from __future__ import annotations
 
-from typing import Optional
+from typing import Optional, List
 
 from ...model import Model
 from ..profile import Profile
+from .itemType import ItemType
 
 
 class Dialect(Model):
@@ -23,6 +24,36 @@ class Dialect(Model):
     A description of the dialect. The description MUST be markdown formatted —
     this also allows for simple plain text as plain text is itself valid markdown.
     """
+
+    # General
+
+    header: Optional[bool] = None
+    """
+    Specifies whether or not the file includes a header row.
+    """
+
+    headerRows: List[int] = []
+    """
+    This property specifies the row numbers for the header.
+    """
+
+    headerJoin: Optional[str] = None
+    """
+    This property specifies how multiline-header files
+    have to join the resulting header rows.
+    """
+
+    commentRows: List[int] = []
+    """
+    This property specifies what rows have to be omitted from the data.
+    """
+
+    commentChar: Optional[str] = None
+    """
+    Specifies a one-character string to use as the comment character.
+    """
+
+    # Delimited
 
     delimiter: Optional[str] = None
     """
@@ -59,14 +90,35 @@ class Dialect(Model):
     Specifies whether or not parsing will skip initial spaces after the delimiter.
     """
 
-    header: Optional[bool] = None
+    # Structured
+
+    property: Optional[str] = None
     """
-    Specifies whether or not the file includes a header row.
+    This property specifies where a data array is located in the data structure.
     """
 
-    commentChar: Optional[str] = None
+    itemType: Optional[ItemType] = None
     """
-    Specifies a one-character string to use as the comment character.
+    This property specifies whether the data property contains
+    an array of arrays or an array of objects.
+    """
+
+    itemKeys: List[str] = []
+    """
+    This property specifies the way of extracting rows
+    from data arrays with itemType is object.
+    """
+
+    # Spreadsheet
+
+    sheetNumber: Optional[int] = None
+    """
+    This property specifies a sheet number of a table in the spreadsheet file.
+    """
+
+    sheetName: Optional[str] = None
+    """
+    This property specifies a sheet name of a table in the spreadsheet file.
     """
 
     # Getters
@@ -79,6 +131,22 @@ class Dialect(Model):
         """
         if self.profile:
             return Profile.from_path(self.profile)
+
+    def get_header(self) -> bool:
+        """Get the header flag of the dialect
+
+        Returns:
+            Provided header flag or default header flag
+        """
+        return self.header if self.header is not None else True
+
+    def get_header_join(self) -> str:
+        """Get the header join string
+
+        Returns:
+            Provided header join or default
+        """
+        return self.headerJoin if self.headerJoin is not None else " "
 
     def get_delimiter(self) -> str:
         """Get the delimiter of the dialect
@@ -112,10 +180,10 @@ class Dialect(Model):
         """
         return self.doubleQuote if self.doubleQuote is not None else True
 
-    def get_header(self) -> bool:
-        """Get the header flag of the dialect
+    def get_sheet_number(self) -> int:
+        """Get the sheet number of the dialect
 
         Returns:
-            Provided header flag or default header flag
+            Provided sheet number or default sheet number
         """
-        return self.header if self.header is not None else True
+        return self.sheetNumber if self.sheetNumber is not None else 1

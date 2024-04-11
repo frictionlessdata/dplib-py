@@ -11,7 +11,7 @@ class Contributor(Model):
     familyName: Optional[str] = None
     path: Optional[str] = None
     email: Optional[str] = None
-    roles: Optional[List[str]] = []
+    roles: List[str] = []
     organization: Optional[str] = None
 
     # Compat
