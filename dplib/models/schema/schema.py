@@ -5,6 +5,7 @@ from typing import List, Optional
 from ...model import Model
 from ..profile import Profile
 from .field import Field
+from .fieldsMatch import FieldsMatch
 from .foreignKey import ForeignKey
 
 
@@ -30,6 +31,12 @@ class Schema(Model):
     fields: List[Field] = []
     """
     List of fields in the table schema
+    """
+
+    fieldsMatch: Optional[FieldsMatch] = "exact"
+    """
+    The way Table Schema fields are mapped onto the data source fields
+    are defined by the fieldsMatch property.
     """
 
     missingValues: List[str] = [""]
