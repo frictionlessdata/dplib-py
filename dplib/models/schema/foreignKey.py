@@ -1,11 +1,15 @@
 from __future__ import annotations
 
-from typing import List
+from typing import List, Optional
 
 import pydantic
 
 from ...model import Model
-from .foreignKeyReference import ForeignKeyReference
+
+
+class ForeignKeyReference(Model):
+    fields: List[str] = []
+    resource: Optional[str] = None
 
 
 class ForeignKey(Model):
