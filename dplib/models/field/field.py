@@ -98,11 +98,11 @@ class Field(Model):
 
     @pydantic.model_validator(mode="before")
     @classmethod
-    def compat_standard_v0(cls, data: types.IData):
+    def compat(cls, data: types.IData):
         if not isinstance(data, dict):  # type: ignore
             return data
 
-        # field.format
+        # field.format (standard/v0)
         format = data.get("format")
         if format:
             if format.startswith("fmt:"):

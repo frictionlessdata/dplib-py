@@ -19,11 +19,11 @@ class Contributor(Model):
 
     @pydantic.model_validator(mode="before")
     @classmethod
-    def compat_standard_v1(cls, data: types.IData):
+    def compat(cls, data: types.IData):
         if not isinstance(data, dict):  # type: ignore
             return data
 
-        # contributor.role
+        # contributor.role (standard/v1)
         if not data.get("roles"):
             role = data.pop("role", None)
             if role:

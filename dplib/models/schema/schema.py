@@ -125,11 +125,11 @@ class Schema(Model):
 
     @pydantic.model_validator(mode="before")
     @classmethod
-    def compat_standard_v1(cls, data: types.IData):
+    def compat(cls, data: types.IData):
         if not isinstance(data, dict):  # type: ignore
             return data
 
-        # schema.primaryKey
+        # schema.primaryKey (standard/v1)
         primaryKey = data.get("primaryKey", None)
         if isinstance(primaryKey, str):
             data["primaryKey"] = [primaryKey]

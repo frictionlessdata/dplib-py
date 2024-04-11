@@ -192,11 +192,11 @@ class Resource(Model):
 
     @pydantic.model_validator(mode="before")
     @classmethod
-    def compat_standard_v0(cls, data: types.IData):
+    def compat(cls, data: types.IData):
         if not isinstance(data, dict):  # type: ignore
             return data
 
-        # resource.url
+        # resource.url (standard/v0)
         if not data.get("path"):
             url = data.pop("url", None)
             if url:
