@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import List, Optional
 
 from ..model import Model
 
@@ -9,5 +9,5 @@ class Contributor(Model):
     familyName: Optional[str] = None
     path: Optional[str] = None
     email: Optional[str] = None
-    role: Optional[str] = None
+    roles: Optional[List[str]] = None
     organization: Optional[str] = None

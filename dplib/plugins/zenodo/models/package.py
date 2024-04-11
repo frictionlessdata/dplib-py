@@ -82,7 +82,7 @@ class ZenodoPackage(Model):
                     familyName=creator.person_or_org.family_name,
                 )
                 if creator.person_or_org.type:
-                    contributor.role = creator.person_or_org.type
+                    contributor.roles = [creator.person_or_org.type]
                 if creator.affiliations:
                     contributor.organization = creator.affiliations[0].name
                 package.contributors.append(contributor)
@@ -130,8 +130,8 @@ class ZenodoPackage(Model):
             creator.person_or_org.name = contributor.title
             creator.person_or_org.given_name = contributor.givenName
             creator.person_or_org.family_name = contributor.familyName
-            if contributor.role:
-                creator.person_or_org.type = contributor.role
+            if contributor.roles:
+                creator.person_or_org.type = contributor.roles[0]
             if contributor.organization:
                 affiliation = ZenodoCreatorAffiliation(name=contributor.organization)
                 creator.affiliations.append(affiliation)

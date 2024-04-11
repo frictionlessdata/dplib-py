@@ -28,7 +28,7 @@ def test_ckan_package_to_dp():
     assert package.resources[0].path == "sample-linked.csv"
     assert package.keywords[0] == "csv"
     assert package.contributors[0].title == "Test Author"
-    assert package.contributors[0].role == "author"
+    assert package.contributors[0].roles == ["author"]
     assert package.custom["ckan:id"] == "c322307a-b871-44fe-a602-32ee8437ff04"
 
 

@@ -85,7 +85,10 @@ class DatacitePackage(Model):
                     givenName=item.givenName,
                     familyName=item.familyName,
                 )
-                contributor.role = type if type == "creator" else item.contributorType
+                if type == "creator":
+                    contributor.roles = [type]
+                elif item.contributorType:
+                    contributor.roles = [item.contributorType]
                 for affiliation in item.affiliation:
                     contributor.organization = affiliation.name
                     break
@@ -158,11 +161,11 @@ class DatacitePackage(Model):
             if contributor.organization:
                 org = DataciteContributorAffiliation(name=contributor.organization)
                 item.affiliation.append(org)
-            if contributor.role:
-                item.contributorType = contributor.role
             target = datacite.contributors
-            if contributor.role in ["author", "creator"]:
-                target = datacite.creators
+            if contributor.roles:
+                item.contributorType = contributor.roles[0]
+                if set(contributor.roles).intersection(["author", "creator"]):
+                    target = datacite.creators
             target.append(item)
 
         return datacite

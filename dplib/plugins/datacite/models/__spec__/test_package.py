@@ -48,7 +48,7 @@ def test_datacite_package_to_dp():
     assert package.contributors[1].title == "Starr, Joan"
     assert package.contributors[1].givenName == "Joan"
     assert package.contributors[1].familyName == "Starr"
-    assert package.contributors[1].role == "ProjectLeader"
+    assert package.contributors[1].roles == ["ProjectLeader"]
     assert len(package.licenses) == 1
     assert package.licenses[0].path == "http://creativecommons.org/publicdomain/zero/1.0"
 
