@@ -118,12 +118,17 @@ class Resource(Model):
     The people or organizations who contributed to this Data Package.
     """
 
-    def model_post_init(self, _):
-        # resource.url (standard/v0)
-        if not self.path:
-            url = self.custom.pop("url", None)
+    # Compat
+
+    @pydantic.model_validator(mode="before")
+    @classmethod
+    def compat_standard_v0(cls, data: types.IData):
+        # resource.url
+        if not data.get("path"):
+            url = data.pop("url", None)
             if url:
-                self.path = url
+                data["path"] = url
+        return data
 
     # Getters
 

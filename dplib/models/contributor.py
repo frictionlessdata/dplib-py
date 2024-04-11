@@ -1,5 +1,7 @@
 from typing import List, Optional
+from pydantic import model_validator
 
+from .. import types
 from ..model import Model
 
 
@@ -12,9 +14,14 @@ class Contributor(Model):
     roles: Optional[List[str]] = []
     organization: Optional[str] = None
 
-    def model_post_init(self, _):
-        # contributor.role (standard/v1)
-        if not self.roles:
-            role = self.custom.pop("role", None)
+    # Compat
+
+    @model_validator(mode="before")
+    @classmethod
+    def compat_standard_v1(cls, data: types.IData):
+        # contributor.role
+        if not data.get("roles"):
+            role = data.pop("role", None)
             if role:
-                self.roles = [role]
+                data["roles"] = [role]
+        return data

@@ -4,6 +4,7 @@ from typing import Any, Dict, List, Optional
 
 import pydantic
 
+from ... import types
 from ...model import Model
 from .constraints import Constraints
 from .fieldType import FieldType
@@ -86,8 +87,14 @@ class Field(Model):
     String whose value is used to represent a decimal point for number fields
     """
 
-    def model_post_init(self, _):
-        # field.format (standard/v0)
-        if self.format:
-            if self.format.startswith("fmt:"):
-                self.format = self.format[4:]
+    # Compat
+
+    @pydantic.model_validator(mode="before")
+    @classmethod
+    def compat_standard_v0(cls, data: types.IData):
+        # field.format
+        format = data.get("format")
+        if format:
+            if format.startswith("fmt:"):
+                data["format"] = format[4:]
+        return data
