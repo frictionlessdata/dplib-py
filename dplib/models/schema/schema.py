@@ -4,7 +4,7 @@ from typing import List, Optional
 
 from ...model import Model
 from ..profile import Profile
-from .field import Field
+from ..field import Field
 from .fieldsMatch import FieldsMatch
 from .foreignKey import ForeignKey
 
