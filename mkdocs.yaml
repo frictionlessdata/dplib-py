@@ -121,6 +121,7 @@ nav:
       - Validating Metadata: validating-metadata.md
       - Converting Metadata: converting-metadata.md
       - Contributing: contributing.md
+      - Changelog: changelog.md
   - Models:
       - Package: models/package.md
       - Resource: models/resource.md
