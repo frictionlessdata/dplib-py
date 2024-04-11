@@ -41,7 +41,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-cli = ["typer[standard]>=0.12", "rich>=10.0"]
+cli = ["typer>=0.12", "rich>=10.0"]
 dcat = ["rdflib>=6.0"]
 pandas = ["pandas>=1.0", "pandas-stubs>=1.0", "numpy>=1.0", "isodate>=0.6"]
 polars = ["polars-lts-cpu>=0.10"]
@@ -49,6 +49,7 @@ sql = ["sqlalchemy>=1.4"]
 dev = [
     "moto",
     "ruff",
+    "isort",
     "httpx",
     "hatch",
     "yattag",
@@ -93,10 +94,11 @@ build = [
   "mkdocs build",
 ]
 format = [
-  "ruff check dplib --fix",
+  "isort dplib",
   "ruff format dplib",
 ]
 lint = [
+  "isort dplib --check",
   "ruff check dplib",
 ]
 release = [
