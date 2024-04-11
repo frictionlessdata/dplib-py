@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Any, List, Optional
 
+from ... import types
 from ...model import Model
 
 
@@ -13,4 +14,5 @@ class Constraints(Model):
     maximum: Optional[Any] = None
     minLength: Optional[int] = None
     maxLength: Optional[int] = None
+    jsonSchema: Optional[types.IData] = None
     pattern: Optional[str] = None
