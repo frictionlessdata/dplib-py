@@ -1,7 +1,7 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Data Package",
-  "description": "Data Package",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tabular Data Package",
+  "description": "Tabular Data Package is a simple specification for data access and delivery of tabular data.",
   "type": "object",
   "required": ["resources"],
   "properties": {
@@ -197,13 +197,13 @@
     },
     "resources": {
       "propertyOrder": 120,
-      "title": "Data Resources",
+      "title": "Tabular Data Resources",
       "description": "An `array` of Tabular Data Resource objects, each compliant with the [Tabular Data Resource](/tabular-data-resource/) specification.",
       "type": "array",
       "minItems": 1,
       "items": {
-        "title": "Data Resource",
-        "description": "Data Resource.",
+        "title": "Tabular Data Resource",
+        "description": "A Tabular Data Resource.",
         "type": "object",
         "oneOf": [
           {
@@ -311,9 +311,7 @@
                           "title": "Title",
                           "description": "A human-readable title.",
                           "type": "string",
-                          "examples": [
-                            "{\n  \"title\": \"My Package Title\"\n}\n"
-                          ]
+                          "examples": ["{\n  \"title\": \"My Package Title\"\n}\n"]
                         },
                         "description": {
                           "title": "Description",
@@ -405,9 +403,7 @@
                           "title": "Title",
                           "description": "A human-readable title.",
                           "type": "string",
-                          "examples": [
-                            "{\n  \"title\": \"My Package Title\"\n}\n"
-                          ]
+                          "examples": ["{\n  \"title\": \"My Package Title\"\n}\n"]
                         },
                         "description": {
                           "title": "Description",
@@ -530,9 +526,7 @@
                           "title": "Title",
                           "description": "A human-readable title.",
                           "type": "string",
-                          "examples": [
-                            "{\n  \"title\": \"My Package Title\"\n}\n"
-                          ]
+                          "examples": ["{\n  \"title\": \"My Package Title\"\n}\n"]
                         },
                         "description": {
                           "title": "Description",
@@ -645,9 +639,7 @@
                           "title": "Title",
                           "description": "A human-readable title.",
                           "type": "string",
-                          "examples": [
-                            "{\n  \"title\": \"My Package Title\"\n}\n"
-                          ]
+                          "examples": ["{\n  \"title\": \"My Package Title\"\n}\n"]
                         },
                         "description": {
                           "title": "Description",
@@ -730,9 +722,7 @@
                           "title": "Title",
                           "description": "A human-readable title.",
                           "type": "string",
-                          "examples": [
-                            "{\n  \"title\": \"My Package Title\"\n}\n"
-                          ]
+                          "examples": ["{\n  \"title\": \"My Package Title\"\n}\n"]
                         },
                         "description": {
                           "title": "Description",
@@ -814,9 +804,7 @@
                           "title": "Title",
                           "description": "A human-readable title.",
                           "type": "string",
-                          "examples": [
-                            "{\n  \"title\": \"My Package Title\"\n}\n"
-                          ]
+                          "examples": ["{\n  \"title\": \"My Package Title\"\n}\n"]
                         },
                         "description": {
                           "title": "Description",
@@ -898,9 +886,7 @@
                           "title": "Title",
                           "description": "A human-readable title.",
                           "type": "string",
-                          "examples": [
-                            "{\n  \"title\": \"My Package Title\"\n}\n"
-                          ]
+                          "examples": ["{\n  \"title\": \"My Package Title\"\n}\n"]
                         },
                         "description": {
                           "title": "Description",
@@ -1008,9 +994,7 @@
                           "title": "Title",
                           "description": "A human-readable title.",
                           "type": "string",
-                          "examples": [
-                            "{\n  \"title\": \"My Package Title\"\n}\n"
-                          ]
+                          "examples": ["{\n  \"title\": \"My Package Title\"\n}\n"]
                         },
                         "description": {
                           "title": "Description",
@@ -1092,9 +1076,7 @@
                           "title": "Title",
                           "description": "A human-readable title.",
                           "type": "string",
-                          "examples": [
-                            "{\n  \"title\": \"My Package Title\"\n}\n"
-                          ]
+                          "examples": ["{\n  \"title\": \"My Package Title\"\n}\n"]
                         },
                         "description": {
                           "title": "Description",
@@ -1181,9 +1163,7 @@
                           "title": "Title",
                           "description": "A human-readable title.",
                           "type": "string",
-                          "examples": [
-                            "{\n  \"title\": \"My Package Title\"\n}\n"
-                          ]
+                          "examples": ["{\n  \"title\": \"My Package Title\"\n}\n"]
                         },
                         "description": {
                           "title": "Description",
@@ -1278,9 +1258,7 @@
                           "title": "Title",
                           "description": "A human-readable title.",
                           "type": "string",
-                          "examples": [
-                            "{\n  \"title\": \"My Package Title\"\n}\n"
-                          ]
+                          "examples": ["{\n  \"title\": \"My Package Title\"\n}\n"]
                         },
                         "description": {
                           "title": "Description",
@@ -1380,9 +1358,7 @@
                           "title": "Title",
                           "description": "A human-readable title.",
                           "type": "string",
-                          "examples": [
-                            "{\n  \"title\": \"My Package Title\"\n}\n"
-                          ]
+                          "examples": ["{\n  \"title\": \"My Package Title\"\n}\n"]
                         },
                         "description": {
                           "title": "Description",
@@ -1479,9 +1455,7 @@
                           "title": "Title",
                           "description": "A human-readable title.",
                           "type": "string",
-                          "examples": [
-                            "{\n  \"title\": \"My Package Title\"\n}\n"
-                          ]
+                          "examples": ["{\n  \"title\": \"My Package Title\"\n}\n"]
                         },
                         "description": {
                           "title": "Description",
@@ -1577,9 +1551,7 @@
                           "title": "Title",
                           "description": "A human-readable title.",
                           "type": "string",
-                          "examples": [
-                            "{\n  \"title\": \"My Package Title\"\n}\n"
-                          ]
+                          "examples": ["{\n  \"title\": \"My Package Title\"\n}\n"]
                         },
                         "description": {
                           "title": "Description",
@@ -1660,9 +1632,7 @@
                           "title": "Title",
                           "description": "A human-readable title.",
                           "type": "string",
-                          "examples": [
-                            "{\n  \"title\": \"My Package Title\"\n}\n"
-                          ]
+                          "examples": ["{\n  \"title\": \"My Package Title\"\n}\n"]
                         },
                         "description": {
                           "title": "Description",
@@ -1710,9 +1680,7 @@
                           "description": "The RDF type for this field."
                         }
                       },
-                      "examples": [
-                        "{\n  \"name\": \"notes\",\n  \"type\": \"any\"\n"
-                      ]
+                      "examples": ["{\n  \"name\": \"notes\",\n  \"type\": \"any\"\n"]
                     }
                   ]
                 },
@@ -1957,7 +1925,15 @@
             "title": "CSV Dialect",
             "description": "The CSV dialect descriptor.",
             "type": ["string", "object"],
+            "required": ["delimiter", "doubleQuote"],
             "properties": {
+              "csvddfVersion": {
+                "title": "CSV Dialect schema version",
+                "description": "A number to indicate the schema version of CSV Dialect. Version 1.0 was named CSV Dialect Description Format and used different field names.",
+                "type": "number",
+                "default": 1.2,
+                "examples:": ["{\n  \"csvddfVersion\": \"1.2\"\n}\n"]
+              },
               "delimiter": {
                 "title": "Delimiter",
                 "description": "A character sequence to use as the field separator.",
@@ -2140,4 +2116,3 @@
     }
   }
 }
-

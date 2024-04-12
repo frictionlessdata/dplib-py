@@ -1,18 +1,21 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Table Dialect",
-  "description": "Table Dialect",
-  "type": ["object"],
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CSV Dialect",
+  "description": "The CSV dialect descriptor.",
   "properties": {
+    "csvddfVersion": {
+      "title": "CSV Dialect schema version",
+      "description": "A number to indicate the schema version of CSV Dialect. Version 1.0 was named CSV Dialect Description Format and used different field names.",
+      "type": "number",
+      "default": 1.2,
+      "examples:": ["{\n  \"csvddfVersion\": \"1.2\"\n}\n"]
+    },
     "delimiter": {
       "title": "Delimiter",
       "description": "A character sequence to use as the field separator.",
       "type": "string",
       "default": ",",
-      "examples": [
-        "{\n  \"delimiter\": \",\"\n}\n",
-        "{\n  \"delimiter\": \";\"\n}\n"
-      ]
+      "examples": ["{\n  \"delimiter\": \",\"\n}\n", "{\n  \"delimiter\": \";\"\n}\n"]
     },
     "doubleQuote": {
       "title": "Double Quote",
@@ -85,4 +88,3 @@
     "{\n  \"dialect\": {\n    \"delimiter\": \"\\t\",\n    \"quoteChar\": \"'\",\n    \"commentChar\": \"#\"\n  }\n}\n"
   ]
 }
-
