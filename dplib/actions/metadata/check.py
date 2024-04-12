@@ -2,11 +2,10 @@ from __future__ import annotations
 
 from typing import List, Union
 
-from ... import types
-from ... import settings
+from ... import settings, types
 from ...errors.metadata import MetadataError
 from ...helpers.data import read_data
-from ...helpers.profile import apply_profile, read_profile
+from ...helpers.profile import check_profile
 
 
 def check_metadata(
@@ -29,7 +28,6 @@ def check_metadata(
 
     # Validate metadata
     profile = metadata.get("$schema", default_profile)
-    jsonSchema = read_profile(profile)
-    errors = apply_profile(metadata, jsonSchema)
+    errors = check_profile(metadata=metadata, profile=profile)
 
     return errors

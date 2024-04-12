@@ -55,14 +55,6 @@ def test_resource_set_proprty_invalid():
         resource.name = 1  # type: ignore
 
 
-@pytest.mark.vcr
-def test_resource_profile():
-    resource = Resource.from_path("data/resource-full.json")
-    profile = resource.get_profile()
-    assert profile
-    assert profile.jsonSchema.get("title") == "Tabular Data Resource"
-
-
 def test_resource_get_fullpath():
     resource = Resource.from_path("data/resource.json")
     fullpath = resource.get_fullpath()

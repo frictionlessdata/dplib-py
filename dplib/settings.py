@@ -1,3 +1,5 @@
+import os
+
 # Version
 
 VERSION = "0.6.0"
@@ -5,6 +7,7 @@ VERSION = "0.6.0"
 # Profiles
 
 PROFILE_BASEURL = "https://datapackage.org/profiles"
+PROFILE_BASEDIR = os.path.join(os.path.dirname(__file__), "profiles")
 
 PROFILE_DEFAULT = "1.0"
 PROFILE_DEFAULT_DIALECT = f"{PROFILE_BASEURL}/{PROFILE_DEFAULT}/tabledialect.json"

@@ -55,11 +55,3 @@ def test_dialect_set_proprty_invalid():
     dialect = Dialect()
     with pytest.raises(ValidationError):
         dialect.delimiter = 1  # type: ignore
-
-
-@pytest.mark.vcr
-def test_dialect_profile():
-    dialect = Dialect.from_path("data/dialect-full.json")
-    profile = dialect.get_profile()
-    assert profile
-    assert profile.jsonSchema.get("title") == "CSV Dialect"

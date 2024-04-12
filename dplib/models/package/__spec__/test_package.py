@@ -51,14 +51,6 @@ def test_package_set_proprty_invalid():
         package.name = 1  # type: ignore
 
 
-@pytest.mark.vcr
-def test_package_profile():
-    package = Package.from_path("data/package-full.json")
-    profile = package.get_profile()
-    assert profile
-    assert profile.jsonSchema.get("title") == "Data Package"
-
-
 def test_package_get_resource_by_name():
     package = Package.from_path("data/package.json")
     resource = package.get_resource(name="name")

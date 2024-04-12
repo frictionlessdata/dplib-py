@@ -52,14 +52,6 @@ def test_schema_set_proprty_invalid():
         schema.missingValues = 1  # type: ignore
 
 
-@pytest.mark.vcr
-def test_schema_profile():
-    schema = Schema.from_path("data/schema-full.json")
-    profile = schema.get_profile()
-    assert profile
-    assert profile.jsonSchema.get("title") == "Table Schema"
-
-
 def test_schema_add_field():
     schema = Schema()
     schema.add_field(Field(name="id", type="integer"))
