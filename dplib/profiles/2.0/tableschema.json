@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Table Schema",
   "description": "A Table Schema for this resource, compliant with the [Table Schema](/tableschema/) specification.",
   "type": [
@@ -10,6 +10,13 @@
     "fields"
   ],
   "properties": {
+    "$schema": {
+      "default": "https://datapackage.org/profiles/1.0/tableschema.json",
+      "propertyOrder": 10,
+      "title": "Profile",
+      "description": "The profile of this descriptor.",
+      "type": "string"
+    },
     "fields": {
       "type": "array",
       "minItems": 1,
@@ -52,6 +59,21 @@
                 "type": "string",
                 "examples": [
                   "{\n  \"example\": \"Put here an example value for your field\"\n}\n"
+                ]
+              },
+              "missingValues": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  ""
+                ],
+                "description": "Values that when encountered in the source, should be considered as `null`, 'not present', or 'blank' values.",
+                "context": "Many datasets arrive with missing data values, either because a value was not collected or it never existed.\nMissing values may be indicated simply by the value being empty in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999` etc.\nThe `missingValues` property provides a way to indicate that these values should be interpreted as equivalent to null.\n\n`missingValues` are strings rather than being the data type of the particular field. This allows for comparison prior to casting and for fields to have missing value which are not of their type, for example a `number` field to have missing values indicated by `-`.\n\nThe default value of `missingValue` for a non-string type field is the empty string `''`. For string type fields there is no default for `missingValue` (for string fields the empty string `''` is a valid value and need not indicate null).",
+                "examples": [
+                  "{\n  \"missingValues\": [\n    \"-\",\n    \"NaN\",\n    \"\"\n  ]\n}\n",
+                  "{\n  \"missingValues\": []\n}\n"
                 ]
               },
               "type": {
@@ -159,6 +181,21 @@
                   "{\n  \"example\": \"Put here an example value for your field\"\n}\n"
                 ]
               },
+              "missingValues": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  ""
+                ],
+                "description": "Values that when encountered in the source, should be considered as `null`, 'not present', or 'blank' values.",
+                "context": "Many datasets arrive with missing data values, either because a value was not collected or it never existed.\nMissing values may be indicated simply by the value being empty in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999` etc.\nThe `missingValues` property provides a way to indicate that these values should be interpreted as equivalent to null.\n\n`missingValues` are strings rather than being the data type of the particular field. This allows for comparison prior to casting and for fields to have missing value which are not of their type, for example a `number` field to have missing values indicated by `-`.\n\nThe default value of `missingValue` for a non-string type field is the empty string `''`. For string type fields there is no default for `missingValue` (for string fields the empty string `''` is a valid value and need not indicate null).",
+                "examples": [
+                  "{\n  \"missingValues\": [\n    \"-\",\n    \"NaN\",\n    \"\"\n  ]\n}\n",
+                  "{\n  \"missingValues\": []\n}\n"
+                ]
+              },
               "type": {
                 "description": "The type keyword, which `MUST` be a value of `number`.",
                 "enum": [
@@ -178,13 +215,14 @@
                 "description": "a boolean field with a default of `true`. If `true` the physical contents of this field must follow the formatting constraints already set out. If `false` the contents of this field may contain leading and/or trailing non-numeric characters (which implementors MUST therefore strip). The purpose of `bareNumber` is to allow publishers to publish numeric data that contains trailing characters such as percentages e.g. `95%` or leading characters such as currencies e.g. `€95` or `EUR 95`. Note that it is entirely up to implementors what, if anything, they do with stripped text.",
                 "default": true
               },
+              "groupChar": {
+                "type": "string",
+                "title": "groupChar",
+                "description": "A string whose value is used to group digits within the number. This property does not have a default value. A common value is `,` e.g. '100,000'."
+              },
               "decimalChar": {
                 "type": "string",
                 "description": "A string whose value is used to represent a decimal point within the number. The default value is `.`."
-              },
-              "groupChar": {
-                "type": "string",
-                "description": "A string whose value is used to group digits within the number. The default value is `null`. A common value is `,` e.g. '100,000'."
               },
               "constraints": {
                 "title": "Constraints",
@@ -231,6 +269,26 @@
                     ]
                   },
                   "maximum": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ]
+                  },
+                  "exclusiveMinimum": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "number"
+                      }
+                    ]
+                  },
+                  "exclusiveMaximum": {
                     "oneOf": [
                       {
                         "type": "string"
@@ -291,6 +349,21 @@
                   "{\n  \"example\": \"Put here an example value for your field\"\n}\n"
                 ]
               },
+              "missingValues": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  ""
+                ],
+                "description": "Values that when encountered in the source, should be considered as `null`, 'not present', or 'blank' values.",
+                "context": "Many datasets arrive with missing data values, either because a value was not collected or it never existed.\nMissing values may be indicated simply by the value being empty in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999` etc.\nThe `missingValues` property provides a way to indicate that these values should be interpreted as equivalent to null.\n\n`missingValues` are strings rather than being the data type of the particular field. This allows for comparison prior to casting and for fields to have missing value which are not of their type, for example a `number` field to have missing values indicated by `-`.\n\nThe default value of `missingValue` for a non-string type field is the empty string `''`. For string type fields there is no default for `missingValue` (for string fields the empty string `''` is a valid value and need not indicate null).",
+                "examples": [
+                  "{\n  \"missingValues\": [\n    \"-\",\n    \"NaN\",\n    \"\"\n  ]\n}\n",
+                  "{\n  \"missingValues\": []\n}\n"
+                ]
+              },
               "type": {
                 "description": "The type keyword, which `MUST` be a value of `integer`.",
                 "enum": [
@@ -309,6 +382,11 @@
                 "title": "bareNumber",
                 "description": "a boolean field with a default of `true`. If `true` the physical contents of this field must follow the formatting constraints already set out. If `false` the contents of this field may contain leading and/or trailing non-numeric characters (which implementors MUST therefore strip). The purpose of `bareNumber` is to allow publishers to publish numeric data that contains trailing characters such as percentages e.g. `95%` or leading characters such as currencies e.g. `€95` or `EUR 95`. Note that it is entirely up to implementors what, if anything, they do with stripped text.",
                 "default": true
+              },
+              "groupChar": {
+                "type": "string",
+                "title": "groupChar",
+                "description": "A string whose value is used to group digits within the number. This property does not have a default value. A common value is `,` e.g. '100,000'."
               },
               "constraints": {
                 "title": "Constraints",
@@ -355,6 +433,26 @@
                     ]
                   },
                   "maximum": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "integer"
+                      }
+                    ]
+                  },
+                  "exclusiveMinimum": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "integer"
+                      }
+                    ]
+                  },
+                  "exclusiveMaximum": {
                     "oneOf": [
                       {
                         "type": "string"
@@ -413,6 +511,21 @@
                   "{\n  \"example\": \"Put here an example value for your field\"\n}\n"
                 ]
               },
+              "missingValues": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  ""
+                ],
+                "description": "Values that when encountered in the source, should be considered as `null`, 'not present', or 'blank' values.",
+                "context": "Many datasets arrive with missing data values, either because a value was not collected or it never existed.\nMissing values may be indicated simply by the value being empty in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999` etc.\nThe `missingValues` property provides a way to indicate that these values should be interpreted as equivalent to null.\n\n`missingValues` are strings rather than being the data type of the particular field. This allows for comparison prior to casting and for fields to have missing value which are not of their type, for example a `number` field to have missing values indicated by `-`.\n\nThe default value of `missingValue` for a non-string type field is the empty string `''`. For string type fields there is no default for `missingValue` (for string fields the empty string `''` is a valid value and need not indicate null).",
+                "examples": [
+                  "{\n  \"missingValues\": [\n    \"-\",\n    \"NaN\",\n    \"\"\n  ]\n}\n",
+                  "{\n  \"missingValues\": []\n}\n"
+                ]
+              },
               "type": {
                 "description": "The type keyword, which `MUST` be a value of `date`.",
                 "enum": [
@@ -450,6 +563,12 @@
                     "type": "string"
                   },
                   "maximum": {
+                    "type": "string"
+                  },
+                  "exclusiveMinimum": {
+                    "type": "string"
+                  },
+                  "exclusiveMaximum": {
                     "type": "string"
                   }
                 }
@@ -503,6 +622,21 @@
                   "{\n  \"example\": \"Put here an example value for your field\"\n}\n"
                 ]
               },
+              "missingValues": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  ""
+                ],
+                "description": "Values that when encountered in the source, should be considered as `null`, 'not present', or 'blank' values.",
+                "context": "Many datasets arrive with missing data values, either because a value was not collected or it never existed.\nMissing values may be indicated simply by the value being empty in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999` etc.\nThe `missingValues` property provides a way to indicate that these values should be interpreted as equivalent to null.\n\n`missingValues` are strings rather than being the data type of the particular field. This allows for comparison prior to casting and for fields to have missing value which are not of their type, for example a `number` field to have missing values indicated by `-`.\n\nThe default value of `missingValue` for a non-string type field is the empty string `''`. For string type fields there is no default for `missingValue` (for string fields the empty string `''` is a valid value and need not indicate null).",
+                "examples": [
+                  "{\n  \"missingValues\": [\n    \"-\",\n    \"NaN\",\n    \"\"\n  ]\n}\n",
+                  "{\n  \"missingValues\": []\n}\n"
+                ]
+              },
               "type": {
                 "description": "The type keyword, which `MUST` be a value of `time`.",
                 "enum": [
@@ -540,6 +674,12 @@
                     "type": "string"
                   },
                   "maximum": {
+                    "type": "string"
+                  },
+                  "exclusiveMinimum": {
+                    "type": "string"
+                  },
+                  "exclusiveMaximum": {
                     "type": "string"
                   }
                 }
@@ -592,6 +732,21 @@
                   "{\n  \"example\": \"Put here an example value for your field\"\n}\n"
                 ]
               },
+              "missingValues": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  ""
+                ],
+                "description": "Values that when encountered in the source, should be considered as `null`, 'not present', or 'blank' values.",
+                "context": "Many datasets arrive with missing data values, either because a value was not collected or it never existed.\nMissing values may be indicated simply by the value being empty in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999` etc.\nThe `missingValues` property provides a way to indicate that these values should be interpreted as equivalent to null.\n\n`missingValues` are strings rather than being the data type of the particular field. This allows for comparison prior to casting and for fields to have missing value which are not of their type, for example a `number` field to have missing values indicated by `-`.\n\nThe default value of `missingValue` for a non-string type field is the empty string `''`. For string type fields there is no default for `missingValue` (for string fields the empty string `''` is a valid value and need not indicate null).",
+                "examples": [
+                  "{\n  \"missingValues\": [\n    \"-\",\n    \"NaN\",\n    \"\"\n  ]\n}\n",
+                  "{\n  \"missingValues\": []\n}\n"
+                ]
+              },
               "type": {
                 "description": "The type keyword, which `MUST` be a value of `datetime`.",
                 "enum": [
@@ -629,6 +784,12 @@
                     "type": "string"
                   },
                   "maximum": {
+                    "type": "string"
+                  },
+                  "exclusiveMinimum": {
+                    "type": "string"
+                  },
+                  "exclusiveMaximum": {
                     "type": "string"
                   }
                 }
@@ -679,6 +840,21 @@
                 "type": "string",
                 "examples": [
                   "{\n  \"example\": \"Put here an example value for your field\"\n}\n"
+                ]
+              },
+              "missingValues": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  ""
+                ],
+                "description": "Values that when encountered in the source, should be considered as `null`, 'not present', or 'blank' values.",
+                "context": "Many datasets arrive with missing data values, either because a value was not collected or it never existed.\nMissing values may be indicated simply by the value being empty in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999` etc.\nThe `missingValues` property provides a way to indicate that these values should be interpreted as equivalent to null.\n\n`missingValues` are strings rather than being the data type of the particular field. This allows for comparison prior to casting and for fields to have missing value which are not of their type, for example a `number` field to have missing values indicated by `-`.\n\nThe default value of `missingValue` for a non-string type field is the empty string `''`. For string type fields there is no default for `missingValue` (for string fields the empty string `''` is a valid value and need not indicate null).",
+                "examples": [
+                  "{\n  \"missingValues\": [\n    \"-\",\n    \"NaN\",\n    \"\"\n  ]\n}\n",
+                  "{\n  \"missingValues\": []\n}\n"
                 ]
               },
               "type": {
@@ -747,6 +923,26 @@
                         "type": "integer"
                       }
                     ]
+                  },
+                  "exclusiveMinimum": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "integer"
+                      }
+                    ]
+                  },
+                  "exclusiveMaximum": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "integer"
+                      }
+                    ]
                   }
                 }
               },
@@ -798,6 +994,21 @@
                   "{\n  \"example\": \"Put here an example value for your field\"\n}\n"
                 ]
               },
+              "missingValues": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  ""
+                ],
+                "description": "Values that when encountered in the source, should be considered as `null`, 'not present', or 'blank' values.",
+                "context": "Many datasets arrive with missing data values, either because a value was not collected or it never existed.\nMissing values may be indicated simply by the value being empty in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999` etc.\nThe `missingValues` property provides a way to indicate that these values should be interpreted as equivalent to null.\n\n`missingValues` are strings rather than being the data type of the particular field. This allows for comparison prior to casting and for fields to have missing value which are not of their type, for example a `number` field to have missing values indicated by `-`.\n\nThe default value of `missingValue` for a non-string type field is the empty string `''`. For string type fields there is no default for `missingValue` (for string fields the empty string `''` is a valid value and need not indicate null).",
+                "examples": [
+                  "{\n  \"missingValues\": [\n    \"-\",\n    \"NaN\",\n    \"\"\n  ]\n}\n",
+                  "{\n  \"missingValues\": []\n}\n"
+                ]
+              },
               "type": {
                 "description": "The type keyword, which `MUST` be a value of `yearmonth`.",
                 "enum": [
@@ -837,6 +1048,12 @@
                     "type": "string"
                   },
                   "maximum": {
+                    "type": "string"
+                  },
+                  "exclusiveMinimum": {
+                    "type": "string"
+                  },
+                  "exclusiveMaximum": {
                     "type": "string"
                   }
                 }
@@ -887,6 +1104,21 @@
                 "type": "string",
                 "examples": [
                   "{\n  \"example\": \"Put here an example value for your field\"\n}\n"
+                ]
+              },
+              "missingValues": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  ""
+                ],
+                "description": "Values that when encountered in the source, should be considered as `null`, 'not present', or 'blank' values.",
+                "context": "Many datasets arrive with missing data values, either because a value was not collected or it never existed.\nMissing values may be indicated simply by the value being empty in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999` etc.\nThe `missingValues` property provides a way to indicate that these values should be interpreted as equivalent to null.\n\n`missingValues` are strings rather than being the data type of the particular field. This allows for comparison prior to casting and for fields to have missing value which are not of their type, for example a `number` field to have missing values indicated by `-`.\n\nThe default value of `missingValue` for a non-string type field is the empty string `''`. For string type fields there is no default for `missingValue` (for string fields the empty string `''` is a valid value and need not indicate null).",
+                "examples": [
+                  "{\n  \"missingValues\": [\n    \"-\",\n    \"NaN\",\n    \"\"\n  ]\n}\n",
+                  "{\n  \"missingValues\": []\n}\n"
                 ]
               },
               "type": {
@@ -995,6 +1227,21 @@
                   "{\n  \"example\": \"Put here an example value for your field\"\n}\n"
                 ]
               },
+              "missingValues": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  ""
+                ],
+                "description": "Values that when encountered in the source, should be considered as `null`, 'not present', or 'blank' values.",
+                "context": "Many datasets arrive with missing data values, either because a value was not collected or it never existed.\nMissing values may be indicated simply by the value being empty in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999` etc.\nThe `missingValues` property provides a way to indicate that these values should be interpreted as equivalent to null.\n\n`missingValues` are strings rather than being the data type of the particular field. This allows for comparison prior to casting and for fields to have missing value which are not of their type, for example a `number` field to have missing values indicated by `-`.\n\nThe default value of `missingValue` for a non-string type field is the empty string `''`. For string type fields there is no default for `missingValue` (for string fields the empty string `''` is a valid value and need not indicate null).",
+                "examples": [
+                  "{\n  \"missingValues\": [\n    \"-\",\n    \"NaN\",\n    \"\"\n  ]\n}\n",
+                  "{\n  \"missingValues\": []\n}\n"
+                ]
+              },
               "type": {
                 "description": "The type keyword, which `MUST` be a value of `object`.",
                 "enum": [
@@ -1049,6 +1296,10 @@
                   "maxLength": {
                     "type": "integer",
                     "description": "An integer that specifies the maximum length of a value."
+                  },
+                  "jsonSchema": {
+                    "type": "object",
+                    "description": "A valid JSON Schema object to validate field values. If a field value conforms to the provided JSON Schema then this field value is valid."
                   }
                 }
               },
@@ -1097,6 +1348,21 @@
                 "type": "string",
                 "examples": [
                   "{\n  \"example\": \"Put here an example value for your field\"\n}\n"
+                ]
+              },
+              "missingValues": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  ""
+                ],
+                "description": "Values that when encountered in the source, should be considered as `null`, 'not present', or 'blank' values.",
+                "context": "Many datasets arrive with missing data values, either because a value was not collected or it never existed.\nMissing values may be indicated simply by the value being empty in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999` etc.\nThe `missingValues` property provides a way to indicate that these values should be interpreted as equivalent to null.\n\n`missingValues` are strings rather than being the data type of the particular field. This allows for comparison prior to casting and for fields to have missing value which are not of their type, for example a `number` field to have missing values indicated by `-`.\n\nThe default value of `missingValue` for a non-string type field is the empty string `''`. For string type fields there is no default for `missingValue` (for string fields the empty string `''` is a valid value and need not indicate null).",
+                "examples": [
+                  "{\n  \"missingValues\": [\n    \"-\",\n    \"NaN\",\n    \"\"\n  ]\n}\n",
+                  "{\n  \"missingValues\": []\n}\n"
                 ]
               },
               "type": {
@@ -1210,6 +1476,21 @@
                   "{\n  \"example\": \"Put here an example value for your field\"\n}\n"
                 ]
               },
+              "missingValues": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  ""
+                ],
+                "description": "Values that when encountered in the source, should be considered as `null`, 'not present', or 'blank' values.",
+                "context": "Many datasets arrive with missing data values, either because a value was not collected or it never existed.\nMissing values may be indicated simply by the value being empty in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999` etc.\nThe `missingValues` property provides a way to indicate that these values should be interpreted as equivalent to null.\n\n`missingValues` are strings rather than being the data type of the particular field. This allows for comparison prior to casting and for fields to have missing value which are not of their type, for example a `number` field to have missing values indicated by `-`.\n\nThe default value of `missingValue` for a non-string type field is the empty string `''`. For string type fields there is no default for `missingValue` (for string fields the empty string `''` is a valid value and need not indicate null).",
+                "examples": [
+                  "{\n  \"missingValues\": [\n    \"-\",\n    \"NaN\",\n    \"\"\n  ]\n}\n",
+                  "{\n  \"missingValues\": []\n}\n"
+                ]
+              },
               "type": {
                 "description": "The type keyword, which `MUST` be a value of `geojson`.",
                 "enum": [
@@ -1317,6 +1598,21 @@
                   "{\n  \"example\": \"Put here an example value for your field\"\n}\n"
                 ]
               },
+              "missingValues": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  ""
+                ],
+                "description": "Values that when encountered in the source, should be considered as `null`, 'not present', or 'blank' values.",
+                "context": "Many datasets arrive with missing data values, either because a value was not collected or it never existed.\nMissing values may be indicated simply by the value being empty in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999` etc.\nThe `missingValues` property provides a way to indicate that these values should be interpreted as equivalent to null.\n\n`missingValues` are strings rather than being the data type of the particular field. This allows for comparison prior to casting and for fields to have missing value which are not of their type, for example a `number` field to have missing values indicated by `-`.\n\nThe default value of `missingValue` for a non-string type field is the empty string `''`. For string type fields there is no default for `missingValue` (for string fields the empty string `''` is a valid value and need not indicate null).",
+                "examples": [
+                  "{\n  \"missingValues\": [\n    \"-\",\n    \"NaN\",\n    \"\"\n  ]\n}\n",
+                  "{\n  \"missingValues\": []\n}\n"
+                ]
+              },
               "type": {
                 "description": "The type keyword, which `MUST` be a value of `array`.",
                 "enum": [
@@ -1371,6 +1667,10 @@
                   "maxLength": {
                     "type": "integer",
                     "description": "An integer that specifies the maximum length of a value."
+                  },
+                  "jsonSchema": {
+                    "type": "object",
+                    "description": "A valid JSON Schema object to validate field values. If a field value conforms to the provided JSON Schema then this field value is valid."
                   }
                 }
               },
@@ -1422,6 +1722,21 @@
                   "{\n  \"example\": \"Put here an example value for your field\"\n}\n"
                 ]
               },
+              "missingValues": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  ""
+                ],
+                "description": "Values that when encountered in the source, should be considered as `null`, 'not present', or 'blank' values.",
+                "context": "Many datasets arrive with missing data values, either because a value was not collected or it never existed.\nMissing values may be indicated simply by the value being empty in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999` etc.\nThe `missingValues` property provides a way to indicate that these values should be interpreted as equivalent to null.\n\n`missingValues` are strings rather than being the data type of the particular field. This allows for comparison prior to casting and for fields to have missing value which are not of their type, for example a `number` field to have missing values indicated by `-`.\n\nThe default value of `missingValue` for a non-string type field is the empty string `''`. For string type fields there is no default for `missingValue` (for string fields the empty string `''` is a valid value and need not indicate null).",
+                "examples": [
+                  "{\n  \"missingValues\": [\n    \"-\",\n    \"NaN\",\n    \"\"\n  ]\n}\n",
+                  "{\n  \"missingValues\": []\n}\n"
+                ]
+              },
               "type": {
                 "description": "The type keyword, which `MUST` be a value of `duration`.",
                 "enum": [
@@ -1461,6 +1776,12 @@
                     "type": "string"
                   },
                   "maximum": {
+                    "type": "string"
+                  },
+                  "exclusiveMinimum": {
+                    "type": "string"
+                  },
+                  "exclusiveMaximum": {
                     "type": "string"
                   }
                 }
@@ -1512,6 +1833,21 @@
                   "{\n  \"example\": \"Put here an example value for your field\"\n}\n"
                 ]
               },
+              "missingValues": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": [
+                  ""
+                ],
+                "description": "Values that when encountered in the source, should be considered as `null`, 'not present', or 'blank' values.",
+                "context": "Many datasets arrive with missing data values, either because a value was not collected or it never existed.\nMissing values may be indicated simply by the value being empty in other cases a special value may have been used e.g. `-`, `NaN`, `0`, `-9999` etc.\nThe `missingValues` property provides a way to indicate that these values should be interpreted as equivalent to null.\n\n`missingValues` are strings rather than being the data type of the particular field. This allows for comparison prior to casting and for fields to have missing value which are not of their type, for example a `number` field to have missing values indicated by `-`.\n\nThe default value of `missingValue` for a non-string type field is the empty string `''`. For string type fields there is no default for `missingValue` (for string fields the empty string `''` is a valid value and need not indicate null).",
+                "examples": [
+                  "{\n  \"missingValues\": [\n    \"-\",\n    \"NaN\",\n    \"\"\n  ]\n}\n",
+                  "{\n  \"missingValues\": []\n}\n"
+                ]
+              },
               "type": {
                 "description": "The type keyword, which `MUST` be a value of `any`.",
                 "enum": [
@@ -1556,6 +1892,20 @@
         "{\n  \"fields\": [\n    {\n      \"name\": \"my-field-name\",\n      \"type\": \"number\"\n    },\n    {\n      \"name\": \"my-field-name-2\",\n      \"type\": \"string\",\n      \"format\": \"email\"\n    }\n  ]\n}\n"
       ]
     },
+    "fieldsMatch": {
+      "type": "array",
+      "item": {
+        "type": "string",
+        "enum": [
+          "exact",
+          "equal",
+          "subset",
+          "superset",
+          "partial"
+        ],
+        "default": "exact"
+      }
+    },
     "primaryKey": {
       "oneOf": [
         {
@@ -1576,6 +1926,19 @@
         "{\n  \"primaryKey\": [\n    \"name\"\n  ]\n}\n",
         "{\n  \"primaryKey\": [\n    \"first_name\",\n    \"last_name\"\n  ]\n}\n"
       ]
+    },
+    "uniqueKeys": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": {
+          "type": "string"
+        }
+      }
     },
     "foreignKeys": {
       "type": "array",
@@ -1603,13 +1966,11 @@
               "reference": {
                 "type": "object",
                 "required": [
-                  "resource",
                   "fields"
                 ],
                 "properties": {
                   "resource": {
-                    "type": "string",
-                    "default": ""
+                    "type": "string"
                   },
                   "fields": {
                     "type": "array",
@@ -1632,13 +1993,11 @@
               "reference": {
                 "type": "object",
                 "required": [
-                  "resource",
                   "fields"
                 ],
                 "properties": {
                   "resource": {
-                    "type": "string",
-                    "default": ""
+                    "type": "string"
                   },
                   "fields": {
                     "type": "string"
@@ -1651,7 +2010,7 @@
       },
       "examples": [
         "{\n  \"foreignKeys\": [\n    {\n      \"fields\": \"state\",\n      \"reference\": {\n        \"resource\": \"the-resource\",\n        \"fields\": \"state_id\"\n      }\n    }\n  ]\n}\n",
-        "{\n  \"foreignKeys\": [\n    {\n      \"fields\": \"state\",\n      \"reference\": {\n        \"resource\": \"\",\n        \"fields\": \"id\"\n      }\n    }\n  ]\n}\n"
+        "{\n  \"foreignKeys\": [\n    {\n      \"fields\": \"state\",\n      \"reference\": {\n        \"fields\": \"id\"\n      }\n    }\n  ]\n}\n"
       ]
     },
     "missingValues": {

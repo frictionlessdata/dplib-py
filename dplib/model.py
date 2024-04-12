@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import pprint
 import warnings
-from functools import cached_property
 from typing import Optional
 
 from pydantic import BaseModel
@@ -22,8 +21,8 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
     def __repr__(self) -> str:
         return pprint.pformat(self.to_dict(), sort_dicts=False)
 
-    @cached_property
-    def custom(self) -> types.IDict:
+    @property
+    def custom(self) -> types.IData:
         assert self.model_extra is not None
         return self.model_extra
 
@@ -63,7 +62,7 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
         return data
 
     @classmethod
-    def from_dict(cls, data: types.IDict, *, basepath: Optional[str] = None) -> Self:
+    def from_dict(cls, data: types.IData, *, basepath: Optional[str] = None) -> Self:
         if basepath and cls.model_fields.get("basepath"):
             data["basepath"] = basepath
         return cls(**data)

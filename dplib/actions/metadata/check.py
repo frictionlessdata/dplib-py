@@ -2,28 +2,32 @@ from __future__ import annotations
 
 from typing import List, Union
 
-from ... import types
+from ... import settings, types
 from ...errors.metadata import MetadataError
 from ...helpers.data import read_data
-from ...helpers.path import is_remote_path
-from ...helpers.profile import check_metadata_against_jsonschema, read_profile
-from ...models import Profile
+from ...helpers.profile import check_profile
 
 
 def check_metadata(
-    metadata: Union[str, types.IDict], *, type: str
+    metadata: Union[str, types.IData], *, type: types.IMetadataType
 ) -> List[MetadataError]:
     if isinstance(metadata, str):
         metadata = read_data(metadata)
 
-    # Base profile
-    profile = Profile.from_dict(read_profile(metadata_type=type))
-    errors = check_metadata_against_jsonschema(metadata, profile.jsonSchema)
+    # Get default profile
+    if type == "dialect":
+        default_profile = settings.PROFILE_DEFAULT_DIALECT
+    elif type == "package":
+        default_profile = settings.PROFILE_DEFAULT_PACKAGE
+    elif type == "resource":
+        default_profile = settings.PROFILE_DEFAULT_RESOURCE
+    elif type == "schema":
+        default_profile = settings.PROFILE_DEFAULT_SCHEMA
+    else:
+        raise ValueError(f"Invalid metadata type: {type}")
 
-    # Custom profile
-    custom_profile = metadata.get("profile")
-    if custom_profile and is_remote_path(custom_profile):
-        custom_profile = Profile.from_path(custom_profile)
-        errors += check_metadata_against_jsonschema(metadata, custom_profile.jsonSchema)
+    # Validate metadata
+    profile = metadata.get("$schema", default_profile)
+    errors = check_profile(metadata=metadata, profile=profile)
 
     return errors

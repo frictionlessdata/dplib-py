@@ -8,7 +8,7 @@ from ...models import Schema
 from ..metadata.check import check_metadata
 
 
-def check_schema(schema: Union[str, types.IDict, Schema]) -> List[MetadataError]:
+def check_schema(schema: Union[str, types.IData, Schema]) -> List[MetadataError]:
     """Check the validity of a Table Schema descriptor
 
     This validates the descriptor against the JSON Schema profiles to ensure

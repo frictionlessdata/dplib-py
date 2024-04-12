@@ -10,7 +10,7 @@ from ...models import Resource
 from ..metadata.check import check_metadata
 
 
-def check_resource(resource: Union[str, types.IDict, Resource]) -> List[MetadataError]:
+def check_resource(resource: Union[str, types.IData, Resource]) -> List[MetadataError]:
     """Check the validity of a Data Resource descriptor
 
     This validates the descriptor against the JSON Schema profiles to ensure
@@ -30,10 +30,12 @@ def check_resource(resource: Union[str, types.IDict, Resource]) -> List[Metadata
         basepath = resource.basepath
         resource = resource.to_dict()
 
-    # Dereference dialect/schema
-    for name in ["dialect", "schema"]:
-        value = resource.get(name)
-        if value and isinstance(value, str):
-            resource[name] = read_data(value, basepath=basepath)
+    # Validate (including nested descriptors)
+    errors = check_metadata(resource, type="resource")
+    for type in ["dialect", "schema"]:
+        value = resource.get(type)
+        if isinstance(value, str):
+            metadata = read_data(value, basepath=basepath)
+            errors.extend(check_metadata(metadata, type=type))  # type: ignore
 
-    return check_metadata(resource, type="resource")
+    return errors

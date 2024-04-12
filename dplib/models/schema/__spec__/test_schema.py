@@ -52,14 +52,6 @@ def test_schema_set_proprty_invalid():
         schema.missingValues = 1  # type: ignore
 
 
-@pytest.mark.vcr
-def test_schema_profile():
-    schema = Schema.from_path("data/schema-full.json")
-    profile = schema.get_profile()
-    assert profile
-    assert profile.jsonSchema.get("title") == "Table Schema"
-
-
 def test_schema_add_field():
     schema = Schema()
     schema.add_field(Field(name="id", type="integer"))
@@ -82,3 +74,16 @@ def test_schema_to_dict():
     assert schema.to_dict() == {}
     schema.missingValues.append("x")
     assert schema.to_dict() == {"missingValues": ["", "x"]}
+
+
+def test_schema_primary_key_v1():
+    schema = Schema.from_dict({"primaryKey": "name"})
+    assert schema.primaryKey == ["name"]
+
+
+def test_schema_foreign_keys_v1():
+    schema = Schema.from_dict(
+        {"foreignKeys": [{"fields": "name", "reference": {"fields": "name"}}]}
+    )
+    assert schema.foreignKeys[0].fields == ["name"]
+    assert schema.foreignKeys[0].reference.fields == ["name"]

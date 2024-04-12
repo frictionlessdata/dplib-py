@@ -1,7 +1,7 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Data Resource",
-  "description": "A Data Resource.",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Tabular Data Resource",
+  "description": "A Tabular Data Resource.",
   "type": "object",
   "oneOf": [
     {
@@ -14,7 +14,6 @@
   "properties": {
     "profile": {
       "propertyOrder": 10,
-      "default": "data-resource",
       "title": "Profile",
       "description": "The profile of this descriptor.",
       "context": "Every Package and Resource descriptor has a profile. The default profile, if none is declared, is `data-package` for Package and `data-resource` for Resource.",
@@ -63,10 +62,7 @@
             ],
             "context": "Implementations need to negotiate the type of path provided, and dereference the data accordingly."
           },
-          "examples": [
-            "[ \"file.csv\" ]\n",
-            "[ \"http://example.com/file.csv\" ]\n"
-          ]
+          "examples": ["[ \"file.csv\" ]\n", "[ \"http://example.com/file.csv\" ]\n"]
         }
       ],
       "context": "The dereferenced value of each referenced data source in `path` `MUST` be commensurate with a native, dereferenced representation of the data the resource describes. For example, in a *Tabular* Data Resource, this means that the dereferenced value of `path` `MUST` be an array.",
@@ -1038,9 +1034,7 @@
                     "description": "The RDF type for this field."
                   }
                 },
-                "examples": [
-                  "{\n  \"name\": \"extra\"\n  \"type\": \"object\"\n}\n"
-                ]
+                "examples": ["{\n  \"name\": \"extra\"\n  \"type\": \"object\"\n}\n"]
               },
               {
                 "type": "object",
@@ -1330,9 +1324,7 @@
                     "description": "The RDF type for this field."
                   }
                 },
-                "examples": [
-                  "{\n  \"name\": \"options\"\n  \"type\": \"array\"\n}\n"
-                ]
+                "examples": ["{\n  \"name\": \"options\"\n  \"type\": \"array\"\n}\n"]
               },
               {
                 "type": "object",
@@ -1412,9 +1404,7 @@
                     "description": "The RDF type for this field."
                   }
                 },
-                "examples": [
-                  "{\n  \"name\": \"period\"\n  \"type\": \"duration\"\n}\n"
-                ]
+                "examples": ["{\n  \"name\": \"period\"\n  \"type\": \"duration\"\n}\n"]
               },
               {
                 "type": "object",
@@ -1721,19 +1711,23 @@
     },
     "dialect": {
       "propertyOrder": 50,
-      "title": "Table Dialect",
-      "description": "Table Dialect",
+      "title": "CSV Dialect",
+      "description": "The CSV dialect descriptor.",
       "type": ["string", "object"],
       "properties": {
+        "csvddfVersion": {
+          "title": "CSV Dialect schema version",
+          "description": "A number to indicate the schema version of CSV Dialect. Version 1.0 was named CSV Dialect Description Format and used different field names.",
+          "type": "number",
+          "default": 1.2,
+          "examples:": ["{\n  \"csvddfVersion\": \"1.2\"\n}\n"]
+        },
         "delimiter": {
           "title": "Delimiter",
           "description": "A character sequence to use as the field separator.",
           "type": "string",
           "default": ",",
-          "examples": [
-            "{\n  \"delimiter\": \",\"\n}\n",
-            "{\n  \"delimiter\": \";\"\n}\n"
-          ]
+          "examples": ["{\n  \"delimiter\": \",\"\n}\n", "{\n  \"delimiter\": \";\"\n}\n"]
         },
         "doubleQuote": {
           "title": "Double Quote",

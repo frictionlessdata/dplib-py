@@ -6,7 +6,7 @@ from rdflib import BNode, Graph, URIRef
 
 from dplib.error import Error
 from dplib.model import Model
-from dplib.models import Package
+from dplib.models import Package, Source
 
 from . import dumpers, loaders
 from . import namespaces as ns
@@ -314,6 +314,11 @@ class DcatPackage(Model):
         for keyword in self.keywords:
             package.keywords.append(keyword)
 
+        # Sources
+        for source in self.sources:
+            source = Source(title=source)
+            package.sources.append(source)
+
         # Resources
         for distribution in self.distributions:
             resource = distribution.to_dp()
@@ -361,6 +366,12 @@ class DcatPackage(Model):
         # Keywords
         for keyword in package.keywords:
             dcat.keywords.append(keyword)
+
+        # Sources
+        for source in package.sources:
+            source = source.path or source.title
+            if source:
+                dcat.sources.append(source)
 
         # Resources
         for resource in package.resources:

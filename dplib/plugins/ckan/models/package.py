@@ -78,12 +78,12 @@ class CkanPackage(Model):
 
         # Contributors
         if self.author:
-            contributor = Contributor(title=self.author, role="author")
+            contributor = Contributor(title=self.author, roles=["author"])
             if self.author_email:
                 contributor.email = self.author_email
             package.contributors.append(contributor)
         if self.maintainer:
-            contributor = Contributor(title=self.maintainer, role="maintainer")
+            contributor = Contributor(title=self.maintainer, roles=["maintainer"])
             if self.maintainer_email:
                 contributor.email = self.maintainer_email
             package.contributors.append(contributor)
@@ -142,12 +142,13 @@ class CkanPackage(Model):
 
         # Contributors
         for contributor in package.contributors:
-            if contributor.role == "author":
-                ckan.author = contributor.title
-                ckan.author_email = contributor.email
-            elif contributor.role == "maintainer":
-                ckan.maintainer = contributor.title
-                ckan.maintainer_email = contributor.email
+            if contributor.roles:
+                if "author" in contributor.roles:
+                    ckan.author = contributor.title
+                    ckan.author_email = contributor.email
+                elif "maintainer" in contributor.roles:
+                    ckan.maintainer = contributor.title
+                    ckan.maintainer_email = contributor.email
 
         # Resources
         for resource in package.resources:

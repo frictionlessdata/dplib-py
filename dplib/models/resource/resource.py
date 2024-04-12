@@ -4,13 +4,12 @@ from typing import Any, List, Optional, Union
 
 import pydantic
 
-from ... import types
+from ... import settings, types
 from ...helpers.file import join_basepath
 from ...model import Model
 from ..contributor import Contributor
 from ..dialect import Dialect
 from ..license import License
-from ..profile import Profile
 from ..schema import Schema
 from ..source import Source
 from .hash import Hash
@@ -18,6 +17,12 @@ from .hash import Hash
 
 class Resource(Model):
     """Data Resource model"""
+
+    profile: str = pydantic.Field(
+        default=settings.PROFILE_CURRENT_RESOURCE,
+        alias="$schema",
+    )
+    """A profile URL"""
 
     basepath: Optional[str] = pydantic.Field(default=None, exclude=True)
     """
@@ -45,11 +50,6 @@ class Resource(Model):
     """
     Resource data rather than being stored in external files can be shipped inline
     on a Resource using the data property.
-    """
-
-    profile: Optional[str] = None
-    """
-    An URL identifying the profile of this descriptor as per the profiles specification.
     """
 
     dialect: Optional[Union[Dialect, str]] = None
@@ -129,22 +129,13 @@ class Resource(Model):
         if self.path and isinstance(self.path, str):
             return join_basepath(self.path, self.basepath)
 
-    def get_source(self) -> Optional[Union[str, types.IDict]]:
+    def get_source(self) -> Optional[Union[str, types.IData]]:
         """Get the source of the resource
 
         Returns:
             Data or full path
         """
         return self.data if self.data is not None else self.get_fullpath()
-
-    def get_profile(self) -> Optional[Profile]:
-        """Get the resovled profile of the resource
-
-        Returns:
-            The resolved profile of the resource
-        """
-        if self.profile:
-            return Profile.from_path(self.profile)
 
     def get_dialect(self) -> Optional[Dialect]:
         """Get the resolved dialect of the resource
@@ -187,3 +178,19 @@ class Resource(Model):
             self.dialect = Dialect.from_path(self.dialect, basepath=self.basepath)
         if isinstance(self.schema, str):
             self.schema = Schema.from_path(self.schema, basepath=self.basepath)  # type: ignore
+
+    # Compat
+
+    @pydantic.model_validator(mode="before")
+    @classmethod
+    def compat(cls, data: types.IData):
+        if not isinstance(data, dict):  # type: ignore
+            return data
+
+        # resource.url
+        if not data.get("path"):
+            url = data.pop("url", None)
+            if url:
+                data["path"] = url
+
+        return data

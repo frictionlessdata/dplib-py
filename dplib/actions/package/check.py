@@ -10,7 +10,7 @@ from ...models import Package
 from ..metadata.check import check_metadata
 
 
-def check_package(package: Union[str, types.IDict, Package]) -> List[MetadataError]:
+def check_package(package: Union[str, types.IData, Package]) -> List[MetadataError]:
     """Check the validity of a Data Package descriptor
 
     This validates the descriptor against the JSON Schema profiles to ensure
@@ -30,13 +30,15 @@ def check_package(package: Union[str, types.IDict, Package]) -> List[MetadataErr
         basepath = package.basepath
         package = package.to_dict()
 
-    # Dereference resources[].dialect/schema
+    # Validate (including nested descriptors)
+    errors = check_metadata(package, type="package")
     resources = package.get("resources", [])
     if isinstance(resources, list):
         for resource in resources:  # type: ignore
-            for name in ["dialect", "schema"]:
-                value = resource.get(name)  # type: ignore
-                if value and isinstance(value, str):
-                    resource[name] = read_data(value, basepath=basepath)
+            for type in ["dialect", "schema"]:
+                value = resource.get(type)  # type: ignore
+                if isinstance(value, str):
+                    metadata = read_data(value, basepath=basepath)
+                    errors.extend(check_metadata(metadata, type=type))  # type: ignore
 
-    return check_metadata(package, type="package")
+    return errors

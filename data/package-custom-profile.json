@@ -1,5 +1,5 @@
 {
-  "profile": "https://raw.githubusercontent.com/frictionlessdata/frictionless-py/main/data/profiles/required.json",
+  "$schema": "https://raw.githubusercontent.com/frictionlessdata/frictionless-py/main/data/profiles/required.json",
   "name": "name",
   "resources": [
     {

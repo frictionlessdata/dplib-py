@@ -55,14 +55,6 @@ def test_resource_set_proprty_invalid():
         resource.name = 1  # type: ignore
 
 
-@pytest.mark.vcr
-def test_resource_profile():
-    resource = Resource.from_path("data/resource-full.json")
-    profile = resource.get_profile()
-    assert profile
-    assert profile.jsonSchema.get("title") == "Tabular Data Resource"
-
-
 def test_resource_get_fullpath():
     resource = Resource.from_path("data/resource.json")
     fullpath = resource.get_fullpath()
@@ -122,3 +114,9 @@ def test_resource_dereference():
     assert resource.dialect.delimiter == ";"
     assert isinstance(resource.schema, Schema)
     assert len(resource.schema.fields) == 2
+
+
+def test_resource_contributors_role_v1():
+    resource = Resource.from_dict({"contributors": [{"role": "author"}]})
+    assert resource.contributors[0].custom == {}
+    assert resource.contributors[0].roles == ["author"]

@@ -2,19 +2,23 @@ from __future__ import annotations
 
 from typing import List, Optional
 
+import pydantic
+
+from ... import settings, types
 from ...model import Model
-from ..profile import Profile
-from .field import Field
+from ..field import Field
 from .foreignKey import ForeignKey
+from .types import IFieldsMatch
 
 
 class Schema(Model):
     """Table Schema model"""
 
-    profile: Optional[str] = None
-    """
-    An URL identifying the profile of this descriptor as per the profiles specification.
-    """
+    profile: str = pydantic.Field(
+        default=settings.PROFILE_CURRENT_SCHEMA,
+        alias="$schema",
+    )
+    """A profile URL"""
 
     title: Optional[str] = None
     """
@@ -32,6 +36,12 @@ class Schema(Model):
     List of fields in the table schema
     """
 
+    fieldsMatch: Optional[IFieldsMatch] = "exact"
+    """
+    The way Table Schema fields are mapped onto the data source fields
+    are defined by the fieldsMatch property.
+    """
+
     missingValues: List[str] = [""]
     """
     A list of field values to consider as null values
@@ -43,6 +53,12 @@ class Schema(Model):
     each row in the table.
     """
 
+    uniqueKeys: List[List[str]] = []
+    """
+    A unique key is a field or a set of fields that are required
+    to have unique logical values in each row in the table.
+    """
+
     foreignKeys: List[ForeignKey] = []
     """
     A foreign key is a reference where values in a field (or fields)
@@ -51,15 +67,6 @@ class Schema(Model):
     """
 
     # Getters
-
-    def get_profile(self) -> Optional[Profile]:
-        """Get the resovled profile of the schema
-
-        Returns:
-            The resolved profile of the schema
-        """
-        if self.profile:
-            return Profile.from_path(self.profile)
 
     def get_field(self, *, name: Optional[str] = None) -> Optional[Field]:
         """Get a field by name
@@ -105,3 +112,18 @@ class Schema(Model):
             field: The field to add
         """
         self.fields.append(field)
+
+    # Compat
+
+    @pydantic.model_validator(mode="before")
+    @classmethod
+    def compat(cls, data: types.IData):
+        if not isinstance(data, dict):  # type: ignore
+            return data
+
+        # schema.primaryKey
+        primaryKey = data.get("primaryKey", None)
+        if isinstance(primaryKey, str):
+            data["primaryKey"] = [primaryKey]
+
+        return data

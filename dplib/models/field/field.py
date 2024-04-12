@@ -1,12 +1,13 @@
 from __future__ import annotations
 
-from typing import Any, Dict, List, Optional
+from typing import List, Optional
 
 import pydantic
 
+from ... import types
 from ...model import Model
 from .constraints import Constraints
-from .fieldType import FieldType
+from .types import IFieldType, IItemType
 
 
 class Field(Model):
@@ -17,7 +18,7 @@ class Field(Model):
     The field descriptor MUST contain a name property.
     """
 
-    type: FieldType = "any"
+    type: IFieldType = "any"
     """
     A field’s type property is a string indicating the type of this field.
     """
@@ -50,11 +51,6 @@ class Field(Model):
 
     # Array
 
-    arrayItem: Optional[Dict[str, Any]] = None
-    """
-    Field descriptor for items for array fields
-    """
-
     # Boolean
 
     trueValues: Optional[List[str]] = None
@@ -74,14 +70,42 @@ class Field(Model):
     If false leading and trailing non numbers will be removed for integer/number fields
     """
 
-    # Number
-
     groupChar: Optional[str] = None
     """
-    String whose value is used to group digits for number fields
+    String whose value is used to group digits for integer/number fields
     """
+
+    # List
+
+    delimiter: Optional[str] = None
+    """
+    Specifies the character sequence which separates lexically represented list items.
+    """
+
+    itemType: Optional[IItemType] = None
+    """
+    Specifies the list item type in terms of existent Table Schema types.
+    """
+
+    # Number
 
     decimalChar: Optional[str] = None
     """
     String whose value is used to represent a decimal point for number fields
     """
+
+    # Compat
+
+    @pydantic.model_validator(mode="before")
+    @classmethod
+    def compat(cls, data: types.IData):
+        if not isinstance(data, dict):  # type: ignore
+            return data
+
+        # field.format
+        format = data.get("format")
+        if format:
+            if format.startswith("fmt:"):
+                data["format"] = format[4:]
+
+        return data
