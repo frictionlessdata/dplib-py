@@ -4,7 +4,7 @@ from typing import Any, List, Optional, Union
 
 import pydantic
 
-from ... import types
+from ... import settings, types
 from ...helpers.file import join_basepath
 from ...model import Model
 from ..contributor import Contributor
@@ -18,6 +18,12 @@ from .hash import Hash
 
 class Resource(Model):
     """Data Resource model"""
+
+    profile: str = pydantic.Field(
+        default=settings.PROFILE_CURRENT_RESOURCE,
+        alias="$schema",
+    )
+    """A profile URL"""
 
     basepath: Optional[str] = pydantic.Field(default=None, exclude=True)
     """
@@ -45,11 +51,6 @@ class Resource(Model):
     """
     Resource data rather than being stored in external files can be shipped inline
     on a Resource using the data property.
-    """
-
-    profile: Optional[str] = None
-    """
-    An URL identifying the profile of this descriptor as per the profiles specification.
     """
 
     dialect: Optional[Union[Dialect, str]] = None

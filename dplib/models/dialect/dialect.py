@@ -2,6 +2,9 @@ from __future__ import annotations
 
 from typing import List, Optional
 
+import pydantic
+
+from ... import settings
 from ...model import Model
 from ..profile import Profile
 from .types import IItemType
@@ -10,9 +13,11 @@ from .types import IItemType
 class Dialect(Model):
     """Table Dialect model"""
 
-    profile: Optional[str] = None
-
-    """A dialect description for parsing CSV files"""
+    profile: str = pydantic.Field(
+        default=settings.PROFILE_CURRENT_DIALECT,
+        alias="$schema",
+    )
+    """A profile URL"""
 
     title: Optional[str] = None
     """

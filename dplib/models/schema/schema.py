@@ -4,7 +4,7 @@ from typing import List, Optional
 
 import pydantic
 
-from ... import types
+from ... import settings, types
 from ...model import Model
 from ..field import Field
 from ..profile import Profile
@@ -15,10 +15,11 @@ from .types import IFieldsMatch
 class Schema(Model):
     """Table Schema model"""
 
-    profile: Optional[str] = None
-    """
-    An URL identifying the profile of this descriptor as per the profiles specification.
-    """
+    profile: str = pydantic.Field(
+        default=settings.PROFILE_CURRENT_SCHEMA,
+        alias="$schema",
+    )
+    """A profile URL"""
 
     title: Optional[str] = None
     """

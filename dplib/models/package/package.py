@@ -4,6 +4,7 @@ from typing import List, Optional
 
 import pydantic
 
+from ... import settings
 from ...model import Model
 from ..contributor import Contributor
 from ..license import License
@@ -14,6 +15,12 @@ from ..source import Source
 
 class Package(Model):
     """Data Package model"""
+
+    profile: str = pydantic.Field(
+        default=settings.PROFILE_CURRENT_PACKAGE,
+        alias="$schema",
+    )
+    """A profile URL"""
 
     basepath: Optional[str] = pydantic.Field(default=None, exclude=True)
     """
@@ -37,11 +44,6 @@ class Package(Model):
     A short url-usable (and preferably human-readable) name of the package.
     This MUST be lower-case and contain only alphanumeric characters
     along with ”.”, ”_” or ”-” characters.
-    """
-
-    profile: Optional[str] = None
-    """
-    An URL identifying the profile of this descriptor as per the profiles specification.
     """
 
     title: Optional[str] = None
