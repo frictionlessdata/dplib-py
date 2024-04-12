@@ -7,7 +7,6 @@ import pydantic
 from ... import settings, types
 from ...model import Model
 from ..field import Field
-from ..profile import Profile
 from .foreignKey import ForeignKey
 from .types import IFieldsMatch
 
@@ -68,15 +67,6 @@ class Schema(Model):
     """
 
     # Getters
-
-    def get_profile(self) -> Optional[Profile]:
-        """Get the resovled profile of the schema
-
-        Returns:
-            The resolved profile of the schema
-        """
-        if self.profile:
-            return Profile.from_path(self.profile)
 
     def get_field(self, *, name: Optional[str] = None) -> Optional[Field]:
         """Get a field by name

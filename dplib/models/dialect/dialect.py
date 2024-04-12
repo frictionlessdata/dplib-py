@@ -6,7 +6,6 @@ import pydantic
 
 from ... import settings
 from ...model import Model
-from ..profile import Profile
 from .types import IItemType
 
 
@@ -125,14 +124,3 @@ class Dialect(Model):
     """
     This property specifies a sheet name of a table in the spreadsheet file.
     """
-
-    # Getters
-
-    def get_profile(self) -> Optional[Profile]:
-        """Get the resovled profile of the dialect
-
-        Returns:
-            The resolved profile of the dialect
-        """
-        if self.profile:
-            return Profile.from_path(self.profile)

@@ -10,7 +10,6 @@ from ...model import Model
 from ..contributor import Contributor
 from ..dialect import Dialect
 from ..license import License
-from ..profile import Profile
 from ..schema import Schema
 from ..source import Source
 from .hash import Hash
@@ -137,15 +136,6 @@ class Resource(Model):
             Data or full path
         """
         return self.data if self.data is not None else self.get_fullpath()
-
-    def get_profile(self) -> Optional[Profile]:
-        """Get the resovled profile of the resource
-
-        Returns:
-            The resolved profile of the resource
-        """
-        if self.profile:
-            return Profile.from_path(self.profile)
 
     def get_dialect(self) -> Optional[Dialect]:
         """Get the resolved dialect of the resource

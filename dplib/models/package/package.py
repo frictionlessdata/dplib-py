@@ -8,7 +8,6 @@ from ... import settings
 from ...model import Model
 from ..contributor import Contributor
 from ..license import License
-from ..profile import Profile
 from ..resource import Resource
 from ..source import Source
 
@@ -106,15 +105,6 @@ class Package(Model):
             resource.basepath = self.basepath
 
     # Getters
-
-    def get_profile(self) -> Optional[Profile]:
-        """Get the resovled profile of the package
-
-        Returns:
-            The resolved profile of the package
-        """
-        if self.profile:
-            return Profile.from_path(self.profile)
 
     def get_resource(
         self, *, name: Optional[str] = None, path: Optional[str] = None
