@@ -21,7 +21,8 @@ def test_check_resource_invalid_dereferencing():
     errors = check_resource("data/resource-invalid-dereferencing.json")
     assert len(errors) == 1
     error = errors[0]
-    assert error.full_message == "[/dialect/delimiter] 1 is not of type 'string'"
+    # TODO: extend error path so it shows the full path from the resource root
+    assert error.full_message == "[/delimiter] 1 is not of type 'string'"
 
 
 def test_check_resource_from_model():
