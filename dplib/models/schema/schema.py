@@ -130,7 +130,7 @@ class Schema(Model):
         if not isinstance(data, dict):  # type: ignore
             return data
 
-        # schema.primaryKey (standard/v1)
+        # schema.primaryKey
         primaryKey = data.get("primaryKey", None)
         if isinstance(primaryKey, str):
             data["primaryKey"] = [primaryKey]

@@ -23,7 +23,7 @@ class Contributor(Model):
         if not isinstance(data, dict):  # type: ignore
             return data
 
-        # contributor.role (standard/v1)
+        # contributor.role
         if not data.get("roles"):
             role = data.pop("role", None)
             if role:

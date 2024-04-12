@@ -102,7 +102,7 @@ class Field(Model):
         if not isinstance(data, dict):  # type: ignore
             return data
 
-        # field.format (standard/v0)
+        # field.format
         format = data.get("format")
         if format:
             if format.startswith("fmt:"):

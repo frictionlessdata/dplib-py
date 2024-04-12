@@ -196,7 +196,7 @@ class Resource(Model):
         if not isinstance(data, dict):  # type: ignore
             return data
 
-        # resource.url (standard/v0)
+        # resource.url
         if not data.get("path"):
             url = data.pop("url", None)
             if url:

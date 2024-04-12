@@ -20,7 +20,7 @@ class ForeignKeyReference(Model):
         if not isinstance(data, dict):  # type: ignore
             return data
 
-        # foreignKey.reference.fields (standard/v1)
+        # foreignKey.reference.fields
         fields = data.get("fields", None)
         if isinstance(fields, str):
             data["fields"] = [fields]
@@ -40,7 +40,7 @@ class ForeignKey(Model):
         if not isinstance(data, dict):  # type: ignore
             return data
 
-        # foreignKey.fields (standard/v1)
+        # foreignKey.fields
         fields = data.get("fields", None)
         if isinstance(fields, str):
             data["fields"] = [fields]
