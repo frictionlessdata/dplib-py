@@ -13,22 +13,9 @@ from .data import load_data
 from .file import read_file
 
 
-def select_profile(*, metadata_type: types.IMetadataType) -> str:
-    if metadata_type == "package":
-        return "data-package"
-    elif metadata_type == "resource":
-        return "data-resource"
-    elif metadata_type == "dialect":
-        return "table-dialect"
-    elif metadata_type == "schema":
-        return "table-schema"
-    raise Error(f'Invalid metadata type "{metadata_type}"')
-
-
 @lru_cache
-def read_profile(*, metadata_type: types.IMetadataType) -> types.IData:
+def read_profile(*, profile: str) -> types.IData:
     format = "json"
-    name = select_profile(metadata_type=metadata_type)
     path = os.path.join(os.path.dirname(__file__), "..", "profiles", f"{name}.{format}")
     try:
         text = read_file(path)
@@ -38,9 +25,7 @@ def read_profile(*, metadata_type: types.IMetadataType) -> types.IData:
     return data
 
 
-def check_metadata_against_jsonschema(
-    metadata: types.IData, jsonSchema: types.IData
-) -> List[MetadataError]:
+def apply_profile(metadata: types.IData, jsonSchema: types.IData) -> List[MetadataError]:
     Validator = validator_for(jsonSchema)  # type: ignore
     validator = Validator(jsonSchema)  # type: ignore
     errors: List[MetadataError] = []

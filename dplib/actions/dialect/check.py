@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import List, Union
 
 from ... import types
+from ... import settings
 from ...errors.metadata import MetadataError
 from ...models import Dialect
 from ..metadata.check import check_metadata
@@ -22,4 +23,4 @@ def check_dialect(dialect: Union[str, types.IData, Dialect]) -> List[MetadataErr
     """
     if isinstance(dialect, Dialect):
         dialect = dialect.to_dict()
-    return check_metadata(dialect, type="dialect")
+    return check_metadata(dialect, default_profile=settings.PROFILE_DEFAULT_DIALECT)
