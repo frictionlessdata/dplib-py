@@ -23,7 +23,7 @@ def test_check_package_invalid_dereferencing():
     errors = check_package("data/package-invalid-dereferencing.json")
     assert len(errors) == 1
     error = errors[0]
-    # TODO: extend error path so it shows the full path from the resource root
+    # TODO: extend error path so it shows the full path from the package root
     assert error.full_message == "[/delimiter] 1 is not of type 'string'"
 
 
