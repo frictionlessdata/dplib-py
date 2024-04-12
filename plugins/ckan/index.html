@@ -472,6 +472,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changelog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2059,7 +2080,8 @@
 <span class="normal"><a href="#__codelineno-0-160">160</a></span>
 <span class="normal"><a href="#__codelineno-0-161">161</a></span>
 <span class="normal"><a href="#__codelineno-0-162">162</a></span>
-<span class="normal"><a href="#__codelineno-0-163">163</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="k">class</span> <span class="nc">CkanPackage</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+<span class="normal"><a href="#__codelineno-0-163">163</a></span>
+<span class="normal"><a href="#__codelineno-0-164">164</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="k">class</span> <span class="nc">CkanPackage</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
 </span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;CKAN Package model&quot;&quot;&quot;</span>
 </span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a>
 </span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a>    <span class="n">resources</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">CkanResource</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2124,12 +2146,12 @@
 </span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78"></a>
 </span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79"></a>        <span class="c1"># Contributors</span>
 </span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">author</span><span class="p">:</span>
-</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81"></a>            <span class="n">contributor</span> <span class="o">=</span> <span class="n">Contributor</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">author</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s2">&quot;author&quot;</span><span class="p">)</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81"></a>            <span class="n">contributor</span> <span class="o">=</span> <span class="n">Contributor</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">author</span><span class="p">,</span> <span class="n">roles</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;author&quot;</span><span class="p">])</span>
 </span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82"></a>            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">author_email</span><span class="p">:</span>
 </span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83"></a>                <span class="n">contributor</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">author_email</span>
 </span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84"></a>            <span class="n">package</span><span class="o">.</span><span class="n">contributors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">contributor</span><span class="p">)</span>
 </span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">maintainer</span><span class="p">:</span>
-</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86"></a>            <span class="n">contributor</span> <span class="o">=</span> <span class="n">Contributor</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">maintainer</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s2">&quot;maintainer&quot;</span><span class="p">)</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86"></a>            <span class="n">contributor</span> <span class="o">=</span> <span class="n">Contributor</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">maintainer</span><span class="p">,</span> <span class="n">roles</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;maintainer&quot;</span><span class="p">])</span>
 </span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87"></a>            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">maintainer_email</span><span class="p">:</span>
 </span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88"></a>                <span class="n">contributor</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">maintainer_email</span>
 </span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89"></a>            <span class="n">package</span><span class="o">.</span><span class="n">contributors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">contributor</span><span class="p">)</span>
@@ -2188,25 +2210,26 @@
 </span><span id="__span-0-142"><a id="__codelineno-0-142" name="__codelineno-0-142"></a>
 </span><span id="__span-0-143"><a id="__codelineno-0-143" name="__codelineno-0-143"></a>        <span class="c1"># Contributors</span>
 </span><span id="__span-0-144"><a id="__codelineno-0-144" name="__codelineno-0-144"></a>        <span class="k">for</span> <span class="n">contributor</span> <span class="ow">in</span> <span class="n">package</span><span class="o">.</span><span class="n">contributors</span><span class="p">:</span>
-</span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145"></a>            <span class="k">if</span> <span class="n">contributor</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;author&quot;</span><span class="p">:</span>
-</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146"></a>                <span class="n">ckan</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="n">contributor</span><span class="o">.</span><span class="n">title</span>
-</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147"></a>                <span class="n">ckan</span><span class="o">.</span><span class="n">author_email</span> <span class="o">=</span> <span class="n">contributor</span><span class="o">.</span><span class="n">email</span>
-</span><span id="__span-0-148"><a id="__codelineno-0-148" name="__codelineno-0-148"></a>            <span class="k">elif</span> <span class="n">contributor</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;maintainer&quot;</span><span class="p">:</span>
-</span><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149"></a>                <span class="n">ckan</span><span class="o">.</span><span class="n">maintainer</span> <span class="o">=</span> <span class="n">contributor</span><span class="o">.</span><span class="n">title</span>
-</span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150"></a>                <span class="n">ckan</span><span class="o">.</span><span class="n">maintainer_email</span> <span class="o">=</span> <span class="n">contributor</span><span class="o">.</span><span class="n">email</span>
-</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151"></a>
-</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152"></a>        <span class="c1"># Resources</span>
-</span><span id="__span-0-153"><a id="__codelineno-0-153" name="__codelineno-0-153"></a>        <span class="k">for</span> <span class="n">resource</span> <span class="ow">in</span> <span class="n">package</span><span class="o">.</span><span class="n">resources</span><span class="p">:</span>
-</span><span id="__span-0-154"><a id="__codelineno-0-154" name="__codelineno-0-154"></a>            <span class="n">item</span> <span class="o">=</span> <span class="n">CkanResource</span><span class="o">.</span><span class="n">from_dp</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span>
-</span><span id="__span-0-155"><a id="__codelineno-0-155" name="__codelineno-0-155"></a>            <span class="k">if</span> <span class="n">item</span><span class="p">:</span>
-</span><span id="__span-0-156"><a id="__codelineno-0-156" name="__codelineno-0-156"></a>                <span class="n">ckan</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-</span><span id="__span-0-157"><a id="__codelineno-0-157" name="__codelineno-0-157"></a>
-</span><span id="__span-0-158"><a id="__codelineno-0-158" name="__codelineno-0-158"></a>        <span class="c1"># Keywords</span>
-</span><span id="__span-0-159"><a id="__codelineno-0-159" name="__codelineno-0-159"></a>        <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">package</span><span class="o">.</span><span class="n">keywords</span><span class="p">:</span>
-</span><span id="__span-0-160"><a id="__codelineno-0-160" name="__codelineno-0-160"></a>            <span class="n">tag</span> <span class="o">=</span> <span class="n">CkanTag</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">keyword</span><span class="p">)</span>
-</span><span id="__span-0-161"><a id="__codelineno-0-161" name="__codelineno-0-161"></a>            <span class="n">ckan</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
-</span><span id="__span-0-162"><a id="__codelineno-0-162" name="__codelineno-0-162"></a>
-</span><span id="__span-0-163"><a id="__codelineno-0-163" name="__codelineno-0-163"></a>        <span class="k">return</span> <span class="n">ckan</span>
+</span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145"></a>            <span class="k">if</span> <span class="n">contributor</span><span class="o">.</span><span class="n">roles</span><span class="p">:</span>
+</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146"></a>                <span class="k">if</span> <span class="s2">&quot;author&quot;</span> <span class="ow">in</span> <span class="n">contributor</span><span class="o">.</span><span class="n">roles</span><span class="p">:</span>
+</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147"></a>                    <span class="n">ckan</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="n">contributor</span><span class="o">.</span><span class="n">title</span>
+</span><span id="__span-0-148"><a id="__codelineno-0-148" name="__codelineno-0-148"></a>                    <span class="n">ckan</span><span class="o">.</span><span class="n">author_email</span> <span class="o">=</span> <span class="n">contributor</span><span class="o">.</span><span class="n">email</span>
+</span><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149"></a>                <span class="k">elif</span> <span class="s2">&quot;maintainer&quot;</span> <span class="ow">in</span> <span class="n">contributor</span><span class="o">.</span><span class="n">roles</span><span class="p">:</span>
+</span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150"></a>                    <span class="n">ckan</span><span class="o">.</span><span class="n">maintainer</span> <span class="o">=</span> <span class="n">contributor</span><span class="o">.</span><span class="n">title</span>
+</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151"></a>                    <span class="n">ckan</span><span class="o">.</span><span class="n">maintainer_email</span> <span class="o">=</span> <span class="n">contributor</span><span class="o">.</span><span class="n">email</span>
+</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152"></a>
+</span><span id="__span-0-153"><a id="__codelineno-0-153" name="__codelineno-0-153"></a>        <span class="c1"># Resources</span>
+</span><span id="__span-0-154"><a id="__codelineno-0-154" name="__codelineno-0-154"></a>        <span class="k">for</span> <span class="n">resource</span> <span class="ow">in</span> <span class="n">package</span><span class="o">.</span><span class="n">resources</span><span class="p">:</span>
+</span><span id="__span-0-155"><a id="__codelineno-0-155" name="__codelineno-0-155"></a>            <span class="n">item</span> <span class="o">=</span> <span class="n">CkanResource</span><span class="o">.</span><span class="n">from_dp</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span>
+</span><span id="__span-0-156"><a id="__codelineno-0-156" name="__codelineno-0-156"></a>            <span class="k">if</span> <span class="n">item</span><span class="p">:</span>
+</span><span id="__span-0-157"><a id="__codelineno-0-157" name="__codelineno-0-157"></a>                <span class="n">ckan</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</span><span id="__span-0-158"><a id="__codelineno-0-158" name="__codelineno-0-158"></a>
+</span><span id="__span-0-159"><a id="__codelineno-0-159" name="__codelineno-0-159"></a>        <span class="c1"># Keywords</span>
+</span><span id="__span-0-160"><a id="__codelineno-0-160" name="__codelineno-0-160"></a>        <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">package</span><span class="o">.</span><span class="n">keywords</span><span class="p">:</span>
+</span><span id="__span-0-161"><a id="__codelineno-0-161" name="__codelineno-0-161"></a>            <span class="n">tag</span> <span class="o">=</span> <span class="n">CkanTag</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">keyword</span><span class="p">)</span>
+</span><span id="__span-0-162"><a id="__codelineno-0-162" name="__codelineno-0-162"></a>            <span class="n">ckan</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+</span><span id="__span-0-163"><a id="__codelineno-0-163" name="__codelineno-0-163"></a>
+</span><span id="__span-0-164"><a id="__codelineno-0-164" name="__codelineno-0-164"></a>        <span class="k">return</span> <span class="n">ckan</span>
 </span></code></pre></div></td></tr></table></div>
             </details>
 
@@ -2694,7 +2717,8 @@
 <span class="normal"><a href="#__codelineno-0-160">160</a></span>
 <span class="normal"><a href="#__codelineno-0-161">161</a></span>
 <span class="normal"><a href="#__codelineno-0-162">162</a></span>
-<span class="normal"><a href="#__codelineno-0-163">163</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106"></a><span class="nd">@classmethod</span>
+<span class="normal"><a href="#__codelineno-0-163">163</a></span>
+<span class="normal"><a href="#__codelineno-0-164">164</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-106"><a id="__codelineno-0-106" name="__codelineno-0-106"></a><span class="nd">@classmethod</span>
 </span><span id="__span-0-107"><a id="__codelineno-0-107" name="__codelineno-0-107"></a><span class="k">def</span> <span class="nf">from_dp</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">package</span><span class="p">:</span> <span class="n">Package</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CkanPackage</span><span class="p">:</span>
 </span><span id="__span-0-108"><a id="__codelineno-0-108" name="__codelineno-0-108"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a CKAN Package from Data Package</span>
 </span><span id="__span-0-109"><a id="__codelineno-0-109" name="__codelineno-0-109"></a>
@@ -2733,25 +2757,26 @@
 </span><span id="__span-0-142"><a id="__codelineno-0-142" name="__codelineno-0-142"></a>
 </span><span id="__span-0-143"><a id="__codelineno-0-143" name="__codelineno-0-143"></a>    <span class="c1"># Contributors</span>
 </span><span id="__span-0-144"><a id="__codelineno-0-144" name="__codelineno-0-144"></a>    <span class="k">for</span> <span class="n">contributor</span> <span class="ow">in</span> <span class="n">package</span><span class="o">.</span><span class="n">contributors</span><span class="p">:</span>
-</span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145"></a>        <span class="k">if</span> <span class="n">contributor</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;author&quot;</span><span class="p">:</span>
-</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146"></a>            <span class="n">ckan</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="n">contributor</span><span class="o">.</span><span class="n">title</span>
-</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147"></a>            <span class="n">ckan</span><span class="o">.</span><span class="n">author_email</span> <span class="o">=</span> <span class="n">contributor</span><span class="o">.</span><span class="n">email</span>
-</span><span id="__span-0-148"><a id="__codelineno-0-148" name="__codelineno-0-148"></a>        <span class="k">elif</span> <span class="n">contributor</span><span class="o">.</span><span class="n">role</span> <span class="o">==</span> <span class="s2">&quot;maintainer&quot;</span><span class="p">:</span>
-</span><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149"></a>            <span class="n">ckan</span><span class="o">.</span><span class="n">maintainer</span> <span class="o">=</span> <span class="n">contributor</span><span class="o">.</span><span class="n">title</span>
-</span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150"></a>            <span class="n">ckan</span><span class="o">.</span><span class="n">maintainer_email</span> <span class="o">=</span> <span class="n">contributor</span><span class="o">.</span><span class="n">email</span>
-</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151"></a>
-</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152"></a>    <span class="c1"># Resources</span>
-</span><span id="__span-0-153"><a id="__codelineno-0-153" name="__codelineno-0-153"></a>    <span class="k">for</span> <span class="n">resource</span> <span class="ow">in</span> <span class="n">package</span><span class="o">.</span><span class="n">resources</span><span class="p">:</span>
-</span><span id="__span-0-154"><a id="__codelineno-0-154" name="__codelineno-0-154"></a>        <span class="n">item</span> <span class="o">=</span> <span class="n">CkanResource</span><span class="o">.</span><span class="n">from_dp</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span>
-</span><span id="__span-0-155"><a id="__codelineno-0-155" name="__codelineno-0-155"></a>        <span class="k">if</span> <span class="n">item</span><span class="p">:</span>
-</span><span id="__span-0-156"><a id="__codelineno-0-156" name="__codelineno-0-156"></a>            <span class="n">ckan</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-</span><span id="__span-0-157"><a id="__codelineno-0-157" name="__codelineno-0-157"></a>
-</span><span id="__span-0-158"><a id="__codelineno-0-158" name="__codelineno-0-158"></a>    <span class="c1"># Keywords</span>
-</span><span id="__span-0-159"><a id="__codelineno-0-159" name="__codelineno-0-159"></a>    <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">package</span><span class="o">.</span><span class="n">keywords</span><span class="p">:</span>
-</span><span id="__span-0-160"><a id="__codelineno-0-160" name="__codelineno-0-160"></a>        <span class="n">tag</span> <span class="o">=</span> <span class="n">CkanTag</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">keyword</span><span class="p">)</span>
-</span><span id="__span-0-161"><a id="__codelineno-0-161" name="__codelineno-0-161"></a>        <span class="n">ckan</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
-</span><span id="__span-0-162"><a id="__codelineno-0-162" name="__codelineno-0-162"></a>
-</span><span id="__span-0-163"><a id="__codelineno-0-163" name="__codelineno-0-163"></a>    <span class="k">return</span> <span class="n">ckan</span>
+</span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145"></a>        <span class="k">if</span> <span class="n">contributor</span><span class="o">.</span><span class="n">roles</span><span class="p">:</span>
+</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146"></a>            <span class="k">if</span> <span class="s2">&quot;author&quot;</span> <span class="ow">in</span> <span class="n">contributor</span><span class="o">.</span><span class="n">roles</span><span class="p">:</span>
+</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147"></a>                <span class="n">ckan</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="n">contributor</span><span class="o">.</span><span class="n">title</span>
+</span><span id="__span-0-148"><a id="__codelineno-0-148" name="__codelineno-0-148"></a>                <span class="n">ckan</span><span class="o">.</span><span class="n">author_email</span> <span class="o">=</span> <span class="n">contributor</span><span class="o">.</span><span class="n">email</span>
+</span><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149"></a>            <span class="k">elif</span> <span class="s2">&quot;maintainer&quot;</span> <span class="ow">in</span> <span class="n">contributor</span><span class="o">.</span><span class="n">roles</span><span class="p">:</span>
+</span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150"></a>                <span class="n">ckan</span><span class="o">.</span><span class="n">maintainer</span> <span class="o">=</span> <span class="n">contributor</span><span class="o">.</span><span class="n">title</span>
+</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151"></a>                <span class="n">ckan</span><span class="o">.</span><span class="n">maintainer_email</span> <span class="o">=</span> <span class="n">contributor</span><span class="o">.</span><span class="n">email</span>
+</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152"></a>
+</span><span id="__span-0-153"><a id="__codelineno-0-153" name="__codelineno-0-153"></a>    <span class="c1"># Resources</span>
+</span><span id="__span-0-154"><a id="__codelineno-0-154" name="__codelineno-0-154"></a>    <span class="k">for</span> <span class="n">resource</span> <span class="ow">in</span> <span class="n">package</span><span class="o">.</span><span class="n">resources</span><span class="p">:</span>
+</span><span id="__span-0-155"><a id="__codelineno-0-155" name="__codelineno-0-155"></a>        <span class="n">item</span> <span class="o">=</span> <span class="n">CkanResource</span><span class="o">.</span><span class="n">from_dp</span><span class="p">(</span><span class="n">resource</span><span class="p">)</span>
+</span><span id="__span-0-156"><a id="__codelineno-0-156" name="__codelineno-0-156"></a>        <span class="k">if</span> <span class="n">item</span><span class="p">:</span>
+</span><span id="__span-0-157"><a id="__codelineno-0-157" name="__codelineno-0-157"></a>            <span class="n">ckan</span><span class="o">.</span><span class="n">resources</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</span><span id="__span-0-158"><a id="__codelineno-0-158" name="__codelineno-0-158"></a>
+</span><span id="__span-0-159"><a id="__codelineno-0-159" name="__codelineno-0-159"></a>    <span class="c1"># Keywords</span>
+</span><span id="__span-0-160"><a id="__codelineno-0-160" name="__codelineno-0-160"></a>    <span class="k">for</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="n">package</span><span class="o">.</span><span class="n">keywords</span><span class="p">:</span>
+</span><span id="__span-0-161"><a id="__codelineno-0-161" name="__codelineno-0-161"></a>        <span class="n">tag</span> <span class="o">=</span> <span class="n">CkanTag</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">keyword</span><span class="p">)</span>
+</span><span id="__span-0-162"><a id="__codelineno-0-162" name="__codelineno-0-162"></a>        <span class="n">ckan</span><span class="o">.</span><span class="n">tags</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+</span><span id="__span-0-163"><a id="__codelineno-0-163" name="__codelineno-0-163"></a>
+</span><span id="__span-0-164"><a id="__codelineno-0-164" name="__codelineno-0-164"></a>    <span class="k">return</span> <span class="n">ckan</span>
 </span></code></pre></div></td></tr></table></div>
           </details>
   </div>
@@ -2900,12 +2925,12 @@
 </span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78"></a>
 </span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79"></a>    <span class="c1"># Contributors</span>
 </span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80"></a>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">author</span><span class="p">:</span>
-</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81"></a>        <span class="n">contributor</span> <span class="o">=</span> <span class="n">Contributor</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">author</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s2">&quot;author&quot;</span><span class="p">)</span>
+</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81"></a>        <span class="n">contributor</span> <span class="o">=</span> <span class="n">Contributor</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">author</span><span class="p">,</span> <span class="n">roles</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;author&quot;</span><span class="p">])</span>
 </span><span id="__span-0-82"><a id="__codelineno-0-82" name="__codelineno-0-82"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">author_email</span><span class="p">:</span>
 </span><span id="__span-0-83"><a id="__codelineno-0-83" name="__codelineno-0-83"></a>            <span class="n">contributor</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">author_email</span>
 </span><span id="__span-0-84"><a id="__codelineno-0-84" name="__codelineno-0-84"></a>        <span class="n">package</span><span class="o">.</span><span class="n">contributors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">contributor</span><span class="p">)</span>
 </span><span id="__span-0-85"><a id="__codelineno-0-85" name="__codelineno-0-85"></a>    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">maintainer</span><span class="p">:</span>
-</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86"></a>        <span class="n">contributor</span> <span class="o">=</span> <span class="n">Contributor</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">maintainer</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s2">&quot;maintainer&quot;</span><span class="p">)</span>
+</span><span id="__span-0-86"><a id="__codelineno-0-86" name="__codelineno-0-86"></a>        <span class="n">contributor</span> <span class="o">=</span> <span class="n">Contributor</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">maintainer</span><span class="p">,</span> <span class="n">roles</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;maintainer&quot;</span><span class="p">])</span>
 </span><span id="__span-0-87"><a id="__codelineno-0-87" name="__codelineno-0-87"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">maintainer_email</span><span class="p">:</span>
 </span><span id="__span-0-88"><a id="__codelineno-0-88" name="__codelineno-0-88"></a>            <span class="n">contributor</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">maintainer_email</span>
 </span><span id="__span-0-89"><a id="__codelineno-0-89" name="__codelineno-0-89"></a>        <span class="n">package</span><span class="o">.</span><span class="n">contributors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">contributor</span><span class="p">)</span>

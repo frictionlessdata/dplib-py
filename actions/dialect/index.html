@@ -472,6 +472,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changelog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1172,7 +1193,7 @@ conformity with Data Package standard and Data Package extensions.</p>
         <tr>
           <td><code>dialect</code></td>
           <td>
-                <code><span title="typing.Union">Union</span>[str, <span title="dplib.types.IDict">IDict</span>, <a class="autorefs autorefs-internal" title="dplib.models.Dialect" href="../../models/dialect/#dplib.models.Dialect">Dialect</a>]</code>
+                <code><span title="typing.Union">Union</span>[str, <span title="dplib.types.IData">IData</span>, <a class="autorefs autorefs-internal" title="dplib.models.Dialect" href="../../models/dialect/#dplib.models.Dialect">Dialect</a>]</code>
           </td>
           <td>
             <div class="doc-md-description">
@@ -1226,7 +1247,7 @@ conformity with Data Package standard and Data Package extensions.</p>
 <span class="normal"><a href="#__codelineno-0-22">22</a></span>
 <span class="normal"><a href="#__codelineno-0-23">23</a></span>
 <span class="normal"><a href="#__codelineno-0-24">24</a></span>
-<span class="normal"><a href="#__codelineno-0-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="k">def</span> <span class="nf">check_dialect</span><span class="p">(</span><span class="n">dialect</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">IDict</span><span class="p">,</span> <span class="n">Dialect</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">MetadataError</span><span class="p">]:</span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="k">def</span> <span class="nf">check_dialect</span><span class="p">(</span><span class="n">dialect</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">types</span><span class="o">.</span><span class="n">IData</span><span class="p">,</span> <span class="n">Dialect</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">MetadataError</span><span class="p">]:</span>
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Check the validity of a Table Dialect descriptor</span>
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="sd">    This validates the descriptor against the JSON Schema profiles to ensure</span>
