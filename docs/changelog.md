@@ -4,7 +4,7 @@ This document covers main `dplib-py` releases:
 
 ## v0.7
 
-- Updated to Data Package (v2-draft)
+- Updated to Data Package (v2)
 
 ## v0.6
 
