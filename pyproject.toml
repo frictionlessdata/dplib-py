@@ -131,9 +131,13 @@ version = [
 python = ["3.8", "3.9", "3.10"]
 
 [tool.hatch.envs.ci.scripts]
+spec = [
+  "pytest --cov dplib --cov-report term-missing --cov-report xml --cov-fail-under 0 --timeout=300 --ci",
+]
 test = [
   "hatch run lint",
-  "pytest --cov dplib --cov-report term-missing --cov-report xml --cov-fail-under 0 --timeout=300 --ci",
+  "hatch run type",
+  "hatch run ci:spec",
 ]
 
 [build-system]
