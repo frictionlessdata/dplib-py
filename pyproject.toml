@@ -116,9 +116,9 @@ spec = [
   "pytest --cov dplib --cov-report term-missing --cov-report html:coverage --cov-fail-under 0 --timeout=300",
 ]
 test = [
-  "hatch run lint",
-  "hatch run type",
-  "hatch run spec",
+  "lint",
+  "type",
+  "spec",
 ]
 type = [
   "pyright dplib",
@@ -135,9 +135,9 @@ spec = [
   "pytest --cov dplib --cov-report term-missing --cov-report xml --cov-fail-under 0 --timeout=300 --ci",
 ]
 test = [
-  "hatch run lint",
-  "hatch run type",
-  "hatch run ci:spec",
+  "lint",
+  "type",
+  "spec",
 ]
 
 [build-system]
