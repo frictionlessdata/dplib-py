@@ -1,6 +1,6 @@
 from typing import Optional
 
-from ...model import Model
+from ...system import Model
 from ..metadata.convert import INotation, convert_metadata
 
 

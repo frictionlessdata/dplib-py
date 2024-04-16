@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Dict, Optional
 
-from dplib.model import Model
+from dplib.system import Model
 
 from .resource import ZenodoResource
 

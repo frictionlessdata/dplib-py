@@ -1,6 +1,6 @@
 from typing import Optional
 
-from ..model import Model
+from ..system import Model
 
 
 class Source(Model):

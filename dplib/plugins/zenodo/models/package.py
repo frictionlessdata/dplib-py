@@ -4,8 +4,8 @@ from typing import Dict, Optional
 
 import pydantic
 
-from dplib.model import Model
 from dplib.models import Contributor, Package
+from dplib.system import Model
 
 from .creator import ZenodoCreator, ZenodoCreatorAffiliation
 from .files import ZenodoFiles

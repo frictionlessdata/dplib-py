@@ -7,11 +7,11 @@ from typing import Optional
 from pydantic import BaseModel
 from typing_extensions import Self
 
-from . import types
-from .error import Error
-from .helpers.data import clean_data, dump_data, load_data
-from .helpers.file import read_file, write_file
-from .helpers.path import ensure_basepath, infer_format
+from .. import types
+from ..error import Error
+from ..helpers.data import clean_data, dump_data, load_data
+from ..helpers.file import read_file, write_file
+from ..helpers.path import ensure_basepath, infer_format
 
 
 class Model(BaseModel, extra="allow", validate_assignment=True):

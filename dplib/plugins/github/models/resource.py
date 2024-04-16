@@ -3,8 +3,8 @@ from __future__ import annotations
 from typing import Literal, Optional
 
 from dplib.helpers.resource import slugify_name
-from dplib.model import Model
 from dplib.models import Resource
+from dplib.system import Model
 
 
 class GithubResource(Model):

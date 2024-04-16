@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Any, List, Optional
 
 from ... import types
-from ...model import Model
+from ...system import Model
 
 
 class Constraints(Model):

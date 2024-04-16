@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from dplib.model import Model
 from dplib.models import Contributor, License, Package
+from dplib.system import Model
 
 from .contributor import DataciteContributor, DataciteContributorAffiliation
 from .description import DataciteDescription

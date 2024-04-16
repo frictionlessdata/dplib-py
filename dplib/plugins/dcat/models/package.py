@@ -5,8 +5,8 @@ from typing import Any, List, Optional
 from rdflib import BNode, Graph, URIRef
 
 from dplib.error import Error
-from dplib.model import Model
 from dplib.models import Package, Source
+from dplib.system import Model
 
 from . import dumpers, loaders
 from . import namespaces as ns

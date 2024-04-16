@@ -10,8 +10,8 @@ from sqlalchemy.dialects import postgresql as pg
 from sqlalchemy.dialects import registry
 from sqlalchemy.schema import Column
 
-from dplib.model import Model
 from dplib.models import Field
+from dplib.system import Model
 
 from . import settings
 

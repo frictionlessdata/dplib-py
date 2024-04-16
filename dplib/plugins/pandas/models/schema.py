@@ -4,8 +4,8 @@ from typing import Any, Dict, List
 
 import pandas as pd
 
-from dplib.model import Model
 from dplib.models import Schema
+from dplib.system import Model
 
 from .field import PandasField
 

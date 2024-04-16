@@ -4,8 +4,8 @@ from typing import Dict, List
 
 import polars as pl
 
-from dplib.model import Model
 from dplib.models import Schema
+from dplib.system import Model
 
 from .field import PolarsField
 

@@ -5,8 +5,8 @@ from typing import Any, Callable, List
 import sqlalchemy as sa
 from sqlalchemy.schema import Column, Constraint, Table
 
-from dplib.model import Model
 from dplib.models import ForeignKey, ForeignKeyReference, Schema
+from dplib.system import Model
 
 from . import settings
 from .field import SqlField

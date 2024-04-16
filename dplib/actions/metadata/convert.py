@@ -3,8 +3,8 @@ from __future__ import annotations
 from importlib import import_module
 from typing import Literal, Optional, Type, Union, cast
 
-from ...model import Model
 from ...models import Package, Resource
+from ...system import Model
 
 
 def convert_metadata(

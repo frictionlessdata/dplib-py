@@ -5,8 +5,8 @@ from typing import Any
 import polars as pl
 
 from dplib.error import Error
-from dplib.model import Model
 from dplib.models import Field
+from dplib.system import Model
 
 
 class PolarsField(Model, arbitrary_types_allowed=True):

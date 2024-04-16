@@ -5,7 +5,7 @@ from typing import List, Optional
 import pydantic
 
 from ... import settings
-from ...model import Model
+from ...system import Model
 from ..contributor import Contributor
 from ..license import License
 from ..resource import Resource

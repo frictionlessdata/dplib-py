@@ -5,7 +5,7 @@ from typing import List, Optional
 import pydantic
 
 from ... import settings, types
-from ...model import Model
+from ...system import Model
 from ..field import Field
 from .foreignKey import ForeignKey
 from .types import IFieldsMatch

@@ -2,8 +2,8 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from dplib.model import Model
 from dplib.models import License, Package
+from dplib.system import Model
 
 from .license import GithubLicense
 from .owner import GithubOwner

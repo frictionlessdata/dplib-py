@@ -4,7 +4,7 @@ from typing import List, Optional
 
 import pydantic
 
-from dplib.model import Model
+from dplib.system import Model
 
 
 class ZenodoCreatorAffiliation(Model):

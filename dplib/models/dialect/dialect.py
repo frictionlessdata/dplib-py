@@ -5,7 +5,7 @@ from typing import List, Optional
 import pydantic
 
 from ... import settings
-from ...model import Model
+from ...system import Model
 from .types import IItemType
 
 

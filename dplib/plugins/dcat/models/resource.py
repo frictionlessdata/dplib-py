@@ -5,8 +5,8 @@ from typing import List, Optional
 from rdflib import BNode, Graph
 
 from dplib.helpers.resource import slugify_name
-from dplib.model import Model
 from dplib.models import License, Resource
+from dplib.system import Model
 
 from . import dumpers, loaders
 from . import namespaces as ns

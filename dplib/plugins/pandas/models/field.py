@@ -9,8 +9,8 @@ import pandas as pd
 import pandas.core.dtypes.api as pdc
 
 from dplib.error import Error
-from dplib.model import Model
 from dplib.models import Field
+from dplib.system import Model
 
 
 class PandasField(Model, arbitrary_types_allowed=True):

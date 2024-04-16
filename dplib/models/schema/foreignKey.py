@@ -5,7 +5,7 @@ from typing import List, Optional
 import pydantic
 
 from ... import types
-from ...model import Model
+from ...system import Model
 
 
 class ForeignKeyReference(Model):

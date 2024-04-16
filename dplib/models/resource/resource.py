@@ -6,7 +6,7 @@ import pydantic
 
 from ... import settings, types
 from ...helpers.file import join_basepath
-from ...model import Model
+from ...system import Model
 from ..contributor import Contributor
 from ..dialect import Dialect
 from ..license import License
