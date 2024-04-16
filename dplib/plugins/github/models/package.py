@@ -69,7 +69,7 @@ class GithubPackage(Model):
             if self.license.name:
                 license.title = self.license.name
             if self.license.html_url:
-                license.url = self.license.html_url
+                license.path = self.license.html_url
             package.licenses.append(license)
 
         # Keywords

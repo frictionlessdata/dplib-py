@@ -73,7 +73,7 @@ class CkanPackage(Model):
             if self.license_title:
                 license.title = self.license_title
             if self.license_url:
-                license.url = self.license_url
+                license.path = self.license_url
             package.licenses.append(license)
 
         # Contributors
