@@ -18,8 +18,8 @@ IItemType = Union[
 ]
 
 
-class CollectionField(BaseField):
-    type: Literal["string"] = "string"
+class ListField(BaseField):
+    type: Literal["list"] = "list"
     format: Optional[Literal["default"]] = None
     constraints: CollectionConstraints = pydantic.Field(
         default_factory=CollectionConstraints

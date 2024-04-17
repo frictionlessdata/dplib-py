@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Literal
+from typing import Literal, Optional
 
 import pydantic
 
@@ -10,4 +10,5 @@ from .base import BaseField
 
 class AnyField(BaseField):
     type: Literal["any"] = "any"
+    format: Optional[Literal["default"]] = None
     constraints: BaseConstraints = pydantic.Field(default_factory=BaseConstraints)

@@ -5,7 +5,7 @@ from typing import Any, Optional
 from .base import BaseConstraints
 
 
-class EnumerabeConstraints(BaseConstraints):
+class ValueConstraints(BaseConstraints):
     minimum: Optional[Any] = None
     maximum: Optional[Any] = None
     exclusiveMinimum: Optional[Any] = None

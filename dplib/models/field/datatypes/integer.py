@@ -4,16 +4,14 @@ from typing import Literal, Optional
 
 import pydantic
 
-from ..constraints import EnumerableConstraints
+from ..constraints import ValueConstraints
 from .base import BaseField
 
 
 class IntegerField(BaseField):
     type: Literal["integer"] = "integer"
     format: Optional[Literal["default"]] = None
-    constraints: EnumerableConstraints = pydantic.Field(
-        default_factory=EnumerableConstraints
-    )
+    constraints: ValueConstraints = pydantic.Field(default_factory=ValueConstraints)
 
     bareNumber: Optional[bool] = None
     """
