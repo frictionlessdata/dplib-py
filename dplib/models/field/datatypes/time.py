@@ -9,6 +9,8 @@ from .base import BaseField
 
 
 class TimeField(BaseField):
+    """The field contains a time without a date."""
+
     type: Literal["time"] = "time"
     format: Optional[str] = None
     constraints: ValueConstraints = pydantic.Field(default_factory=ValueConstraints)

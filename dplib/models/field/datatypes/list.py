@@ -19,6 +19,10 @@ IItemType = Union[
 
 
 class ListField(BaseField):
+    """The field contains data that is an ordered
+    one-level depth collection of primitive values with a fixed item type.
+    """
+
     type: Literal["list"] = "list"
     format: Optional[Literal["default"]] = None
     constraints: CollectionConstraints = pydantic.Field(

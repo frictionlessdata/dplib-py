@@ -9,16 +9,18 @@ from .base import BaseField
 
 
 class IntegerField(BaseField):
+    """The field contains integers - that is whole numbers."""
+
     type: Literal["integer"] = "integer"
     format: Optional[Literal["default"]] = None
     constraints: ValueConstraints = pydantic.Field(default_factory=ValueConstraints)
 
-    bareNumber: Optional[bool] = None
-    """
-    If false leading and trailing non numbers will be removed for integer/number fields
-    """
-
     groupChar: Optional[str] = None
     """
     String whose value is used to group digits for integer/number fields
+    """
+
+    bareNumber: bool = True
+    """
+    If false leading and trailing non numbers will be removed for integer/number fields
     """

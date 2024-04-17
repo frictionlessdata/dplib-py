@@ -9,7 +9,7 @@ from ....system import Model
 
 
 class BaseField(Model):
-    """Table Schema Field model"""
+    """Base Field"""
 
     name: Optional[str] = None
     """

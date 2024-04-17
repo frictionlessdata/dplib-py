@@ -9,6 +9,8 @@ from .datatypes import BaseField
 
 
 class Field(BaseField):
+    """Field with unspecified type."""
+
     type: Literal[None] = None
     format: Optional[Literal["default"]] = None
     constraints: BaseConstraints = pydantic.Field(default_factory=BaseConstraints)

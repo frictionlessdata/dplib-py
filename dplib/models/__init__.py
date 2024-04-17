@@ -4,5 +4,5 @@ from .field import *
 from .license import License
 from .package import Package
 from .resource import Resource
-from .schema import ForeignKey, ForeignKeyReference, Schema
+from .schema import *
 from .source import Source

@@ -9,6 +9,8 @@ from .base import BaseField
 
 
 class ObjectField(BaseField):
+    """The field contains a valid JSON object."""
+
     type: Literal["object"] = "object"
     format: Optional[Literal["default"]] = None
     constraints: JsonConstraints = pydantic.Field(default_factory=JsonConstraints)

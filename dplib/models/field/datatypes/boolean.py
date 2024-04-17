@@ -9,6 +9,8 @@ from .base import BaseField
 
 
 class BooleanField(BaseField):
+    """The field contains boolean (true/false) data."""
+
     type: Literal["boolean"] = "boolean"
     format: Optional[Literal["default"]] = None
     constraints: BaseConstraints = pydantic.Field(default_factory=BaseConstraints)

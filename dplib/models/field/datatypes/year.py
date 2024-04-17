@@ -9,6 +9,8 @@ from .base import BaseField
 
 
 class YearField(BaseField):
+    """The field contains a calendar year."""
+
     type: Literal["year"] = "year"
     format: Optional[Literal["default"]] = None
     constraints: ValueConstraints = pydantic.Field(default_factory=ValueConstraints)

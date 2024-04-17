@@ -9,6 +9,8 @@ from .base import BaseField
 
 
 class AnyField(BaseField):
+    """The field contains values of a unspecified or mixed type."""
+
     type: Literal["any"] = "any"
     format: Optional[Literal["default"]] = None
     constraints: BaseConstraints = pydantic.Field(default_factory=BaseConstraints)

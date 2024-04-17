@@ -9,13 +9,15 @@ from .base import BaseField
 
 
 class NumberField(BaseField):
+    """The field contains numbers of any kind including decimals."""
+
     type: Literal["number"] = "number"
     format: Optional[Literal["default"]] = None
     constraints: ValueConstraints = pydantic.Field(default_factory=ValueConstraints)
 
-    bareNumber: Optional[bool] = None
+    decimalChar: str = "."
     """
-    If false leading and trailing non numbers will be removed for integer/number fields
+    String whose value is used to represent a decimal point for number fields
     """
 
     groupChar: Optional[str] = None
@@ -23,7 +25,7 @@ class NumberField(BaseField):
     String whose value is used to group digits for integer/number fields
     """
 
-    decimalChar: Optional[str] = None
+    bareNumber: bool = True
     """
-    String whose value is used to represent a decimal point for number fields
+    If false leading and trailing non numbers will be removed for integer/number fields
     """

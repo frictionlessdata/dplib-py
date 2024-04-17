@@ -9,6 +9,8 @@ from .base import BaseField
 
 
 class YearmonthField(BaseField):
+    """The field contains a specific month of a specific year."""
+
     type: Literal["yearmonth"] = "yearmonth"
     format: Optional[Literal["default"]] = None
     constraints: ValueConstraints = pydantic.Field(default_factory=ValueConstraints)

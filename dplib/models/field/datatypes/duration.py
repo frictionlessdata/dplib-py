@@ -9,6 +9,8 @@ from .base import BaseField
 
 
 class DurationField(BaseField):
+    """The field contains a duration of time."""
+
     type: Literal["duration"] = "duration"
     format: Optional[Literal["default"]] = None
     constraints: ValueConstraints = pydantic.Field(default_factory=ValueConstraints)
