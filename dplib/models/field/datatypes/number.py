@@ -9,7 +9,7 @@ from .base import BaseField
 
 
 class NumberField(BaseField):
-    type: Literal["integer"] = "integer"
+    type: Literal["number"] = "number"
     format: Optional[Literal["default"]] = None
     constraints: ValueConstraints = pydantic.Field(default_factory=ValueConstraints)
 

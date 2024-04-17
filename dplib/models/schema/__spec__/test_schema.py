@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from dplib.models import Field, Schema
+from dplib.models import IntegerField, Schema
 
 
 def test_schema_from_path():
@@ -54,7 +54,7 @@ def test_schema_set_proprty_invalid():
 
 def test_schema_add_field():
     schema = Schema()
-    schema.add_field(Field(name="id", type="integer"))
+    schema.add_field(IntegerField(name="id"))
     field = schema.get_field(name="id")
     assert field
     assert field.name == "id"
