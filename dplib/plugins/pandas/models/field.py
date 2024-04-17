@@ -8,8 +8,8 @@ import numpy as np
 import pandas as pd
 import pandas.core.dtypes.api as pdc
 
+from dplib import models
 from dplib.error import Error
-from dplib.models import Field
 from dplib.system import Model
 
 
@@ -22,43 +22,46 @@ class PandasField(Model, arbitrary_types_allowed=True):
 
     # Converters
 
-    def to_dp(self) -> Field:
+    def to_dp(self) -> models.IField:
         """Convert to Table Schema Field
 
         Returns:
             Table Schema Field
         """
-        field = Field(name=self.name)
 
         # Type
+        Field = models.Field
         if pdc.is_bool_dtype(self.dtype):  # type: ignore
-            field.type = "boolean"
+            Field = models.BooleanField
         elif pdc.is_datetime64_any_dtype(self.dtype):  # type: ignore
-            field.type = "datetime"
+            Field = models.DatetimeField
         elif pdc.is_integer_dtype(self.dtype):  # type: ignore
-            field.type = "integer"
+            Field = models.IntegerField
         elif pdc.is_numeric_dtype(self.dtype):  # type: ignore
-            field.type = "number"
+            Field = models.NumberField
         elif self.dvalue is not None:
             if isinstance(self.dvalue, (list, tuple)):  # type: ignore
-                field.type = "array"
+                Field = models.ArrayField
             elif isinstance(self.dvalue, datetime.datetime):
-                field.type = "datetime"
+                Field = models.DatetimeField
             elif isinstance(self.dvalue, datetime.date):
-                field.type = "date"
+                Field = models.DateField
             elif isinstance(self.dvalue, isodate.Duration):  # type: ignore
-                field.type = "duration"
+                Field = models.DurationField
             elif isinstance(self.dvalue, dict):
-                field.type = "object"
+                Field = models.ObjectField
             elif isinstance(self.dvalue, str):
-                field.type = "string"
+                Field = models.StringField
             elif isinstance(self.dvalue, datetime.time):
-                field.type = "time"
+                Field = models.TimeField
+
+        # Name
+        field = Field(name=self.name)
 
         return field
 
     @classmethod
-    def from_dp(cls, field: Field) -> PandasField:
+    def from_dp(cls, field: models.IField) -> PandasField:
         """Create Pandas Field from Table Schema Field
 
         Parameters:
