@@ -1,7 +1,7 @@
 import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql as pg
 
-from dplib.models import Field, Schema
+from dplib.models import Schema, StringField
 from dplib.plugins.sql.models import SqlSchema
 
 
@@ -93,7 +93,7 @@ def test_sql_schema_to_dp_round_trip():
 
 
 def test_sql_schema_from_dp_with_string_constraints():
-    field = Field(name="string", type="string")
+    field = StringField(name="string")
     field.constraints.minLength = 1
     field.constraints.enum = ["a", "b", "c"]
     field.constraints.pattern = "^[a-z]+$"
