@@ -2,122 +2,122 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/changelog/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/contributing/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/converting-metadata/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/installation/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/validating-metadata/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/working-with-models/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/actions/dialect/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/actions/package/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/actions/resource/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/actions/schema/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/models/dialect/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/models/package/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/models/resource/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/models/schema/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/plugins/ckan/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/plugins/cli/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/plugins/datacite/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/plugins/dcat/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/plugins/github/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/plugins/pandas/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/plugins/polars/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/plugins/sql/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://frictionlessdata.github.io/dplib-py/plugins/zenodo/</loc>
-         <lastmod>2024-04-16</lastmod>
+         <lastmod>2024-04-17</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
