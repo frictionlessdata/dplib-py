@@ -1,6 +1,9 @@
 from dplib.actions.resource.check import check_resource
 from dplib.models import Resource
 
+# TODO: move to corresponding action folder
+# For some reason pytest colelction failed if we used folders in Python3.11/12
+
 
 def test_check_resource():
     errors = check_resource("data/resource.json")

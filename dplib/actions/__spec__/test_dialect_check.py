@@ -1,6 +1,9 @@
 from dplib.actions.dialect.check import check_dialect
 from dplib.models import Dialect
 
+# TODO: move to corresponding action folder
+# For some reason pytest colelction failed if we used folders in Python3.11/12
+
 
 def test_check_dialect():
     errors = check_dialect("data/dialect.json")

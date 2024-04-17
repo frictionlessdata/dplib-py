@@ -1,6 +1,9 @@
 from dplib.actions.schema.check import check_schema
 from dplib.models import Schema
 
+# TODO: move to corresponding action folder
+# For some reason pytest colelction failed if we used folders in Python3.11/12
+
 
 def test_check_schema():
     errors = check_schema("data/schema.json")

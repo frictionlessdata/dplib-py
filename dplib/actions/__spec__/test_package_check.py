@@ -3,6 +3,9 @@ import pytest
 from dplib.actions.package.check import check_package
 from dplib.models import Package
 
+# TODO: move to corresponding action folder
+# For some reason pytest colelction failed if we used folders in Python3.11/12
+
 
 def test_check_package():
     errors = check_package("data/package.json")
