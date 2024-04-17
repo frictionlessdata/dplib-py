@@ -29,7 +29,7 @@ class SqlField(Model, arbitrary_types_allowed=True):
         Returns:
             Table Schema Field
         """
-        # Type/Name
+        # Type
         Field = models.Field
         if isinstance(self.column.type, ARRAY_TYPES):
             Field = models.ArrayField
@@ -49,6 +49,8 @@ class SqlField(Model, arbitrary_types_allowed=True):
             Field = models.StringField
         elif isinstance(self.column.type, TIME_TYPES):
             Field = models.TimeField
+
+        # Name
         field = Field(name=self.column.name)
 
         # Description
