@@ -59,6 +59,7 @@ dev = [
     "pytest-vcr",
     "pytest-mock",
     "pytest-only",
+    "pytest-dotenv",
     "pytest-timeout",
     "pytest-lazy-fixtures",
     "mkdocstrings[python]",
@@ -151,6 +152,7 @@ extend-select = ["I"]
 
 [tool.pytest.ini_options]
 testpaths = ["dplib"]
+env_files = [".env"]
 markers = [
     "ci: integrational tests (select with '--ci')",
 ]
