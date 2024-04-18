@@ -51,10 +51,14 @@ dev = [
     "ruff",
     "hatch",
     "neovim",
-    "pytest",
-    "mkdocs",
     "pyright",
     "ipython",
+    # mkdocs
+    "mkdocs",
+    "mkdocstrings[python]",
+    "mkdocs-material",
+    # pytest
+    "pytest",
     "pytest-cov",
     "pytest-vcr",
     "pytest-mock",
@@ -62,8 +66,6 @@ dev = [
     "pytest-dotenv",
     "pytest-timeout",
     "pytest-lazy-fixtures",
-    "mkdocstrings[python]",
-    "mkdocs-material",
 ]
 
 [project.scripts]
