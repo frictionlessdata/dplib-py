@@ -93,6 +93,9 @@ coverage = [
 docs = [
   "mkdocs serve",
 ]
+docs-build = [
+  "mkdocs build",
+]
 format = [
   "ruff check --fix",
   "ruff format dplib",

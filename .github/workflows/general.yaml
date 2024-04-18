@@ -91,7 +91,7 @@ jobs:
       - name: Prepare environment
         run: pip3 install hatch
       - name: Build docs
-        run: hatch run build
+        run: hatch run docs-build
       - name: Publush to Github Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
