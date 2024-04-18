@@ -18,4 +18,4 @@ class GeojsonField(BaseField):
 
     type: Literal["geojson"] = "geojson"
     format: Optional[IGeojsonFormat] = None
-    constraints: BaseConstraints = pydantic.Field(default_factory=BaseConstraints)
+    constraints: BaseConstraints[str] = pydantic.Field(default_factory=BaseConstraints)

@@ -13,7 +13,7 @@ class BooleanField(BaseField):
 
     type: Literal["boolean"] = "boolean"
     format: Optional[Literal["default"]] = None
-    constraints: BaseConstraints = pydantic.Field(default_factory=BaseConstraints)
+    constraints: BaseConstraints[bool] = pydantic.Field(default_factory=BaseConstraints)
 
     trueValues: List[str] = ["true", "True", "TRUE", "1"]
     """

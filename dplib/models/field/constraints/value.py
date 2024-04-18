@@ -4,12 +4,12 @@ from typing import Generic, Optional, TypeVar, Union
 
 from .base import BaseConstraints
 
-ValueType = TypeVar("ValueType")
+NativeType = TypeVar("NativeType")
 
 
 # TODO: tweak serialization if needed
-class ValueConstraints(BaseConstraints, Generic[ValueType]):
-    minimum: Optional[Union[str, ValueType]] = None
-    maximum: Optional[Union[str, ValueType]] = None
-    exclusiveMinimum: Optional[Union[str, ValueType]] = None
-    exclusiveMaximum: Optional[Union[str, ValueType]] = None
+class ValueConstraints(BaseConstraints[NativeType], Generic[NativeType]):
+    minimum: Optional[Union[str, NativeType]] = None
+    maximum: Optional[Union[str, NativeType]] = None
+    exclusiveMinimum: Optional[Union[str, NativeType]] = None
+    exclusiveMaximum: Optional[Union[str, NativeType]] = None

@@ -13,4 +13,4 @@ class Field(BaseField):
 
     type: Literal[None] = None
     format: Optional[Literal["default"]] = None
-    constraints: BaseConstraints = pydantic.Field(default_factory=BaseConstraints)
+    constraints: BaseConstraints[str] = pydantic.Field(default_factory=BaseConstraints)
