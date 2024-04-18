@@ -13,4 +13,4 @@ class YearField(BaseField):
 
     type: Literal["year"] = "year"
     format: Optional[Literal["default"]] = None
-    constraints: ValueConstraints = pydantic.Field(default_factory=ValueConstraints)
+    constraints: ValueConstraints[int] = pydantic.Field(default_factory=ValueConstraints)

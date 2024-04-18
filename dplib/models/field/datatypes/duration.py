@@ -13,4 +13,4 @@ class DurationField(BaseField):
 
     type: Literal["duration"] = "duration"
     format: Optional[Literal["default"]] = None
-    constraints: ValueConstraints = pydantic.Field(default_factory=ValueConstraints)
+    constraints: ValueConstraints[str] = pydantic.Field(default_factory=ValueConstraints)

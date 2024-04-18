@@ -13,7 +13,7 @@ class IntegerField(BaseField):
 
     type: Literal["integer"] = "integer"
     format: Optional[Literal["default"]] = None
-    constraints: ValueConstraints = pydantic.Field(default_factory=ValueConstraints)
+    constraints: ValueConstraints[int] = pydantic.Field(default_factory=ValueConstraints)
 
     groupChar: Optional[str] = None
     """

@@ -13,7 +13,9 @@ class NumberField(BaseField):
 
     type: Literal["number"] = "number"
     format: Optional[Literal["default"]] = None
-    constraints: ValueConstraints = pydantic.Field(default_factory=ValueConstraints)
+    constraints: ValueConstraints[float] = pydantic.Field(
+        default_factory=ValueConstraints
+    )
 
     decimalChar: str = "."
     """

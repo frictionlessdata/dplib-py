@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import datetime
 from typing import Literal, Optional
 
 import pydantic
@@ -13,4 +14,6 @@ class DateField(BaseField):
 
     type: Literal["date"] = "date"
     format: Optional[str] = None
-    constraints: ValueConstraints = pydantic.Field(default_factory=ValueConstraints)
+    constraints: ValueConstraints[datetime.date] = pydantic.Field(
+        default_factory=ValueConstraints
+    )

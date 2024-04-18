@@ -31,6 +31,7 @@ print(schema.to_text(format="json"))
 ::: dplib.models.IFieldsMatch
 ::: dplib.models.ForeignKey
 ::: dplib.models.ForeignKeyReference
+::: dplib.models.BaseField
 ::: dplib.models.Field
 ::: dplib.models.AnyField
 ::: dplib.models.ArrayField

@@ -1,12 +1,15 @@
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Generic, Optional, TypeVar, Union
 
 from .base import BaseConstraints
 
+ValueType = TypeVar("ValueType")
 
-class ValueConstraints(BaseConstraints):
-    minimum: Optional[Any] = None
-    maximum: Optional[Any] = None
-    exclusiveMinimum: Optional[Any] = None
-    exclusiveMaximum: Optional[Any] = None
+
+# TODO: tweak serialization if needed
+class ValueConstraints(BaseConstraints, Generic[ValueType]):
+    minimum: Optional[Union[str, ValueType]] = None
+    maximum: Optional[Union[str, ValueType]] = None
+    exclusiveMinimum: Optional[Union[str, ValueType]] = None
+    exclusiveMaximum: Optional[Union[str, ValueType]] = None
