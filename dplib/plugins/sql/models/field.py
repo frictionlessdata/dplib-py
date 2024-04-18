@@ -10,7 +10,7 @@ from sqlalchemy.dialects import postgresql as pg
 from sqlalchemy.dialects import registry
 from sqlalchemy.schema import Column
 
-from dplib.models import Field
+from dplib import models
 from dplib.system import Model
 
 from . import settings
@@ -23,33 +23,35 @@ class SqlField(Model, arbitrary_types_allowed=True):
 
     # Converters
 
-    def to_dp(self) -> Field:
+    def to_dp(self) -> models.IField:
         """Convert to Table Schema Field
 
         Returns:
             Table Schema Field
         """
-        field = Field(name=self.column.name)
-
         # Type
+        Field = models.Field
         if isinstance(self.column.type, ARRAY_TYPES):
-            field.type = "array"
+            Field = models.ArrayField
         elif isinstance(self.column.type, BOOLEAN_TYPES):
-            field.type = "boolean"
+            Field = models.BooleanField
         elif isinstance(self.column.type, DATE_TYPES):
-            field.type = "date"
+            Field = models.DateField
         elif isinstance(self.column.type, DATETIME_TYPES):
-            field.type = "datetime"
+            Field = models.DatetimeField
         elif isinstance(self.column.type, INTEGER_TYPES):
-            field.type = "integer"
+            Field = models.IntegerField
         elif isinstance(self.column.type, NUMBER_TYPES):
-            field.type = "number"
+            Field = models.NumberField
         elif isinstance(self.column.type, OBJECT_TYPES):
-            field.type = "object"
-        elif isinstance(self.column.type, TEXT_TYPES):
-            field.type = "string"
+            Field = models.ObjectField
+        elif isinstance(self.column.type, STRING_TYPES):
+            Field = models.StringField
         elif isinstance(self.column.type, TIME_TYPES):
-            field.type = "time"
+            Field = models.TimeField
+
+        # Name
+        field = Field(name=self.column.name)
 
         # Description
         if self.column.comment:
@@ -58,22 +60,23 @@ class SqlField(Model, arbitrary_types_allowed=True):
         # Constraints
         if not self.column.nullable:
             field.constraints.required = True
-        if isinstance(self.column.type, (sa.CHAR, sa.VARCHAR)):
-            if self.column.type.length:
-                field.constraints.maxLength = self.column.type.length
-        if isinstance(self.column.type, sa.CHAR):
-            if self.column.type.length:
-                field.constraints.minLength = self.column.type.length
         if isinstance(self.column.type, sa.Enum):
             if self.column.enums:
                 field.constraints.enum = self.column.enums
+        if isinstance(field, models.StringField):
+            if isinstance(self.column.type, (sa.CHAR, sa.VARCHAR)):
+                if self.column.type.length:
+                    field.constraints.maxLength = self.column.type.length
+            if isinstance(self.column.type, sa.CHAR):
+                if self.column.type.length:
+                    field.constraints.minLength = self.column.type.length
 
         return field
 
     @classmethod
     def from_dp(
         cls,
-        field: Field,
+        field: models.IField,
         *,
         dialect: str = settings.DEFAULT_DIALECT,
         table_name: Optional[str] = None,
@@ -148,7 +151,7 @@ class SqlField(Model, arbitrary_types_allowed=True):
                     checks.append(Check("LENGTH(%s) >= %s" % (quoted_name, min)))
 
         # Limit contstraints
-        if field.type in ["integer", "number"]:
+        if isinstance(field, (models.IntegerField, models.NumberField)):
             min = field.constraints.minimum
             max = field.constraints.maximum
             if min is not None:
@@ -193,5 +196,4 @@ INTEGER_TYPES = (sa.Integer,)
 NUMBER_TYPES = (sa.Float, sa.Numeric)  # type: ignore
 STRING_TYPES = (ml.BIT, ml.VARBINARY, ml.VARCHAR, pg.UUID, sa.Text, sa.VARCHAR)  # type: ignore
 OBJECT_TYPES = (pg.JSONB, pg.JSON)
-TEXT_TYPES = (sa.Text,)
 TIME_TYPES = (sa.Time,)

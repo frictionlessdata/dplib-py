@@ -1,32 +1,32 @@
 from __future__ import annotations
 
-from typing import Literal, Union
+from typing import Union
 
-IFieldType = Union[
-    Literal["any"],
-    Literal["array"],
-    Literal["boolean"],
-    Literal["date"],
-    Literal["datetime"],
-    Literal["duration"],
-    Literal["geojson"],
-    Literal["geopoint"],
-    Literal["integer"],
-    Literal["list"],
-    Literal["number"],
-    Literal["object"],
-    Literal["string"],
-    Literal["time"],
-    Literal["year"],
-    Literal["yearmonth"],
-]
+import pydantic
+from typing_extensions import Annotated
 
-IItemType = Union[
-    Literal["boolean"],
-    Literal["date"],
-    Literal["datetime"],
-    Literal["integer"],
-    Literal["number"],
-    Literal["string"],
-    Literal["time"],
+from . import datatypes
+from .field import Field
+
+IField = Annotated[
+    Union[
+        Field,
+        datatypes.AnyField,
+        datatypes.ArrayField,
+        datatypes.BooleanField,
+        datatypes.DateField,
+        datatypes.DatetimeField,
+        datatypes.DurationField,
+        datatypes.GeojsonField,
+        datatypes.GeopointField,
+        datatypes.IntegerField,
+        datatypes.ListField,
+        datatypes.NumberField,
+        datatypes.ObjectField,
+        datatypes.StringField,
+        datatypes.TimeField,
+        datatypes.YearField,
+        datatypes.YearmonthField,
+    ],
+    pydantic.Field(discriminator="type"),
 ]

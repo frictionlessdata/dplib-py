@@ -6,7 +6,7 @@ import pydantic
 
 from ... import settings, types
 from ...system import Model
-from ..field import Field
+from ..field import IField
 from .foreignKey import ForeignKey
 from .types import IFieldsMatch
 
@@ -31,7 +31,7 @@ class Schema(Model):
     this also allows for simple plain text as plain text is itself valid markdown.
     """
 
-    fields: List[Field] = []
+    fields: List[IField] = []
     """
     List of fields in the table schema
     """
@@ -68,7 +68,7 @@ class Schema(Model):
 
     # Getters
 
-    def get_field(self, *, name: Optional[str] = None) -> Optional[Field]:
+    def get_field(self, *, name: Optional[str] = None) -> Optional[IField]:
         """Get a field by name
 
         Parameters:
@@ -100,12 +100,12 @@ class Schema(Model):
         """
         types: List[str] = []
         for field in self.fields:
-            types.append(field.type)
+            types.append(field.type or "any")
         return types
 
     # Setters
 
-    def add_field(self, field: Field):
+    def add_field(self, field: IField):
         """Add a field to the schema
 
         Parameters:

@@ -4,8 +4,8 @@ from typing import Any
 
 import polars as pl
 
+from dplib import models
 from dplib.error import Error
-from dplib.models import Field
 from dplib.system import Model
 
 
@@ -18,39 +18,43 @@ class PolarsField(Model, arbitrary_types_allowed=True):
 
     # Converters
 
-    def to_dp(self) -> Field:
+    def to_dp(self) -> models.IField:
         """Convert to Table Schema Field
 
         Returns:
             Table Schema Field
         """
-        field = Field(name=self.name)
 
+        # Type
+        Field = models.Field
         if self.dtype in ARRAY_TYPES:
-            field.type = "array"
+            Field = models.ArrayField
         elif self.dtype in BOOLEAN_TYPES:
-            field.type = "boolean"
+            Field = models.BooleanField
         elif self.dtype in DATE_TYPES:
-            field.type = "date"
+            Field = models.DateField
         elif self.dtype in DATETIME_TYPES:
-            field.type = "datetime"
+            Field = models.DatetimeField
         elif self.dtype in DURATION_TYPES:
-            field.type = "duration"
+            Field = models.DurationField
         elif self.dtype in INTEGER_TYPES:
-            field.type = "integer"
+            Field = models.IntegerField
         elif self.dtype in NUMBER_TYPES:
-            field.type = "number"
+            Field = models.NumberField
         elif self.dtype in OBJECT_TYPES:
-            field.type = "object"
+            Field = models.ObjectField
         elif self.dtype in STRING_TYPES:
-            field.type = "string"
+            Field = models.StringField
         elif self.dtype in TIME_TYPES:
-            field.type = "time"
+            Field = models.TimeField
+
+        # Name
+        field = Field(name=self.name)
 
         return field
 
     @classmethod
-    def from_dp(cls, field: Field) -> PolarsField:
+    def from_dp(cls, field: models.IField) -> PolarsField:
         """Create Polars Field from Table Schema Field
 
         Parameters:
