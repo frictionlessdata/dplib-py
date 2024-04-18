@@ -50,6 +50,7 @@ sql = ["sqlalchemy>=1.4"]
 dev = [
     "ruff",
     "hatch",
+    "neovim",
     "pyright",
     "ipython",
     # mkdocs
