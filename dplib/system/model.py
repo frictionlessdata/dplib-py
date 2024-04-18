@@ -22,7 +22,7 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
         return pprint.pformat(self.to_dict(), sort_dicts=False)
 
     @property
-    def custom(self) -> types.IData:
+    def custom(self) -> types.IDict:
         assert self.model_extra is not None
         return self.model_extra
 
@@ -62,7 +62,7 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
         return data
 
     @classmethod
-    def from_dict(cls, data: types.IData, *, basepath: Optional[str] = None) -> Self:
+    def from_dict(cls, data: types.IDict, *, basepath: Optional[str] = None) -> Self:
         if basepath and cls.model_fields.get("basepath"):
             data["basepath"] = basepath
         return cls(**data)

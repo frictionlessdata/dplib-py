@@ -1,6 +1,6 @@
 from typing import Any, Dict, Literal, Union
 
-IData = Dict[str, Any]
+IDict = Dict[str, Any]
 IMetadataType = Union[
     Literal["package"],
     Literal["resource"],

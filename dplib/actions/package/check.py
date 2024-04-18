@@ -10,7 +10,7 @@ from ...models import Package
 from ..metadata.check import check_metadata
 
 
-def check_package(package: Union[str, types.IData, Package]) -> List[MetadataError]:
+def check_package(package: Union[str, types.IDict, Package]) -> List[MetadataError]:
     """Check the validity of a Data Package descriptor
 
     This validates the descriptor against the JSON Schema profiles to ensure

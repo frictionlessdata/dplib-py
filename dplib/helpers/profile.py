@@ -15,7 +15,7 @@ from .file import read_file
 # TODO: implement additional user-side profile caching
 
 
-def check_profile(*, metadata: types.IData, profile: str) -> List[MetadataError]:
+def check_profile(*, metadata: types.IDict, profile: str) -> List[MetadataError]:
     # Prepare validator
     jsonSchema = read_profile(profile=profile)
     Validator = validator_for(jsonSchema)  # type: ignore
@@ -30,7 +30,7 @@ def check_profile(*, metadata: types.IData, profile: str) -> List[MetadataError]
 
 
 @lru_cache
-def read_profile(*, profile: str) -> types.IData:
+def read_profile(*, profile: str) -> types.IDict:
     parts = parse_profile(profile)
 
     # Replace with builtin copy

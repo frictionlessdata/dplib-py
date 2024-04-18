@@ -129,7 +129,7 @@ class Resource(Model):
         if self.path and isinstance(self.path, str):
             return join_basepath(self.path, self.basepath)
 
-    def get_source(self) -> Optional[Union[str, types.IData]]:
+    def get_source(self) -> Optional[Union[str, types.IDict]]:
         """Get the source of the resource
 
         Returns:
@@ -183,7 +183,7 @@ class Resource(Model):
 
     @pydantic.model_validator(mode="before")
     @classmethod
-    def compat(cls, data: types.IData):
+    def compat(cls, data: types.IDict):
         if not isinstance(data, dict):  # type: ignore
             return data
 

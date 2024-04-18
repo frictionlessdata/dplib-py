@@ -19,7 +19,7 @@ class Contributor(Model):
 
     @pydantic.model_validator(mode="before")
     @classmethod
-    def compat(cls, data: types.IData):
+    def compat(cls, data: types.IDict):
         if not isinstance(data, dict):  # type: ignore
             return data
 

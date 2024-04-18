@@ -12,7 +12,7 @@ from .path import infer_format
 
 def read_data(
     path: str, *, format: Optional[str] = None, basepath: Optional[str] = None
-) -> types.IData:
+) -> types.IDict:
     if not format:
         format = infer_format(path, raise_missing=True)
     text = read_file(path, basepath=basepath)
@@ -20,14 +20,14 @@ def read_data(
     return data
 
 
-def write_data(path: str, data: types.IData, *, format: Optional[str] = None):
+def write_data(path: str, data: types.IDict, *, format: Optional[str] = None):
     if not format:
         format = infer_format(path, raise_missing=True)
     text = dump_data(data, format=format)
     write_file(path, text)
 
 
-def load_data(text: str, *, format: str) -> types.IData:
+def load_data(text: str, *, format: str) -> types.IDict:
     try:
         if format == "json":
             return json.loads(text)
@@ -39,7 +39,7 @@ def load_data(text: str, *, format: str) -> types.IData:
     raise Error(f"Cannot load data from text with format: {format}")
 
 
-def dump_data(data: types.IData, *, format: str) -> str:
+def dump_data(data: types.IDict, *, format: str) -> str:
     try:
         if format == "json":
             return json.dumps(data, indent=2)
@@ -51,7 +51,7 @@ def dump_data(data: types.IData, *, format: str) -> str:
     raise Error(f"Cannot dump data to text with format: {format}")
 
 
-def clean_data(data: types.IData):
+def clean_data(data: types.IDict):
     for key, value in list(data.items()):
         if isinstance(value, dict):
             clean_data(value)  # type: ignore

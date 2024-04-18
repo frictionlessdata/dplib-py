@@ -9,7 +9,7 @@ from ...helpers.profile import check_profile
 
 
 def check_metadata(
-    metadata: Union[str, types.IData], *, type: types.IMetadataType
+    metadata: Union[str, types.IDict], *, type: types.IMetadataType
 ) -> List[MetadataError]:
     if isinstance(metadata, str):
         metadata = read_data(metadata)
