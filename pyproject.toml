@@ -48,11 +48,8 @@ pandas = ["pandas>=1.0", "pandas-stubs>=1.0", "numpy>=1.0", "isodate>=0.6"]
 polars = ["polars-lts-cpu>=0.10"]
 sql = ["sqlalchemy>=1.4"]
 dev = [
-    "moto",
     "ruff",
-    "httpx",
     "hatch",
-    "yattag",
     "neovim",
     "pytest",
     "mkdocs",
@@ -62,9 +59,6 @@ dev = [
     "pytest-vcr",
     "pytest-mock",
     "pytest-only",
-    "oauth2client",
-    "requests-mock",
-    "pytest-dotenv",
     "pytest-timeout",
     "pytest-lazy-fixtures",
     "mkdocstrings[python]",
@@ -160,13 +154,6 @@ testpaths = ["dplib"]
 env_files = [".env"]
 markers = [
     "ci: integrational tests (select with '--ci')",
-]
-filterwarnings = [
-    "ignore::DeprecationWarning:boto.*",
-    "ignore::DeprecationWarning:moto.*",
-    "ignore::DeprecationWarning:grako.*",
-    "ignore::DeprecationWarning:savWriter.*",
-    "ignore::Warning:duckdb_engine.*",
 ]
 
 [tool.pyright]
