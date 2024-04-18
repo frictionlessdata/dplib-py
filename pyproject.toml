@@ -151,7 +151,6 @@ extend-select = ["I"]
 
 [tool.pytest.ini_options]
 testpaths = ["dplib"]
-env_files = [".env"]
 markers = [
     "ci: integrational tests (select with '--ci')",
 ]
