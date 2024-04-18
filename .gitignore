@@ -80,12 +80,6 @@ target/
 # Spyder project settings
 .spyderproject
 
-# Livemark
-/blog/**/*.html
-/docs/**/*.html
-/index.html
-/404.html
-
 # Extras
 .frictionless/
 .google.json
