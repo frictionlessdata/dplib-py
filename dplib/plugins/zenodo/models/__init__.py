@@ -1,2 +1,2 @@
-from .package import ZenodoPackage
-from .resource import ZenodoResource
+from .package import ZenodoPackage as ZenodoPackage
+from .resource import ZenodoResource as ZenodoResource

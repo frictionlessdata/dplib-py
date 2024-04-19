@@ -1,2 +1,2 @@
-from .package import GithubPackage
-from .resource import GithubResource
+from .package import GithubPackage as GithubPackage
+from .resource import GithubResource as GithubResource

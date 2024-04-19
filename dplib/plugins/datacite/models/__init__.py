@@ -1,1 +1,1 @@
-from .package import DatacitePackage
+from .package import DatacitePackage as DatacitePackage

@@ -1,2 +1,2 @@
-from .field import SqlField
-from .schema import SqlSchema
+from .field import SqlField as SqlField
+from .schema import SqlSchema as SqlSchema

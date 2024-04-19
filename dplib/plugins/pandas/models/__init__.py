@@ -1,2 +1,2 @@
-from .field import PandasField
-from .schema import PandasSchema
+from .field import PandasField as PandasField
+from .schema import PandasSchema as PandasSchema

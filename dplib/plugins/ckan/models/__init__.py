@@ -1,2 +1,2 @@
-from .package import CkanPackage
-from .resource import CkanResource
+from .package import CkanPackage as CkanPackage
+from .resource import CkanResource as CkanResource
