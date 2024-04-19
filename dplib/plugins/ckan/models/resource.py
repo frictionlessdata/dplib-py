@@ -29,7 +29,12 @@ class CkanResource(Model):
         Returns:
            Data Resource
         """
+        # Path/Name
         resource = Resource(path=self.name, name=slugify_name(self.name))
+
+        # Description
+        if self.description:
+            resource.description = self.description
 
         # Format
         if self.format:
@@ -64,6 +69,10 @@ class CkanResource(Model):
 
         # Path
         ckan = CkanResource(name=resource.path)
+
+        # Description
+        if resource.description:
+            ckan.description = resource.description
 
         # Format
         if resource.format:
