@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from typing import Optional
 
 from dplib.helpers.resource import slugify_name
@@ -10,6 +11,7 @@ from dplib.system import Model
 class CkanResource(Model):
     """CKAN Resource model"""
 
+    url: str
     name: str
     created: Optional[str] = None
     description: Optional[str] = None
@@ -30,7 +32,7 @@ class CkanResource(Model):
            Data Resource
         """
         # Path/Name
-        resource = Resource(path=self.name, name=slugify_name(self.name))
+        resource = Resource(path=self.url, name=slugify_name(self.name))
 
         # Description
         if self.description:
@@ -67,8 +69,8 @@ class CkanResource(Model):
         if not resource.path or not isinstance(resource.path, str):
             return
 
-        # Path
-        ckan = CkanResource(name=resource.path)
+        # Path/Name
+        ckan = CkanResource(url=resource.path, name=os.path.basename(resource.path))
 
         # Description
         if resource.description:

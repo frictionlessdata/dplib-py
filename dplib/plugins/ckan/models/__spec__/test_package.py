@@ -25,7 +25,10 @@ def test_ckan_package_to_dp():
     assert len(package.resources) == 9
     assert len(package.keywords) == 8
     assert len(package.contributors) == 2
-    assert package.resources[0].path == "sample-linked.csv"
+    assert (
+        package.resources[0].path
+        == "https://raw.githubusercontent.com/datopian/CKAN_Demo_Datasets/main/resources/org1_sample.csv"
+    )
     assert package.keywords[0] == "csv"
     assert package.contributors[0].title == "Test Author"
     assert package.contributors[0].roles == ["author"]
@@ -59,7 +62,7 @@ def test_ckan_package_from_dp_round_trip():
     assert package.license_id == "cc-by"
     assert len(package.resources) == 9
     assert len(package.tags) == 8
-    assert package.resources[0].name == "sample-linked.csv"
+    assert package.resources[0].name == "org1_sample.csv"
     assert package.tags[0].name == "csv"
 
 
