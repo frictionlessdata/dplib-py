@@ -113,6 +113,13 @@ class Schema(Model):
         """
         self.fields.append(field)
 
+    # Converters
+
+    def to_dict(self):
+        data = {"$schema": settings.PROFILE_CURRENT_SCHEMA}
+        data.update(super().to_dict())
+        return data
+
     # Compat
 
     @pydantic.model_validator(mode="before")

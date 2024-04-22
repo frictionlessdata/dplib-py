@@ -2,14 +2,19 @@ import json
 from pathlib import Path
 
 import pytest
+import yaml
 
+from dplib import settings
 from dplib.error import Error
 from dplib.models import Resource
 
 
 def test_model_repr():
     resource = Resource.from_path("data/resource.json")
-    assert str(resource) == "{'name': 'name', 'path': 'table.csv'}"
+    repr = str(resource)
+    assert repr.count(f"'$schema': '{settings.PROFILE_CURRENT_RESOURCE}'")
+    assert repr.count("'name': 'name'")
+    assert repr.count("'path': 'table.csv'")
 
 
 def test_model_custom_properties():
@@ -17,7 +22,11 @@ def test_model_custom_properties():
     resource = Resource.from_dict(data)
     assert resource.name == "name"
     assert resource.custom["extra"] == "value"
-    assert resource.to_dict() == data
+    assert resource.to_dict() == {
+        "$schema": settings.PROFILE_CURRENT_RESOURCE,
+        "name": "name",
+        "extra": "value",
+    }
 
 
 def test_model_to_path(tmp_path: Path):
@@ -25,7 +34,11 @@ def test_model_to_path(tmp_path: Path):
     resource = Resource.from_path("data/resource.json")
     resource.to_path(path)
     with open(path) as file:
-        assert json.loads(file.read()) == {"name": "name", "path": "table.csv"}
+        assert json.loads(file.read()) == {
+            "$schema": settings.PROFILE_CURRENT_RESOURCE,
+            "name": "name",
+            "path": "table.csv",
+        }
 
 
 def test_model_from_path_emtpy_file():
@@ -60,4 +73,8 @@ def test_model_to_path_yaml(tmp_path: Path):
     resource = Resource.from_path("data/resource.json")
     resource.to_path(path)
     with open(path) as file:
-        assert file.read() == "name: name\npath: table.csv\n"
+        assert yaml.safe_load(file.read()) == {
+            "$schema": settings.PROFILE_CURRENT_RESOURCE,
+            "name": "name",
+            "path": "table.csv",
+        }

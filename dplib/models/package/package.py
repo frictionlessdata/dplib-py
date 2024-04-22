@@ -143,3 +143,10 @@ class Package(Model):
         """
         for resource in self.resources:
             resource.dereference()
+
+    # Converters
+
+    def to_dict(self):
+        data = {"$schema": settings.PROFILE_CURRENT_PACKAGE}
+        data.update(super().to_dict())
+        return data

@@ -1,6 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
+from dplib import settings
 from dplib.models import Dialect
 
 
@@ -55,3 +56,20 @@ def test_dialect_set_proprty_invalid():
     dialect = Dialect()
     with pytest.raises(ValidationError):
         dialect.delimiter = 1  # type: ignore
+
+
+def test_dialect_to_dict():
+    dialect = Dialect()
+    assert dialect.to_dict() == {
+        "$schema": settings.PROFILE_CURRENT_DIALECT,
+    }
+    dialect.delimiter = ";"
+    assert dialect.to_dict() == {
+        "$schema": settings.PROFILE_CURRENT_DIALECT,
+        "delimiter": ";",
+    }
+    dialect.profile = settings.PROFILE_DEFAULT_DIALECT
+    assert dialect.to_dict() == {
+        "$schema": settings.PROFILE_DEFAULT_DIALECT,
+        "delimiter": ";",
+    }
