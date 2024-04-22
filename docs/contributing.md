@@ -38,13 +38,13 @@ Now you can setup you IDE to use a proper Python path:
 Documentation is written with Mkdocs (defined in `mkdocs.yaml`). The source articles are in the `docs` directory. To start a live-reload server:
 
 ```bash
-hatch run serve
+hatch run docs
 ```
 
 Building the docs:
 
 ```bash
-hatch run build
+hatch run docs-build
 ```
 
 ## Testing
