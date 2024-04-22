@@ -22,4 +22,10 @@ class CkanSchema(Model):
            Data Resource
         """
         schema = Schema()
+
+        # Fields
+        for field in self.fields:
+            if not field.id.startswith("_"):
+                schema.fields.append(field.to_dp())
+
         return schema
