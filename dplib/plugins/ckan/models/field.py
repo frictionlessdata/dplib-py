@@ -29,19 +29,19 @@ class CkanField(Model):
         Field = models.Field
         if self.type == "text":
             Field = models.StringField
-        if self.type == "int":
+        elif self.type == "int":
             Field = models.IntegerField
-        if self.type == "float":
+        elif self.type == "numeric":
             Field = models.NumberField
-        if self.type == "bool":
+        elif self.type == "bool":
             Field = models.BooleanField
-        if self.type == "date":
+        elif self.type == "date":
             Field = models.DateField
-        if self.type == "time":
+        elif self.type == "time":
             Field = models.TimeField
-        if self.type == "timestamp":
+        elif self.type == "timestamp":
             Field = models.DatetimeField
-        if self.type == "json":
+        elif self.type == "json":
             Field = models.ObjectField
 
         # Name

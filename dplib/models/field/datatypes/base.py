@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import Any, List, Optional
 
 import pydantic
 
@@ -14,6 +14,12 @@ class BaseField(Model):
     name: Optional[str] = None
     """
     The field descriptor MUST contain a name property.
+    """
+
+    # TODO: use proper abstract type (str/Literal string don't work with subclasses)
+    type: Optional[Any] = None
+    """
+    A field type i.e. string, number, etc
     """
 
     title: Optional[str] = None
@@ -30,6 +36,11 @@ class BaseField(Model):
     """
     A list of field values to consider as null values
     """
+
+    # This method ensures that type is not omitted as defaults in model_dump
+    @pydantic.field_serializer("type")
+    def serialize_type(self, value: str, info: Any):
+        return value
 
     # Compat
 

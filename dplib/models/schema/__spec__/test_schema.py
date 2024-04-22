@@ -98,3 +98,17 @@ def test_schema_to_dict():
         "$schema": settings.PROFILE_DEFAULT_SCHEMA,
         "missingValues": ["", "x"],
     }
+
+
+def test_schema_to_dict_with_fields():
+    schema = Schema()
+    schema.add_field(IntegerField(name="name"))
+    assert schema.to_dict() == {
+        "$schema": settings.PROFILE_CURRENT_SCHEMA,
+        "fields": [
+            {
+                "name": "name",
+                "type": "integer",
+            }
+        ],
+    }

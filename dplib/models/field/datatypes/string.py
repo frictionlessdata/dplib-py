@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import Literal, Optional, Union
+from typing import Any, Literal, Optional, Union
 
 import pydantic
 
@@ -22,3 +22,7 @@ class StringField(BaseField):
     type: Literal["string"] = "string"
     format: Optional[IStringFormat] = None
     constraints: StringConstraints = pydantic.Field(default_factory=StringConstraints)
+
+    @pydantic.field_serializer("type")
+    def serialize_type(self, value: str, info: Any):
+        return value
