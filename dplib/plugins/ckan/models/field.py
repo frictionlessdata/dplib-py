@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Optional
+
 from dplib import models
 from dplib.system import Model
 
@@ -17,7 +19,7 @@ class CkanField(Model):
 
     id: str
     type: str
-    info: CkanFieldInfo
+    info: Optional[CkanFieldInfo] = None
 
     def to_dp(self) -> models.IField:
         """Convert to Table Schema Field
@@ -47,12 +49,13 @@ class CkanField(Model):
         # Name
         field = Field(name=self.id)
 
-        # Title
-        if self.info.label:
-            field.title = self.info.label
+        if self.info:
+            # Title
+            if self.info.label:
+                field.title = self.info.label
 
-        # Description
-        if self.info.notes:
-            field.description = self.info.notes
+            # Description
+            if self.info.notes:
+                field.description = self.info.notes
 
         return field
