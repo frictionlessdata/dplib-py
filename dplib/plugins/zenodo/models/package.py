@@ -61,8 +61,8 @@ class ZenodoPackage(Model):
             package.created = self.created
 
         # Homepage
-        if self.links.get("self"):
-            package.homepage = self.links.get("self")
+        if self.links.get("self_html"):
+            package.homepage = self.links.get("self_html")
 
         # Resources
         for entry in self.files.entries.values():
