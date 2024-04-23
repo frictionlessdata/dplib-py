@@ -44,6 +44,10 @@ class ZenodoPackage(Model):
         if self.links.get("doi"):
             package.id = self.links.get("doi")
 
+        # Name
+        if self.id:
+            package.name = self.id
+
         # Title
         if self.metadata.title:
             package.title = self.metadata.title
@@ -86,6 +90,10 @@ class ZenodoPackage(Model):
                 if creator.affiliations:
                     contributor.organization = creator.affiliations[0].name
                 package.contributors.append(contributor)
+
+        # Custom
+        if self.id:
+            package.custom["zenodo:id"] = self.id
 
         return package
 

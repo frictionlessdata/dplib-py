@@ -27,7 +27,7 @@ def test_zenodo_package_to_dp():
     assert package.title == "Fishway_Obstruction_Data_v1.csv"
     assert package.description
     assert package.description.startswith("<p>This dataset contains pool-weir")
-    assert package.homepage == "https://zenodo.org/api/records/5770714"
+    assert package.homepage == "https://zenodo.org/records/5770714"
     assert package.version == "v1"
     assert package.created == "2021-12-10T05:47:07.709885+00:00"
     assert len(package.contributors) == 1

@@ -43,6 +43,10 @@ class ZenodoResource(Model):
         if self.checksum:
             resource.hash = self.checksum.replace("md5:", "")
 
+        # Custom
+        if self.id:
+            resource.custom["zenodo:id"] = self.id
+
         return resource
 
     @classmethod
