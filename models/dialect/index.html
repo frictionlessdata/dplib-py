@@ -850,6 +850,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#dplib.models.Dialect.to_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_dict
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1501,6 +1510,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#dplib.models.Dialect.to_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_dict
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1694,7 +1712,12 @@
 <span class="normal"><a href="#__codelineno-0-123">123</a></span>
 <span class="normal"><a href="#__codelineno-0-124">124</a></span>
 <span class="normal"><a href="#__codelineno-0-125">125</a></span>
-<span class="normal"><a href="#__codelineno-0-126">126</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="k">class</span> <span class="nc">Dialect</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+<span class="normal"><a href="#__codelineno-0-126">126</a></span>
+<span class="normal"><a href="#__codelineno-0-127">127</a></span>
+<span class="normal"><a href="#__codelineno-0-128">128</a></span>
+<span class="normal"><a href="#__codelineno-0-129">129</a></span>
+<span class="normal"><a href="#__codelineno-0-130">130</a></span>
+<span class="normal"><a href="#__codelineno-0-131">131</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="k">class</span> <span class="nc">Dialect</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Table Dialect model&quot;&quot;&quot;</span>
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a>
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a>    <span class="n">profile</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">pydantic</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span>
@@ -1809,6 +1832,11 @@
 </span><span id="__span-0-124"><a id="__codelineno-0-124" name="__codelineno-0-124"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 </span><span id="__span-0-125"><a id="__codelineno-0-125" name="__codelineno-0-125"></a><span class="sd">    This property specifies a sheet name of a table in the spreadsheet file.</span>
 </span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127"></a>
+</span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128"></a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129"></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$schema&quot;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">PROFILE_CURRENT_DIALECT</span><span class="p">}</span>
+</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130"></a>        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131"></a>        <span class="k">return</span> <span class="n">data</span>
 </span></code></pre></div></td></tr></table></div>
             </details>
 
@@ -2267,6 +2295,34 @@ an array of arrays or an array of objects.</p>
 </div>
 
 
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="dplib.models.Dialect.to_dict" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">to_dict</span><span class="p">()</span></code>
+
+<a href="#dplib.models.Dialect.to_dict" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+  <div class="doc doc-contents ">
+
+          <details class="quote">
+            <summary>Source code in <code>dplib/models/dialect/dialect.py</code></summary>
+            <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-128">128</a></span>
+<span class="normal"><a href="#__codelineno-0-129">129</a></span>
+<span class="normal"><a href="#__codelineno-0-130">130</a></span>
+<span class="normal"><a href="#__codelineno-0-131">131</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128"></a><span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129"></a>    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$schema&quot;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">PROFILE_CURRENT_DIALECT</span><span class="p">}</span>
+</span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130"></a>    <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+</span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131"></a>    <span class="k">return</span> <span class="n">data</span>
+</span></code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
 
 
 

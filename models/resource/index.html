@@ -874,6 +874,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#dplib.models.Resource.to_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_dict
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1771,6 +1780,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#dplib.models.Resource.to_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_dict
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2217,7 +2235,14 @@
 <span class="normal"><a href="#__codelineno-0-193">193</a></span>
 <span class="normal"><a href="#__codelineno-0-194">194</a></span>
 <span class="normal"><a href="#__codelineno-0-195">195</a></span>
-<span class="normal"><a href="#__codelineno-0-196">196</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="k">class</span> <span class="nc">Resource</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+<span class="normal"><a href="#__codelineno-0-196">196</a></span>
+<span class="normal"><a href="#__codelineno-0-197">197</a></span>
+<span class="normal"><a href="#__codelineno-0-198">198</a></span>
+<span class="normal"><a href="#__codelineno-0-199">199</a></span>
+<span class="normal"><a href="#__codelineno-0-200">200</a></span>
+<span class="normal"><a href="#__codelineno-0-201">201</a></span>
+<span class="normal"><a href="#__codelineno-0-202">202</a></span>
+<span class="normal"><a href="#__codelineno-0-203">203</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="k">class</span> <span class="nc">Resource</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
 </span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Data Resource model&quot;&quot;&quot;</span>
 </span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a>
 </span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a>    <span class="n">profile</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">pydantic</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span>
@@ -2381,21 +2406,28 @@
 </span><span id="__span-0-179"><a id="__codelineno-0-179" name="__codelineno-0-179"></a>        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
 </span><span id="__span-0-180"><a id="__codelineno-0-180" name="__codelineno-0-180"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">schema</span> <span class="o">=</span> <span class="n">Schema</span><span class="o">.</span><span class="n">from_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">schema</span><span class="p">,</span> <span class="n">basepath</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">basepath</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 </span><span id="__span-0-181"><a id="__codelineno-0-181" name="__codelineno-0-181"></a>
-</span><span id="__span-0-182"><a id="__codelineno-0-182" name="__codelineno-0-182"></a>    <span class="c1"># Compat</span>
+</span><span id="__span-0-182"><a id="__codelineno-0-182" name="__codelineno-0-182"></a>    <span class="c1"># Converters</span>
 </span><span id="__span-0-183"><a id="__codelineno-0-183" name="__codelineno-0-183"></a>
-</span><span id="__span-0-184"><a id="__codelineno-0-184" name="__codelineno-0-184"></a>    <span class="nd">@pydantic</span><span class="o">.</span><span class="n">model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;before&quot;</span><span class="p">)</span>
-</span><span id="__span-0-185"><a id="__codelineno-0-185" name="__codelineno-0-185"></a>    <span class="nd">@classmethod</span>
-</span><span id="__span-0-186"><a id="__codelineno-0-186" name="__codelineno-0-186"></a>    <span class="k">def</span> <span class="nf">compat</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">types</span><span class="o">.</span><span class="n">IDict</span><span class="p">):</span>
-</span><span id="__span-0-187"><a id="__codelineno-0-187" name="__codelineno-0-187"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
-</span><span id="__span-0-188"><a id="__codelineno-0-188" name="__codelineno-0-188"></a>            <span class="k">return</span> <span class="n">data</span>
-</span><span id="__span-0-189"><a id="__codelineno-0-189" name="__codelineno-0-189"></a>
-</span><span id="__span-0-190"><a id="__codelineno-0-190" name="__codelineno-0-190"></a>        <span class="c1"># resource.url</span>
-</span><span id="__span-0-191"><a id="__codelineno-0-191" name="__codelineno-0-191"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">):</span>
-</span><span id="__span-0-192"><a id="__codelineno-0-192" name="__codelineno-0-192"></a>            <span class="n">url</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-</span><span id="__span-0-193"><a id="__codelineno-0-193" name="__codelineno-0-193"></a>            <span class="k">if</span> <span class="n">url</span><span class="p">:</span>
-</span><span id="__span-0-194"><a id="__codelineno-0-194" name="__codelineno-0-194"></a>                <span class="n">data</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span>
-</span><span id="__span-0-195"><a id="__codelineno-0-195" name="__codelineno-0-195"></a>
-</span><span id="__span-0-196"><a id="__codelineno-0-196" name="__codelineno-0-196"></a>        <span class="k">return</span> <span class="n">data</span>
+</span><span id="__span-0-184"><a id="__codelineno-0-184" name="__codelineno-0-184"></a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-185"><a id="__codelineno-0-185" name="__codelineno-0-185"></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$schema&quot;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">PROFILE_CURRENT_RESOURCE</span><span class="p">}</span>
+</span><span id="__span-0-186"><a id="__codelineno-0-186" name="__codelineno-0-186"></a>        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+</span><span id="__span-0-187"><a id="__codelineno-0-187" name="__codelineno-0-187"></a>        <span class="k">return</span> <span class="n">data</span>
+</span><span id="__span-0-188"><a id="__codelineno-0-188" name="__codelineno-0-188"></a>
+</span><span id="__span-0-189"><a id="__codelineno-0-189" name="__codelineno-0-189"></a>    <span class="c1"># Compat</span>
+</span><span id="__span-0-190"><a id="__codelineno-0-190" name="__codelineno-0-190"></a>
+</span><span id="__span-0-191"><a id="__codelineno-0-191" name="__codelineno-0-191"></a>    <span class="nd">@pydantic</span><span class="o">.</span><span class="n">model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;before&quot;</span><span class="p">)</span>
+</span><span id="__span-0-192"><a id="__codelineno-0-192" name="__codelineno-0-192"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-0-193"><a id="__codelineno-0-193" name="__codelineno-0-193"></a>    <span class="k">def</span> <span class="nf">compat</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">types</span><span class="o">.</span><span class="n">IDict</span><span class="p">):</span>
+</span><span id="__span-0-194"><a id="__codelineno-0-194" name="__codelineno-0-194"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
+</span><span id="__span-0-195"><a id="__codelineno-0-195" name="__codelineno-0-195"></a>            <span class="k">return</span> <span class="n">data</span>
+</span><span id="__span-0-196"><a id="__codelineno-0-196" name="__codelineno-0-196"></a>
+</span><span id="__span-0-197"><a id="__codelineno-0-197" name="__codelineno-0-197"></a>        <span class="c1"># resource.url</span>
+</span><span id="__span-0-198"><a id="__codelineno-0-198" name="__codelineno-0-198"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">):</span>
+</span><span id="__span-0-199"><a id="__codelineno-0-199" name="__codelineno-0-199"></a>            <span class="n">url</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</span><span id="__span-0-200"><a id="__codelineno-0-200" name="__codelineno-0-200"></a>            <span class="k">if</span> <span class="n">url</span><span class="p">:</span>
+</span><span id="__span-0-201"><a id="__codelineno-0-201" name="__codelineno-0-201"></a>                <span class="n">data</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span>
+</span><span id="__span-0-202"><a id="__codelineno-0-202" name="__codelineno-0-202"></a>
+</span><span id="__span-0-203"><a id="__codelineno-0-203" name="__codelineno-0-203"></a>        <span class="k">return</span> <span class="n">data</span>
 </span></code></pre></div></td></tr></table></div>
             </details>
 
@@ -2835,31 +2867,31 @@ The name is a simple name or identifier to be used for this resource.</p>
 
           <details class="quote">
             <summary>Source code in <code>dplib/models/resource/resource.py</code></summary>
-            <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-184">184</a></span>
-<span class="normal"><a href="#__codelineno-0-185">185</a></span>
-<span class="normal"><a href="#__codelineno-0-186">186</a></span>
-<span class="normal"><a href="#__codelineno-0-187">187</a></span>
-<span class="normal"><a href="#__codelineno-0-188">188</a></span>
-<span class="normal"><a href="#__codelineno-0-189">189</a></span>
-<span class="normal"><a href="#__codelineno-0-190">190</a></span>
-<span class="normal"><a href="#__codelineno-0-191">191</a></span>
+            <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-191">191</a></span>
 <span class="normal"><a href="#__codelineno-0-192">192</a></span>
 <span class="normal"><a href="#__codelineno-0-193">193</a></span>
 <span class="normal"><a href="#__codelineno-0-194">194</a></span>
 <span class="normal"><a href="#__codelineno-0-195">195</a></span>
-<span class="normal"><a href="#__codelineno-0-196">196</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-184"><a id="__codelineno-0-184" name="__codelineno-0-184"></a><span class="nd">@pydantic</span><span class="o">.</span><span class="n">model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;before&quot;</span><span class="p">)</span>
-</span><span id="__span-0-185"><a id="__codelineno-0-185" name="__codelineno-0-185"></a><span class="nd">@classmethod</span>
-</span><span id="__span-0-186"><a id="__codelineno-0-186" name="__codelineno-0-186"></a><span class="k">def</span> <span class="nf">compat</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">types</span><span class="o">.</span><span class="n">IDict</span><span class="p">):</span>
-</span><span id="__span-0-187"><a id="__codelineno-0-187" name="__codelineno-0-187"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
-</span><span id="__span-0-188"><a id="__codelineno-0-188" name="__codelineno-0-188"></a>        <span class="k">return</span> <span class="n">data</span>
-</span><span id="__span-0-189"><a id="__codelineno-0-189" name="__codelineno-0-189"></a>
-</span><span id="__span-0-190"><a id="__codelineno-0-190" name="__codelineno-0-190"></a>    <span class="c1"># resource.url</span>
-</span><span id="__span-0-191"><a id="__codelineno-0-191" name="__codelineno-0-191"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">):</span>
-</span><span id="__span-0-192"><a id="__codelineno-0-192" name="__codelineno-0-192"></a>        <span class="n">url</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-</span><span id="__span-0-193"><a id="__codelineno-0-193" name="__codelineno-0-193"></a>        <span class="k">if</span> <span class="n">url</span><span class="p">:</span>
-</span><span id="__span-0-194"><a id="__codelineno-0-194" name="__codelineno-0-194"></a>            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span>
-</span><span id="__span-0-195"><a id="__codelineno-0-195" name="__codelineno-0-195"></a>
-</span><span id="__span-0-196"><a id="__codelineno-0-196" name="__codelineno-0-196"></a>    <span class="k">return</span> <span class="n">data</span>
+<span class="normal"><a href="#__codelineno-0-196">196</a></span>
+<span class="normal"><a href="#__codelineno-0-197">197</a></span>
+<span class="normal"><a href="#__codelineno-0-198">198</a></span>
+<span class="normal"><a href="#__codelineno-0-199">199</a></span>
+<span class="normal"><a href="#__codelineno-0-200">200</a></span>
+<span class="normal"><a href="#__codelineno-0-201">201</a></span>
+<span class="normal"><a href="#__codelineno-0-202">202</a></span>
+<span class="normal"><a href="#__codelineno-0-203">203</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-191"><a id="__codelineno-0-191" name="__codelineno-0-191"></a><span class="nd">@pydantic</span><span class="o">.</span><span class="n">model_validator</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;before&quot;</span><span class="p">)</span>
+</span><span id="__span-0-192"><a id="__codelineno-0-192" name="__codelineno-0-192"></a><span class="nd">@classmethod</span>
+</span><span id="__span-0-193"><a id="__codelineno-0-193" name="__codelineno-0-193"></a><span class="k">def</span> <span class="nf">compat</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">types</span><span class="o">.</span><span class="n">IDict</span><span class="p">):</span>
+</span><span id="__span-0-194"><a id="__codelineno-0-194" name="__codelineno-0-194"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>  <span class="c1"># type: ignore</span>
+</span><span id="__span-0-195"><a id="__codelineno-0-195" name="__codelineno-0-195"></a>        <span class="k">return</span> <span class="n">data</span>
+</span><span id="__span-0-196"><a id="__codelineno-0-196" name="__codelineno-0-196"></a>
+</span><span id="__span-0-197"><a id="__codelineno-0-197" name="__codelineno-0-197"></a>    <span class="c1"># resource.url</span>
+</span><span id="__span-0-198"><a id="__codelineno-0-198" name="__codelineno-0-198"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">):</span>
+</span><span id="__span-0-199"><a id="__codelineno-0-199" name="__codelineno-0-199"></a>        <span class="n">url</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</span><span id="__span-0-200"><a id="__codelineno-0-200" name="__codelineno-0-200"></a>        <span class="k">if</span> <span class="n">url</span><span class="p">:</span>
+</span><span id="__span-0-201"><a id="__codelineno-0-201" name="__codelineno-0-201"></a>            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">url</span>
+</span><span id="__span-0-202"><a id="__codelineno-0-202" name="__codelineno-0-202"></a>
+</span><span id="__span-0-203"><a id="__codelineno-0-203" name="__codelineno-0-203"></a>    <span class="k">return</span> <span class="n">data</span>
 </span></code></pre></div></td></tr></table></div>
           </details>
   </div>
@@ -2922,7 +2954,7 @@ It will dereference all the resource's dialects and schemas</p>
 
 
 
-  <p><strong>Returns:</strong></p>
+  <p><span class="doc-section-title">Returns:</span></p>
   <table>
     <thead>
       <tr>
@@ -2931,7 +2963,7 @@ It will dereference all the resource's dialects and schemas</p>
       </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr class="doc-section-item">
           <td>
                 <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="dplib.models.dialect.Dialect" href="../dialect/#dplib.models.Dialect">Dialect</a>]</code>
           </td>
@@ -2988,7 +3020,7 @@ It will dereference all the resource's dialects and schemas</p>
 
 
 
-  <p><strong>Returns:</strong></p>
+  <p><span class="doc-section-title">Returns:</span></p>
   <table>
     <thead>
       <tr>
@@ -2997,7 +3029,7 @@ It will dereference all the resource's dialects and schemas</p>
       </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr class="doc-section-item">
           <td>
                 <code><span title="typing.Optional">Optional</span>[str]</code>
           </td>
@@ -3050,7 +3082,7 @@ It will dereference all the resource's dialects and schemas</p>
 
 
 
-  <p><strong>Returns:</strong></p>
+  <p><span class="doc-section-title">Returns:</span></p>
   <table>
     <thead>
       <tr>
@@ -3059,7 +3091,7 @@ It will dereference all the resource's dialects and schemas</p>
       </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr class="doc-section-item">
           <td>
                 <code><span title="typing.Optional">Optional</span>[<span title="dplib.models.resource.hash.Hash">Hash</span>]</code>
           </td>
@@ -3112,7 +3144,7 @@ It will dereference all the resource's dialects and schemas</p>
 
 
 
-  <p><strong>Returns:</strong></p>
+  <p><span class="doc-section-title">Returns:</span></p>
   <table>
     <thead>
       <tr>
@@ -3121,7 +3153,7 @@ It will dereference all the resource's dialects and schemas</p>
       </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr class="doc-section-item">
           <td>
                 <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="dplib.models.schema.Schema" href="../schema/#dplib.models.Schema">Schema</a>]</code>
           </td>
@@ -3178,7 +3210,7 @@ It will dereference all the resource's dialects and schemas</p>
 
 
 
-  <p><strong>Returns:</strong></p>
+  <p><span class="doc-section-title">Returns:</span></p>
   <table>
     <thead>
       <tr>
@@ -3187,7 +3219,7 @@ It will dereference all the resource's dialects and schemas</p>
       </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr class="doc-section-item">
           <td>
                 <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[str, <span title="dplib.types.IDict">IDict</span>]]</code>
           </td>
@@ -3215,6 +3247,34 @@ It will dereference all the resource's dialects and schemas</p>
 </span><span id="__span-0-136"><a id="__codelineno-0-136" name="__codelineno-0-136"></a><span class="sd">        Data or full path</span>
 </span><span id="__span-0-137"><a id="__codelineno-0-137" name="__codelineno-0-137"></a><span class="sd">    &quot;&quot;&quot;</span>
 </span><span id="__span-0-138"><a id="__codelineno-0-138" name="__codelineno-0-138"></a>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_fullpath</span><span class="p">()</span>
+</span></code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="dplib.models.Resource.to_dict" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">to_dict</span><span class="p">()</span></code>
+
+<a href="#dplib.models.Resource.to_dict" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+  <div class="doc doc-contents ">
+
+          <details class="quote">
+            <summary>Source code in <code>dplib/models/resource/resource.py</code></summary>
+            <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-184">184</a></span>
+<span class="normal"><a href="#__codelineno-0-185">185</a></span>
+<span class="normal"><a href="#__codelineno-0-186">186</a></span>
+<span class="normal"><a href="#__codelineno-0-187">187</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-184"><a id="__codelineno-0-184" name="__codelineno-0-184"></a><span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-185"><a id="__codelineno-0-185" name="__codelineno-0-185"></a>    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$schema&quot;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">PROFILE_CURRENT_RESOURCE</span><span class="p">}</span>
+</span><span id="__span-0-186"><a id="__codelineno-0-186" name="__codelineno-0-186"></a>    <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+</span><span id="__span-0-187"><a id="__codelineno-0-187" name="__codelineno-0-187"></a>    <span class="k">return</span> <span class="n">data</span>
 </span></code></pre></div></td></tr></table></div>
           </details>
   </div>

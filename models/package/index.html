@@ -799,6 +799,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#dplib.models.Package.to_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_dict
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1663,6 +1672,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#dplib.models.Package.to_dict" class="md-nav__link">
+    <span class="md-ellipsis">
+      to_dict
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2057,7 +2075,14 @@
 <span class="normal"><a href="#__codelineno-0-142">142</a></span>
 <span class="normal"><a href="#__codelineno-0-143">143</a></span>
 <span class="normal"><a href="#__codelineno-0-144">144</a></span>
-<span class="normal"><a href="#__codelineno-0-145">145</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="k">class</span> <span class="nc">Package</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+<span class="normal"><a href="#__codelineno-0-145">145</a></span>
+<span class="normal"><a href="#__codelineno-0-146">146</a></span>
+<span class="normal"><a href="#__codelineno-0-147">147</a></span>
+<span class="normal"><a href="#__codelineno-0-148">148</a></span>
+<span class="normal"><a href="#__codelineno-0-149">149</a></span>
+<span class="normal"><a href="#__codelineno-0-150">150</a></span>
+<span class="normal"><a href="#__codelineno-0-151">151</a></span>
+<span class="normal"><a href="#__codelineno-0-152">152</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="k">class</span> <span class="nc">Package</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
 </span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Data Package model&quot;&quot;&quot;</span>
 </span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a>
 </span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a>    <span class="n">profile</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">pydantic</span><span class="o">.</span><span class="n">Field</span><span class="p">(</span>
@@ -2188,6 +2213,13 @@
 </span><span id="__span-0-143"><a id="__codelineno-0-143" name="__codelineno-0-143"></a><span class="sd">        &quot;&quot;&quot;</span>
 </span><span id="__span-0-144"><a id="__codelineno-0-144" name="__codelineno-0-144"></a>        <span class="k">for</span> <span class="n">resource</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">resources</span><span class="p">:</span>
 </span><span id="__span-0-145"><a id="__codelineno-0-145" name="__codelineno-0-145"></a>            <span class="n">resource</span><span class="o">.</span><span class="n">dereference</span><span class="p">()</span>
+</span><span id="__span-0-146"><a id="__codelineno-0-146" name="__codelineno-0-146"></a>
+</span><span id="__span-0-147"><a id="__codelineno-0-147" name="__codelineno-0-147"></a>    <span class="c1"># Converters</span>
+</span><span id="__span-0-148"><a id="__codelineno-0-148" name="__codelineno-0-148"></a>
+</span><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149"></a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150"></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$schema&quot;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">PROFILE_CURRENT_PACKAGE</span><span class="p">}</span>
+</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151"></a>        <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152"></a>        <span class="k">return</span> <span class="n">data</span>
 </span></code></pre></div></td></tr></table></div>
             </details>
 
@@ -2559,7 +2591,7 @@ It should conform to the Semantic Versioning requirements</p>
 
 
 
-  <p><strong>Parameters:</strong></p>
+  <p><span class="doc-section-title">Parameters:</span></p>
   <table>
     <thead>
       <tr>
@@ -2570,7 +2602,7 @@ It should conform to the Semantic Versioning requirements</p>
       </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr class="doc-section-item">
           <td><code>resource</code></td>
           <td>
                 <code><a class="autorefs autorefs-internal" title="dplib.models.resource.Resource" href="../resource/#dplib.models.Resource">Resource</a></code>
@@ -2662,7 +2694,7 @@ It will dereference all the resource's dialects and schemas in the package.</p>
 
 
 
-  <p><strong>Parameters:</strong></p>
+  <p><span class="doc-section-title">Parameters:</span></p>
   <table>
     <thead>
       <tr>
@@ -2673,7 +2705,7 @@ It will dereference all the resource's dialects and schemas in the package.</p>
       </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr class="doc-section-item">
           <td><code>name</code></td>
           <td>
                 <code><span title="typing.Optional">Optional</span>[str]</code>
@@ -2687,7 +2719,7 @@ It will dereference all the resource's dialects and schemas in the package.</p>
                 <code>None</code>
           </td>
         </tr>
-        <tr>
+        <tr class="doc-section-item">
           <td><code>path</code></td>
           <td>
                 <code><span title="typing.Optional">Optional</span>[str]</code>
@@ -2706,7 +2738,7 @@ It will dereference all the resource's dialects and schemas in the package.</p>
 
 
 
-  <p><strong>Returns:</strong></p>
+  <p><span class="doc-section-title">Returns:</span></p>
   <table>
     <thead>
       <tr>
@@ -2715,7 +2747,7 @@ It will dereference all the resource's dialects and schemas in the package.</p>
       </tr>
     </thead>
     <tbody>
-        <tr>
+        <tr class="doc-section-item">
           <td>
                 <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="dplib.models.resource.Resource" href="../resource/#dplib.models.Resource">Resource</a>]</code>
           </td>
@@ -2789,6 +2821,34 @@ It will dereference all the resource's dialects and schemas in the package.</p>
 <span class="normal"><a href="#__codelineno-0-105">105</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-103"><a id="__codelineno-0-103" name="__codelineno-0-103"></a><span class="k">def</span> <span class="nf">model_post_init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
 </span><span id="__span-0-104"><a id="__codelineno-0-104" name="__codelineno-0-104"></a>    <span class="k">for</span> <span class="n">resource</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">resources</span><span class="p">:</span>
 </span><span id="__span-0-105"><a id="__codelineno-0-105" name="__codelineno-0-105"></a>        <span class="n">resource</span><span class="o">.</span><span class="n">basepath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">basepath</span>
+</span></code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="dplib.models.Package.to_dict" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">to_dict</span><span class="p">()</span></code>
+
+<a href="#dplib.models.Package.to_dict" class="headerlink" title="Permanent link">&para;</a></h4>
+
+
+  <div class="doc doc-contents ">
+
+          <details class="quote">
+            <summary>Source code in <code>dplib/models/package/package.py</code></summary>
+            <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-149">149</a></span>
+<span class="normal"><a href="#__codelineno-0-150">150</a></span>
+<span class="normal"><a href="#__codelineno-0-151">151</a></span>
+<span class="normal"><a href="#__codelineno-0-152">152</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-149"><a id="__codelineno-0-149" name="__codelineno-0-149"></a><span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-150"><a id="__codelineno-0-150" name="__codelineno-0-150"></a>    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;$schema&quot;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">PROFILE_CURRENT_PACKAGE</span><span class="p">}</span>
+</span><span id="__span-0-151"><a id="__codelineno-0-151" name="__codelineno-0-151"></a>    <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+</span><span id="__span-0-152"><a id="__codelineno-0-152" name="__codelineno-0-152"></a>    <span class="k">return</span> <span class="n">data</span>
 </span></code></pre></div></td></tr></table></div>
           </details>
   </div>
