@@ -4,12 +4,13 @@ from typing import List, Optional
 
 from dplib.system import Model
 
-from .creator import ZenodoCreator
+from .contributor import ZenodoContributor
 from .subject import ZenodoSubject
 
 
 class ZenodoMetadata(Model):
-    creators: List[ZenodoCreator] = []
+    creators: List[ZenodoContributor] = []
+    contributors: List[ZenodoContributor] = []
     description: Optional[str] = None
     publication_date: Optional[str] = None
     publisher: Optional[str] = None
