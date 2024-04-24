@@ -4,7 +4,7 @@ from typing import Dict, Optional
 
 import pydantic
 
-from dplib.models import Contributor, Package
+from dplib.models import Contributor, License, Package
 from dplib.system import Model
 
 from .contributor import ZenodoContributor, ZenodoContributorAffiliation
@@ -12,6 +12,7 @@ from .files import ZenodoFiles
 from .metadata import ZenodoMetadata
 from .pid import ZenodoPid
 from .resource import ZenodoResource
+from .right import ZenodoRight
 from .subject import ZenodoSubject
 
 # References:
@@ -68,14 +69,24 @@ class ZenodoPackage(Model):
         if self.links.get("self_html"):
             package.homepage = self.links.get("self_html")
 
+        # Keywords
+        for subject in self.metadata.subjects:
+            package.keywords.append(subject.subject)
+
         # Resources
         for entry in self.files.entries.values():
             resource = entry.to_dp()
             package.resources.append(resource)
 
-        # Keywords
-        for subject in self.metadata.subjects:
-            package.keywords.append(subject.subject)
+        # Licenses
+        for right in self.metadata.rights:
+            if right.id:
+                license = License(
+                    name=right.id,
+                    title=right.title.en,
+                    path=right.link or right.props.url,
+                )
+                package.licenses.append(license)
 
         # Contributors
         for type, items in [
@@ -124,16 +135,24 @@ class ZenodoPackage(Model):
         if package.version:
             zenodo.metadata.version = package.version
 
+        # Keywords
+        for keyword in package.keywords:
+            subject = ZenodoSubject(subject=keyword)
+            zenodo.metadata.subjects.append(subject)
+
         # Resources
         for resource in package.resources:
             entry = ZenodoResource.from_dp(resource)
             if entry:
                 zenodo.files.entries[entry.key] = entry
 
-        # Keywords
-        for keyword in package.keywords:
-            subject = ZenodoSubject(subject=keyword)
-            zenodo.metadata.subjects.append(subject)
+        # Licenses
+        for license in package.licenses:
+            right = ZenodoRight()
+            right.id = license.name
+            right.link = license.path
+            right.title.en = license.title
+            zenodo.metadata.rights.append(right)
 
         # Contributors
         for contributor in package.contributors:

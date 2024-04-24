@@ -22,7 +22,3 @@ class StringField(BaseField):
     type: Literal["string"] = "string"
     format: Optional[IStringFormat] = None
     constraints: StringConstraints = pydantic.Field(default_factory=StringConstraints)
-
-    @pydantic.field_serializer("type")
-    def serialize_type(self, value: str, info: Any):
-        return value
