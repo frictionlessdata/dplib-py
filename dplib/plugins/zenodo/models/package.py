@@ -75,8 +75,9 @@ class ZenodoPackage(Model):
 
         # Resources
         for entry in self.files.entries.values():
-            resource = entry.to_dp()
-            package.resources.append(resource)
+            if self.id:
+                resource = entry.to_dp(package_id=self.id)
+                package.resources.append(resource)
 
         # Licenses
         for right in self.metadata.rights:

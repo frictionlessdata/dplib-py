@@ -51,13 +51,18 @@ def test_zenodo_package_to_dp():
     ]
     assert len(package.resources) == 2
     assert package.resources[0].name == "fishway_obstruction_data_v1"
-    assert package.resources[0].path == "Fishway_Obstruction_Data_v1.csv"
+    assert (
+        package.resources[0].path
+        == "https://zenodo.org/records/5770714/files/Fishway_Obstruction_Data_v1.csv"
+    )
     assert package.resources[0].format == "csv"
     assert package.resources[0].mediatype == "text/csv"
     assert package.resources[0].bytes == 1377
     assert package.resources[0].hash == "7bdef6756c84c3aea749f8211c557684"
     assert package.resources[1].name == "readme"
-    assert package.resources[1].path == "readme.md"
+    assert (
+        package.resources[1].path == "https://zenodo.org/records/5770714/files/readme.md"
+    )
     assert package.resources[1].format == "md"
     assert package.resources[1].mediatype == "application/octet-stream"
     assert package.resources[1].bytes == 1577
