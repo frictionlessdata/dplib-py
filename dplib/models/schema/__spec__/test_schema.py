@@ -1,6 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
+from dplib import settings
 from dplib.models import IntegerField, Schema
 
 
@@ -69,13 +70,6 @@ def test_schema_get_field():
     assert field.type == "integer"
 
 
-def test_schema_to_dict():
-    schema = Schema()
-    assert schema.to_dict() == {}
-    schema.missingValues.append("x")
-    assert schema.to_dict() == {"missingValues": ["", "x"]}
-
-
 def test_schema_primary_key_v1():
     schema = Schema.from_dict({"primaryKey": "name"})
     assert schema.primaryKey == ["name"]
@@ -87,3 +81,34 @@ def test_schema_foreign_keys_v1():
     )
     assert schema.foreignKeys[0].fields == ["name"]
     assert schema.foreignKeys[0].reference.fields == ["name"]
+
+
+def test_schema_to_dict():
+    schema = Schema()
+    assert schema.to_dict() == {
+        "$schema": settings.PROFILE_CURRENT_SCHEMA,
+    }
+    schema.missingValues.append("x")
+    assert schema.to_dict() == {
+        "$schema": settings.PROFILE_CURRENT_SCHEMA,
+        "missingValues": ["", "x"],
+    }
+    schema.profile = settings.PROFILE_DEFAULT_SCHEMA
+    assert schema.to_dict() == {
+        "$schema": settings.PROFILE_DEFAULT_SCHEMA,
+        "missingValues": ["", "x"],
+    }
+
+
+def test_schema_to_dict_with_fields():
+    schema = Schema()
+    schema.add_field(IntegerField(name="name"))
+    assert schema.to_dict() == {
+        "$schema": settings.PROFILE_CURRENT_SCHEMA,
+        "fields": [
+            {
+                "name": "name",
+                "type": "integer",
+            }
+        ],
+    }

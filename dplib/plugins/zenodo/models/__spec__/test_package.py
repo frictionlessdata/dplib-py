@@ -27,14 +27,14 @@ def test_zenodo_package_to_dp():
     assert package.title == "Fishway_Obstruction_Data_v1.csv"
     assert package.description
     assert package.description.startswith("<p>This dataset contains pool-weir")
-    assert package.homepage == "https://zenodo.org/api/records/5770714"
+    assert package.homepage == "https://zenodo.org/records/5770714"
     assert package.version == "v1"
     assert package.created == "2021-12-10T05:47:07.709885+00:00"
     assert len(package.contributors) == 1
     assert package.contributors[0].title == "Fuentes-Pérez, Juan Francisco"
     assert package.contributors[0].givenName == "Juan Francisco"
     assert package.contributors[0].familyName == "Fuentes-Pérez"
-    assert package.contributors[0].roles == ["personal"]
+    assert package.contributors[0].roles == ["creator"]
     assert (
         package.contributors[0].organization
         == "Department of Hydraulics and Hydrology, ETSIIAA, University of Valladolid, 34004 Palencia, Spain"
@@ -51,13 +51,18 @@ def test_zenodo_package_to_dp():
     ]
     assert len(package.resources) == 2
     assert package.resources[0].name == "fishway_obstruction_data_v1"
-    assert package.resources[0].path == "Fishway_Obstruction_Data_v1.csv"
+    assert (
+        package.resources[0].path
+        == "https://zenodo.org/records/5770714/files/Fishway_Obstruction_Data_v1.csv"
+    )
     assert package.resources[0].format == "csv"
     assert package.resources[0].mediatype == "text/csv"
     assert package.resources[0].bytes == 1377
     assert package.resources[0].hash == "7bdef6756c84c3aea749f8211c557684"
     assert package.resources[1].name == "readme"
-    assert package.resources[1].path == "readme.md"
+    assert (
+        package.resources[1].path == "https://zenodo.org/records/5770714/files/readme.md"
+    )
     assert package.resources[1].format == "md"
     assert package.resources[1].mediatype == "application/octet-stream"
     assert package.resources[1].bytes == 1577

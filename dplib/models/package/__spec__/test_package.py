@@ -1,6 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
+from dplib import settings
 from dplib.models import Dialect, Package, Resource, Schema
 
 
@@ -108,3 +109,20 @@ def test_package_contributors_role_v1():
     package = Package.from_dict({"contributors": [{"role": "author"}]})
     assert package.contributors[0].custom == {}
     assert package.contributors[0].roles == ["author"]
+
+
+def test_package_to_dict():
+    package = Package()
+    assert package.to_dict() == {
+        "$schema": settings.PROFILE_CURRENT_PACKAGE,
+    }
+    package.add_resource(Resource(name="name"))
+    assert package.to_dict() == {
+        "$schema": settings.PROFILE_CURRENT_PACKAGE,
+        "resources": [{"name": "name"}],
+    }
+    package.profile = settings.PROFILE_DEFAULT_PACKAGE
+    assert package.to_dict() == {
+        "$schema": settings.PROFILE_DEFAULT_PACKAGE,
+        "resources": [{"name": "name"}],
+    }

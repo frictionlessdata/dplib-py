@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from typing import Optional
 
 from dplib.helpers.resource import slugify_name
@@ -19,13 +20,16 @@ class ZenodoResource(Model):
 
     # Converters
 
-    def to_dp(self) -> Resource:
+    def to_dp(self, *, package_id: str) -> Resource:
         """Convert to Data Package resource
 
         Returns:
            Data Resource
         """
-        resource = Resource(path=self.key, name=slugify_name(self.key))
+        resource = Resource(
+            path=f"https://zenodo.org/records/{package_id}/files/{self.key}",
+            name=slugify_name(self.key),
+        )
 
         # Format
         if self.ext:
@@ -43,6 +47,10 @@ class ZenodoResource(Model):
         if self.checksum:
             resource.hash = self.checksum.replace("md5:", "")
 
+        # Custom
+        if self.id:
+            resource.custom["zenodo:id"] = self.id
+
         return resource
 
     @classmethod
@@ -59,7 +67,7 @@ class ZenodoResource(Model):
             return
 
         # Path
-        zenodo = ZenodoResource(key=resource.path)
+        zenodo = ZenodoResource(key=os.path.basename(resource.path))
 
         # Format
         if resource.format:

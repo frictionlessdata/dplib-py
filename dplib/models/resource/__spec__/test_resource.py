@@ -3,6 +3,7 @@ from pathlib import Path
 import pytest
 from pydantic import ValidationError
 
+from dplib import settings
 from dplib.models import Dialect, Resource, Schema
 
 
@@ -120,3 +121,20 @@ def test_resource_contributors_role_v1():
     resource = Resource.from_dict({"contributors": [{"role": "author"}]})
     assert resource.contributors[0].custom == {}
     assert resource.contributors[0].roles == ["author"]
+
+
+def test_resource_to_dict():
+    resource = Resource()
+    assert resource.to_dict() == {
+        "$schema": settings.PROFILE_CURRENT_RESOURCE,
+    }
+    resource.name = "name"
+    assert resource.to_dict() == {
+        "$schema": settings.PROFILE_CURRENT_RESOURCE,
+        "name": "name",
+    }
+    resource.profile = settings.PROFILE_DEFAULT_RESOURCE
+    assert resource.to_dict() == {
+        "$schema": settings.PROFILE_DEFAULT_RESOURCE,
+        "name": "name",
+    }

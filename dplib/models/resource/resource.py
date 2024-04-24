@@ -179,6 +179,13 @@ class Resource(Model):
         if isinstance(self.schema, str):
             self.schema = Schema.from_path(self.schema, basepath=self.basepath)  # type: ignore
 
+    # Converters
+
+    def to_dict(self):
+        data = {"$schema": settings.PROFILE_CURRENT_RESOURCE}
+        data.update(super().to_dict())
+        return data
+
     # Compat
 
     @pydantic.model_validator(mode="before")

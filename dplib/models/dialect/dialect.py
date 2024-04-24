@@ -124,3 +124,8 @@ class Dialect(Model):
     """
     This property specifies a sheet name of a table in the spreadsheet file.
     """
+
+    def to_dict(self):
+        data = {"$schema": settings.PROFILE_CURRENT_DIALECT}
+        data.update(super().to_dict())
+        return data
