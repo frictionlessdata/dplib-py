@@ -10,24 +10,24 @@ from .file import read_file, write_file
 from .path import infer_format
 
 
-def read_data(
+def read_dict(
     path: str, *, format: Optional[str] = None, basepath: Optional[str] = None
 ) -> types.IDict:
     if not format:
         format = infer_format(path, raise_missing=True)
     text = read_file(path, basepath=basepath)
-    data = load_data(text, format=format)
+    data = load_dict(text, format=format)
     return data
 
 
-def write_data(path: str, data: types.IDict, *, format: Optional[str] = None):
+def write_dict(path: str, data: types.IDict, *, format: Optional[str] = None):
     if not format:
         format = infer_format(path, raise_missing=True)
-    text = dump_data(data, format=format)
+    text = dump_dict(data, format=format)
     write_file(path, text)
 
 
-def load_data(text: str, *, format: str) -> types.IDict:
+def load_dict(text: str, *, format: str) -> types.IDict:
     try:
         if format == "json":
             return json.loads(text)
@@ -39,7 +39,7 @@ def load_data(text: str, *, format: str) -> types.IDict:
     raise Error(f"Cannot load data from text with format: {format}")
 
 
-def dump_data(data: types.IDict, *, format: str) -> str:
+def dump_dict(data: types.IDict, *, format: str) -> str:
     try:
         if format == "json":
             return json.dumps(data, indent=2)
@@ -51,13 +51,13 @@ def dump_data(data: types.IDict, *, format: str) -> str:
     raise Error(f"Cannot dump data to text with format: {format}")
 
 
-def clean_data(data: types.IDict):
+def clean_dict(data: types.IDict):
     for key, value in list(data.items()):
         if isinstance(value, dict):
-            clean_data(value)  # type: ignore
+            clean_dict(value)  # type: ignore
         elif isinstance(value, list):
             for item in value:  # type: ignore
                 if isinstance(item, dict):
-                    clean_data(item)  # type: ignore
+                    clean_dict(item)  # type: ignore
         if value is None or value == [] or value == {}:
             data.pop(key)

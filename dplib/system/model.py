@@ -9,7 +9,7 @@ from typing_extensions import Self
 
 from .. import types
 from ..error import Error
-from ..helpers.data import clean_data, dump_data, load_data
+from ..helpers.dict import clean_dict, dump_dict, load_dict
 from ..helpers.file import read_file, write_file
 from ..helpers.path import ensure_basepath, infer_format
 
@@ -48,19 +48,19 @@ class Model(BaseModel, extra="allow", validate_assignment=True):
 
     def to_text(self, *, format: str) -> str:
         data = self.to_dict()
-        text = dump_data(data, format=format)
+        text = dump_dict(data, format=format)
         return text
 
     @classmethod
     def from_text(cls, text: str, *, format: str, basepath: Optional[str] = None) -> Self:
-        data = load_data(text, format=format)
+        data = load_dict(text, format=format)
         return cls.from_dict(data, basepath=basepath)
 
     def to_dict(self):
         data = self.model_dump(
             mode="json", by_alias=True, exclude_none=True, exclude_defaults=True
         )
-        clean_data(data)
+        clean_dict(data)
         return data
 
     @classmethod

@@ -6,6 +6,7 @@ import pydantic
 
 from ... import settings, types
 from ...helpers.file import join_basepath
+from ...helpers.path import assert_safe_path
 from ...system import Model
 from ..contributor import Contributor
 from ..dialect import Dialect
@@ -175,8 +176,10 @@ class Resource(Model):
         It will dereference all the resource's dialects and schemas
         """
         if isinstance(self.dialect, str):
+            assert_safe_path(self.dialect, basepath=self.basepath)
             self.dialect = Dialect.from_path(self.dialect, basepath=self.basepath)
         if isinstance(self.schema, str):
+            assert_safe_path(self.schema, basepath=self.basepath)
             self.schema = Schema.from_path(self.schema, basepath=self.basepath)  # type: ignore
 
     # Converters
