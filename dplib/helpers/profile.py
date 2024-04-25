@@ -9,7 +9,7 @@ from jsonschema.validators import validator_for  # type: ignore
 from .. import settings, types
 from ..error import Error
 from ..errors.metadata import MetadataError
-from .data import load_data
+from .dict import load_dict
 from .file import read_file
 from .path import is_url
 
@@ -46,7 +46,7 @@ def read_profile(*, profile: str) -> types.IDict:
     # Read jsonSchema
     try:
         text = read_file(profile)
-        data = load_data(text, format="json")
+        data = load_dict(text, format="json")
     except Exception:
         raise Error(f'Profile MUST be resolvable: "{profile}"')
 

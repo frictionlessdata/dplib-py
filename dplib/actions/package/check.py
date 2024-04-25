@@ -4,7 +4,7 @@ from typing import List, Union
 
 from ... import types
 from ...errors.metadata import MetadataError
-from ...helpers.data import read_data
+from ...helpers.dict import read_dict
 from ...helpers.path import infer_basepath
 from ...models import Package
 from ..metadata.check import check_metadata
@@ -25,7 +25,7 @@ def check_package(package: Union[str, types.IDict, Package]) -> List[MetadataErr
     basepath = None
     if isinstance(package, str):
         basepath = infer_basepath(package)
-        package = read_data(package)
+        package = read_dict(package)
     if isinstance(package, Package):
         basepath = package.basepath
         package = package.to_dict()
@@ -38,7 +38,7 @@ def check_package(package: Union[str, types.IDict, Package]) -> List[MetadataErr
             for type in ["dialect", "schema"]:
                 value = resource.get(type)  # type: ignore
                 if isinstance(value, str):
-                    metadata = read_data(value, basepath=basepath)
+                    metadata = read_dict(value, basepath=basepath)
                     errors.extend(check_metadata(metadata, type=type))  # type: ignore
 
     return errors
