@@ -11,11 +11,12 @@ from ..error import Error
 from ..errors.metadata import MetadataError
 from .data import load_data
 from .file import read_file
+from .path import is_url
 
 # TODO: implement additional user-side profile caching
 
 
-def check_profile(*, metadata: types.IDict, profile: str) -> List[MetadataError]:
+def check_against_profile(*, metadata: types.IDict, profile: str) -> List[MetadataError]:
     # Prepare validator
     jsonSchema = read_profile(profile=profile)
     Validator = validator_for(jsonSchema)  # type: ignore
@@ -38,12 +39,23 @@ def read_profile(*, profile: str) -> types.IDict:
         version, filename = parts
         profile = os.path.join(settings.PROFILE_BASEDIR, version, filename)
 
+    # Ensure profile is URL
+    if not is_url(profile):
+        raise Error(f'Profile MUST be a URL: "{profile}"')
+
     # Read jsonSchema
     try:
         text = read_file(profile)
         data = load_data(text, format="json")
     except Exception:
-        raise Error(f'Cannot read profile: "{profile}"')
+        raise Error(f'Profile MUST be resolvable: "{profile}"')
+
+    # Validate jsonSchema
+    try:
+        Validator = validator_for(data)  # type: ignore
+        Validator.check_schema(data)  # type: ignore
+    except Exception:
+        raise Error(f'Profile MUST resolve to a valid JSON Schema: "{profile}"')
 
     return data
 

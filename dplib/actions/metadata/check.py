@@ -5,7 +5,7 @@ from typing import List, Union
 from ... import settings, types
 from ...errors.metadata import MetadataError
 from ...helpers.data import read_data
-from ...helpers.profile import check_profile
+from ...helpers.profile import check_against_profile
 
 
 def check_metadata(
@@ -28,6 +28,6 @@ def check_metadata(
 
     # Validate metadata
     profile = metadata.get("$schema", default_profile)
-    errors = check_profile(metadata=metadata, profile=profile)
+    errors = check_against_profile(metadata=metadata, profile=profile)
 
     return errors
