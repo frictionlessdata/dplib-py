@@ -52,9 +52,10 @@ def is_url_path(path: str) -> bool:
 
 def assert_safe_path(path: str, *, basepath: Optional[str] = None):
     """Assert that the path (untrusted) is not outside the basepath (trusted)"""
-    try:
-        root = Path(basepath or os.getcwd()).resolve()
-        item = root.joinpath(path).resolve()
-        item.relative_to(root)
-    except Exception:
-        raise Error(f"Path is not safe: {path}")
+    if not is_url_path(path):
+        try:
+            root = Path(basepath or os.getcwd()).resolve()
+            item = root.joinpath(path).resolve()
+            item.relative_to(root)
+        except Exception:
+            raise Error(f"Path is not safe: {path}")
