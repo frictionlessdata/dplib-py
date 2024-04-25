@@ -21,7 +21,7 @@ def infer_format(path: str, *, raise_missing: bool = False):
 
 def infer_basepath(path: str):
     basepath = os.path.dirname(path)
-    if basepath and not is_url(basepath):
+    if basepath and not is_url_path(basepath):
         if not os.path.abspath(basepath):
             basepath = os.path.relpath(basepath, start=os.getcwd())
     return basepath
@@ -38,13 +38,13 @@ def ensure_basepath(path: str, basepath: Optional[str] = None) -> Tuple[str, str
 def join_basepath(path: str, basepath: Optional[str] = None) -> str:
     if not basepath:
         return path
-    if is_url(path):
+    if is_url_path(path):
         return path
-    if is_url(basepath):
+    if is_url_path(basepath):
         return f"{basepath}/{path}"
     return os.path.join(basepath, path)
 
 
-def is_url(path: str) -> bool:
+def is_url_path(path: str) -> bool:
     scheme = urlparse(path).scheme
     return scheme in ["http", "https"]
