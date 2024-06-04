@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../../assets/favicon.ico">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.19">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.25">
     
     
       
@@ -30,7 +30,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -1402,22 +1402,22 @@
 
 
 <h3 id="dplib.plugins.sql.models.SqlSchema" class="doc doc-heading">
-          <code>dplib.plugins.sql.models.SqlSchema</code>
+            <code>dplib.plugins.sql.models.SqlSchema</code>
 
 
 <a href="#dplib.plugins.sql.models.SqlSchema" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents first">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="dplib.system.Model">Model</span></code></p>
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="dplib.system.Model">Model</span></code></p>
 
-  
+
       <p>SQL Schema model</p>
 
-            <details class="quote">
-              <summary>Source code in <code>dplib/plugins/sql/models/schema.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-15"> 15</a></span>
+              <details class="quote">
+                <summary>Source code in <code>dplib/plugins/sql/models/schema.py</code></summary>
+                <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-15"> 15</a></span>
 <span class="normal"><a href="#__codelineno-0-16"> 16</a></span>
 <span class="normal"><a href="#__codelineno-0-17"> 17</a></span>
 <span class="normal"><a href="#__codelineno-0-18"> 18</a></span>
@@ -1653,9 +1653,9 @@
 </span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131"></a>        <span class="n">table</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span><span class="n">table_name</span><span class="p">,</span> <span class="n">sa</span><span class="o">.</span><span class="n">MetaData</span><span class="p">(),</span> <span class="o">*</span><span class="p">(</span><span class="n">columns</span> <span class="o">+</span> <span class="n">constraints</span><span class="p">))</span>
 </span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132"></a>        <span class="k">return</span> <span class="n">SqlSchema</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="n">table</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1670,8 +1670,8 @@
 
 
 <h4 id="dplib.plugins.sql.models.SqlSchema.table" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">table</span><span class="p">:</span> <span class="n">Table</span></code>
-  
+            <code class="highlight language-python"><span class="n">table</span><span class="p">:</span> <span class="n">Table</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
@@ -1679,21 +1679,19 @@
 <a href="#dplib.plugins.sql.models.SqlSchema.table" class="headerlink" title="Permanent link">&para;</a></h4>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
-
 
 
 
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="dplib.plugins.sql.models.SqlSchema.from_dp" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">from_dp</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">dialect</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">DEFAULT_DIALECT</span><span class="p">,</span> <span class="n">with_metadata</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">from_dp</span><span class="p">(</span><span class="n">schema</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">dialect</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">DEFAULT_DIALECT</span><span class="p">,</span> <span class="n">with_metadata</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
   </span>
@@ -1701,109 +1699,107 @@
 <a href="#dplib.plugins.sql.models.SqlSchema.from_dp" class="headerlink" title="Permanent link">&para;</a></h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Create SQL Schema from Table Schema</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>schema</code></td>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="dplib.models.Schema" href="../../models/schema/#dplib.models.Schema">Schema</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Table Schema</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>table_name</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>SQL table name</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>dialect</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>SQL dialect</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="dplib.plugins.sql.models.settings.DEFAULT_DIALECT">DEFAULT_DIALECT</span></code>
-          </td>
-        </tr>
-        <tr class="doc-section-item">
-          <td><code>with_metadata</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Include metadata columns</p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>schema</code></td>
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="dplib.models.Schema" href="../../models/schema/#dplib.models.Schema">Schema</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Table Schema</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>table_name</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>SQL table name</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>dialect</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>SQL dialect</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="dplib.plugins.sql.models.settings.DEFAULT_DIALECT">DEFAULT_DIALECT</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>with_metadata</code></td>
+            <td>
+                  <code>bool</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Include metadata columns</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><a class="autorefs autorefs-internal" title="dplib.plugins.sql.models.schema.SqlSchema" href="#dplib.plugins.sql.models.SqlSchema">SqlSchema</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>SQL Schema</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="dplib.plugins.sql.models.schema.SqlSchema" href="#dplib.plugins.sql.models.SqlSchema">SqlSchema</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>SQL Schema</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>dplib/plugins/sql/models/schema.py</code></summary>
-            <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-78"> 78</a></span>
+            <details class="quote">
+              <summary>Source code in <code>dplib/plugins/sql/models/schema.py</code></summary>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-78"> 78</a></span>
 <span class="normal"><a href="#__codelineno-0-79"> 79</a></span>
 <span class="normal"><a href="#__codelineno-0-80"> 80</a></span>
 <span class="normal"><a href="#__codelineno-0-81"> 81</a></span>
@@ -1913,29 +1909,27 @@
 </span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131"></a>    <span class="n">table</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span><span class="n">table_name</span><span class="p">,</span> <span class="n">sa</span><span class="o">.</span><span class="n">MetaData</span><span class="p">(),</span> <span class="o">*</span><span class="p">(</span><span class="n">columns</span> <span class="o">+</span> <span class="n">constraints</span><span class="p">))</span>
 </span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132"></a>    <span class="k">return</span> <span class="n">SqlSchema</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="n">table</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="dplib.plugins.sql.models.SqlSchema.get_field_names" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">get_field_names</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">get_field_names</span><span class="p">()</span></code>
 
 <a href="#dplib.plugins.sql.models.SqlSchema.get_field_names" class="headerlink" title="Permanent link">&para;</a></h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Get field names</p>
 
-          <details class="quote">
-            <summary>Source code in <code>dplib/plugins/sql/models/schema.py</code></summary>
-            <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-22">22</a></span>
+            <details class="quote">
+              <summary>Source code in <code>dplib/plugins/sql/models/schema.py</code></summary>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-22">22</a></span>
 <span class="normal"><a href="#__codelineno-0-23">23</a></span>
 <span class="normal"><a href="#__codelineno-0-24">24</a></span>
 <span class="normal"><a href="#__codelineno-0-25">25</a></span>
@@ -1947,29 +1941,27 @@
 </span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a>        <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">column</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 </span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a>    <span class="k">return</span> <span class="n">names</span>
 </span></code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="dplib.plugins.sql.models.SqlSchema.get_field_types" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">get_field_types</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">get_field_types</span><span class="p">()</span></code>
 
 <a href="#dplib.plugins.sql.models.SqlSchema.get_field_types" class="headerlink" title="Permanent link">&para;</a></h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Get field types</p>
 
-          <details class="quote">
-            <summary>Source code in <code>dplib/plugins/sql/models/schema.py</code></summary>
-            <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-29">29</a></span>
+            <details class="quote">
+              <summary>Source code in <code>dplib/plugins/sql/models/schema.py</code></summary>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-29">29</a></span>
 <span class="normal"><a href="#__codelineno-0-30">30</a></span>
 <span class="normal"><a href="#__codelineno-0-31">31</a></span>
 <span class="normal"><a href="#__codelineno-0-32">32</a></span>
@@ -1981,53 +1973,50 @@
 </span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a>        <span class="n">types</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">column</span><span class="o">.</span><span class="n">type</span><span class="p">))</span>
 </span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34"></a>    <span class="k">return</span> <span class="n">types</span>
 </span></code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="dplib.plugins.sql.models.SqlSchema.to_dp" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">to_dp</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">with_metadata</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">to_dp</span><span class="p">(</span><span class="o">*</span><span class="p">,</span> <span class="n">with_metadata</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 <a href="#dplib.plugins.sql.models.SqlSchema.to_dp" class="headerlink" title="Permanent link">&para;</a></h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Convert to Table Schema</p>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><a class="autorefs autorefs-internal" title="dplib.models.Schema" href="../../models/schema/#dplib.models.Schema">Schema</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Table Schema</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="dplib.models.Schema" href="../../models/schema/#dplib.models.Schema">Schema</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Table Schema</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>dplib/plugins/sql/models/schema.py</code></summary>
-            <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-38">38</a></span>
+            <details class="quote">
+              <summary>Source code in <code>dplib/plugins/sql/models/schema.py</code></summary>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-38">38</a></span>
 <span class="normal"><a href="#__codelineno-0-39">39</a></span>
 <span class="normal"><a href="#__codelineno-0-40">40</a></span>
 <span class="normal"><a href="#__codelineno-0-41">41</a></span>
@@ -2105,8 +2094,8 @@
 </span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75"></a>
 </span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76"></a>    <span class="k">return</span> <span class="n">schema</span>
 </span></code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -2114,8 +2103,7 @@
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -2124,22 +2112,22 @@
 
 
 <h3 id="dplib.plugins.sql.models.SqlField" class="doc doc-heading">
-          <code>dplib.plugins.sql.models.SqlField</code>
+            <code>dplib.plugins.sql.models.SqlField</code>
 
 
 <a href="#dplib.plugins.sql.models.SqlField" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents first">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="dplib.system.Model">Model</span></code></p>
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="dplib.system.Model">Model</span></code></p>
 
-  
+
       <p>SQL Field model</p>
 
-            <details class="quote">
-              <summary>Source code in <code>dplib/plugins/sql/models/field.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-19"> 19</a></span>
+              <details class="quote">
+                <summary>Source code in <code>dplib/plugins/sql/models/field.py</code></summary>
+                <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-19"> 19</a></span>
 <span class="normal"><a href="#__codelineno-0-20"> 20</a></span>
 <span class="normal"><a href="#__codelineno-0-21"> 21</a></span>
 <span class="normal"><a href="#__codelineno-0-22"> 22</a></span>
@@ -2479,9 +2467,9 @@
 </span><span id="__span-0-187"><a id="__codelineno-0-187" name="__codelineno-0-187"></a>        <span class="n">column</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="o">*</span><span class="n">column_args</span><span class="p">,</span> <span class="o">**</span><span class="n">column_kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 </span><span id="__span-0-188"><a id="__codelineno-0-188" name="__codelineno-0-188"></a>        <span class="k">return</span> <span class="n">SqlField</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="n">column</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -2496,8 +2484,8 @@
 
 
 <h4 id="dplib.plugins.sql.models.SqlField.column" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">column</span><span class="p">:</span> <span class="n">Column</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span></code>
-  
+            <code class="highlight language-python"><span class="n">column</span><span class="p">:</span> <span class="n">Column</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
@@ -2505,21 +2493,19 @@
 <a href="#dplib.plugins.sql.models.SqlField.column" class="headerlink" title="Permanent link">&para;</a></h4>
 
 
-  <div class="doc doc-contents ">
-  </div>
+    <div class="doc doc-contents ">
+    </div>
 
 </div>
-
 
 
 
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="dplib.plugins.sql.models.SqlField.from_dp" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">from_dp</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">dialect</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">DEFAULT_DIALECT</span><span class="p">,</span> <span class="n">table_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
-  
+            <code class="highlight language-python"><span class="n">from_dp</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">dialect</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">DEFAULT_DIALECT</span><span class="p">,</span> <span class="n">table_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-classmethod"><code>classmethod</code></small>
   </span>
@@ -2527,95 +2513,93 @@
 <a href="#dplib.plugins.sql.models.SqlField.from_dp" class="headerlink" title="Permanent link">&para;</a></h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Create SQL Field from Table Schema Field</p>
 
 
-
-  <p><span class="doc-section-title">Parameters:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td><code>field</code></td>
-          <td>
-                <code><span title="dplib.models.IField">IField</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Table Schema Field</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>dialect</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>SQL dialect</p>
-            </div>
-          </td>
-          <td>
-                <code><span title="dplib.plugins.sql.models.settings.DEFAULT_DIALECT">DEFAULT_DIALECT</span></code>
-          </td>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>field</code></td>
+            <td>
+                  <code><span title="dplib.models.IField">IField</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Table Schema Field</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>dialect</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>SQL dialect</p>
+              </div>
+            </td>
+            <td>
+                  <code><span title="dplib.plugins.sql.models.settings.DEFAULT_DIALECT">DEFAULT_DIALECT</span></code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code>table_name</code></td>
+            <td>
+                  <code><span title="typing.Optional">Optional</span>[str]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>SQL table name</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr class="doc-section-item">
-          <td><code>table_name</code></td>
-          <td>
-                <code><span title="typing.Optional">Optional</span>[str]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>SQL table name</p>
-            </div>
-          </td>
-          <td>
-                <code>None</code>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="dplib.plugins.sql.models.field.SqlField" href="#dplib.plugins.sql.models.SqlField">SqlField</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>SQL Field</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><a class="autorefs autorefs-internal" title="dplib.plugins.sql.models.field.SqlField" href="#dplib.plugins.sql.models.SqlField">SqlField</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>SQL Field</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
-
-          <details class="quote">
-            <summary>Source code in <code>dplib/plugins/sql/models/field.py</code></summary>
-            <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-76"> 76</a></span>
+            <details class="quote">
+              <summary>Source code in <code>dplib/plugins/sql/models/field.py</code></summary>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-76"> 76</a></span>
 <span class="normal"><a href="#__codelineno-0-77"> 77</a></span>
 <span class="normal"><a href="#__codelineno-0-78"> 78</a></span>
 <span class="normal"><a href="#__codelineno-0-79"> 79</a></span>
@@ -2841,53 +2825,50 @@
 </span><span id="__span-0-187"><a id="__codelineno-0-187" name="__codelineno-0-187"></a>    <span class="n">column</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="o">*</span><span class="n">column_args</span><span class="p">,</span> <span class="o">**</span><span class="n">column_kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore</span>
 </span><span id="__span-0-188"><a id="__codelineno-0-188" name="__codelineno-0-188"></a>    <span class="k">return</span> <span class="n">SqlField</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="n">column</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h4 id="dplib.plugins.sql.models.SqlField.to_dp" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">to_dp</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="n">to_dp</span><span class="p">()</span></code>
 
 <a href="#dplib.plugins.sql.models.SqlField.to_dp" class="headerlink" title="Permanent link">&para;</a></h4>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Convert to Table Schema Field</p>
 
 
-
-  <p><span class="doc-section-title">Returns:</span></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-        <tr class="doc-section-item">
-          <td>
-                <code><span title="dplib.models.IField">IField</span></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Table Schema Field</p>
-            </div>
-          </td>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="dplib.models.IField">IField</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Table Schema Field</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>dplib/plugins/sql/models/field.py</code></summary>
-            <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-26">26</a></span>
+            <details class="quote">
+              <summary>Source code in <code>dplib/plugins/sql/models/field.py</code></summary>
+              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-26">26</a></span>
 <span class="normal"><a href="#__codelineno-0-27">27</a></span>
 <span class="normal"><a href="#__codelineno-0-28">28</a></span>
 <span class="normal"><a href="#__codelineno-0-29">29</a></span>
@@ -2985,8 +2966,8 @@
 </span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73"></a>
 </span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74"></a>    <span class="k">return</span> <span class="n">field</span>
 </span></code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -2994,8 +2975,7 @@
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -3119,7 +3099,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.dd8806f2.min.js"></script>
+      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
       
     
   </body>
