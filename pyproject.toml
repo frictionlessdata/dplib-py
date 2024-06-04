@@ -61,7 +61,6 @@ dev = [
     "pytest-cov",
     "pytest-vcr",
     "pytest-mock",
-    "pytest-only",
     "pytest-dotenv",
     "pytest-timeout",
     "pytest-lazy-fixtures",
