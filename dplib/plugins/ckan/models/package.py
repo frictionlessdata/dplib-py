@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import List, Optional
 
+from dplib.helpers.datetime import add_timezone_infromation
 from dplib.models import Contributor, License, Package
 from dplib.system import Model
 
@@ -65,7 +66,7 @@ class CkanPackage(Model):
 
         # Created
         if self.metadata_created:
-            package.created = self.metadata_created
+            package.created = add_timezone_infromation(self.metadata_created)
 
         # License
         if self.license_id:
