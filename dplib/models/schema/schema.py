@@ -7,6 +7,7 @@ import pydantic
 from ... import settings, types
 from ...system import Model
 from ..field import IField
+from ..missingValues import IMissingValues
 from .foreignKey import ForeignKey
 from .types import IFieldsMatch
 
@@ -42,7 +43,7 @@ class Schema(Model):
     are defined by the fieldsMatch property.
     """
 
-    missingValues: List[str] = [""]
+    missingValues: IMissingValues = [""]
     """
     A list of field values to consider as null values
     """
