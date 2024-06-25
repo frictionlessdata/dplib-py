@@ -18,6 +18,11 @@ class Dialect(Model):
     )
     """A profile URL"""
 
+    type: Optional[str] = None
+    """
+    Type of the dialect e.g. "delimited"
+    """
+
     title: Optional[str] = None
     """
     A string providing a title or one sentence description for this dialect
