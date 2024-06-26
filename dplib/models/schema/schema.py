@@ -6,7 +6,8 @@ import pydantic
 
 from ... import settings, types
 from ...system import Model
-from ..contributor import Contributor
+
+#  from ..contributor import Contributor
 from ..field import IField
 from ..missingValues import IMissingValues
 from .foreignKey import ForeignKey
@@ -22,43 +23,43 @@ class Schema(Model):
     )
     """A profile URL"""
 
-    name: Optional[str] = None
+    #  name: Optional[str] = None
     """
     A simple name or identifier as for Data Package
     """
 
-    title: Optional[str] = None
+    #  title: Optional[str] = None
     """
     A string providing a title or one sentence description for this schema
     """
 
-    description: Optional[str] = None
+    #  description: Optional[str] = None
     """
     A description of the schema. The description MUST be markdown formatted —
     this also allows for simple plain text as plain text is itself valid markdown.
     """
 
-    homepage: Optional[str] = None
+    #  homepage: Optional[str] = None
     """
     A URL for the home on the web that is related to this data package.
     """
 
-    keywords: List[str] = []
+    #  keywords: List[str] = []
     """
     The `keywords` property is a list of short keywords related to the schema.
     """
 
-    examples: List[dict[str, str]] = []
+    #  examples: List[dict[str, str]] = []
     """
     The `examples` property contains links to example data resources.
     """
 
-    version: Optional[str] = None
+    #  version: Optional[str] = None
     """
     The `version` property stores the version of the schema
     """
 
-    contributors: List[Contributor] = []
+    #  contributors: List[Contributor] = []
     """
     The people or organizations who contributed to this Table Schema.
     """
