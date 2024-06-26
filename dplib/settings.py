@@ -2,7 +2,7 @@ import os
 
 # Version
 
-VERSION = "0.7.9"
+VERSION = "1.0.0"
 
 # Profiles
 
