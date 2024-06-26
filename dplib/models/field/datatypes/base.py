@@ -1,11 +1,12 @@
 from __future__ import annotations
 
-from typing import Any, List, Optional
+from typing import Any, Optional
 
 import pydantic
 
 from .... import types
 from ....system import Model
+from ...missingValues import IMissingValues
 
 
 class BaseField(Model):
@@ -32,7 +33,7 @@ class BaseField(Model):
     A description for this field e.g. “The recipient of the funds”
     """
 
-    missingValues: List[str] = [""]
+    missingValues: IMissingValues = [""]
     """
     A list of field values to consider as null values
     """

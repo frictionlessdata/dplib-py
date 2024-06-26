@@ -88,7 +88,7 @@ def test_schema_to_dict():
     assert schema.to_dict() == {
         "$schema": settings.PROFILE_CURRENT_SCHEMA,
     }
-    schema.missingValues.append("x")
+    schema.missingValues.append("x")  # type: ignore
     assert schema.to_dict() == {
         "$schema": settings.PROFILE_CURRENT_SCHEMA,
         "missingValues": ["", "x"],
