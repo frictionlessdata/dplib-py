@@ -48,6 +48,7 @@ polars = ["polars-lts-cpu>=0.10"]
 sql = ["sqlalchemy>=1.4"]
 dev = [
     "ruff",
+    "reuse",
     "hatch",
     "neovim",
     "pyright",
