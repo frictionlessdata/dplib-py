@@ -97,6 +97,8 @@ format = [
   "ruff format dplib",
 ]
 lint = [
+  # https://reuse.readthedocs.io/en/stable/readme.html
+  "reuse --root dplib lint -q",
   "ruff check dplib",
 ]
 release = [
