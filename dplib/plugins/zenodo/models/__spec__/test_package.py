@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 Open Knowledge Foundation
+#
+# SPDX-License-Identifier: MIT
+
 from dplib.models import Package, Resource
 from dplib.plugins.zenodo.models import ZenodoPackage
 

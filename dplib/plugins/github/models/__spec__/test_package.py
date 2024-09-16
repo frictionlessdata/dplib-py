@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 Open Knowledge Foundation
+#
+# SPDX-License-Identifier: MIT
+
 from dplib.models import Package
 from dplib.plugins.github.models import GithubPackage, GithubResource
 

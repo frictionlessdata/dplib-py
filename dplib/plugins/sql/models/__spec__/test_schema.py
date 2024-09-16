@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 Open Knowledge Foundation
+#
+# SPDX-License-Identifier: MIT
+
 import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql as pg
 
