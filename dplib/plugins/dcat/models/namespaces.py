@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 Open Knowledge Foundation
+#
+# SPDX-License-Identifier: MIT
+
 from rdflib import Namespace
 from rdflib.namespace import FOAF, RDF
 

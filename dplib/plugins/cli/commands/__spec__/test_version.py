@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 Open Knowledge Foundation
+#
+# SPDX-License-Identifier: MIT
+
 from typer.testing import CliRunner
 
 from dplib import __version__

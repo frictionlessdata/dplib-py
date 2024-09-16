@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 Open Knowledge Foundation
+#
+# SPDX-License-Identifier: MIT
+
 from .any import AnyField
 from .array import ArrayField
 from .base import BaseField

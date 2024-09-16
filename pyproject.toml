@@ -48,6 +48,7 @@ polars = ["polars-lts-cpu>=0.10"]
 sql = ["sqlalchemy>=1.4"]
 dev = [
     "ruff",
+    "reuse",
     "hatch",
     "neovim",
     "pyright",
@@ -96,6 +97,8 @@ format = [
   "ruff format dplib",
 ]
 lint = [
+  # https://reuse.readthedocs.io/en/stable/readme.html
+  "reuse --root dplib lint -q",
   "ruff check dplib",
 ]
 release = [

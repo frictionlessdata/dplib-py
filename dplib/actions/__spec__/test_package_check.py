@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 Open Knowledge Foundation
+#
+# SPDX-License-Identifier: MIT
+
 import pytest
 
 from dplib.actions.package.check import check_package

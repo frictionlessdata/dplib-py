@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 Open Knowledge Foundation
+#
+# SPDX-License-Identifier: MIT
+
 from dplib.actions.dialect.check import check_dialect
 from dplib.models import Dialect
 
