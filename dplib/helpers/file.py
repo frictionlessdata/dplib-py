@@ -33,16 +33,15 @@ def write_file(path: str, body: Any, *, mode: str = "wt", encoding: str = "utf-8
         with tempfile.NamedTemporaryFile(mode, delete=False, encoding=eff_enc) as file:
             file.write(body)
             file.flush()
-        move_file(file.name, path, mode=0o644)
+        move_file(file.name, path)
     except Exception:
         raise Error(f'Cannot write file "{path}"')
 
 
-def move_file(source: str, target: str, *, mode: Optional[int] = None):
+def move_file(source: str, target: str, *, mode: int = 0o600):
     try:
         Path(target).parent.mkdir(parents=True, exist_ok=True)
         shutil.move(source, target)
-        if mode:
-            os.chmod(target, 0o644)
+        os.chmod(target, mode)
     except Exception:
         raise Error(f'Cannot move file "{source}:{target}"')
