@@ -11,7 +11,7 @@ from ..error import Error
 from ..errors.metadata import MetadataError
 from .dict import load_dict
 from .file import read_file
-from .path import is_url_path
+from .path import is_http_or_ftp_protocol_path
 
 # TODO: implement additional user-side profile caching
 
@@ -40,7 +40,7 @@ def read_profile(*, profile: str) -> types.IDict:
         profile = os.path.join(settings.PROFILE_BASEDIR, version, filename)
 
     # Ensure profile is URL
-    if not is_url_path(profile):
+    if not is_http_or_ftp_protocol_path(profile):
         raise Error(f'Profile MUST be a URL: "{profile}"')
 
     # Read jsonSchema
