@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from importlib import import_module
-from typing import Literal, Optional, Type, Union, cast
+from typing import List, Literal, Optional, Type, cast, get_args
 
 from ...models import Package, Resource
 from ...system import Model
@@ -17,9 +17,17 @@ def convert_metadata(
 ) -> Model:
     """Convert metadata from one notation to another."""
 
+    # Validate source/target
+    if source and source not in NOTATIONS:
+        raise ValueError(f"Unknown source notation: {source}")
+    if target and target not in NOTATIONS:
+        raise ValueError(f"Unknown target notation: {target}")
+
     # Source model
     Source = Resource if type == "resource" else Package
     if source:
+        if source not in NOTATIONS:
+            raise ValueError(f"Unknown source notation: {source}")
         module = import_module(f"dplib.plugins.{source}.models")
         Source: Type[Model] = getattr(module, f"{source.capitalize()}{type.capitalize()}")
     model = Source.from_path(path, format=format)
@@ -35,5 +43,7 @@ def convert_metadata(
     return model
 
 
-IType = Union[Literal["package"], Literal["resource"]]
-INotation = Union[Literal["ckan"], Literal["dcat"], Literal["github"], Literal["zenodo"]]
+IType = Literal["package", "resource"]
+INotation = Literal["ckan", "dcat", "github", "zenodo"]
+
+NOTATIONS: List[INotation] = list(get_args(INotation))
